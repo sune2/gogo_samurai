@@ -16,7 +16,6 @@
 #import "AppDelegate.h"
 
 #import "Zako.h"
-#import "Samurai.h"
 
 #import "GB2ShapeCache.h"
 
@@ -86,7 +85,7 @@ enum {
 		[self addChild:parent z:0 tag:kTagParentNode];
 		
 		
-		[self addNewSpriteAtPosition:ccp(s.width/2, s.height/2)];
+		[self addNewSpriteAtPosition:ccp(0, 0)];
 		
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
 		[self addChild:label z:0];
@@ -242,15 +241,15 @@ enum {
 -(void) addNewSpriteAtPosition:(CGPoint)p
 {
     CCPhysicsSprite* sprite;
-    if (rand()%2) {
+    if (rand()%1 == 1) {
         Zako* zako = [Zako zakoWithName:@"ninja"];
         [zako initBodyWithWorld:world at:p];
         sprite = (CCPhysicsSprite*)zako;
         sprite.tag = kZakoSprite;
     } else {
-        Samurai* samurai = [Samurai samurai];
-        [samurai initBodyWithWorld:world at:p];
-        sprite = (CCPhysicsSprite*)samurai;
+        _samurai = [Samurai samurai];
+        [_samurai initBodyWithWorld:world at:p];
+        sprite = (CCPhysicsSprite*)_samurai;
         sprite.tag = kSamuraiSprite;
     }
     [self addChild:sprite];
@@ -266,27 +265,27 @@ enum {
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
-    for (CCNode* obj in [self children]) {
-        if (obj.tag == kSamuraiSprite) {
-//            if (rand()%100 == 0) {
-                Samurai* samurai = (Samurai*)obj;
-                [samurai jump];
-//            }
-        }
-    }
+    [_samurai update:dt];
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	//Add a new body/atlas sprite at the touched location
-	for( UITouch *touch in touches ) {
-		CGPoint location = [touch locationInView: [touch view]];
-		
-		location = [[CCDirector sharedDirector] convertToGL: location];
-		
-		[self addNewSpriteAtPosition: location];
-	}
+    if ([touches count] >= 2) return;
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
+    if (ccpDistance(point, _touchPos) > 10) {
+        [_samurai dashSlice];
+    } else {
+        [_samurai jump];
+    }    
 }
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if ([touches count] >= 2) return;
+    UITouch* touch = [touches anyObject];
+    _touchPos = [[CCDirector sharedDirector] convertTouchToGL:touch];
+}
+
 
 #pragma mark GameKit delegate
 

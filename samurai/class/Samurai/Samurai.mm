@@ -14,6 +14,7 @@
 
 + (Samurai*)samurai {
     Samurai *res = [super spriteWithFile:@"samurai.png"];
+    res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     return res;
 }
@@ -30,9 +31,11 @@
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"samurai"]];
 
     [self setB2Body:body];
+    _initPos = point;
 }
 
-- (BOOL)canJump {
+- (BOOL)isMovable {
+    if (self.position.x > _initPos.x) return NO;
     for (b2ContactEdge* contactEdge = self.b2Body->GetContactList(); contactEdge;
          contactEdge = contactEdge->next) {
         b2Contact* contact = contactEdge->contact;
@@ -48,9 +51,26 @@
     return NO;
 }
 
+
 - (void)jump {
-    if ([self canJump]) {
-        self.b2Body->ApplyLinearImpulse(b2Vec2(0,20), self.b2Body->GetWorldCenter());
+    if ([self isMovable]) {
+        self.b2Body->ApplyLinearImpulse(b2Vec2(0,50), self.b2Body->GetWorldCenter());
+    }
+}
+
+- (void)dashSlice {
+    if ([self isMovable]) {
+        self.position = ccp(self.position.x + 200, self.position.y);
+    }
+}
+
+- (void)update:(ccTime)delta {
+    
+    if (self.position.x < _initPos.x) {
+        // 戻り過ぎ
+        
+    } else if (self.position.x > _initPos.x) {
+        self.position = ccp(self.position.x-5, self.position.y);
     }
 }
 
