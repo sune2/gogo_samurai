@@ -10,4 +10,12 @@
 
 @implementation Samurai
 
+-(id)init {
+    self = [super self];
+    if (self) {
+        
+    }
+    return self;
+}
+
 @end

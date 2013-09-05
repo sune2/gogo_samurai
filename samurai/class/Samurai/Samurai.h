@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "Box2D.h"
 
 @interface Samurai : NSObject
-
+{
+    b2Body* _body;
+    CCSprite* _sprite;
+    int _hp;
+}
 @end
