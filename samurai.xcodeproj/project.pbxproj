@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */; };
 		FAF29AA417D82D5000F512EE /* GameController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.mm */; };
 		FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.mm */; };
@@ -202,10 +203,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
+		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAE3AFA217D8754C00DF2188 /* WorkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkLayer.h; path = class/GameStage/WorkLayer.h; sourceTree = "<group>"; };
 		FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorkLayer.mm; path = class/GameStage/WorkLayer.mm; sourceTree = "<group>"; };
-		FAE3AFA517D875A500DF2188 /* BackgroundLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
-		FAE3AFA617D875A500DF2188 /* BackgroundLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
 		FAF29AA317D82D5000F512EE /* GameController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameController.mm; path = class/GameController/GameController.mm; sourceTree = "<group>"; };
 		FAF29AA517D82D6200F512EE /* GameStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStage.h; path = class/GameStage/GameStage.h; sourceTree = "<group>"; };
@@ -686,9 +687,9 @@
 				FAF29AA517D82D6200F512EE /* GameStage.h */,
 				FAF29AA617D82D6200F512EE /* GameStage.mm */,
 				FAE3AFA217D8754C00DF2188 /* WorkLayer.h */,
-				FAE3AFA517D875A500DF2188 /* BackgroundLayer.h */,
-				FAE3AFA617D875A500DF2188 /* BackgroundLayer.mm */,
 				FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */,
+				FAAE772017D8792E007D4770 /* BackgroundLayer.h */,
+				FAAE772117D8792E007D4770 /* BackgroundLayer.mm */,
 			);
 			name = GameStage;
 			sourceTree = "<group>";
@@ -1546,6 +1547,7 @@
 				FAF29AB017D82D9900F512EE /* Samurai.mm in Sources */,
 				FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */,
 				FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */,
+				FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
