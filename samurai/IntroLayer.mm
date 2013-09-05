@@ -10,7 +10,8 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "HelloWorldLayer.h"
-
+#import "GameStage.h"
+#import "GB2ShapeCache.h"
 #pragma mark - IntroLayer
 
 // HelloWorldLayer implementation
@@ -36,7 +37,8 @@
 -(id) init
 {
 	if( (self=[super init])) {
-		
+        [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapeDef.plist"];
+        
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
@@ -60,6 +62,7 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] ]];
+//	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
 }
 @end
