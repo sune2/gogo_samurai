@@ -32,8 +32,26 @@
     [self setB2Body:body];
 }
 
+- (BOOL)canJump {
+    for (b2ContactEdge* contactEdge = self.b2Body->GetContactList(); contactEdge;
+         contactEdge = contactEdge->next) {
+        b2Contact* contact = contactEdge->contact;
+        if (contact->IsTouching()) {
+            
+            b2Fixture *fixture = contact->GetFixtureA();
+            CCNode* node = (CCNode*)fixture->GetUserData();
+            if (node.tag == 10) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 - (void)jump {
-    self.b2Body->ApplyLinearImpulse(b2Vec2(3,3), b2Vec2(0,0));
+    if ([self canJump]) {
+        self.b2Body->ApplyLinearImpulse(b2Vec2(0,20), self.b2Body->GetWorldCenter());
+    }
 }
 
 @end

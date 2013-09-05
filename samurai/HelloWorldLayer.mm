@@ -24,6 +24,10 @@ enum {
 	kTagParentNode = 1,
 };
 
+enum {
+    kSamuraiSprite = 2,
+    kZakoSprite = 3
+};
 
 #pragma mark - HelloWorldLayer
 
@@ -199,7 +203,10 @@ enum {
 	// bottom
 	
 	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
+    b2Fixture* fixture = groundBody->CreateFixture(&groundBox,0);
+    CCNode* groundNode = [[CCNode alloc] init];
+    groundNode.tag = 10;
+    fixture->SetUserData(groundNode);
 	
 	// top
 	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
@@ -239,10 +246,12 @@ enum {
         Zako* zako = [Zako zakoWithName:@"ninja"];
         [zako initBodyWithWorld:world at:p];
         sprite = (CCPhysicsSprite*)zako;
+        sprite.tag = kZakoSprite;
     } else {
         Samurai* samurai = [Samurai samurai];
         [samurai initBodyWithWorld:world at:p];
         sprite = (CCPhysicsSprite*)samurai;
+        sprite.tag = kSamuraiSprite;
     }
     [self addChild:sprite];
     return;
@@ -251,17 +260,20 @@ enum {
 
 -(void) update: (ccTime) dt
 {
-	//It is recommended that a fixed time step is used with Box2D for stability
-	//of the simulation, however, we are using a variable time step here.
-	//You need to make an informed choice, the following URL is useful
-	//http://gafferongames.com/game-physics/fix-your-timestep/
-	
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
 	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);	
+	world->Step(dt, velocityIterations, positionIterations);
+    for (CCNode* obj in [self children]) {
+        if (obj.tag == kSamuraiSprite) {
+//            if (rand()%100 == 0) {
+                Samurai* samurai = (Samurai*)obj;
+                [samurai jump];
+//            }
+        }
+    }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

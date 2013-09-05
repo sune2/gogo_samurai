@@ -10,10 +10,12 @@
 #import "CCPhysicsSprite.h"
 
 @interface Samurai : CCPhysicsSprite
+{
+    BOOL _isJumping;
+}
 
 + (Samurai*)samurai;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
-
 - (void)jump;
 
 @end
