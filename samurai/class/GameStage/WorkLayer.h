@@ -7,9 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GLES-Render.h"
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "Define.h"
+#import "Samurai.h"
 
 @interface WorkLayer : CCLayer
-
+{
+    b2World* world;
+    GLESDebugDraw *m_debugDraw;
+}
 @end

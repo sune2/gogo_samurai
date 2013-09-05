@@ -10,4 +10,16 @@
 
 @implementation GameStage
 
++(CCScene *)scene
+{
+    CCScene* scene = [CCScene node];
+    WorkLayer* workLayer = [WorkLayer node];
+    BackgroundLayer* bgLayer = [BackgroundLayer node];
+    
+    // レイヤーを追加する
+    [scene addChild:workLayer z:1];
+    [scene addChild:bgLayer z:-1];
+    
+    return scene;
+}
 @end

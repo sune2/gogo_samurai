@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "Define.h"
+#import "GLES-Render.h"
 
 @interface BackgroundLayer : CCLayer
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
+		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
 		FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */; };
 		FAF29AA417D82D5000F512EE /* GameController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.mm */; };
 		FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.mm */; };
@@ -205,6 +206,7 @@
 /* Begin PBXFileReference section */
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
+		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		FAE3AFA217D8754C00DF2188 /* WorkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkLayer.h; path = class/GameStage/WorkLayer.h; sourceTree = "<group>"; };
 		FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorkLayer.mm; path = class/GameStage/WorkLayer.mm; sourceTree = "<group>"; };
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 		FAF3B2A317D736FA00F29EDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE772317D884E6007D4770 /* bg.jpg */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
 				FAF29AB417D84E0600F512EE /* samurai.png */,
 				FAF29AB617D84E2C00F512EE /* ninja.png */,
@@ -1371,6 +1374,7 @@
 				FAF29AB517D84E0600F512EE /* samurai.png in Resources */,
 				FAF29AB717D84E2C00F512EE /* ninja.png in Resources */,
 				FAF29ABF17D86C8500F512EE /* shapeDef.plist in Resources */,
+				FAAE772417D884E6007D4770 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

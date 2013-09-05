@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "WorkLayer.h"
+#import "BackgroundLayer.h"
 
 @interface GameStage : CCScene
-
++(CCScene *)scene;
 @end
