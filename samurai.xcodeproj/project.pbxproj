@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FAF29AA417D82D5000F512EE /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.m */; };
-		FAF29AA717D82D6200F512EE /* GameStage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.m */; };
-		FAF29AAA17D82D7200F512EE /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA917D82D7200F512EE /* Projectile.m */; };
-		FAF29AAD17D82D8200F512EE /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAC17D82D8200F512EE /* Boss.m */; };
-		FAF29AB017D82D9900F512EE /* Samurai.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAF17D82D9900F512EE /* Samurai.m */; };
-		FAF29AB317D82DAA00F512EE /* Zako.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AB217D82DAA00F512EE /* Zako.m */; };
+		FAF29AA417D82D5000F512EE /* GameController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.mm */; };
+		FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.mm */; };
+		FAF29AAA17D82D7200F512EE /* Projectile.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA917D82D7200F512EE /* Projectile.mm */; };
+		FAF29AAD17D82D8200F512EE /* Boss.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAC17D82D8200F512EE /* Boss.mm */; };
+		FAF29AB017D82D9900F512EE /* Samurai.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAF17D82D9900F512EE /* Samurai.mm */; };
+		FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AB217D82DAA00F512EE /* Zako.mm */; };
 		FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B28E17D736F900F29EDB /* QuartzCore.framework */; };
 		FAF3B29117D736F900F29EDB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29017D736F900F29EDB /* OpenGLES.framework */; };
 		FAF3B29317D736F900F29EDB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29217D736F900F29EDB /* OpenAL.framework */; };
@@ -198,17 +198,17 @@
 
 /* Begin PBXFileReference section */
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
-		FAF29AA317D82D5000F512EE /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameController.m; path = class/GameController/GameController.m; sourceTree = "<group>"; };
+		FAF29AA317D82D5000F512EE /* GameController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameController.mm; path = class/GameController/GameController.mm; sourceTree = "<group>"; };
 		FAF29AA517D82D6200F512EE /* GameStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStage.h; path = class/GameStage/GameStage.h; sourceTree = "<group>"; };
-		FAF29AA617D82D6200F512EE /* GameStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameStage.m; path = class/GameStage/GameStage.m; sourceTree = "<group>"; };
+		FAF29AA617D82D6200F512EE /* GameStage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameStage.mm; path = class/GameStage/GameStage.mm; sourceTree = "<group>"; };
 		FAF29AA817D82D7200F512EE /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = class/Projectile/Projectile.h; sourceTree = "<group>"; };
-		FAF29AA917D82D7200F512EE /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = class/Projectile/Projectile.m; sourceTree = "<group>"; };
+		FAF29AA917D82D7200F512EE /* Projectile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Projectile.mm; path = class/Projectile/Projectile.mm; sourceTree = "<group>"; };
 		FAF29AAB17D82D8200F512EE /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boss.h; path = class/Boss/Boss.h; sourceTree = "<group>"; };
-		FAF29AAC17D82D8200F512EE /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Boss.m; path = class/Boss/Boss.m; sourceTree = "<group>"; };
+		FAF29AAC17D82D8200F512EE /* Boss.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Boss.mm; path = class/Boss/Boss.mm; sourceTree = "<group>"; };
 		FAF29AAE17D82D9900F512EE /* Samurai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Samurai.h; path = class/Samurai/Samurai.h; sourceTree = "<group>"; };
-		FAF29AAF17D82D9900F512EE /* Samurai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Samurai.m; path = class/Samurai/Samurai.m; sourceTree = "<group>"; };
+		FAF29AAF17D82D9900F512EE /* Samurai.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Samurai.mm; path = class/Samurai/Samurai.mm; sourceTree = "<group>"; };
 		FAF29AB117D82DAA00F512EE /* Zako.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zako.h; path = class/Zako/Zako.h; sourceTree = "<group>"; };
-		FAF29AB217D82DAA00F512EE /* Zako.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Zako.m; path = class/Zako/Zako.m; sourceTree = "<group>"; };
+		FAF29AB217D82DAA00F512EE /* Zako.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Zako.mm; path = class/Zako/Zako.mm; sourceTree = "<group>"; };
 		FAF3B28B17D736F900F29EDB /* samurai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samurai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3B28E17D736F900F29EDB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF3B29017D736F900F29EDB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -631,7 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AB117D82DAA00F512EE /* Zako.h */,
-				FAF29AB217D82DAA00F512EE /* Zako.m */,
+				FAF29AB217D82DAA00F512EE /* Zako.mm */,
 			);
 			name = Zako;
 			sourceTree = "<group>";
@@ -640,7 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AAE17D82D9900F512EE /* Samurai.h */,
-				FAF29AAF17D82D9900F512EE /* Samurai.m */,
+				FAF29AAF17D82D9900F512EE /* Samurai.mm */,
 			);
 			name = Samurai;
 			sourceTree = "<group>";
@@ -649,7 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AAB17D82D8200F512EE /* Boss.h */,
-				FAF29AAC17D82D8200F512EE /* Boss.m */,
+				FAF29AAC17D82D8200F512EE /* Boss.mm */,
 			);
 			name = Boss;
 			sourceTree = "<group>";
@@ -658,7 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AA817D82D7200F512EE /* Projectile.h */,
-				FAF29AA917D82D7200F512EE /* Projectile.m */,
+				FAF29AA917D82D7200F512EE /* Projectile.mm */,
 			);
 			name = Projectile;
 			sourceTree = "<group>";
@@ -667,7 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AA517D82D6200F512EE /* GameStage.h */,
-				FAF29AA617D82D6200F512EE /* GameStage.m */,
+				FAF29AA617D82D6200F512EE /* GameStage.mm */,
 			);
 			name = GameStage;
 			sourceTree = "<group>";
@@ -676,7 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AA217D82D5000F512EE /* GameController.h */,
-				FAF29AA317D82D5000F512EE /* GameController.m */,
+				FAF29AA317D82D5000F512EE /* GameController.mm */,
 			);
 			name = GameController;
 			sourceTree = "<group>";
@@ -1502,12 +1502,12 @@
 				FAF3B4CB17D736FE00F29EDB /* HelloWorldLayer.mm in Sources */,
 				FAF3B4CE17D736FE00F29EDB /* IntroLayer.mm in Sources */,
 				FAF3B4D117D736FE00F29EDB /* GLES-Render.mm in Sources */,
-				FAF29AA417D82D5000F512EE /* GameController.m in Sources */,
-				FAF29AA717D82D6200F512EE /* GameStage.m in Sources */,
-				FAF29AAA17D82D7200F512EE /* Projectile.m in Sources */,
-				FAF29AAD17D82D8200F512EE /* Boss.m in Sources */,
-				FAF29AB017D82D9900F512EE /* Samurai.m in Sources */,
-				FAF29AB317D82DAA00F512EE /* Zako.m in Sources */,
+				FAF29AA417D82D5000F512EE /* GameController.mm in Sources */,
+				FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */,
+				FAF29AAA17D82D7200F512EE /* Projectile.mm in Sources */,
+				FAF29AAD17D82D8200F512EE /* Boss.mm in Sources */,
+				FAF29AB017D82D9900F512EE /* Samurai.mm in Sources */,
+				FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
