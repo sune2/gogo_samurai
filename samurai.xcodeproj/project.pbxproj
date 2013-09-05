@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAF29AA417D82D5000F512EE /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.m */; };
+		FAF29AA717D82D6200F512EE /* GameStage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.m */; };
+		FAF29AAA17D82D7200F512EE /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA917D82D7200F512EE /* Projectile.m */; };
+		FAF29AAD17D82D8200F512EE /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAC17D82D8200F512EE /* Boss.m */; };
+		FAF29AB017D82D9900F512EE /* Samurai.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAF17D82D9900F512EE /* Samurai.m */; };
+		FAF29AB317D82DAA00F512EE /* Zako.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AB217D82DAA00F512EE /* Zako.m */; };
 		FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B28E17D736F900F29EDB /* QuartzCore.framework */; };
 		FAF3B29117D736F900F29EDB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29017D736F900F29EDB /* OpenGLES.framework */; };
 		FAF3B29317D736F900F29EDB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29217D736F900F29EDB /* OpenAL.framework */; };
@@ -191,6 +197,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
+		FAF29AA317D82D5000F512EE /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameController.m; path = class/GameController/GameController.m; sourceTree = "<group>"; };
+		FAF29AA517D82D6200F512EE /* GameStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStage.h; path = class/GameStage/GameStage.h; sourceTree = "<group>"; };
+		FAF29AA617D82D6200F512EE /* GameStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameStage.m; path = class/GameStage/GameStage.m; sourceTree = "<group>"; };
+		FAF29AA817D82D7200F512EE /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = class/Projectile/Projectile.h; sourceTree = "<group>"; };
+		FAF29AA917D82D7200F512EE /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = class/Projectile/Projectile.m; sourceTree = "<group>"; };
+		FAF29AAB17D82D8200F512EE /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boss.h; path = class/Boss/Boss.h; sourceTree = "<group>"; };
+		FAF29AAC17D82D8200F512EE /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Boss.m; path = class/Boss/Boss.m; sourceTree = "<group>"; };
+		FAF29AAE17D82D9900F512EE /* Samurai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Samurai.h; path = class/Samurai/Samurai.h; sourceTree = "<group>"; };
+		FAF29AAF17D82D9900F512EE /* Samurai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Samurai.m; path = class/Samurai/Samurai.m; sourceTree = "<group>"; };
+		FAF29AB117D82DAA00F512EE /* Zako.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zako.h; path = class/Zako/Zako.h; sourceTree = "<group>"; };
+		FAF29AB217D82DAA00F512EE /* Zako.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Zako.m; path = class/Zako/Zako.m; sourceTree = "<group>"; };
 		FAF3B28B17D736F900F29EDB /* samurai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samurai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3B28E17D736F900F29EDB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF3B29017D736F900F29EDB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -592,6 +610,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FAF29A9B17D82C9600F512EE /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AA117D82D1B00F512EE /* GameController */,
+				FAF29AA017D82D1400F512EE /* GameStage */,
+				FAF29A9F17D82D0600F512EE /* Projectile */,
+				FAF29A9E17D82CFA00F512EE /* Boss */,
+				FAF29A9D17D82CEA00F512EE /* Samurai */,
+				FAF29A9C17D82CD800F512EE /* Zako */,
+				FAF3B4C917D736FE00F29EDB /* HelloWorldLayer.h */,
+				FAF3B4CA17D736FE00F29EDB /* HelloWorldLayer.mm */,
+				FAF3B4CC17D736FE00F29EDB /* IntroLayer.h */,
+				FAF3B4CD17D736FE00F29EDB /* IntroLayer.mm */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		FAF29A9C17D82CD800F512EE /* Zako */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AB117D82DAA00F512EE /* Zako.h */,
+				FAF29AB217D82DAA00F512EE /* Zako.m */,
+			);
+			name = Zako;
+			sourceTree = "<group>";
+		};
+		FAF29A9D17D82CEA00F512EE /* Samurai */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AAE17D82D9900F512EE /* Samurai.h */,
+				FAF29AAF17D82D9900F512EE /* Samurai.m */,
+			);
+			name = Samurai;
+			sourceTree = "<group>";
+		};
+		FAF29A9E17D82CFA00F512EE /* Boss */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AAB17D82D8200F512EE /* Boss.h */,
+				FAF29AAC17D82D8200F512EE /* Boss.m */,
+			);
+			name = Boss;
+			sourceTree = "<group>";
+		};
+		FAF29A9F17D82D0600F512EE /* Projectile */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AA817D82D7200F512EE /* Projectile.h */,
+				FAF29AA917D82D7200F512EE /* Projectile.m */,
+			);
+			name = Projectile;
+			sourceTree = "<group>";
+		};
+		FAF29AA017D82D1400F512EE /* GameStage */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AA517D82D6200F512EE /* GameStage.h */,
+				FAF29AA617D82D6200F512EE /* GameStage.m */,
+			);
+			name = GameStage;
+			sourceTree = "<group>";
+		};
+		FAF29AA117D82D1B00F512EE /* GameController */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AA217D82D5000F512EE /* GameController.h */,
+				FAF29AA317D82D5000F512EE /* GameController.m */,
+			);
+			name = GameController;
+			sourceTree = "<group>";
+		};
 		FAF3B28217D736F900F29EDB = {
 			isa = PBXGroup;
 			children = (
@@ -631,12 +720,9 @@
 			children = (
 				FAF3B4C617D736FE00F29EDB /* AppDelegate.h */,
 				FAF3B4C717D736FE00F29EDB /* AppDelegate.mm */,
-				FAF3B4C917D736FE00F29EDB /* HelloWorldLayer.h */,
-				FAF3B4CA17D736FE00F29EDB /* HelloWorldLayer.mm */,
-				FAF3B4CC17D736FE00F29EDB /* IntroLayer.h */,
-				FAF3B4CD17D736FE00F29EDB /* IntroLayer.mm */,
 				FAF3B4CF17D736FE00F29EDB /* GLES-Render.h */,
 				FAF3B4D017D736FE00F29EDB /* GLES-Render.mm */,
+				FAF29A9B17D82C9600F512EE /* Class */,
 				FAF3B2A317D736FA00F29EDB /* Resources */,
 				FAF3B2BB17D736FA00F29EDB /* libs */,
 				FAF3B4C217D736FE00F29EDB /* Supporting Files */,
@@ -1416,6 +1502,12 @@
 				FAF3B4CB17D736FE00F29EDB /* HelloWorldLayer.mm in Sources */,
 				FAF3B4CE17D736FE00F29EDB /* IntroLayer.mm in Sources */,
 				FAF3B4D117D736FE00F29EDB /* GLES-Render.mm in Sources */,
+				FAF29AA417D82D5000F512EE /* GameController.m in Sources */,
+				FAF29AA717D82D6200F512EE /* GameStage.m in Sources */,
+				FAF29AAA17D82D7200F512EE /* Projectile.m in Sources */,
+				FAF29AAD17D82D8200F512EE /* Boss.m in Sources */,
+				FAF29AB017D82D9900F512EE /* Samurai.m in Sources */,
+				FAF29AB317D82DAA00F512EE /* Zako.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,6 +1625,7 @@
 				FAF3B4D817D736FE00F29EDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
