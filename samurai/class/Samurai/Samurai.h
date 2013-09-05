@@ -6,14 +6,14 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "cocos2d.h"
 #import "Box2D.h"
+#import "CCPhysicsSprite.h"
 
-@interface Samurai : NSObject
-{
-    b2Body* _body;
-    CCSprite* _sprite;
-    int _hp;
-}
+@interface Samurai : CCPhysicsSprite
+
++ (Samurai*)samurai;
+- (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
+
+- (void)jump;
+
 @end

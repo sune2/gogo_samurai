@@ -15,6 +15,10 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
+#import "Zako.h"
+#import "Samurai.h"
+
+#import "GB2ShapeCache.h"
 
 enum {
 	kTagParentNode = 1,
@@ -50,6 +54,8 @@ enum {
 {
 	if( (self=[super init])) {
 		
+        [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapeDef.plist"];
+        
 		// enable events
 		
 		self.touchEnabled = YES;
@@ -66,11 +72,11 @@ enum {
 		
 #if 1
 		// Use batch node. Faster
-		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
+		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"ninja.png" capacity:100];
 		spriteTexture_ = [parent texture];
 #else
 		// doesn't use batch node. Slower
-		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
+		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"ninja.png"];
 		CCNode *parent = [CCNode node];
 #endif
 		[self addChild:parent z:0 tag:kTagParentNode];
@@ -228,38 +234,18 @@ enum {
 
 -(void) addNewSpriteAtPosition:(CGPoint)p
 {
-	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-	// Define the dynamic body.
-	//Set up a 1m squared box in the physics world
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-	b2Body *body = world->CreateBody(&bodyDef);
-	
-	// Define another box shape for our dynamic body.
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-	
-	// Define the dynamic body fixture.
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;	
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
-	body->CreateFixture(&fixtureDef);
-	
-
-	CCNode *parent = [self getChildByTag:kTagParentNode];
-	
-	//We have a 64x64 sprite sheet with 4 different 32x32 images.  The following code is
-	//just randomly picking one of the images
-	int idx = (CCRANDOM_0_1() > .5 ? 0:1);
-	int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-	CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];
-	[parent addChild:sprite];
-	
-	[sprite setPTMRatio:PTM_RATIO];
-	[sprite setB2Body:body];
-	[sprite setPosition: ccp( p.x, p.y)];
+    CCPhysicsSprite* sprite;
+    if (rand()%2) {
+        Zako* zako = [Zako zakoWithName:@"ninja"];
+        [zako initBodyWithWorld:world at:p];
+        sprite = (CCPhysicsSprite*)zako;
+    } else {
+        Samurai* samurai = [Samurai samurai];
+        [samurai initBodyWithWorld:world at:p];
+        sprite = (CCPhysicsSprite*)samurai;
+    }
+    [self addChild:sprite];
+    return;
 
 }
 

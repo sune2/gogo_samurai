@@ -8,17 +8,18 @@
 
 #import <GameKit/GameKit.h>
 
-#import "cocos2d.h"
 #import "Box2D.h"
+#import "CCPhysicsSprite.h"
 
-#import "GLES-Render.h"
-
-
-@interface Zako : NSObject
+@interface Zako : CCPhysicsSprite
 {
-    b2Body* _body;
-    CCSprite* _sprite;
 }
 
+@property(nonatomic, strong) NSString* name;
+
++ (Zako*)zakoWithName:(NSString*)name;
+
+
+- (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
 
 @end
