@@ -13,6 +13,8 @@
 		FAF29AAD17D82D8200F512EE /* Boss.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAC17D82D8200F512EE /* Boss.mm */; };
 		FAF29AB017D82D9900F512EE /* Samurai.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AAF17D82D9900F512EE /* Samurai.mm */; };
 		FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AB217D82DAA00F512EE /* Zako.mm */; };
+		FAF29AB517D84E0600F512EE /* samurai.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AB417D84E0600F512EE /* samurai.png */; };
+		FAF29AB717D84E2C00F512EE /* ninja.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AB617D84E2C00F512EE /* ninja.png */; };
 		FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B28E17D736F900F29EDB /* QuartzCore.framework */; };
 		FAF3B29117D736F900F29EDB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29017D736F900F29EDB /* OpenGLES.framework */; };
 		FAF3B29317D736F900F29EDB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29217D736F900F29EDB /* OpenAL.framework */; };
@@ -209,6 +211,8 @@
 		FAF29AAF17D82D9900F512EE /* Samurai.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Samurai.mm; path = class/Samurai/Samurai.mm; sourceTree = "<group>"; };
 		FAF29AB117D82DAA00F512EE /* Zako.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zako.h; path = class/Zako/Zako.h; sourceTree = "<group>"; };
 		FAF29AB217D82DAA00F512EE /* Zako.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Zako.mm; path = class/Zako/Zako.mm; sourceTree = "<group>"; };
+		FAF29AB417D84E0600F512EE /* samurai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samurai.png; sourceTree = "<group>"; };
+		FAF29AB617D84E2C00F512EE /* ninja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ninja.png; sourceTree = "<group>"; };
 		FAF3B28B17D736F900F29EDB /* samurai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samurai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3B28E17D736F900F29EDB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF3B29017D736F900F29EDB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -733,6 +737,8 @@
 		FAF3B2A317D736FA00F29EDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAF29AB417D84E0600F512EE /* samurai.png */,
+				FAF29AB617D84E2C00F512EE /* ninja.png */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
 				FAF3B2A617D736FA00F29EDB /* Default@2x.png */,
 				FAF3B2A817D736FA00F29EDB /* Default-568h@2x.png */,
@@ -1334,6 +1340,8 @@
 				FAF3B2BA17D736FA00F29EDB /* iTunesArtwork in Resources */,
 				FAF3B41317D736FD00F29EDB /* ChangeLog in Resources */,
 				FAF3B4D317D736FE00F29EDB /* blocks.png in Resources */,
+				FAF29AB517D84E0600F512EE /* samurai.png in Resources */,
+				FAF29AB717D84E2C00F512EE /* ninja.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

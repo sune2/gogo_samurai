@@ -16,7 +16,9 @@
 
 @interface Zako : NSObject
 {
-
+    b2Body* _body;
+    CCSprite* _sprite;
 }
+
 
 @end
