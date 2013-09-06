@@ -20,6 +20,7 @@
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
     res.tag = SpriteTagProjectile;
+    res.owner = ProjectileOwnerEnemy;
     return res;
 }
 
@@ -44,6 +45,7 @@
 - (void)reflect {
     self.angularVelocity = - self.angularVelocity;
     self.linearVelocity = - self.linearVelocity;
+    self.owner = ProjectileOwnerSamurai;
 }
 
 @end

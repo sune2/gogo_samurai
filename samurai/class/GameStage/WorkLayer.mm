@@ -88,9 +88,7 @@
     for (Projectile* bullet in _bullets) {
         [bullet update:dt];
     }
-    for (Zako* zako in _zakos) {
-        [zako update:dt];
-    }
+
 }
 
 -(BOOL)hitWithProjectile:(Projectile*) bullet
@@ -102,13 +100,13 @@
         if (!contactEdge->contact->IsTouching()) continue;
         b2Body* other = contactEdge->other;
         CCSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
-        if (sprite.tag == SpriteTagSamurai && ProjectileOwnerEnemy) {
+        if (sprite.tag == SpriteTagSamurai && bullet.owner == ProjectileOwnerEnemy) {
             // 手裏剣とサムライがあたったときの処理
             _samurai.hp--;
             [self generateParticleAt:bullet.position];
             
             return YES;
-        } else if (sprite.tag == SpriteTagEnemy && ProjectileOwnerSamurai) {
+        } else if (sprite.tag == SpriteTagEnemy && bullet.owner == ProjectileOwnerSamurai) {
             NSMutableArray* arr = [[NSMutableArray alloc] init];
             [arr addObject:sprite];
             [self removeEnemies:arr];
@@ -149,8 +147,8 @@
                 _samurai.hp--;
             }
         } else if (sprite.tag == SpriteTagProjectile) {
-            CCLOG(@"HELLO");
-            [sprite refrect];
+            Projectile* projectile = (Projectile*)sprite;
+            [projectile reflect];
         }
     }
     [self removeEnemies:arr];
@@ -193,6 +191,9 @@
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
     [_samurai update:dt];
+    for (Zako* zako in _zakos) {
+        [zako update:dt];
+    }
     [self updateBullets:dt];
     [self attackOnEnemy];
 }
