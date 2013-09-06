@@ -10,4 +10,15 @@
 
 @implementation Ninja
 
++ (Ninja*)ninja {
+    Ninja* res = (Ninja*)[super zakoWithName:@"ninja"];
+    return res;
+}
+
+- (void)makeBullet {
+    self.world;
+    
+}
+
+
 @end

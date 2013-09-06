@@ -16,10 +16,13 @@
 }
 
 @property(nonatomic, strong) NSString* name;
+@property(nonatomic, assign) b2World* world;
 
 + (Zako*)zakoWithName:(NSString*)name;
 
 
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
+
+- (CCPhysicsSprite*)makeBullet;
 
 @end

@@ -23,6 +23,7 @@
 		FAF29ABF17D86C8500F512EE /* shapeDef.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAF29ABE17D86C8500F512EE /* shapeDef.plist */; };
 		FAF29AC017D86D0C00F512EE /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29ABD17D86A6000F512EE /* GB2ShapeCache.mm */; };
 		FAF29AC617D95EED00F512EE /* katana.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AC417D95EED00F512EE /* katana.png */; };
+		FAF29AC917D9A64F00F512EE /* shuriken.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AC817D9A64F00F512EE /* shuriken.png */; };
 		FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B28E17D736F900F29EDB /* QuartzCore.framework */; };
 		FAF3B29117D736F900F29EDB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29017D736F900F29EDB /* OpenGLES.framework */; };
 		FAF3B29317D736F900F29EDB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29217D736F900F29EDB /* OpenAL.framework */; };
@@ -235,6 +236,7 @@
 		FAF29ABD17D86A6000F512EE /* GB2ShapeCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = GB2ShapeCache.mm; path = class/GB2ShapeCache.mm; sourceTree = "<group>"; };
 		FAF29ABE17D86C8500F512EE /* shapeDef.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = shapeDef.plist; path = Resources/shapeDef.plist; sourceTree = "<group>"; };
 		FAF29AC417D95EED00F512EE /* katana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = katana.png; path = Resources/images/character/katana.png; sourceTree = "<group>"; };
+		FAF29AC817D9A64F00F512EE /* shuriken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shuriken.png; path = Resources/images/character/shuriken.png; sourceTree = "<group>"; };
 		FAF3B28B17D736F900F29EDB /* samurai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samurai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3B28E17D736F900F29EDB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF3B29017D736F900F29EDB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -746,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF29AB417D84E0600F512EE /* samurai.png */,
+				FAF29AC817D9A64F00F512EE /* shuriken.png */,
 				FAF29AC417D95EED00F512EE /* katana.png */,
 				FAF29AB617D84E2C00F512EE /* ninja.png */,
 			);
@@ -1413,6 +1416,7 @@
 				FAF29ABF17D86C8500F512EE /* shapeDef.plist in Resources */,
 				FAAE772417D884E6007D4770 /* bg.jpg in Resources */,
 				FAF29AC617D95EED00F512EE /* katana.png in Resources */,
+				FAF29AC917D9A64F00F512EE /* shuriken.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

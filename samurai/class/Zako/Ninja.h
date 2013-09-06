@@ -6,8 +6,13 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Zako.h"
 
-@interface Ninja : NSObject
+@interface Ninja : Zako
+{
+    
+}
+
++ (Ninja*)ninja;
 
 @end

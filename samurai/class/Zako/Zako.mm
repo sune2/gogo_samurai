@@ -14,6 +14,7 @@
 
 + (Zako*)zakoWithName:(NSString *)name {
     Zako *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
+    res.scale = 57.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
     return res;
@@ -31,6 +32,10 @@
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
     
     [self setB2Body:body];
+}
+
+- (void)makeBullet {
+    
 }
 
 @end

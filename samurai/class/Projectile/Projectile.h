@@ -6,8 +6,12 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CCPhysicsSprite.h"
+#import "cocos2d.h"
+#import "Box2D.h"
 
-@interface Projectile : NSObject
+@interface Projectile : CCPhysicsSprite
+
+@property (nonatomic, strong) NSString* name;
 
 @end

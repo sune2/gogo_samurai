@@ -20,7 +20,7 @@
     res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.katana = [CCSprite spriteWithFile:@"katana.png"];
-    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
+//    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
     [res addChild:res.katana];
     return res;
 }
@@ -124,7 +124,6 @@
 }
 
 - (void)update:(ccTime)delta {
-    CCLOG(@"(%f,%f)",self.b2Body->GetLinearVelocity().x, self.b2Body->GetLinearVelocity().y);
     if (_dashCounter >= 1) {
         _dashCounter--;
         if (_dashCounter == 0) {
@@ -141,7 +140,7 @@
     
     if (self.position.x < _initPos.x) {
         // 戻り過ぎ
-    } else if (self.position.x > _initPos.x && _dashCounter == 0) {
+    } else if ((self.position.x > _initPos.x) && (_dashCounter == 0)) {
         self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
         if ([self onGround]) {
             self.position = ccp(self.position.x-5, self.position.y);
