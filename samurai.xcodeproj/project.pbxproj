@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
+		FAAE772717D98D7A007D4770 /* Menu.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* Menu.mm */; };
+		FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772917D98E07007D4770 /* Ninja.mm */; };
 		FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */; };
 		FAF29AA417D82D5000F512EE /* GameController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.mm */; };
 		FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.mm */; };
@@ -208,6 +210,10 @@
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
+		FAAE772517D98D7A007D4770 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = class/GameStage/Menu.h; sourceTree = "<group>"; };
+		FAAE772617D98D7A007D4770 /* Menu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Menu.mm; path = class/GameStage/Menu.mm; sourceTree = "<group>"; };
+		FAAE772817D98E07007D4770 /* Ninja.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ninja.h; path = class/Zako/Ninja.h; sourceTree = "<group>"; };
+		FAAE772917D98E07007D4770 /* Ninja.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Ninja.mm; path = class/Zako/Ninja.mm; sourceTree = "<group>"; };
 		FAE3AFA217D8754C00DF2188 /* WorkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkLayer.h; path = class/GameStage/WorkLayer.h; sourceTree = "<group>"; };
 		FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorkLayer.mm; path = class/GameStage/WorkLayer.mm; sourceTree = "<group>"; };
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
@@ -654,6 +660,8 @@
 			children = (
 				FAF29AB117D82DAA00F512EE /* Zako.h */,
 				FAF29AB217D82DAA00F512EE /* Zako.mm */,
+				FAAE772817D98E07007D4770 /* Ninja.h */,
+				FAAE772917D98E07007D4770 /* Ninja.mm */,
 			);
 			name = Zako;
 			sourceTree = "<group>";
@@ -694,6 +702,8 @@
 				FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */,
 				FAAE772017D8792E007D4770 /* BackgroundLayer.h */,
 				FAAE772117D8792E007D4770 /* BackgroundLayer.mm */,
+				FAAE772517D98D7A007D4770 /* Menu.h */,
+				FAAE772617D98D7A007D4770 /* Menu.mm */,
 			);
 			name = GameStage;
 			sourceTree = "<group>";
@@ -1580,6 +1590,8 @@
 				FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */,
 				FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */,
 				FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */,
+				FAAE772717D98D7A007D4770 /* Menu.mm in Sources */,
+				FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
