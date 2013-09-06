@@ -37,6 +37,14 @@
     [self setB2Body:body];
 }
 
+- (void)update:(ccTime)delta {
+    b2Vec2 pos = self.b2Body->GetPosition();
+    if (pos.y < 0) {
+        self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
+        self.b2Body->SetTransform(b2Vec2(pos.x,0), self.b2Body->GetAngle());
+    }
+}
+
 - (Projectile*)makeBullet {
     return nil;
 }

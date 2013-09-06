@@ -19,6 +19,7 @@
 //    res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
+    res.tag = SpriteTagProjectile;
     return res;
 }
 
@@ -29,6 +30,7 @@
     
 	b2Body *body = world->CreateBody(&bodyDef);
 	
+    body->SetUserData(self);
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:body forShapeName:self.name];
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
     
