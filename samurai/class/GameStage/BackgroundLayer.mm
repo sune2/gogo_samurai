@@ -13,12 +13,15 @@
 {
     self = [super init];
     if (self) {
+        self.touchEnabled = NO;
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CCSprite* bgImage = [CCSprite spriteWithFile:@"bg.jpg" rect:CGRectMake(0, 0, 1024 * 5, 512)];
         bgImage.anchorPoint = ccp(0,0);
         bgImage.position = CGPointMake(0, 0);
         
         // 適切な画像が見つかったらコメント外す
+        // 辺の長さ2^nの正方画像
         // ccTexParams params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
         // [bgImage.texture setTexParameters:&params];
         

@@ -13,5 +13,8 @@
 #import "BackgroundLayer.h"
 
 @interface GameStage : CCScene
+{
+    
+}
 +(CCScene *)scene;
 @end

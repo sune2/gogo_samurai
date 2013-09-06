@@ -8,19 +8,100 @@
 
 #import "WorkLayer.h"
 
+enum {
+    kSamuraiSprite = 1,
+    kZakoSprite = 2
+};
+
 @implementation WorkLayer
 
 -(id)init
 {
     self = [super init];
     if (self) {
+        
+		self.touchEnabled = YES;
+		// CGSize s = [CCDirector sharedDirector].winSize;
+        
         [self initPhysics];
-        Samurai* samurai = [Samurai samurai];
-        [samurai initBodyWithWorld:world at:ccp(0, 0)];
-        [self addChild:samurai z:1];
+        
+        [self addNewSamuraiSprite];
+        [self addNewZakoSprite];
+        
+        [self scheduleUpdate];
     }
     
     return self;
+}
+
+-(void)addNewSamuraiSprite
+{
+    _samurai = [Samurai samurai];
+    [_samurai initBodyWithWorld:world at:ccp(32, 0)];
+    _samurai.tag = kSamuraiSprite;
+    
+    [self addChild:_samurai z:1];
+}
+
+-(void)addNewZakoSprite
+{
+    _zako = [Zako zakoWithName:@"ninja"];
+    [_zako initBodyWithWorld:world at:ccp(256, 0)];
+    _zako.tag = kZakoSprite;
+    
+    [self addChild:_zako z:1];
+}
+
+-(void) dealloc
+{
+	delete world;
+	world = NULL;
+	
+	delete m_debugDraw;
+	m_debugDraw = NULL;
+	
+	[super dealloc];
+}
+
+-(void) update: (ccTime) dt
+{
+	int32 velocityIterations = 8;
+	int32 positionIterations = 1;
+	
+	// Instruct the world to perform a single step of simulation. It is
+	// generally best to keep the time step and iterations fixed.
+	world->Step(dt, velocityIterations, positionIterations);
+    [_samurai update:dt];
+}
+
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if ([touches count] >= 2) return;
+    UITouch* touch = [touches anyObject];
+    _touchPos = [[CCDirector sharedDirector] convertTouchToGL:touch];
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([touches count] >= 2) return;
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
+    
+    BOOL isSliced = ccpDistance(point, _touchPos) > 10;
+    double moveAngle = atan2(point.y - _touchPos.y, point.x - _touchPos.x) * (180 / M_PI);
+
+    BOOL isMovedToUp = 45 < moveAngle && moveAngle < 180;
+    BOOL isMovedToRight = (-90 < moveAngle && moveAngle <= 45);
+
+    if (isSliced) {
+        if(isMovedToRight) {
+            [_samurai dashSlice];
+        } else if (isMovedToUp) {
+            [_samurai jump];
+        }
+    } else {
+        // [_samurai counter];
+    }
 }
 
 -(void) initPhysics
@@ -65,7 +146,10 @@
 	// bottom
 	
 	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
+	b2Fixture* fixture = groundBody->CreateFixture(&groundBox,0);
+    CCNode* groundNode = [[CCNode alloc] init];
+    groundNode.tag = 10;
+    fixture->SetUserData(groundNode);
 	
 	// top
 	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
@@ -80,6 +164,22 @@
 	groundBody->CreateFixture(&groundBox,0);
 }
 
-
+-(void) draw
+{
+	//
+	// IMPORTANT:
+	// This is only for debug purposes
+	// It is recommend to disable it
+	//
+	[super draw];
+	
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+	
+	kmGLPushMatrix();
+	
+	world->DrawDebugData();
+	
+	kmGLPopMatrix();
+}
 
 @end

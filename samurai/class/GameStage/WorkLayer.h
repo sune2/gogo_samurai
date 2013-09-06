@@ -12,10 +12,14 @@
 #import "Box2D.h"
 #import "Define.h"
 #import "Samurai.h"
+#import "Zako.h"
 
 @interface WorkLayer : CCLayer
 {
     b2World* world;
     GLESDebugDraw *m_debugDraw;
+    Samurai* _samurai;
+    Zako* _zako;
+    CGPoint _touchPos;
 }
 @end
