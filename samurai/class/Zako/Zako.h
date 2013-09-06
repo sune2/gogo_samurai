@@ -10,6 +10,7 @@
 
 #import "Box2D.h"
 #import "CCPhysicsSprite.h"
+#import "Projectile.h"
 
 @interface Zako : CCPhysicsSprite
 {
@@ -23,6 +24,6 @@
 
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
 
-- (CCPhysicsSprite*)makeBullet;
+- (Projectile*)makeBullet;
 
 @end

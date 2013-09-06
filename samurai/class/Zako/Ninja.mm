@@ -15,10 +15,13 @@
     return res;
 }
 
-- (void)makeBullet {
-    self.world;
-    
+- (Projectile*)makeBullet {
+    Projectile* shuriken = [Projectile projectileWithName:@"shuriken"];
+    [shuriken initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y+50)];
+    shuriken.linearVelocity = b2Vec2(-10,0);
+    shuriken.angularVelocity = 10;
+//    shuriken.b2Body->SetAngularVelocity(5);
+    return shuriken;
 }
-
 
 @end

@@ -21,6 +21,7 @@
 }
 
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
+    self.world = world;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(point.x/self.PTMRatio,point.y/self.PTMRatio);
@@ -34,8 +35,8 @@
     [self setB2Body:body];
 }
 
-- (void)makeBullet {
-    
+- (Projectile*)makeBullet {
+    return nil;
 }
 
 @end

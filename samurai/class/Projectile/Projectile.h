@@ -10,8 +10,20 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
+typedef enum {
+    ProjectileOwnerSamurai,
+    ProjectileOwnerEnemy
+} ProjectileOwner;
+
 @interface Projectile : CCPhysicsSprite
 
-@property (nonatomic, strong) NSString* name;
+@property(nonatomic, strong) NSString* name;
+@property(nonatomic, assign) b2Vec2 linearVelocity;
+@property(nonatomic, assign) float32 angularVelocity;
+@property(nonatomic, assign) ProjectileOwner owner;
+
++(Projectile*)projectileWithName:(NSString*)name;
+- (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point;
+
 
 @end
