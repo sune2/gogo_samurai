@@ -14,6 +14,8 @@
 
 + (Projectile*)projectileWithName:(NSString*)name {
     Projectile *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
+//    NSLog(@"(%f,%f) (%f,%f)", res.textureRect.size.width, res.textureRect.size.height,
+//          res.contentSize.width, res.contentSize.height);
 //    res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;

@@ -20,10 +20,13 @@
 }
 
 @property (nonatomic, strong) CCSprite* katana;
+@property (nonatomic, assign) NSInteger hp;
 
 + (Samurai*)samurai;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
 - (void)jump;
 - (void)dashSlice;
 - (void)counter;
+- (BOOL)isDashing;
+
 @end

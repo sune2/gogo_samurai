@@ -17,11 +17,13 @@
 
 + (Samurai*)samurai {
     Samurai *res = [super spriteWithFile:@"samurai.png"];
+    
     res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.katana = [CCSprite spriteWithFile:@"katana.png"];
 //    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
     [res addChild:res.katana];
+    res.hp = 3;
     return res;
 }
 
@@ -89,6 +91,9 @@
     return NO;
 }
 
+- (BOOL) isDashing {
+    return _dashCounter > 0;
+}
 
 - (BOOL)canJump {
     if (self.position.x > _initPos.x) return NO;
