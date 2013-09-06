@@ -24,6 +24,7 @@
 //    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
     [res addChild:res.katana];
     res.hp = 3;
+    res.tag = SpriteTagSamurai;
     return res;
 }
 
@@ -36,6 +37,7 @@
     
 	b2Body *body = world->CreateBody(&bodyDef);
 	
+    body->SetUserData(self);
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:body forShapeName:@"samurai"];
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"samurai"]];
 
@@ -116,8 +118,8 @@
 
 - (void)counter {
     if ([self canCounter]) {
-        _katanaBody->SetAngularVelocity(5);
-        _counterCounter = 30;
+        _katanaBody->SetAngularVelocity(40);
+        _counterCounter = 10;
     }
 }
 
