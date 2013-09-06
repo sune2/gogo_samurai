@@ -20,6 +20,7 @@
 		FAF29AB717D84E2C00F512EE /* ninja.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AB617D84E2C00F512EE /* ninja.png */; };
 		FAF29ABF17D86C8500F512EE /* shapeDef.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAF29ABE17D86C8500F512EE /* shapeDef.plist */; };
 		FAF29AC017D86D0C00F512EE /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29ABD17D86A6000F512EE /* GB2ShapeCache.mm */; };
+		FAF29AC617D95EED00F512EE /* katana.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF29AC417D95EED00F512EE /* katana.png */; };
 		FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B28E17D736F900F29EDB /* QuartzCore.framework */; };
 		FAF3B29117D736F900F29EDB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29017D736F900F29EDB /* OpenGLES.framework */; };
 		FAF3B29317D736F900F29EDB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF3B29217D736F900F29EDB /* OpenAL.framework */; };
@@ -206,7 +207,7 @@
 /* Begin PBXFileReference section */
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
-		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
 		FAE3AFA217D8754C00DF2188 /* WorkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkLayer.h; path = class/GameStage/WorkLayer.h; sourceTree = "<group>"; };
 		FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorkLayer.mm; path = class/GameStage/WorkLayer.mm; sourceTree = "<group>"; };
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
@@ -221,12 +222,13 @@
 		FAF29AAF17D82D9900F512EE /* Samurai.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Samurai.mm; path = class/Samurai/Samurai.mm; sourceTree = "<group>"; };
 		FAF29AB117D82DAA00F512EE /* Zako.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zako.h; path = class/Zako/Zako.h; sourceTree = "<group>"; };
 		FAF29AB217D82DAA00F512EE /* Zako.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Zako.mm; path = class/Zako/Zako.mm; sourceTree = "<group>"; };
-		FAF29AB417D84E0600F512EE /* samurai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samurai.png; sourceTree = "<group>"; };
-		FAF29AB617D84E2C00F512EE /* ninja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ninja.png; sourceTree = "<group>"; };
+		FAF29AB417D84E0600F512EE /* samurai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = samurai.png; path = Resources/images/character/samurai.png; sourceTree = "<group>"; };
+		FAF29AB617D84E2C00F512EE /* ninja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja.png; path = Resources/images/character/ninja.png; sourceTree = "<group>"; };
 		FAF29AB917D863C000F512EE /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		FAF29ABC17D86A6000F512EE /* GB2ShapeCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GB2ShapeCache.h; path = class/GB2ShapeCache.h; sourceTree = "<group>"; };
 		FAF29ABD17D86A6000F512EE /* GB2ShapeCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = GB2ShapeCache.mm; path = class/GB2ShapeCache.mm; sourceTree = "<group>"; };
 		FAF29ABE17D86C8500F512EE /* shapeDef.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = shapeDef.plist; path = Resources/shapeDef.plist; sourceTree = "<group>"; };
+		FAF29AC417D95EED00F512EE /* katana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = katana.png; path = Resources/images/character/katana.png; sourceTree = "<group>"; };
 		FAF3B28B17D736F900F29EDB /* samurai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samurai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3B28E17D736F900F29EDB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF3B29017D736F900F29EDB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -713,6 +715,33 @@
 			name = Define;
 			sourceTree = "<group>";
 		};
+		FAF29AC117D95CA400F512EE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AC317D95E6600F512EE /* character */,
+				FAF29AC217D95E5400F512EE /* background */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		FAF29AC217D95E5400F512EE /* background */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE772317D884E6007D4770 /* bg.jpg */,
+			);
+			name = background;
+			sourceTree = "<group>";
+		};
+		FAF29AC317D95E6600F512EE /* character */ = {
+			isa = PBXGroup;
+			children = (
+				FAF29AB417D84E0600F512EE /* samurai.png */,
+				FAF29AC417D95EED00F512EE /* katana.png */,
+				FAF29AB617D84E2C00F512EE /* ninja.png */,
+			);
+			name = character;
+			sourceTree = "<group>";
+		};
 		FAF3B28217D736F900F29EDB = {
 			isa = PBXGroup;
 			children = (
@@ -766,10 +795,8 @@
 		FAF3B2A317D736FA00F29EDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FAAE772317D884E6007D4770 /* bg.jpg */,
+				FAF29AC117D95CA400F512EE /* Images */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
-				FAF29AB417D84E0600F512EE /* samurai.png */,
-				FAF29AB617D84E2C00F512EE /* ninja.png */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
 				FAF3B2A617D736FA00F29EDB /* Default@2x.png */,
 				FAF3B2A817D736FA00F29EDB /* Default-568h@2x.png */,
@@ -1375,6 +1402,7 @@
 				FAF29AB717D84E2C00F512EE /* ninja.png in Resources */,
 				FAF29ABF17D86C8500F512EE /* shapeDef.plist in Resources */,
 				FAAE772417D884E6007D4770 /* bg.jpg in Resources */,
+				FAF29AC617D95EED00F512EE /* katana.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
