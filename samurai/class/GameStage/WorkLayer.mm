@@ -120,6 +120,8 @@
 
 -(void)attackOnEnemy
 {
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
     for (b2ContactEdge* contactEdge = _samurai.katanaBody->GetContactList();
          contactEdge;
          contactEdge = contactEdge->next)
@@ -129,14 +131,19 @@
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagEnemy) {
             if ([_samurai isDashing]) {
-                [self genarateParticleAt:sprite.position];
-                
-                world->DestroyBody(sprite.b2Body);
-                [sprite removeFromParentAndCleanup:YES];
+                [arr addObject:sprite];
                 _score += 100;
             } else {
                 _samurai.hp--;
             }
+        }
+    }
+
+    for (CCPhysicsSprite* sprite in arr) {
+        if ([_zakos containsObject:sprite]) {
+            world->DestroyBody(sprite.b2Body);
+            [sprite removeFromParent];
+            [_zakos removeObject:sprite];
         }
     }
 }
@@ -181,6 +188,11 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+//    for (Zako* zako in _zakos) {
+//        world->DestroyBody(zako.b2Body);
+//        [zako removeFromParent];
+//    }
+    
     if ([touches count] >= 2) return;
     UITouch* touch = [touches anyObject];
     CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
