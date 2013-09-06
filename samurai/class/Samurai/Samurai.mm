@@ -90,6 +90,10 @@
     return _dashCounter > 0;
 }
 
+- (BOOL)isCountering {
+    return _counterCounter > 0;
+}
+
 - (BOOL)canJump {
     if (self.position.x > _initPos.x) return NO;
     if (_counterCounter) return NO;

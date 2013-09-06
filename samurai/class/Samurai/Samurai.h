@@ -28,5 +28,6 @@
 - (void)dashSlice;
 - (void)counter;
 - (BOOL)isDashing;
+- (BOOL)isCountering;
 
 @end
