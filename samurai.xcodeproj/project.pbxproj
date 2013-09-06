@@ -11,6 +11,7 @@
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
 		FAAE772717D98D7A007D4770 /* Menu.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* Menu.mm */; };
 		FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772917D98E07007D4770 /* Ninja.mm */; };
+		FAAE772C17D9BA6F007D4770 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772B17D9BA6F007D4770 /* fire.png */; };
 		FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */; };
 		FAF29AA417D82D5000F512EE /* GameController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA317D82D5000F512EE /* GameController.mm */; };
 		FAF29AA717D82D6200F512EE /* GameStage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF29AA617D82D6200F512EE /* GameStage.mm */; };
@@ -215,6 +216,7 @@
 		FAAE772617D98D7A007D4770 /* Menu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Menu.mm; path = class/GameStage/Menu.mm; sourceTree = "<group>"; };
 		FAAE772817D98E07007D4770 /* Ninja.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ninja.h; path = class/Zako/Ninja.h; sourceTree = "<group>"; };
 		FAAE772917D98E07007D4770 /* Ninja.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Ninja.mm; path = class/Zako/Ninja.mm; sourceTree = "<group>"; };
+		FAAE772B17D9BA6F007D4770 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		FAE3AFA217D8754C00DF2188 /* WorkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkLayer.h; path = class/GameStage/WorkLayer.h; sourceTree = "<group>"; };
 		FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorkLayer.mm; path = class/GameStage/WorkLayer.mm; sourceTree = "<group>"; };
 		FAF29AA217D82D5000F512EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameController.h; path = class/GameController/GameController.h; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 		FAF29AC117D95CA400F512EE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE772B17D9BA6F007D4770 /* fire.png */,
 				FAF29AC317D95E6600F512EE /* character */,
 				FAF29AC217D95E5400F512EE /* background */,
 			);
@@ -1417,6 +1420,7 @@
 				FAAE772417D884E6007D4770 /* bg.jpg in Resources */,
 				FAF29AC617D95EED00F512EE /* katana.png in Resources */,
 				FAF29AC917D9A64F00F512EE /* shuriken.png in Resources */,
+				FAAE772C17D9BA6F007D4770 /* fire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

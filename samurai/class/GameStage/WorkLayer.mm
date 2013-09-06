@@ -70,9 +70,9 @@
                              bulletPos.y < (- bulletSize.height) / 2 ||
                              (windowSize.width + bulletSize.width / 2) < bulletPos.x ||
                              (windowSize.height + bulletSize.height / 2) < bulletPos.y;
-        // BOOL hitSomeone = hoge~~~;
+        BOOL hitSomeone = [self hitWithProjectile:bullet];
         
-        if (isOutOfScreen /* && hitSomeone */) {
+        if (isOutOfScreen || hitSomeone) {
             [bullet removeFromParent];
             world->DestroyBody(bullet.b2Body);
         } else {
@@ -86,12 +86,31 @@
     }
 }
 
-//-(BOOL)hitWithProjectile:(Projectile*) bullet
-//{
-//    for (b2ContactEdge* contactEdge = bullet.b2Body->GetContactList(); contactEdge; contactEdge = contactEdge->next){
-//        if (!contactEdge)
-//    }
-//}
+-(BOOL)hitWithProjectile:(Projectile*) bullet
+{
+    for (b2ContactEdge* contactEdge = bullet.b2Body->GetContactList();
+         contactEdge;
+         contactEdge = contactEdge->next)
+    {
+        if (!contactEdge->contact->IsTouching()) continue;
+        b2Body* other = contactEdge->other;
+        CCSprite* sprite = (CCSprite*)other->GetUserData();
+        if (sprite.tag == SpriteTagSamurai) {
+            // 手裏剣とサムライがあたったときの処理
+            // _samurai.hp--;
+            CCParticleSystem* particle = [CCParticleExplosion node];
+            particle.life = 0.01;
+            particle.duration = 0;
+            particle.speed = 2.0;
+            particle.autoRemoveOnFinish = YES;
+            particle.position = bullet.position;
+            [self addChild:particle z:3];
+            
+            return YES;
+        }
+    }
+    return NO;
+}
 
 
 -(void) dealloc
