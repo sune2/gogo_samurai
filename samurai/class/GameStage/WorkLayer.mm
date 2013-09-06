@@ -100,7 +100,7 @@ enum {
             [_samurai jump];
         }
     } else {
-        // [_samurai counter];
+        [_samurai counter];
     }
 }
 

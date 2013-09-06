@@ -64,7 +64,6 @@
     
     // ジョイント
     
-   
     _initPos = point;
 }
 
@@ -111,38 +110,49 @@
 
 - (void)dashSlice {
     if ([self canDash]) {
-        self.position = ccp(self.position.x + 200, self.position.y);
+        self.b2Body->SetLinearVelocity(b2Vec2(50,self.b2Body->GetLinearVelocity().y));
+        _dashCounter = 10;
+//        self.position = ccp(self.position.x + 200, self.position.y);
     }
 }
 
 - (void)counter {
     if ([self canCounter]) {
-        _katanaBody->SetAngularVelocity(10);
-        _counterCounter = 100;
+        _katanaBody->SetAngularVelocity(40);
+        _counterCounter = 10;
     }
 }
 
-- (void)update:(ccTime)delta {    
-    // 刀の位置
-    b2Body* b = _katanaBody;
-    _katana.position = CGPointMake(b->GetPosition().x+kKatanaAnchorPosX*PTM_RATIO,
-                                   b->GetPosition().y+kKatanaAnchorPosY*PTM_RATIO);
-    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-    
-    if (_counterCounter) {
+- (void)update:(ccTime)delta {
+    CCLOG(@"(%f,%f)",self.b2Body->GetLinearVelocity().x, self.b2Body->GetLinearVelocity().y);
+    if (_dashCounter >= 1) {
+        _dashCounter--;
+        if (_dashCounter == 0) {
+            self.b2Body->SetLinearVelocity(b2Vec2(0,0));
+        }
+    }
+    if (_counterCounter >= 1) {
         _counterCounter--;
-    } else {
-        _katanaBody->SetAngularVelocity(0);
+        if (_counterCounter == 0){
+            _katanaBody->SetAngularVelocity(0);
+            _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
+        }
     }
     
     if (self.position.x < _initPos.x) {
         // 戻り過ぎ
-        
-    } else if (self.position.x > _initPos.x) {
+    } else if (self.position.x > _initPos.x && _dashCounter == 0) {
+        self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
         if ([self onGround]) {
             self.position = ccp(self.position.x-5, self.position.y);
         }
     }
+    
+    // 刀の位置
+    b2Body* b = _katanaBody;
+    _katana.position = CGPointMake(b->GetPosition().x+kKatanaAnchorPosX*PTM_RATIO,
+                                   b->GetPosition().y+kKatanaAnchorPosY*PTM_RATIO);
+    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());    
 }
 
 @end
