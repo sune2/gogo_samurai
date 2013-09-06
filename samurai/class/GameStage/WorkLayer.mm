@@ -45,22 +45,22 @@
 
 -(void)addNewNinjaSprite
 {
+    if ([_zakos count] >= 10) return;
     Ninja* ninja = [Ninja ninja];
-    [ninja initBodyWithWorld:world at:ccp(256 + rand() % 50, 0)];
+    [ninja initBodyWithWorld:world at:ccp(200 + rand() % 200, 200)];
     ninja.tag = SpriteTagEnemy;
     
     [self addChild:ninja z:1];
     [_zakos addObject:ninja];
 }
 
--(void)addNewBulletSprite
+-(void)addNewBulletSprite:(Ninja*)ninja
 {
-    for (Ninja* ninja in _zakos) {
-        Projectile* bullet = [ninja makeBullet];
-        bullet.tag = SpriteTagProjectile;
-        [self addChild:bullet z:2];
-        [_bullets addObject:bullet];
-    }
+    if ([_bullets count] >= 10) return;
+    Projectile* bullet = [ninja makeBullet];
+    bullet.tag = SpriteTagProjectile;
+    [self addChild:bullet z:2];
+    [_bullets addObject:bullet];
 }
 
 -(void)updateBullets:(ccTime) dt
@@ -196,9 +196,17 @@
     [_samurai update:dt];
     for (Zako* zako in _zakos) {
         [zako update:dt];
+        if (rand() % 60 == 0) {
+            [self addNewBulletSprite:(Ninja*)zako];
+        }
     }
     [self updateBullets:dt];
     [self attackOnEnemy];
+    
+    if (rand() % 100 == 0) {
+        [self addNewNinjaSprite];
+    }
+
 }
 
 
@@ -233,7 +241,6 @@
         }
     } else {
         [_samurai counter];
-        [self addNewBulletSprite];
     }
 }
 

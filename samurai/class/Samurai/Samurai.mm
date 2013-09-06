@@ -36,10 +36,11 @@
     bodyDef.fixedRotation = YES;
     
 	b2Body *body = world->CreateBody(&bodyDef);
-	
-    body->SetUserData(self);
+
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:body forShapeName:@"samurai"];
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"samurai"]];
+    
+    body->SetUserData(self);
 
     [self setB2Body:body];
     
@@ -164,9 +165,10 @@
     
     // 刀の位置
     b2Body* b = _katanaBody;
-    _katana.position = CGPointMake(b->GetPosition().x+kKatanaAnchorPosX*PTM_RATIO,
-                                   b->GetPosition().y+kKatanaAnchorPosY*PTM_RATIO);
-    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());    
+    _katana.position = CGPointMake(b->GetPosition().x+kKatanaAnchorPosX*PTM_RATIO/self.scale,
+                                   b->GetPosition().y+kKatanaAnchorPosY*PTM_RATIO/self.scale);
+    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+    
 }
 
 @end
