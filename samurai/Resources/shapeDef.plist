@@ -279,7 +279,7 @@
 			<key>shuriken</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.5045,0.4959 }</string>
+                <string>{ 0.5083,0.5036 }</string>
 				<key>fixtures</key>
 				<array>
 
@@ -297,66 +297,30 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 13.615,-41.150 }</string>	
-								<string>{ 8.615,-35.150 }</string>	
-								<string>{ -5.385,-35.150 }</string>	
-								<string>{ 6.615,-42.150 }</string>
+								<string>{ 10.310,2.920 }</string>	
+								<string>{ 4.810,2.920 }</string>	
+								<string>{ -5.190,-2.080 }</string>	
+								<string>{ 3.310,-2.580 }</string>	
+								<string>{ 10.310,-2.080 }</string>
 							</array>
 							<array>	
-								<string>{ 42.615,13.850 }</string>	
-								<string>{ 31.615,7.850 }</string>	
-								<string>{ 35.615,-5.150 }</string>	
-								<string>{ 41.615,2.850 }</string>
+								<string>{ 3.810,-10.080 }</string>	
+								<string>{ 3.310,-2.580 }</string>	
+								<string>{ -5.190,-2.080 }</string>	
+								<string>{ -0.690,-10.080 }</string>
 							</array>
 							<array>	
-								<string>{ -42.385,-13.150 }</string>	
-								<string>{ -32.385,-7.150 }</string>	
-								<string>{ -36.385,4.850 }</string>	
-								<string>{ -42.385,-4.150 }</string>
+								<string>{ -10.190,-3.080 }</string>	
+								<string>{ -5.190,-2.080 }</string>	
+								<string>{ 4.810,2.920 }</string>	
+								<string>{ -2.690,3.920 }</string>	
+								<string>{ -11.190,-0.080 }</string>
 							</array>
 							<array>	
-								<string>{ -13.385,41.850 }</string>	
-								<string>{ -7.385,31.850 }</string>	
-								<string>{ 10.615,15.850 }</string>	
-								<string>{ 4.615,36.850 }</string>	
-								<string>{ -5.385,42.850 }</string>
-							</array>
-							<array>	
-								<string>{ -32.385,-7.150 }</string>	
-								<string>{ -19.385,-7.150 }</string>	
-								<string>{ -13.385,11.850 }</string>	
-								<string>{ -36.385,4.850 }</string>
-							</array>
-							<array>	
-								<string>{ 31.615,7.850 }</string>	
-								<string>{ 16.615,8.850 }</string>	
-								<string>{ -10.385,-14.150 }</string>	
-								<string>{ 11.615,-12.150 }</string>	
-								<string>{ 35.615,-5.150 }</string>
-							</array>
-							<array>	
-								<string>{ -7.385,31.850 }</string>	
-								<string>{ -9.385,16.850 }</string>	
-								<string>{ 10.615,15.850 }</string>
-							</array>
-							<array>	
-								<string>{ 8.615,-35.150 }</string>	
-								<string>{ 6.615,-26.150 }</string>	
-								<string>{ -10.385,-14.150 }</string>	
-								<string>{ -5.385,-35.150 }</string>
-							</array>
-							<array>	
-								<string>{ 6.615,-26.150 }</string>	
-								<string>{ 11.615,-12.150 }</string>	
-								<string>{ -10.385,-14.150 }</string>
-							</array>
-							<array>	
-								<string>{ -19.385,-7.150 }</string>	
-								<string>{ -10.385,-14.150 }</string>	
-								<string>{ 16.615,8.850 }</string>	
-								<string>{ 10.615,15.850 }</string>	
-								<string>{ -9.385,16.850 }</string>	
-								<string>{ -13.385,11.850 }</string>
+								<string>{ 4.810,2.920 }</string>	
+								<string>{ -1.690,11.420 }</string>	
+								<string>{ -2.690,11.420 }</string>	
+								<string>{ -2.690,3.920 }</string>
 							</array>
 						</array>
                     </dict>
