@@ -110,6 +110,7 @@
             NSMutableArray* arr = [[NSMutableArray alloc] init];
             [arr addObject:sprite];
             [self removeEnemies:arr];
+            return YES;
         }
     }
     return NO;
@@ -146,9 +147,11 @@
             } else {
                 _samurai.hp--;
             }
-        } else if (sprite.tag == SpriteTagProjectile) {
+        } else if (sprite.tag == SpriteTagProjectile && [_samurai isCountering]) {
             Projectile* projectile = (Projectile*)sprite;
-            [projectile reflect];
+            if (projectile.owner == ProjectileOwnerEnemy) {
+                [projectile reflect];
+            }
         }
     }
     [self removeEnemies:arr];
@@ -240,7 +243,7 @@
 	CGSize s = [[CCDirector sharedDirector] winSize];
 	
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -10.0f);
+	gravity.Set(0.0f, kGravityPower);
 	world = new b2World(gravity);
 	
 	

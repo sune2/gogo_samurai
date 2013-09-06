@@ -10,6 +10,7 @@
 #define samurai_Define_h
 
 #define PTM_RATIO 32
+#define kGravityPower -30.0
 
 typedef enum {
     SpriteTagSamurai = 1,
