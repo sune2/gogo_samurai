@@ -13,13 +13,16 @@
 #import "Define.h"
 #import "Samurai.h"
 #import "Zako.h"
+#import "Ninja.h"
+#import "Projectile.h"
 
 @interface WorkLayer : CCLayer
 {
     b2World* world;
     GLESDebugDraw *m_debugDraw;
     Samurai* _samurai;
-    Zako* _zako;
+    NSMutableArray* _zakos;
+    NSMutableArray* _bullets;
     CGPoint _touchPos;
 }
 @end

@@ -16,7 +16,7 @@
         self.touchEnabled = NO;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        CCSprite* bgImage = [CCSprite spriteWithFile:@"bg.jpg" rect:CGRectMake(0, 0, 1024 * 5, 512)];
+        CCSprite* bgImage = [CCSprite spriteWithFile:@"bg.jpg"]; //rect:CGRectMake(0, 0, 1024 * 5, 512)];
         bgImage.anchorPoint = ccp(0,0);
         bgImage.position = CGPointMake(0, 0);
         

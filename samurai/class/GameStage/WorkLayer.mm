@@ -8,11 +8,6 @@
 
 #import "WorkLayer.h"
 
-enum {
-    kSamuraiSprite = 1,
-    kZakoSprite = 2
-};
-
 @implementation WorkLayer
 
 -(id)init
@@ -22,13 +17,16 @@ enum {
         
 		self.touchEnabled = YES;
 		// CGSize s = [CCDirector sharedDirector].winSize;
+        _bullets = [[NSMutableArray alloc] init];
+        _zakos = [[NSMutableArray alloc] init];
         
         [self initPhysics];
         
         [self addNewSamuraiSprite];
-        [self addNewZakoSprite];
+        [self addNewNinjaSprite];
         
         [self scheduleUpdate];
+        
     }
     
     return self;
@@ -38,19 +36,63 @@ enum {
 {
     _samurai = [Samurai samurai];
     [_samurai initBodyWithWorld:world at:ccp(32, 0)];
-    _samurai.tag = kSamuraiSprite;
+    _samurai.tag = SpriteTagSamurai;
     
     [self addChild:_samurai z:1];
 }
 
--(void)addNewZakoSprite
+-(void)addNewNinjaSprite
 {
-    _zako = [Zako zakoWithName:@"ninja"];
-    [_zako initBodyWithWorld:world at:ccp(256, 0)];
-    _zako.tag = kZakoSprite;
+    Ninja* ninja = [Ninja ninja];
+    [ninja initBodyWithWorld:world at:ccp(256, 0)];
+    ninja.tag = SpriteTagEnemy;
     
-    [self addChild:_zako z:1];
+    [self addChild:ninja z:1];
+    [_zakos addObject:ninja];
 }
+
+-(void)addNewBulletSprite
+{
+    Ninja* ninja = [_zakos objectAtIndex:0];
+    Projectile* bullet = [ninja makeBullet];
+    [self addChild:bullet z:2];
+    [_bullets addObject:bullet];
+}
+
+-(void)updateBullets:(ccTime) dt
+{
+    CGSize windowSize = [CCDirector sharedDirector].winSize;
+    NSMutableArray* tmpBullets = [[NSMutableArray alloc] init];
+    for (Projectile* bullet in _bullets) {
+        CGPoint bulletPos = bullet.position;
+        CGSize bulletSize = bullet.contentSize;
+        BOOL isOutOfScreen = bulletPos.x < (- bulletSize.width) / 2 ||
+                             bulletPos.y < (- bulletSize.height) / 2 ||
+                             (windowSize.width + bulletSize.width / 2) < bulletPos.x ||
+                             (windowSize.height + bulletSize.height / 2) < bulletPos.y;
+        // BOOL hitSomeone = hoge~~~;
+        
+        if (isOutOfScreen /* && hitSomeone */) {
+            [bullet removeFromParent];
+            world->DestroyBody(bullet.b2Body);
+        } else {
+            [tmpBullets addObject:bullet];
+        }
+    }
+    _bullets = tmpBullets;
+    
+    for (Projectile* bullet in _bullets) {
+        [bullet update:dt];
+    }
+}
+
+//-(BOOL)hitWithProjectile:(Projectile*) bullet
+//{
+//    for (b2ContactEdge* contactEdge = bullet.b2Body->GetContactList(); contactEdge; contactEdge = contactEdge->next){
+//        if (!contactEdge)
+//    }
+//}
+
 
 -(void) dealloc
 {
@@ -72,6 +114,7 @@ enum {
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
     [_samurai update:dt];
+    [self updateBullets:dt];
 }
 
 
@@ -101,6 +144,7 @@ enum {
         }
     } else {
         [_samurai counter];
+        [self addNewBulletSprite];
     }
 }
 

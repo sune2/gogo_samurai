@@ -16,6 +16,8 @@
     if (self) {
         self.touchEnabled = NO;
         [self createMenu];
+        
+        [self scheduleUpdate];
     }
     return self;
 }
@@ -30,7 +32,12 @@
 		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
 	}];
     
-    CCMenu *menu = [CCMenu menuWithItems:reset, nil];
+    int score = 0;
+    NSString* scoreStr = [NSString stringWithFormat:@"%d", score];
+    CCMenuItemLabel *scoreLabel = [CCMenuItemFont itemWithString:scoreStr];
+    
+    
+    CCMenu *menu = [CCMenu menuWithItems:scoreLabel, reset, nil];
 	
 	[menu alignItemsVertically];
 	// menu.anchorPoint = ccp(0, 0);
