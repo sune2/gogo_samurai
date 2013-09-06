@@ -14,12 +14,12 @@
 {
     BOOL _isJumping;
     CGPoint _initPos;
-    b2Body* _katanaBody;
     int _counterCounter;
     int _dashCounter;
 }
 
 @property (nonatomic, strong) CCSprite* katana;
+@property (nonatomic, assign) b2Body* katanaBody;
 @property (nonatomic, assign) NSInteger hp;
 
 + (Samurai*)samurai;

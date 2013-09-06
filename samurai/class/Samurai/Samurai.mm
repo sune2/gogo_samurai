@@ -57,14 +57,7 @@
     jointDef.Initialize(body, _katanaBody, b2Vec2(katanaDef.position.x,
                                                   katanaDef.position.y));
     
-//    jointDef.motorSpeed = 0;
-//    jointDef.maxMotorTorque = 1;
-//    jointDef.enableMotor = YES;
-    b2RevoluteJoint *joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
-    
-//    [_katana setB2Body:katanaBody];
-    
-    // ジョイント
+    world->CreateJoint(&jointDef);
     
     _initPos = point;
 }
@@ -123,19 +116,30 @@
 
 - (void)counter {
     if ([self canCounter]) {
-        _katanaBody->SetAngularVelocity(40);
-        _counterCounter = 10;
+        _katanaBody->SetAngularVelocity(5);
+        _counterCounter = 30;
     }
 }
 
 - (void)update:(ccTime)delta {
     if (_dashCounter >= 1) {
+        CCParticleSystem* particle = [CCParticleFire node];
+        particle.life = 0.1;
+//        particle.angle = 0;
+        particle.duration = 0.1;
+//        particle.speed = 2.0;
+        particle.autoRemoveOnFinish = YES;
+        particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
+                                _katanaBody->GetPosition().y*PTM_RATIO);
+        [[self parent] addChild:particle z:3];
+
         _dashCounter--;
         if (_dashCounter == 0) {
             self.b2Body->SetLinearVelocity(b2Vec2(0,0));
         }
+
     }
-    if (_counterCounter >= 1) {
+    if (_counterCounter >= 1) {        
         _counterCounter--;
         if (_counterCounter == 0){
             _katanaBody->SetAngularVelocity(0);
