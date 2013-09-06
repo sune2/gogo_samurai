@@ -24,6 +24,6 @@ typedef enum {
 
 +(Projectile*)projectileWithName:(NSString*)name;
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point;
-
+- (void)reflect;
 
 @end

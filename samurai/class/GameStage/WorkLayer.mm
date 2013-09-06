@@ -24,7 +24,8 @@
         [self initPhysics];
         
         [self addNewSamuraiSprite];
-        [self addNewNinjaSprite];
+        
+        [self addNewNinjaSprite];[self addNewNinjaSprite];[self addNewNinjaSprite];
         
         [self scheduleUpdate];
         
@@ -45,7 +46,7 @@
 -(void)addNewNinjaSprite
 {
     Ninja* ninja = [Ninja ninja];
-    [ninja initBodyWithWorld:world at:ccp(256, 0)];
+    [ninja initBodyWithWorld:world at:ccp(256 + rand() % 50, 0)];
     ninja.tag = SpriteTagEnemy;
     
     [self addChild:ninja z:1];
@@ -54,10 +55,12 @@
 
 -(void)addNewBulletSprite
 {
-    Ninja* ninja = [_zakos objectAtIndex:0];
-    Projectile* bullet = [ninja makeBullet];
-    [self addChild:bullet z:2];
-    [_bullets addObject:bullet];
+    for (Ninja* ninja in _zakos) {
+        Projectile* bullet = [ninja makeBullet];
+        bullet.tag = SpriteTagProjectile;
+        [self addChild:bullet z:2];
+        [_bullets addObject:bullet];
+    }
 }
 
 -(void)updateBullets:(ccTime) dt
@@ -95,19 +98,23 @@
     {
         if (!contactEdge->contact->IsTouching()) continue;
         b2Body* other = contactEdge->other;
-        CCSprite* sprite = (CCSprite*)other->GetUserData();
-        if (sprite.tag == SpriteTagSamurai) {
+        CCSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+        if (sprite.tag == SpriteTagSamurai && ProjectileOwnerEnemy) {
             // 手裏剣とサムライがあたったときの処理
             _samurai.hp--;
-            [self genarateParticleAt:_samurai.position];
+            [self generateParticleAt:bullet.position];
             
             return YES;
+        } else if (sprite.tag == SpriteTagEnemy && ProjectileOwnerSamurai) {
+            NSMutableArray* arr = [[NSMutableArray alloc] init];
+            [arr addObject:sprite];
+            [self removeEnemies:arr];
         }
     }
     return NO;
 }
 
--(void)genarateParticleAt:(CGPoint)position
+-(void)generateParticleAt:(CGPoint)position
 {
     CCParticleSystem* particle = [CCParticleExplosion node];
     particle.life = 0.01;
@@ -131,15 +138,25 @@
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagEnemy) {
             if ([_samurai isDashing]) {
+                [self generateParticleAt:ccp(_samurai.katanaBody->GetWorldCenter().x*PTM_RATIO,
+                                             _samurai.katanaBody->GetWorldCenter().y*PTM_RATIO)];
                 [arr addObject:sprite];
                 _score += 100;
             } else {
                 _samurai.hp--;
             }
+        } else if (sprite.tag == SpriteTagProjectile) {
+            CCLOG(@"HELLO");
+            [sprite refrect];
         }
     }
+    [self removeEnemies:arr];
 
-    for (CCPhysicsSprite* sprite in arr) {
+}
+
+-(void)removeEnemies: (NSMutableArray*) enemies
+{
+    for (CCPhysicsSprite* sprite in enemies) {
         if ([_zakos containsObject:sprite]) {
             world->DestroyBody(sprite.b2Body);
             [sprite removeFromParent];
@@ -147,8 +164,6 @@
         }
     }
 }
-
-
 
 -(void) dealloc
 {

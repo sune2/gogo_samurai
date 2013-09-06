@@ -39,6 +39,9 @@
     self.b2Body->SetAngularVelocity(self.angularVelocity);
     self.b2Body->SetLinearVelocity(self.linearVelocity);
 }
-
+- (void)reflect {
+    self.angularVelocity = - self.angularVelocity;
+    self.linearVelocity = - self.linearVelocity;
+}
 
 @end

@@ -12,7 +12,7 @@
 #define PTM_RATIO 32
 
 typedef enum {
-    SpriteTagSamurai,
+    SpriteTagSamurai = 1,
     SpriteTagEnemy,
     SpriteTagProjectile,
     SpriteTagBoss,
