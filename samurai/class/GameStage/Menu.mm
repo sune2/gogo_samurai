@@ -32,9 +32,13 @@
 		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
 	}];
     
+    // Score
     int score = 0;
     NSString* scoreStr = [NSString stringWithFormat:@"%d", score];
     CCMenuItemLabel *scoreLabel = [CCMenuItemFont itemWithString:scoreStr];
+    
+    // Samurai Life
+    
     
     
     CCMenu *menu = [CCMenu menuWithItems:scoreLabel, reset, nil];

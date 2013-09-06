@@ -24,5 +24,8 @@
     NSMutableArray* _zakos;
     NSMutableArray* _bullets;
     CGPoint _touchPos;
+    NSInteger _score;
 }
+- (NSInteger)score;
+
 @end

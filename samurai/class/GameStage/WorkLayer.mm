@@ -17,6 +17,7 @@
         
 		self.touchEnabled = YES;
 		// CGSize s = [CCDirector sharedDirector].winSize;
+        _score = 0;
         _bullets = [[NSMutableArray alloc] init];
         _zakos = [[NSMutableArray alloc] init];
         
@@ -97,20 +98,49 @@
         CCSprite* sprite = (CCSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagSamurai) {
             // 手裏剣とサムライがあたったときの処理
-            // _samurai.hp--;
-            CCParticleSystem* particle = [CCParticleExplosion node];
-            particle.life = 0.01;
-            particle.duration = 0;
-            particle.speed = 2.0;
-            particle.autoRemoveOnFinish = YES;
-            particle.position = bullet.position;
-            [self addChild:particle z:3];
+            _samurai.hp--;
+            [self genarateParticleAt:_samurai.position];
             
             return YES;
         }
     }
     return NO;
 }
+
+-(void)genarateParticleAt:(CGPoint)position
+{
+    CCParticleSystem* particle = [CCParticleExplosion node];
+    particle.life = 0.01;
+    particle.duration = 0;
+    particle.speed = 2.0;
+    particle.autoRemoveOnFinish = YES;
+    particle.position = position;
+    [self addChild:particle z:3];
+}
+
+-(void)attackOnEnemy
+{
+    for (b2ContactEdge* contactEdge = _samurai.katanaBody->GetContactList();
+         contactEdge;
+         contactEdge = contactEdge->next)
+    {
+        if (!contactEdge->contact->IsTouching()) continue;
+        b2Body* other = contactEdge->other;
+        CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+        if (sprite.tag == SpriteTagEnemy) {
+            if ([_samurai isDashing]) {
+                [self genarateParticleAt:sprite.position];
+                
+                world->DestroyBody(sprite.b2Body);
+                [sprite removeFromParentAndCleanup:YES];
+                _score += 100;
+            } else {
+                _samurai.hp--;
+            }
+        }
+    }
+}
+
 
 
 -(void) dealloc
@@ -124,6 +154,11 @@
 	[super dealloc];
 }
 
+-(NSInteger)score
+{
+    return _score;
+}
+
 -(void) update: (ccTime) dt
 {
 	int32 velocityIterations = 8;
@@ -134,6 +169,7 @@
 	world->Step(dt, velocityIterations, positionIterations);
     [_samurai update:dt];
     [self updateBullets:dt];
+    [self attackOnEnemy];
 }
 
 

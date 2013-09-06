@@ -12,6 +12,8 @@
 #import "Box2D.h"
 #import "Define.h"
 #import "GameStage.h"
+#import "Samurai.h"
+#import "WorkLayer.h"
 
 @interface Menu : CCLayer
 {
