@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "WorkLayer.h"
+#import "Menu.h"
 #import "BackgroundLayer.h"
 
 @interface GameStage : CCScene
