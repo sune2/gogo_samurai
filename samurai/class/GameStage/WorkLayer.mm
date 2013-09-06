@@ -85,6 +85,9 @@
     for (Projectile* bullet in _bullets) {
         [bullet update:dt];
     }
+    for (Zako* zako in _zakos) {
+        [zako update:dt];
+    }
 }
 
 -(BOOL)hitWithProjectile:(Projectile*) bullet
