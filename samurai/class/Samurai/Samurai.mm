@@ -10,7 +10,7 @@
 #import "../Define.h"
 #import "GB2ShapeCache.h"
 
-#define kKatanaAnchorPosX 2.0
+#define kKatanaAnchorPosX 2.1
 #define kKatanaAnchorPosY 1.7
 
 @implementation Samurai
@@ -23,6 +23,9 @@
     res.katana = [CCSprite spriteWithFile:@"katana.png"];
 //    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
     [res addChild:res.katana];
+    res.katana.position = CGPointMake(kKatanaAnchorPosX*PTM_RATIO/res.scale,
+                                      kKatanaAnchorPosY*PTM_RATIO/res.scale);
+
     res.hp = 3;
     res.tag = SpriteTagSamurai;
     return res;
@@ -61,7 +64,8 @@
                                                   katanaDef.position.y));
     
     world->CreateJoint(&jointDef);
-    
+
+
     _initPos = point;
 }
 
@@ -116,7 +120,7 @@
 - (void)dashSlice {
     if ([self canDash]) {
         self.b2Body->SetLinearVelocity(b2Vec2(50,self.b2Body->GetLinearVelocity().y));
-        _dashCounter = 10;
+        _dashCounter = 30;
 //        self.position = ccp(self.position.x + 200, self.position.y);
     }
 }
@@ -139,6 +143,12 @@
         particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
                                 _katanaBody->GetPosition().y*PTM_RATIO);
         [[self parent] addChild:particle z:3];
+
+
+        if (self.position.x > _initPos.x + 200) {
+            self.position = ccp(_initPos.x + 200, self.position.y);
+            _dashCounter = 1;
+        }
 
         _dashCounter--;
         if (_dashCounter == 0) {
@@ -165,8 +175,6 @@
     
     // 刀の位置
     b2Body* b = _katanaBody;
-    _katana.position = CGPointMake(b->GetPosition().x+kKatanaAnchorPosX*PTM_RATIO/self.scale,
-                                   b->GetPosition().y+kKatanaAnchorPosY*PTM_RATIO/self.scale);
     _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
     
 }

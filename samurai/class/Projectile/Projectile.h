@@ -16,7 +16,9 @@ typedef enum {
 } ProjectileOwner;
 
 @interface Projectile : CCPhysicsSprite
-
+{
+    CGPoint _initPos;
+}
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, assign) b2Vec2 linearVelocity;
 @property(nonatomic, assign) float32 angularVelocity;

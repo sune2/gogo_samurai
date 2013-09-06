@@ -36,11 +36,18 @@
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
     
     [self setB2Body:body];
+
+    _initPos = point;
 }
 
 - (void)update:(ccTime)delta {
     self.b2Body->SetAngularVelocity(self.angularVelocity);
     self.b2Body->SetLinearVelocity(self.linearVelocity);
+
+    b2Vec2 pos = self.b2Body->GetPosition();
+    if (pos.y < _initPos.y/PTM_RATIO) {
+        self.b2Body->SetTransform(b2Vec2(pos.x,_initPos.y/PTM_RATIO), self.b2Body->GetAngle());
+    }
 }
 - (void)reflect {
     self.angularVelocity = - self.angularVelocity;
