@@ -56,7 +56,10 @@ enum {
 -(id) init
 {
 	if( (self=[super init])) {
-		
+		CCLayerColor* background = [[CCLayerColor alloc] initWithColor:ccc4BFromccc4F(ccc4FFromccc3B(ccGRAY))];
+        [self addChild:background z:-2];
+        
+        
         [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapeDef.plist"];
         
 		// enable events

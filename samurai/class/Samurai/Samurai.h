@@ -14,10 +14,15 @@
 {
     BOOL _isJumping;
     CGPoint _initPos;
+    b2Body* _katanaBody;
+    int _counterCounter;
 }
+
+@property (nonatomic, strong) CCSprite* katana;
 
 + (Samurai*)samurai;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
 - (void)jump;
 - (void)dashSlice;
+- (void)counter;
 @end
