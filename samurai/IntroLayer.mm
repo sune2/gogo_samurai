@@ -45,8 +45,8 @@
 		CCSprite *background;
 		
 		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-			background = [CCSprite spriteWithFile:@"Default.png"];
-			background.rotation = 90;
+			background = [CCSprite spriteWithFile:@"bg.jpg"];
+			background.rotation = 0;
 		} else {
 			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
 		}
@@ -59,10 +59,46 @@
 	return self;
 }
 
+-(void)createMenu
+{
+    // Default font size will be 22 points.
+	[CCMenuItemFont setFontSize:22];
+	
+    // Title
+    CCMenuItemLabel *title = [CCMenuItemFont itemWithString:@"GoGo! Samurai boy!"];
+    
+    
+	// Reset Button
+	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Shutsu-Jin]" block:^(id sender){
+		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	}];
+    
+    // Score Button
+	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[Bu-koh]" block:^(id sender){
+		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	}];
+    
+    title.color = ccBLACK;
+    enterButtle.color = ccBLACK;
+    enterScore.color = ccBLACK;
+    
+    CCMenu *menu = [CCMenu menuWithItems:title, enterButtle, enterScore, nil];
+	
+	[menu alignItemsVertically];
+    
+	CGSize size = [[CCDirector sharedDirector] winSize];
+	[menu setPosition:ccp( size.width/2, size.height/2)];
+	
+	
+	[self addChild: menu z:1];
+}
+
 -(void) onEnter
 {
 	[super onEnter];
-	// [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] ]];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
+    
+	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
+    
+    [self createMenu];
 }
 @end

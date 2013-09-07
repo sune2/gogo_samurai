@@ -101,14 +101,16 @@
         b2Body* other = contactEdge->other;
         CCSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagSamurai && bullet.owner == ProjectileOwnerEnemy) {
-            // 手裏剣とサムライがあたったときの処理
+            // 手裏剣とサムライが当たったときの処理
             _samurai.hp--;
             [self generateParticleAt:bullet.position];
             
             return YES;
         } else if (sprite.tag == SpriteTagEnemy && bullet.owner == ProjectileOwnerSamurai) {
+            // 手裏剣と敵が当たったときの処理
             NSMutableArray* arr = [[NSMutableArray alloc] init];
             [arr addObject:sprite];
+            [self generateParticleAt:bullet.position];
             [self removeEnemies:arr];
             return YES;
         }
