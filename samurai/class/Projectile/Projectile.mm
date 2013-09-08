@@ -25,6 +25,8 @@
 }
 
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
+    _world = world;
+
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(point.x/self.PTMRatio,point.y/self.PTMRatio);
@@ -38,6 +40,7 @@
     [self setB2Body:body];
 
     _initPos = point;
+    [self scheduleUpdate];
 }
 
 - (void)update:(ccTime)delta {
@@ -53,6 +56,11 @@
     self.angularVelocity = - self.angularVelocity;
     self.linearVelocity = - self.linearVelocity;
     self.owner = ProjectileOwnerSamurai;
+}
+
+- (void)removeFromParent {
+    [super removeFromParent];
+    _world->DestroyBody(self.b2Body);
 }
 
 @end

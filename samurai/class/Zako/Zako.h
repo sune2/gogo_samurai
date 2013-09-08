@@ -23,6 +23,5 @@
 
 
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
-- (Projectile*)makeBullet;
 
 @end
