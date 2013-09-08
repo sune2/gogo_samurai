@@ -155,7 +155,7 @@
 -(void)generateParticleAt:(CGPoint)position
 {
     CCParticleSystemQuad* particle = [MyParticle particleBlood];
-    particle.position = position;
+        particle.position = position;
     [self addChild:particle z:3];
 }
 

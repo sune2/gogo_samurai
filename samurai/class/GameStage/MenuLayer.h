@@ -14,6 +14,10 @@
 #import "Samurai.h"
 #import "WorkLayer.h"
 
+@protocol MenuLayerDelegate
+-(void)resetButtonPushed;
+@end
+
 @interface MenuLayer : CCLayer
 {
     CCMenuItemLabel* _scoreLabel;
@@ -21,5 +25,7 @@
 }
 @property (assign) int score;
 @property (assign) int life;
+@property (strong) id<MenuLayerDelegate> delegate;
 
 @end
+

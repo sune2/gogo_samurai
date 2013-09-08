@@ -29,9 +29,9 @@
 	[CCMenuItemFont setFontSize:22];
 	
 	// Reset Button
-	// CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-	// 	[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
-	// }];
+     CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+         [_delegate resetButtonPushed];
+     }];
     
     // Score
     _scoreLabel = [self labelWithInteger:_score];
@@ -40,7 +40,7 @@
     _lifeLabel = [self labelWithInteger:_life];
     
     
-    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, _lifeLabel, nil];
+    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, _lifeLabel, reset, nil];
 	
 	[menu alignItemsVertically];
     
