@@ -136,7 +136,6 @@
 }
 
 - (void)updateCounter:(ccTime)delta {
-    CCLOG(@"%d",_counterState);
     switch (_counterState) {
         case 1:
         {

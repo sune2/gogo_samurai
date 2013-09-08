@@ -132,7 +132,6 @@
             // 手裏剣とサムライが当たったときの処理
             _samurai.hp--;
             [self generateParticleAt:bullet.position];
-            
             return YES;
         } else if (sprite.tag == SpriteTagEnemy && bullet.owner == ProjectileOwnerSamurai) {
             // 手裏剣と敵が当たったときの処理

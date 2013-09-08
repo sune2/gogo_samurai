@@ -27,6 +27,7 @@
     res.posVar = ccp(0,0);
     res.startColor = res.endColor = ccc4f(1, 0, 0, 1);
     res.startColorVar = res.endColorVar = ccc4f(1, 0, 0, 0);
+    res.autoRemoveOnFinish = YES;
     return res;
 }
 
