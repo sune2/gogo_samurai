@@ -11,13 +11,15 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "Define.h"
-#import "GameStage.h"
 #import "Samurai.h"
 #import "WorkLayer.h"
 
-@interface Menu : CCLayer
+@interface MenuLayer : CCLayer
 {
-    
+    CCMenuItemLabel* _scoreLabel;
+    CCMenuItemLabel* _lifeLabel;
 }
+@property (assign) int score;
+@property (assign) int life;
 
 @end

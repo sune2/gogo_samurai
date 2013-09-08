@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "WorkLayer.h"
-#import "Menu.h"
+#import "MenuLayer.h"
 #import "BackgroundLayer.h"
 
 @interface GameStage : CCScene
@@ -18,4 +18,8 @@
     
 }
 +(CCScene *)scene;
+@property(nonatomic, strong) WorkLayer* workLayer;
+@property(nonatomic, strong) MenuLayer* menuLayer;
+@property(nonatomic, strong) BackgroundLayer* bgLayer;
+
 @end
