@@ -26,6 +26,7 @@
     scene.menuLayer = [MenuLayer node];
     scene.bgLayer = [BackgroundLayer node];
     
+    scene.menuLayer.delegate = scene;
     
     // レイヤーを追加する
     [scene addChild:scene.workLayer z:1];
@@ -44,6 +45,10 @@
 {
     self.menuLayer.score = self.workLayer.score;
     self.menuLayer.life = self.workLayer.life;
+}
+
+- (void)resetButtonPushed {
+    [[CCDirector sharedDirector] replaceScene:[GameStage scene]];
 }
 
 @end

@@ -13,10 +13,11 @@
 #import "MenuLayer.h"
 #import "BackgroundLayer.h"
 
-@interface GameStage : CCScene
+@interface GameStage : CCScene<MenuLayerDelegate>
 {
     
 }
+
 +(CCScene *)scene;
 @property(nonatomic, strong) WorkLayer* workLayer;
 @property(nonatomic, strong) MenuLayer* menuLayer;
