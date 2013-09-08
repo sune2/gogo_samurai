@@ -15,8 +15,9 @@
 #import "Zako.h"
 #import "Ninja.h"
 #import "Projectile.h"
+#import "Rikishi.h"
 
-@interface WorkLayer : CCLayer
+@interface WorkLayer : CCLayer<ProjectileProtocol>
 {
     b2World* world;
     GLESDebugDraw *m_debugDraw;
@@ -25,7 +26,9 @@
     NSMutableArray* _bullets;
     CGPoint _touchPos;
     NSInteger _score;
+    Rikishi* _rikishi;
 }
+
 - (NSInteger)score;
 
 @end

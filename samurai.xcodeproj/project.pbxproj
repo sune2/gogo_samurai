@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29A5597117DA4D950067A8DD /* rikisi.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597017DA4D950067A8DD /* rikisi.png */; };
+		29A5597417DA4EF00067A8DD /* Rikishi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29A5597317DA4EEF0067A8DD /* Rikishi.mm */; };
+		29A5597617DA551D0067A8DD /* tmpDefs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597517DA551C0067A8DD /* tmpDefs.plist */; };
+		29A5597917DA55360067A8DD /* ganko.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597717DA55350067A8DD /* ganko.png */; };
+		29A5597A17DA55360067A8DD /* shiko.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597817DA55350067A8DD /* shiko.png */; };
+		29A5597C17DAFCC00067A8DD /* rikisi_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */; };
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
 		FAAE772717D98D7A007D4770 /* Menu.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* Menu.mm */; };
@@ -209,6 +215,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29A5597017DA4D950067A8DD /* rikisi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rikisi.png; path = Resources/images/character/rikisi.png; sourceTree = "<group>"; };
+		29A5597217DA4EEF0067A8DD /* Rikishi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rikishi.h; path = class/Boss/Rikishi.h; sourceTree = "<group>"; };
+		29A5597317DA4EEF0067A8DD /* Rikishi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Rikishi.mm; path = class/Boss/Rikishi.mm; sourceTree = "<group>"; };
+		29A5597517DA551C0067A8DD /* tmpDefs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = tmpDefs.plist; path = Resources/tmpDefs.plist; sourceTree = "<group>"; };
+		29A5597717DA55350067A8DD /* ganko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ganko.png; path = Resources/images/character/ganko.png; sourceTree = "<group>"; };
+		29A5597817DA55350067A8DD /* shiko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shiko.png; path = Resources/images/character/shiko.png; sourceTree = "<group>"; };
+		29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rikisi_leg.png; path = Resources/images/character/rikisi_leg.png; sourceTree = "<group>"; };
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
@@ -684,6 +697,8 @@
 			children = (
 				FAF29AAB17D82D8200F512EE /* Boss.h */,
 				FAF29AAC17D82D8200F512EE /* Boss.mm */,
+				29A5597217DA4EEF0067A8DD /* Rikishi.h */,
+				29A5597317DA4EEF0067A8DD /* Rikishi.mm */,
 			);
 			name = Boss;
 			sourceTree = "<group>";
@@ -754,6 +769,10 @@
 				FAF29AC817D9A64F00F512EE /* shuriken.png */,
 				FAF29AC417D95EED00F512EE /* katana.png */,
 				FAF29AB617D84E2C00F512EE /* ninja.png */,
+				29A5597017DA4D950067A8DD /* rikisi.png */,
+				29A5597717DA55350067A8DD /* ganko.png */,
+				29A5597817DA55350067A8DD /* shiko.png */,
+				29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */,
 			);
 			name = character;
 			sourceTree = "<group>";
@@ -814,6 +833,7 @@
 				FAF29AC117D95CA400F512EE /* Images */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
+				29A5597517DA551C0067A8DD /* tmpDefs.plist */,
 				FAF3B2A617D736FA00F29EDB /* Default@2x.png */,
 				FAF3B2A817D736FA00F29EDB /* Default-568h@2x.png */,
 				FAF3B2AA17D736FA00F29EDB /* Default-Landscape~ipad.png */,
@@ -1421,6 +1441,11 @@
 				FAF29AC617D95EED00F512EE /* katana.png in Resources */,
 				FAF29AC917D9A64F00F512EE /* shuriken.png in Resources */,
 				FAAE772C17D9BA6F007D4770 /* fire.png in Resources */,
+				29A5597117DA4D950067A8DD /* rikisi.png in Resources */,
+				29A5597617DA551D0067A8DD /* tmpDefs.plist in Resources */,
+				29A5597917DA55360067A8DD /* ganko.png in Resources */,
+				29A5597A17DA55360067A8DD /* shiko.png in Resources */,
+				29A5597C17DAFCC00067A8DD /* rikisi_leg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1600,6 +1625,7 @@
 				FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */,
 				FAAE772717D98D7A007D4770 /* Menu.mm in Sources */,
 				FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */,
+				29A5597417DA4EF00067A8DD /* Rikishi.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

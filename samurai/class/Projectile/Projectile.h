@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
+
 typedef enum {
     ProjectileOwnerSamurai,
     ProjectileOwnerEnemy
@@ -28,4 +29,8 @@ typedef enum {
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point;
 - (void)reflect;
 
+@end
+
+@protocol ProjectileProtocol
+-(void) generatedProjectile:(Projectile*)projectile;
 @end
