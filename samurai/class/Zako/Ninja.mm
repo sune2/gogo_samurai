@@ -7,14 +7,44 @@
 //
 
 #import "Ninja.h"
+#import "GB2ShapeCache.h"
+
+#define kJointAnchorPosX 46.53/32
+#define kJointAnchorPosY 68.89/32
 
 @implementation Ninja
 
 + (Ninja*)ninja {
-    Ninja* res = (Ninja*)[super zakoWithName:@"ninja"];
+    Ninja* res = (Ninja*)[super zakoWithName:@"ninja1"];
     res.scale = 57.0 / res.textureRect.size.width;
+    res.arm = [CCSprite spriteWithFile:@"ninja2.png"];
+    [res addChild:res.arm z:-3];
     return res;
 }
+
+- (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
+    [super initBodyWithWorld:world at:point];
+
+    // 体
+    b2BodyDef armDef;
+    armDef.type = b2_dynamicBody;
+    armDef.position.Set(point.x/self.PTMRatio, point.y/self.PTMRatio);
+
+    _armBody = world->CreateBody(&armDef);
+
+    [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_armBody forShapeName:@"ninja2"];
+    [_arm setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"ninja2"]];
+
+    b2RevoluteJointDef jointDef;
+    jointDef.Initialize(self.b2Body, _armBody, b2Vec2(self.position.x/self.PTMRatio+kJointAnchorPosX,
+                                                         self.position.y/self.PTMRatio+kJointAnchorPosY));
+
+    b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
+
+    joint->EnableLimit(YES);
+    joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), 0.0);
+}
+
 
 - (Projectile*)makeBullet {
     Projectile* shuriken = [Projectile projectileWithName:@"shuriken"];
@@ -25,5 +55,25 @@
 //    shuriken.b2Body->SetAngularVelocity(5);
     return shuriken;
 }
+
+- (void)update:(ccTime)delta {
+//    [self updateShuriken:delta];
+
+    b2Vec2 pos = self.b2Body->GetPosition();
+    if (pos.y < 0) {
+        self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
+        b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();
+        self.b2Body->SetTransform(b2Vec2(pos.x,0), self.b2Body->GetAngle());
+        self.armBody->SetTransform(self.armBody->GetPosition()+tmp, self.armBody->GetAngle());
+    }
+
+    // 体の位置
+    b2Body* b = _armBody;
+    _arm.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+    _arm.position = ccp((b->GetPosition().x*self.PTMRatio - self.position.x)/self.scale,
+                           (b->GetPosition().y*self.PTMRatio - self.position.y)/self.scale);
+
+}
+
 
 @end

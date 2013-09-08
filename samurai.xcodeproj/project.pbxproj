@@ -13,9 +13,12 @@
 		29A5597917DA55360067A8DD /* ganko.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597717DA55350067A8DD /* ganko.png */; };
 		29A5597A17DA55360067A8DD /* shiko.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597817DA55350067A8DD /* shiko.png */; };
 		29A5597C17DAFCC00067A8DD /* rikisi_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */; };
+		29A5598017DC49330067A8DD /* MyParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5597F17DC49330067A8DD /* MyParticle.m */; };
+		29A5598317DC54090067A8DD /* ninja1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598117DC54080067A8DD /* ninja1.png */; };
+		29A5598417DC54090067A8DD /* ninja2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598217DC54080067A8DD /* ninja2.png */; };
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
-		FAAE772717D98D7A007D4770 /* Menu.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* Menu.mm */; };
+		FAAE772717D98D7A007D4770 /* MenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* MenuLayer.mm */; };
 		FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772917D98E07007D4770 /* Ninja.mm */; };
 		FAAE772C17D9BA6F007D4770 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772B17D9BA6F007D4770 /* fire.png */; };
 		FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */; };
@@ -222,11 +225,15 @@
 		29A5597717DA55350067A8DD /* ganko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ganko.png; path = Resources/images/character/ganko.png; sourceTree = "<group>"; };
 		29A5597817DA55350067A8DD /* shiko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shiko.png; path = Resources/images/character/shiko.png; sourceTree = "<group>"; };
 		29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rikisi_leg.png; path = Resources/images/character/rikisi_leg.png; sourceTree = "<group>"; };
+		29A5597E17DC49330067A8DD /* MyParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyParticle.h; path = class/Particle/MyParticle.h; sourceTree = "<group>"; };
+		29A5597F17DC49330067A8DD /* MyParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyParticle.m; path = class/Particle/MyParticle.m; sourceTree = "<group>"; };
+		29A5598117DC54080067A8DD /* ninja1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja1.png; path = Resources/images/character/ninja1.png; sourceTree = "<group>"; };
+		29A5598217DC54080067A8DD /* ninja2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja2.png; path = Resources/images/character/ninja2.png; sourceTree = "<group>"; };
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
-		FAAE772517D98D7A007D4770 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = class/GameStage/Menu.h; sourceTree = "<group>"; };
-		FAAE772617D98D7A007D4770 /* Menu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Menu.mm; path = class/GameStage/Menu.mm; sourceTree = "<group>"; };
+		FAAE772517D98D7A007D4770 /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuLayer.h; path = class/GameStage/MenuLayer.h; sourceTree = "<group>"; };
+		FAAE772617D98D7A007D4770 /* MenuLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MenuLayer.mm; path = class/GameStage/MenuLayer.mm; sourceTree = "<group>"; };
 		FAAE772817D98E07007D4770 /* Ninja.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ninja.h; path = class/Zako/Ninja.h; sourceTree = "<group>"; };
 		FAAE772917D98E07007D4770 /* Ninja.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Ninja.mm; path = class/Zako/Ninja.mm; sourceTree = "<group>"; };
 		FAAE772B17D9BA6F007D4770 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
@@ -653,9 +660,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29A5597D17DC49010067A8DD /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				29A5597E17DC49330067A8DD /* MyParticle.h */,
+				29A5597F17DC49330067A8DD /* MyParticle.m */,
+			);
+			name = Particle;
+			sourceTree = "<group>";
+		};
 		FAF29A9B17D82C9600F512EE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				29A5597D17DC49010067A8DD /* Particle */,
 				FAF29ABC17D86A6000F512EE /* GB2ShapeCache.h */,
 				FAF29ABD17D86A6000F512EE /* GB2ShapeCache.mm */,
 				FAF29AA117D82D1B00F512EE /* GameController */,
@@ -721,8 +738,8 @@
 				FAE3AFA317D8754C00DF2188 /* WorkLayer.mm */,
 				FAAE772017D8792E007D4770 /* BackgroundLayer.h */,
 				FAAE772117D8792E007D4770 /* BackgroundLayer.mm */,
-				FAAE772517D98D7A007D4770 /* Menu.h */,
-				FAAE772617D98D7A007D4770 /* Menu.mm */,
+				FAAE772517D98D7A007D4770 /* MenuLayer.h */,
+				FAAE772617D98D7A007D4770 /* MenuLayer.mm */,
 			);
 			name = GameStage;
 			sourceTree = "<group>";
@@ -771,6 +788,8 @@
 				FAF29AB617D84E2C00F512EE /* ninja.png */,
 				29A5597017DA4D950067A8DD /* rikisi.png */,
 				29A5597717DA55350067A8DD /* ganko.png */,
+				29A5598117DC54080067A8DD /* ninja1.png */,
+				29A5598217DC54080067A8DD /* ninja2.png */,
 				29A5597817DA55350067A8DD /* shiko.png */,
 				29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */,
 			);
@@ -1446,6 +1465,8 @@
 				29A5597917DA55360067A8DD /* ganko.png in Resources */,
 				29A5597A17DA55360067A8DD /* shiko.png in Resources */,
 				29A5597C17DAFCC00067A8DD /* rikisi_leg.png in Resources */,
+				29A5598317DC54090067A8DD /* ninja1.png in Resources */,
+				29A5598417DC54090067A8DD /* ninja2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,9 +1644,10 @@
 				FAF29AB317D82DAA00F512EE /* Zako.mm in Sources */,
 				FAE3AFA417D8754C00DF2188 /* WorkLayer.mm in Sources */,
 				FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */,
-				FAAE772717D98D7A007D4770 /* Menu.mm in Sources */,
+				FAAE772717D98D7A007D4770 /* MenuLayer.mm in Sources */,
 				FAAE772A17D98E07007D4770 /* Ninja.mm in Sources */,
 				29A5597417DA4EF00067A8DD /* Rikishi.mm in Sources */,
+				29A5598017DC49330067A8DD /* MyParticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

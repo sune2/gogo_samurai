@@ -151,11 +151,12 @@
 
 -(void)generateParticleAt:(CGPoint)position
 {
-    CCParticleSystem* particle = [CCParticleExplosion node];
-    particle.life = 0.01;
-    particle.duration = 0;
-    particle.speed = 2.0;
-    particle.autoRemoveOnFinish = YES;
+    CCParticleSystemQuad* particle = [MyParticle particleBlood];
+//    CCParticleSystem* particle = [CCParticleExplosion node];
+//    particle.life = 0.01;
+//    particle.duration = 0;
+//    particle.speed = 2.0;
+//    particle.autoRemoveOnFinish = YES;
     particle.position = position;
     [self addChild:particle z:3];
 }

@@ -16,6 +16,7 @@
 #import "Ninja.h"
 #import "Projectile.h"
 #import "Rikishi.h"
+#import "MyParticle.h"
 
 @interface WorkLayer : CCLayer<ProjectileProtocol>
 {

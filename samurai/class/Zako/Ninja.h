@@ -12,6 +12,9 @@
 {
     
 }
+@property (nonatomic, strong) CCSprite* arm;
+@property (nonatomic, assign) b2Body* armBody;
+@property (nonatomic, strong) id<ProjectileProtocol> delegate;
 
 + (Ninja*)ninja;
 

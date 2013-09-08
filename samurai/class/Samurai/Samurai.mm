@@ -9,6 +9,7 @@
 #import "Samurai.h"
 #import "../Define.h"
 #import "GB2ShapeCache.h"
+#import "MyParticle.h"
 
 #define kKatanaAnchorPosX 2.1
 #define kKatanaAnchorPosY 1.7
@@ -134,12 +135,7 @@
 
 - (void)update:(ccTime)delta {
     if (_dashCounter >= 1) {
-        CCParticleSystem* particle = [CCParticleFire node];
-        particle.life = 0.1;
-//        particle.angle = 0;
-        particle.duration = 0.1;
-//        particle.speed = 2.0;
-        particle.autoRemoveOnFinish = YES;
+        CCParticleSystemQuad* particle = [MyParticle particleDash];
         particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
                                 _katanaBody->GetPosition().y*PTM_RATIO);
         [[self parent] addChild:particle z:3];
