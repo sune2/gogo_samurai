@@ -8,13 +8,14 @@
 
 #import "MenuLayer.h"
 
-@implementation Menu
+@implementation MenuLayer
 
 -(id)init
 {
     self = [super init];
     if (self) {
         self.touchEnabled = NO;
+        _score = 0;
         [self createMenu];
         
         [self scheduleUpdate];
@@ -28,29 +29,48 @@
 	[CCMenuItemFont setFontSize:22];
 	
 	// Reset Button
-	CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
-	}];
+	// CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+	// 	[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	// }];
     
     // Score
-    int score = 0;
-    NSString* scoreStr = [NSString stringWithFormat:@"%d", score];
-    CCMenuItemLabel *scoreLabel = [CCMenuItemFont itemWithString:scoreStr];
+    _scoreLabel = [self labelWithInteger:_score];
     
     // Samurai Life
+    _lifeLabel = [self labelWithInteger:_life];
     
     
-    
-    CCMenu *menu = [CCMenu menuWithItems:scoreLabel, reset, nil];
+    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, _lifeLabel, nil];
 	
 	[menu alignItemsVertically];
-	// menu.anchorPoint = ccp(0, 0);
     
 	CGSize size = [[CCDirector sharedDirector] winSize];
 	[menu setPosition:ccp( size.width/2, size.height-30)];
 	
 	
-	[self addChild: menu z:-1];
+	[self addChild: menu z:1];
 }
+
+- (CCMenuItemLabel*) labelWithInteger:(int)i
+{
+    NSString* tmpstr = [NSString stringWithFormat:@"%d", i];
+    CCMenuItemLabel* lbl = [CCMenuItemFont itemWithString:tmpstr];
+    return lbl;
+}
+
+- (void)update: (ccTime)dt
+{
+    [super update:dt];
+    [self updateLabels];
+}
+
+- (void)updateLabels
+{
+    NSString* tmp = [NSString stringWithFormat:@"%d", _score];
+    [_scoreLabel setString:tmp];
+    tmp = [NSString stringWithFormat:@"%d", _life];
+    [_lifeLabel setString:tmp];
+}
+
 
 @end

@@ -26,10 +26,10 @@
     NSMutableArray* _zakos;
     NSMutableArray* _bullets;
     CGPoint _touchPos;
-    NSInteger _score;
     Rikishi* _rikishi;
 }
 
-- (NSInteger)score;
+@property(assign) int score;
+@property(assign) int life;
 
 @end

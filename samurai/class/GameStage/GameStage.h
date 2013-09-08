@@ -18,4 +18,8 @@
     
 }
 +(CCScene *)scene;
+@property(nonatomic, strong) WorkLayer* workLayer;
+@property(nonatomic, strong) MenuLayer* menuLayer;
+@property(nonatomic, strong) BackgroundLayer* bgLayer;
+
 @end

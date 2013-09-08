@@ -145,6 +145,13 @@
     return NO;
 }
 
+- (void) samuraiDamaged
+{
+    // サムライがダメージを受けたときの処理
+    _samurai.hp--;
+    
+}
+
 -(void)generateParticleAt:(CGPoint)position
 {
     CCParticleSystemQuad* particle = [MyParticle particleBlood];
@@ -205,11 +212,6 @@
 	[super dealloc];
 }
 
--(NSInteger)score
-{
-    return _score;
-}
-
 -(void) update: (ccTime) dt
 {
 	int32 velocityIterations = 8;
@@ -245,6 +247,9 @@
     if (rand() % 100 == 0) {
         [self addNewNinjaSprite];
     }
+    
+    _life = _samurai.hp;
+    _score += 1;
 
 }
 

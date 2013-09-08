@@ -10,20 +10,40 @@
 
 @implementation GameStage
 
-+(CCScene *)scene
+- (id)init
 {
-    CCScene* scene = [CCScene node];
-    WorkLayer* workLayer = [WorkLayer node];
-    Menu* menuLayer = [Menu node];
-    BackgroundLayer* bgLayer = [BackgroundLayer node];
+    [super init];
+    if (self) {
+        [self scheduleUpdate];
+    }
+    return self;
+}
+
++(GameStage *)scene
+{
+    GameStage* scene = [GameStage node];
+    scene.workLayer = [WorkLayer node];
+    scene.menuLayer = [MenuLayer node];
+    scene.bgLayer = [BackgroundLayer node];
     
     
     // レイヤーを追加する
-    [scene addChild:workLayer z:1];
-    [scene addChild:menuLayer z:2];
-    [scene addChild:bgLayer z:-1];
-    
-    
+    [scene addChild:scene.workLayer z:1];
+    [scene addChild:scene.menuLayer z:2];
+    [scene addChild:scene.bgLayer z:-1];
+
     return scene;
 }
+
+- (void)update: (ccTime)dt
+{
+    [self manageScore];
+}
+
+- (void)manageScore
+{
+    self.menuLayer.score = self.workLayer.score;
+    self.menuLayer.life = self.workLayer.life;
+}
+
 @end
