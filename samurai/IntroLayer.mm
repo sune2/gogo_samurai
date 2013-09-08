@@ -38,6 +38,7 @@
 {
 	if( (self=[super init])) {
         [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapeDef.plist"];
+        [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"tmpDefs.plist"];
         
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];

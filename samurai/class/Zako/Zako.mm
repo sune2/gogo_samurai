@@ -14,7 +14,6 @@
 
 + (Zako*)zakoWithName:(NSString *)name {
     Zako *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
-    res.scale = 57.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
     res.tag = SpriteTagEnemy;

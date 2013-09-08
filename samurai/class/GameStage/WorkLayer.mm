@@ -25,7 +25,9 @@
         
         [self addNewSamuraiSprite];
         
-        [self addNewNinjaSprite];[self addNewNinjaSprite];[self addNewNinjaSprite];
+//        [self addNewNinjaSprite];[self addNewNinjaSprite];[self addNewNinjaSprite];
+
+        [self addNewRikishi];
         
         [self scheduleUpdate];
         
@@ -47,11 +49,20 @@
 {
     if ([_zakos count] >= 10) return;
     Ninja* ninja = [Ninja ninja];
-    [ninja initBodyWithWorld:world at:ccp(200 + rand() % 200, 200)];
+    [ninja initBodyWithWorld:world at:ccp(400, 200)];
     ninja.tag = SpriteTagEnemy;
     
     [self addChild:ninja z:1];
     [_zakos addObject:ninja];
+}
+
+-(void)addNewRikishi
+{
+    _rikishi = [Rikishi rikishi];
+    [_rikishi initBodyWithWorld:world at:ccp(400,200)];
+    _rikishi.tag = SpriteTagBoss;
+    _rikishi.delegate = self;
+    [self addChild:_rikishi z:1];
 }
 
 -(void)addNewBulletSprite:(Ninja*)ninja
@@ -63,17 +74,37 @@
     [_bullets addObject:bullet];
 }
 
+- (void)addRikishiBullet
+{
+    if ([_bullets count] >= 10) return;
+    if (rand()% 2 == 0) {
+        [_rikishi makeGanko];
+    } else {
+        [_rikishi makeShiko];
+    }
+}
+
+- (void)generatedProjectile:(Projectile *)projectile {
+    [self addChild:projectile z:2];
+    [_bullets addObject:projectile];
+}
+
+-(BOOL)checkOutOfScreen:(CCSprite*)sprite {
+    CGSize _windowSize = [CCDirector sharedDirector].winSize;
+    CGPoint pos = ccpSub(sprite.position, sprite.anchorPoint);
+    CGSize size = sprite.contentSize;
+    BOOL res = pos.x < (- size.width) / 2 ||
+               pos.y < (- size.height) / 2 ||
+               (_windowSize.width + size.width / 2) < pos.x ||
+               (_windowSize.height + size.height / 2) < pos.y;
+    return res;
+}
+
 -(void)updateBullets:(ccTime) dt
 {
-    CGSize windowSize = [CCDirector sharedDirector].winSize;
     NSMutableArray* tmpBullets = [[NSMutableArray alloc] init];
     for (Projectile* bullet in _bullets) {
-        CGPoint bulletPos = bullet.position;
-        CGSize bulletSize = bullet.contentSize;
-        BOOL isOutOfScreen = bulletPos.x < (- bulletSize.width) / 2 ||
-                             bulletPos.y < (- bulletSize.height) / 2 ||
-                             (windowSize.width + bulletSize.width / 2) < bulletPos.x ||
-                             (windowSize.height + bulletSize.height / 2) < bulletPos.y;
+        BOOL isOutOfScreen = [self checkOutOfScreen:bullet];
         BOOL hitSomeone = [self hitWithProjectile:bullet];
         
         if (isOutOfScreen || hitSomeone) {
@@ -154,6 +185,7 @@
             }
         }
     }
+    
     [self removeEnemies:arr];
 
 }
@@ -194,15 +226,31 @@
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
     [_samurai update:dt];
+
+
+    NSMutableArray* arr = [[NSMutableArray alloc] init];;
     for (Zako* zako in _zakos) {
+        if (zako.b2Body->GetPosition().y < 1) {
+            zako.b2Body->SetLinearVelocity(b2Vec2(-5,zako.b2Body->GetLinearVelocity().y));
+        }
+        if ([self checkOutOfScreen:zako]) {
+            [arr addObject:zako];
+        }
+
         [zako update:dt];
         if (rand() % 60 == 0) {
             [self addNewBulletSprite:(Ninja*)zako];
         }
     }
+    [self removeEnemies:arr];
+
     [self updateBullets:dt];
     [self attackOnEnemy];
-    
+    [_rikishi update:dt];
+    if (rand() % 60 == 0) {
+        [self addRikishiBullet];
+    }
+
     if (rand() % 100 == 0) {
         [self addNewNinjaSprite];
     }
@@ -309,6 +357,7 @@
 	world->DrawDebugData();
 	
 	kmGLPopMatrix();
+
 }
 
 @end
