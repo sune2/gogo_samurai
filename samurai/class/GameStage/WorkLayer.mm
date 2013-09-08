@@ -25,7 +25,7 @@
         
         [self addNewSamuraiSprite];
         
-//        [self addNewNinjaSprite];[self addNewNinjaSprite];[self addNewNinjaSprite];
+        [self addNewNinjaSprite];//[self addNewNinjaSprite];[self addNewNinjaSprite];
 
         [self addNewRikishi];
         
@@ -50,6 +50,7 @@
     if ([_zakos count] >= 10) return;
     Ninja* ninja = [Ninja ninja];
     [ninja initBodyWithWorld:world at:ccp(400, 200)];
+    ninja.delegate = self;
     ninja.tag = SpriteTagEnemy;
     
     [self addChild:ninja z:1];
@@ -68,10 +69,7 @@
 -(void)addNewBulletSprite:(Ninja*)ninja
 {
     if ([_bullets count] >= 10) return;
-    Projectile* bullet = [ninja makeBullet];
-    bullet.tag = SpriteTagProjectile;
-    [self addChild:bullet z:2];
-    [_bullets addObject:bullet];
+    [ninja makeShuriken];
 }
 
 - (void)addRikishiBullet
@@ -109,7 +107,6 @@
         
         if (isOutOfScreen || hitSomeone) {
             [bullet removeFromParent];
-            world->DestroyBody(bullet.b2Body);
         } else {
             [tmpBullets addObject:bullet];
         }
@@ -197,7 +194,6 @@
 {
     for (CCPhysicsSprite* sprite in enemies) {
         if ([_zakos containsObject:sprite]) {
-            world->DestroyBody(sprite.b2Body);
             [sprite removeFromParent];
             [_zakos removeObject:sprite];
         }
@@ -228,8 +224,6 @@
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
-    [_samurai update:dt];
-
 
     NSMutableArray* arr = [[NSMutableArray alloc] init];;
     for (Zako* zako in _zakos) {
@@ -240,7 +234,7 @@
             [arr addObject:zako];
         }
 
-        [zako update:dt];
+//        [zako update:dt];
         if (rand() % 60 == 0) {
             [self addNewBulletSprite:(Ninja*)zako];
         }
@@ -315,10 +309,10 @@
 	
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
-	//		flags += b2Draw::e_jointBit;
-	//		flags += b2Draw::e_aabbBit;
-	//		flags += b2Draw::e_pairBit;
-	//		flags += b2Draw::e_centerOfMassBit;
+    flags += b2Draw::e_jointBit;
+//    flags += b2Draw::e_aabbBit;
+//    flags += b2Draw::e_pairBit;
+//    flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);
 	
 	

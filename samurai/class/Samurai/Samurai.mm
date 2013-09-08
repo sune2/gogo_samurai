@@ -33,6 +33,7 @@
 }
 
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
+    _world = world;
     // サムライの体
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -68,6 +69,7 @@
 
 
     _initPos = point;
+    [self scheduleUpdate];
 }
 
 - (BOOL)canDash {
@@ -173,6 +175,11 @@
     b2Body* b = _katanaBody;
     _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
     
+}
+
+- (void)removeFromParent {
+    [super removeFromParent];
+    _world->DestroyBody(self.b2Body);
 }
 
 @end

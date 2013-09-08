@@ -19,6 +19,7 @@ typedef enum {
 @interface Projectile : CCPhysicsSprite
 {
     CGPoint _initPos;
+    b2World* _world;
 }
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, assign) b2Vec2 linearVelocity;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import "Menu.h"
+#import "MenuLayer.h"
 
 @implementation Menu
 

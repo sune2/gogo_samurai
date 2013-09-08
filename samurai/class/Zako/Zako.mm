@@ -34,6 +34,7 @@
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
     
     [self setB2Body:body];
+    [self scheduleUpdate];
 }
 
 - (void)update:(ccTime)delta {
@@ -44,8 +45,10 @@
     }
 }
 
-- (Projectile*)makeBullet {
-    return nil;
+- (void)removeFromParent {
+    [super removeFromParent];
+    self.world->DestroyBody(self.b2Body);
 }
+
 
 @end

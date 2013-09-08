@@ -16,7 +16,7 @@
 
 + (Ninja*)ninja {
     Ninja* res = (Ninja*)[super zakoWithName:@"ninja1"];
-    res.scale = 57.0 / res.textureRect.size.width;
+    res.scale = 88.0 / res.textureRect.size.width;
     res.arm = [CCSprite spriteWithFile:@"ninja2.png"];
     [res addChild:res.arm z:-3];
     return res;
@@ -39,12 +39,63 @@
     jointDef.Initialize(self.b2Body, _armBody, b2Vec2(self.position.x/self.PTMRatio+kJointAnchorPosX,
                                                          self.position.y/self.PTMRatio+kJointAnchorPosY));
 
-    b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
+    _joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
 
-    joint->EnableLimit(YES);
-    joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), 0.0);
+    _joint->EnableLimit(YES);
+    _joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), CC_DEGREES_TO_RADIANS(-80.0));
+
 }
 
+- (BOOL)canShuriken {
+    return _shurikenState == 0;
+}
+- (void)makeShuriken {
+    if ([self canShuriken]) {
+        _shurikenState = 1;
+    }
+}
+
+- (void)updateShuriken:(ccTime)delta {
+    switch (_shurikenState) {
+        case 1:
+        {
+            _joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), CC_DEGREES_TO_RADIANS(30.0));
+//            _armBody->ApplyAngularImpulse(-10);
+            _waiting  = 1;
+            _shurikenState = 2;
+        }
+            break;
+        case 2:
+        {
+            _armBody->SetAngularVelocity(10);
+            _waiting -= delta;
+//            if (_waiting < 0) {
+            if (_armBody->GetAngle() > CC_DEGREES_TO_RADIANS(-20.0)) {
+                _joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), CC_DEGREES_TO_RADIANS(-80.0));
+                _shurikenState = 3;
+            }
+        }
+            break;
+        case 3:
+        {
+            Projectile* shuriken = [self makeBullet];
+            [_delegate generatedProjectile:shuriken];
+
+            _shurikenState = 4;
+            _waiting = 1;
+        }
+            break;
+        case 4:
+        {
+            _waiting -= delta;
+            if (_waiting < 0) {
+                _shurikenState = 0;
+            }
+        }
+        default:
+            break;
+    }
+}
 
 - (Projectile*)makeBullet {
     Projectile* shuriken = [Projectile projectileWithName:@"shuriken"];
@@ -52,12 +103,11 @@
     shuriken.scale = self.scale;
     shuriken.linearVelocity = b2Vec2(-10,0);
     shuriken.angularVelocity = 10;
-//    shuriken.b2Body->SetAngularVelocity(5);
     return shuriken;
 }
 
 - (void)update:(ccTime)delta {
-//    [self updateShuriken:delta];
+    [self updateShuriken:delta];
 
     b2Vec2 pos = self.b2Body->GetPosition();
     if (pos.y < 0) {
@@ -75,5 +125,9 @@
 
 }
 
+- (void)removeFromParent {
+    [super removeFromParent];
+    self.world->DestroyBody(_armBody);
+}
 
 @end

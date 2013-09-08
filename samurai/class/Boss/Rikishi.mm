@@ -202,6 +202,11 @@
     
 }
 
+- (void)removeFromParent {
+    [super removeFromParent];
+    self.world->DestroyBody(self.karadaBody);
+}
+
 
 
 

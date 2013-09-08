@@ -16,6 +16,7 @@
     CGPoint _initPos;
     int _counterCounter;
     int _dashCounter;
+    b2World* _world;
 }
 
 @property (nonatomic, strong) CCSprite* katana;
