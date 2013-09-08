@@ -16,6 +16,11 @@ typedef enum {
     ProjectileOwnerEnemy
 } ProjectileOwner;
 
+typedef enum {
+    ProjectileTypePhysics = 0, // default
+    ProjectileTypeSpecial
+} ProjectileType;
+
 @interface Projectile : CCPhysicsSprite
 {
     CGPoint _initPos;
@@ -25,6 +30,7 @@ typedef enum {
 @property(nonatomic, assign) b2Vec2 linearVelocity;
 @property(nonatomic, assign) float32 angularVelocity;
 @property(nonatomic, assign) ProjectileOwner owner;
+@property(nonatomic, assign) ProjectileType type;
 
 +(Projectile*)projectileWithName:(NSString*)name;
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point;

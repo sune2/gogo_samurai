@@ -92,6 +92,7 @@
             [shiko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
             shiko.scale = self.scale;
             shiko.linearVelocity = b2Vec2(-10,0);
+            shiko.type = ProjectileTypeSpecial;
 
             [_delegate generatedProjectile:shiko];
             

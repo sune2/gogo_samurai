@@ -26,7 +26,7 @@
 
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
     _world = world;
-    
+
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(point.x/self.PTMRatio,point.y/self.PTMRatio);

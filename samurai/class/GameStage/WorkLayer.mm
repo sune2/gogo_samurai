@@ -149,11 +149,6 @@
 -(void)generateParticleAt:(CGPoint)position
 {
     CCParticleSystemQuad* particle = [MyParticle particleBlood];
-//    CCParticleSystem* particle = [CCParticleExplosion node];
-//    particle.life = 0.01;
-//    particle.duration = 0;
-//    particle.speed = 2.0;
-//    particle.autoRemoveOnFinish = YES;
     particle.position = position;
     [self addChild:particle z:3];
 }
@@ -263,11 +258,6 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    for (Zako* zako in _zakos) {
-//        world->DestroyBody(zako.b2Body);
-//        [zako removeFromParent];
-//    }
-    
     if ([touches count] >= 2) return;
     UITouch* touch = [touches anyObject];
     CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];

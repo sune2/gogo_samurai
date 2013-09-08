@@ -15,8 +15,10 @@
     BOOL _isJumping;
     CGPoint _initPos;
     int _counterCounter;
+    int _counterState;
     int _dashCounter;
     b2World* _world;
+    ccTime _waiting;
 }
 
 @property (nonatomic, strong) CCSprite* katana;

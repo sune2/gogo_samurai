@@ -99,7 +99,7 @@
 }
 
 - (BOOL)isCountering {
-    return _counterCounter > 0;
+    return _counterState == 1;
 }
 
 - (BOOL)canJump {
@@ -110,7 +110,7 @@
 }
 
 - (BOOL)canCounter {
-    return [self canJump];
+    return _counterState == 0;
 }
 
 
@@ -130,12 +130,41 @@
 
 - (void)counter {
     if ([self canCounter]) {
-        _katanaBody->SetAngularVelocity(40);
-        _counterCounter = 10;
+        _counterState = 1;
+        _waiting = 0.5;
+    }
+}
+
+- (void)updateCounter:(ccTime)delta {
+    CCLOG(@"%d",_counterState);
+    switch (_counterState) {
+        case 1:
+        {
+            _katanaBody->SetAngularVelocity(40);
+            _waiting -= delta;
+            if (_waiting < 0) {
+                _katanaBody->SetAngularVelocity(0);
+                _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
+                _waiting = 0.2;
+                _counterState = 2;
+            }
+        }
+            break;
+        case 2:
+        {
+            _waiting -= delta;
+            if (_waiting < 0) {
+                _counterState = 0;
+            }
+        }
+            break;
+        default:
+            break;
     }
 }
 
 - (void)update:(ccTime)delta {
+    [self updateCounter:delta];
     if (_dashCounter >= 1) {
         CCParticleSystemQuad* particle = [MyParticle particleDash];
         particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
@@ -153,13 +182,6 @@
             self.b2Body->SetLinearVelocity(b2Vec2(0,0));
         }
 
-    }
-    if (_counterCounter >= 1) {        
-        _counterCounter--;
-        if (_counterCounter == 0){
-            _katanaBody->SetAngularVelocity(0);
-            _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
-        }
     }
     
     if (self.position.x < _initPos.x) {
