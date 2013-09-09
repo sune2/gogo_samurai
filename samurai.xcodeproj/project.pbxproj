@@ -16,6 +16,7 @@
 		29A5598017DC49330067A8DD /* MyParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5597F17DC49330067A8DD /* MyParticle.m */; };
 		29A5598317DC54090067A8DD /* ninja1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598117DC54080067A8DD /* ninja1.png */; };
 		29A5598417DC54090067A8DD /* ninja2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598217DC54080067A8DD /* ninja2.png */; };
+		29A5598617DCB47F0067A8DD /* events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598517DCB47E0067A8DD /* events.plist */; };
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
 		FAAE772717D98D7A007D4770 /* MenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* MenuLayer.mm */; };
@@ -229,6 +230,7 @@
 		29A5597F17DC49330067A8DD /* MyParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyParticle.m; path = class/Particle/MyParticle.m; sourceTree = "<group>"; };
 		29A5598117DC54080067A8DD /* ninja1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja1.png; path = Resources/images/character/ninja1.png; sourceTree = "<group>"; };
 		29A5598217DC54080067A8DD /* ninja2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja2.png; path = Resources/images/character/ninja2.png; sourceTree = "<group>"; };
+		29A5598517DCB47E0067A8DD /* events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events.plist; path = Resources/events.plist; sourceTree = "<group>"; };
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
 				29A5597517DA551C0067A8DD /* tmpDefs.plist */,
+				29A5598517DCB47E0067A8DD /* events.plist */,
 				FAF3B2A617D736FA00F29EDB /* Default@2x.png */,
 				FAF3B2A817D736FA00F29EDB /* Default-568h@2x.png */,
 				FAF3B2AA17D736FA00F29EDB /* Default-Landscape~ipad.png */,
@@ -1467,6 +1470,7 @@
 				29A5597C17DAFCC00067A8DD /* rikisi_leg.png in Resources */,
 				29A5598317DC54090067A8DD /* ninja1.png in Resources */,
 				29A5598417DC54090067A8DD /* ninja2.png in Resources */,
+				29A5598617DCB47F0067A8DD /* events.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
