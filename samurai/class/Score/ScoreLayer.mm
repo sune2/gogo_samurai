@@ -15,6 +15,19 @@
 {
     self = [super init];
     if (self) {
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+
+        
+        NSString* tStr = [NSString stringWithFormat:@"Bu-koh"];
+        CCMenuItemFont* tLabel = [CCMenuItemFont itemWithString:tStr];
+        [tLabel setFontSize:30];
+        // [tLabel setFontName:@"HiraMinProN-W3"];
+        CCMenu* tMenu = [CCMenu menuWithItems:tLabel, nil];
+        [tMenu setPosition:ccp(winSize.width / 2, winSize.height - 30)];
+        
+        [self addChild:tMenu];
+        
         NSString* path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
         _scores = [[NSArray alloc] initWithContentsOfFile:path];
         NSMutableArray* arr = [[NSMutableArray alloc] init];
