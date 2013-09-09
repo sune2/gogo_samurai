@@ -11,6 +11,7 @@
 
 #define PTM_RATIO 32
 #define kGravityPower -30.0
+#define kLeftSpeed 5
 
 typedef enum {
     SpriteTagSamurai = 1,

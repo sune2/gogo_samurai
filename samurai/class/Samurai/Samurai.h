@@ -18,9 +18,11 @@
     int _counterState;
     int _dashCounter;
     int _dashState;
+    int _mutekiState;
     b2World* _world;
     ccTime _counterWaiting;
     ccTime _dashWaiting;
+    ccTime _mutekiWaiting;
 }
 
 @property (nonatomic, strong) CCSprite* katana;
@@ -34,5 +36,7 @@
 - (void)counter;
 - (BOOL)isDashing;
 - (BOOL)isCountering;
+- (void)damaged;
+
 
 @end

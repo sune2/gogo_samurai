@@ -22,7 +22,6 @@
     res.scale = 116.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.katana = [CCSprite spriteWithFile:@"katana.png"];
-//    res.katana.scale = 116.0 / res.katana.textureRect.size.width;
     [res addChild:res.katana];
     res.katana.position = CGPointMake(kKatanaAnchorPosX*PTM_RATIO/res.scale,
                                       kKatanaAnchorPosY*PTM_RATIO/res.scale);
@@ -60,8 +59,6 @@
     [_katana setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"katana"]];
     
     b2RevoluteJointDef jointDef;
-//    jointDef.Initialize(body, _katanaBody, b2Vec2(_katana.position.x/self.PTMRatio,
-//                                                  _katana.position.y/self.PTMRatio));
     jointDef.Initialize(body, _katanaBody, b2Vec2(katanaDef.position.x,
                                                   katanaDef.position.y));
     
@@ -123,9 +120,6 @@
     if ([self canDash]) {
         _dashState = 1;
         _dashWaiting = 0.1;
-//        self.b2Body->SetLinearVelocity(b2Vec2(50,self.b2Body->GetLinearVelocity().y));
-//        _dashCounter = 30;
-//        self.position = ccp(self.position.x + 200, self.position.y);
     }
 }
 
@@ -214,46 +208,50 @@
     }
 }
 
+- (void)updateMuteki:(ccTime)delta {
+    switch (_mutekiState) {
+        case 1:
+        {
+            self.katanaBody->SetAngularVelocity(10);
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
+                self.katanaBody->SetAngularVelocity(0);
+                _mutekiState = 0;
+            }
+        }
+            break;
+        case 2:
+        {
+
+        }
+        default:
+            break;
+    }
+}
+
 - (void)update:(ccTime)delta {
     [self updateCounter:delta];
     [self updateDashSlice:delta];
-//    if (_dashCounter >= 1) {
-//        CCParticleSystemQuad* particle = [MyParticle particleDash];
-//        particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
-//                                _katanaBody->GetPosition().y*PTM_RATIO);
-//        [[self parent] addChild:particle z:3];
-//
-//
-//        if (self.position.x > _initPos.x + 200) {
-//            self.position = ccp(_initPos.x + 200, self.position.y);
-//            _dashCounter = 1;
-//        }
-//
-//        _dashCounter--;
-//        if (_dashCounter == 0) {
-//            self.b2Body->SetLinearVelocity(b2Vec2(0,0));
-//        }
-//
-//    }
-//    
-//    if (self.position.x < _initPos.x) {
-//        // 戻り過ぎ
-//    } else if ((self.position.x > _initPos.x) && (_dashCounter == 0)) {
-//        self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-//        if ([self onGround]) {
-//            self.position = ccp(self.position.x-5, self.position.y);
-//        }
-//    }
+    [self updateMuteki:delta];
     
     // 刀の位置
     b2Body* b = _katanaBody;
-    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-    
+    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());    
 }
 
 - (void)removeFromParent {
     [super removeFromParent];
     _world->DestroyBody(self.b2Body);
 }
+
+- (void)damaged {
+    if (_mutekiState == 0) {
+        self.hp--;
+        _mutekiState = 1;
+        _mutekiWaiting = 0.5;
+    }
+}
+
 
 @end
