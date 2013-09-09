@@ -6,14 +6,11 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
 
 @protocol backProtocol
-
 - (void) backToIntroLayer;
-
 @end
 
 @interface ScoreLayer : CCLayer

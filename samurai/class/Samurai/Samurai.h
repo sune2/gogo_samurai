@@ -19,13 +19,15 @@
     int _dashCounter;
     int _dashState;
     int _mutekiState;
+    int _jumpState;
     b2World* _world;
     ccTime _counterWaiting;
     ccTime _dashWaiting;
     ccTime _mutekiWaiting;
+    ccTime _jumpWaiting;
     
     BOOL _isRakka;
-    BOOL _nowJumpped;
+    BOOL _dashHurry;
 }
 
 @property (nonatomic, strong) CCSprite* katana;
