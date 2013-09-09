@@ -98,6 +98,7 @@
 }
 
 - (BOOL)canJump {
+    if (_nowJumpped) return NO;
     if (_dashState) return NO;
     if (_counterState) return NO;
     return [self onGround];
@@ -110,6 +111,7 @@
 
 - (void)jump {
     if ([self canJump]) {
+        _nowJumpped = YES;
         self.b2Body->ApplyLinearImpulse(b2Vec2(0,50), self.b2Body->GetWorldCenter());
     }
 }
@@ -269,6 +271,17 @@
     [self updateDashSlice:delta];
     [self updateMuteki:delta];
     
+    _nowJumpped = NO;
+    // 落下
+    if (_isRakka) {
+        if ([self onGround]) {
+            self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x,0));
+            _isRakka = NO;
+        } else {
+            self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x,-40));
+        }
+    }
+    
     // 刀の位置
     b2Body* b = _katanaBody;
     _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());    
@@ -289,7 +302,10 @@
 }
 
 - (void)rakka {
-    
+    if (![self onGround]) {
+        _isRakka = YES;
+//        self.b2Body->SetLinearVelocity(b2Vec2(0,-40));
+    }
 }
 
 - (void)modoru {

@@ -23,6 +23,9 @@
     ccTime _counterWaiting;
     ccTime _dashWaiting;
     ccTime _mutekiWaiting;
+    
+    BOOL _isRakka;
+    BOOL _nowJumpped;
 }
 
 @property (nonatomic, strong) CCSprite* katana;

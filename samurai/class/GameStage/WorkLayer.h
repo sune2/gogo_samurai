@@ -25,7 +25,10 @@
     Samurai* _samurai;
     NSMutableArray* _zakos;
     NSMutableArray* _bullets;
+    
     CGPoint _touchPos;
+    BOOL _didCommand;
+    
     Rikishi* _rikishi;
 
     NSArray* _events;

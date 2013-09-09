@@ -304,34 +304,48 @@
     if ([touches count] >= 2) return;
     UITouch* touch = [touches anyObject];
     _touchPos = [[CCDirector sharedDirector] convertTouchToGL:touch];
+    _didCommand = NO;
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([touches count] >= 2) return;
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
+    if (ccpDistance(point, _touchPos) > 50) {
+        [self doCommandWithPoint1:point Point2:_touchPos];
+        _didCommand = YES;
+        _touchPos = point;
+    }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if ([touches count] >= 2) return;
-    UITouch* touch = [touches anyObject];
-    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
+//    UITouch* touch = [touches anyObject];
+//    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
     
-    BOOL isSliced = ccpDistance(point, _touchPos) > 10;
-    double moveAngle = atan2(point.y - _touchPos.y, point.x - _touchPos.x) * (180 / M_PI);
-
-    int dir = [self sliceDirection:moveAngle];
-    if (isSliced) {
-        if (dir == 0) {
-            // Right
-            [_samurai dashSlice];
-        } else if (dir == 1) {
-            // Up
-            [_samurai jump];
-        } else if (dir == 2) {
-            //Left
-            [_samurai modoru];
-        } else {
-            //Down
-            [_samurai rakka];
-        }
-    } else {
+    if (!_didCommand) {
         [_samurai counter];
+    }
+}
+
+- (void) doCommandWithPoint1:(CGPoint)p1 Point2:(CGPoint)p2 {
+    double moveAngle = atan2(p1.y - p2.y, p1.x - p2.x) * (180 / M_PI);
+    
+    int dir = [self sliceDirection:moveAngle];
+    if (dir == 0) {
+        // Right
+        [_samurai dashSlice];
+    } else if (dir == 1) {
+        // Up
+        [_samurai jump];
+    } else if (dir == 2) {
+        //Left
+        [_samurai modoru];
+    } else {
+        //Down
+        [_samurai rakka];
     }
 }
 
