@@ -137,7 +137,6 @@
 }
 
 - (void)updateDashSlice:(ccTime)delta {
-    CCLOG(@"%d", _dashState);
     switch (_dashState) {
         case 1:
         {
@@ -166,7 +165,6 @@
         case 3:
         {
             self.b2Body->SetLinearVelocity(b2Vec2(-10,self.b2Body->GetLinearVelocity().y));
-            CCLOG(@"%f %f",self.position.x, _initPos.x);
             if (self.position.x <= _initPos.x) {
                 self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
                 self.position = ccp(_initPos.x, self.position.y);
