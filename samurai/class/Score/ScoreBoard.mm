@@ -14,9 +14,14 @@
 {
     ScoreBoard* scene = [ScoreBoard node];
     scene.sLayer = [ScoreLayer node];
+    scene.sLayer.delegate = scene;
     [scene addChild:scene.sLayer];
     return scene;
 }
 
+- (void)backToIntroLayer
+{
+    [[CCDirector sharedDirector] replaceScene:[IntroLayer scene]];
+}
 
 @end

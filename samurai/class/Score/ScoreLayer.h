@@ -10,8 +10,16 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
+@protocol backProtocol
+
+- (void) backToIntroLayer;
+
+@end
+
 @interface ScoreLayer : CCLayer
 {
     NSArray* _scores;
 }
+@property (strong) id<backProtocol> delegate;
+
 @end

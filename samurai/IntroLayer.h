@@ -9,7 +9,10 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
-
+#import "HelloWorldLayer.h"
+#import "GameStage.h"
+#import "GB2ShapeCache.h"
+#import "ScoreBoard.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer

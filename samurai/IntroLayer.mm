@@ -9,10 +9,7 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "HelloWorldLayer.h"
-#import "GameStage.h"
-#import "GB2ShapeCache.h"
-#import "ScoreBoard.h"
+
 #pragma mark - IntroLayer
 
 // HelloWorldLayer implementation
@@ -107,4 +104,5 @@
     
     [self createMenu];
 }
+
 @end

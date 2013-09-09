@@ -10,8 +10,9 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "ScoreLayer.h"
+#import "IntroLayer.h"
 
-@interface ScoreBoard : CCScene
+@interface ScoreBoard : CCScene<backProtocol>
 {
     
 }

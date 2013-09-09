@@ -29,6 +29,14 @@
         
         [self addChild:menu];
         
+        NSString* backStr = [NSString stringWithFormat:@"[Modoru]"];
+        CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
+            [_delegate backToIntroLayer];
+        }];
+        CCMenu* backMenu = [CCMenu menuWithItems:backLabel, nil];
+        backMenu.position = ccp(400, 20);
+        [self addChild:backMenu];
+        
     }
     return self;
 }
