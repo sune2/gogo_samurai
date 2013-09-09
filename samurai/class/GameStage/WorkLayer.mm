@@ -155,6 +155,9 @@
         }
     }
     
+    // 自身の処理
+    if ([_samurai onGround] && [_rikishi isEarthquaking]) [_samurai damaged];
+    
     [self removeObjects:arr];
 }
 
@@ -312,19 +315,39 @@
     BOOL isSliced = ccpDistance(point, _touchPos) > 10;
     double moveAngle = atan2(point.y - _touchPos.y, point.x - _touchPos.x) * (180 / M_PI);
 
-    BOOL isMovedToUp = 45 < moveAngle && moveAngle < 180;
-    BOOL isMovedToRight = (-90 < moveAngle && moveAngle <= 45);
-
+    int dir = [self sliceDirection:moveAngle];
     if (isSliced) {
-        if(isMovedToRight) {
+        if (dir == 0) {
+            // Right
             [_samurai dashSlice];
-        } else if (isMovedToUp) {
+        } else if (dir == 1) {
+            // Up
             [_samurai jump];
+        } else if (dir == 2) {
+            //Left
+            [_samurai modoru];
+        } else {
+            //Down
+            [_samurai rakka];
         }
     } else {
         [_samurai counter];
     }
 }
+
+- (int) sliceDirection:(double)angle
+{
+    if (-45 <= angle && angle < 45) {
+        return 0;
+    } else if (45 <= angle && angle < 135) {
+        return 1;
+    } else if (-135 <= angle && angle < -45) {
+        return 3;
+    } else {
+        return 2;
+    }
+}
+
 
 -(void) initPhysics
 {

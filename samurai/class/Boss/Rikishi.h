@@ -28,5 +28,6 @@
 - (void)makeGanko;
 - (BOOL)canShiko;
 - (void)makeShiko;
+- (BOOL)isEarthquaking;
 
 @end

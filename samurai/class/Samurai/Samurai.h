@@ -37,6 +37,8 @@
 - (BOOL)isDashing;
 - (BOOL)isCountering;
 - (void)damaged;
-
+- (BOOL)onGround;
+- (void)rakka;
+- (void)modoru;
 
 @end
