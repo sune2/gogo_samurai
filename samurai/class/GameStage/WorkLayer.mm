@@ -20,6 +20,12 @@
         _score = 0;
         _bullets = [[NSMutableArray alloc] init];
         _zakos = [[NSMutableArray alloc] init];
+
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
+
+        _events = [[NSArray alloc] initWithContentsOfFile:path];
+
+        _eventIndex = 0;
         
         [self initPhysics];
         
@@ -30,7 +36,7 @@
         [self addNewRikishi];
         
         [self scheduleUpdate];
-        
+
     }
     
     return self;
@@ -214,6 +220,8 @@
 
 -(void) update: (ccTime) dt
 {
+    _curTime += dt;
+
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
 	
@@ -231,9 +239,9 @@
         }
 
 //        [zako update:dt];
-        if (rand() % 60 == 0) {
-            [self addNewBulletSprite:(Ninja*)zako];
-        }
+//        if (rand() % 60 == 0) {
+//            [self addNewBulletSprite:(Ninja*)zako];
+//        }
     }
     [self removeEnemies:arr];
 
@@ -244,12 +252,18 @@
         [self addRikishiBullet];
     }
 
-    if (rand() % 100 == 0) {
-        [self addNewNinjaSprite];
-    }
-    
+//    if (rand() % 100 == 0) {
+//        [self addNewNinjaSprite];
+//    }
+
     _life = _samurai.hp;
     _score += 1;
+
+//    CCLOG(@"%f : %d %f", _curTime, _eventIndex, [[[_events objectAtIndex:_eventIndex] objectForKey:@"time"] floatValue]);
+    while(_eventIndex<[_events count] && [[[_events objectAtIndex:_eventIndex] objectForKey:@"time"] floatValue] < _curTime) {
+        [self addNewNinjaSprite];
+        _eventIndex++;
+    }
 
 }
 

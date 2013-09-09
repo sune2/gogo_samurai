@@ -13,5 +13,8 @@
 #import "GLES-Render.h"
 
 @interface BackgroundLayer : CCLayer
+{
+    CCSprite* _bgSprite[3];
+}
 
 @end

@@ -27,6 +27,11 @@
     NSMutableArray* _bullets;
     CGPoint _touchPos;
     Rikishi* _rikishi;
+
+    NSArray* _events;
+    int _eventIndex;
+
+    ccTime _curTime;
 }
 
 @property(assign) int score;
