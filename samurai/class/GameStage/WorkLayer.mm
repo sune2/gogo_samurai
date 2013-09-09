@@ -116,11 +116,6 @@
         }
     }
     _bullets = tmpBullets;
-    
-    for (Projectile* bullet in _bullets) {
-        [bullet update:dt];
-    }
-
 }
 
 - (void) samuraiTouchObj
@@ -169,7 +164,7 @@
     
     for (Zako* enemy in _zakos) {
         
-        for (b2ContactEdge* contactEdge = _samurai.b2Body->GetContactList();
+        for (b2ContactEdge* contactEdge = enemy.b2Body->GetContactList();
              contactEdge;
              contactEdge = contactEdge->next) {
             
@@ -182,7 +177,7 @@
                 Projectile* projectile = (Projectile *)sprite;
                 if (projectile.owner == ProjectileOwnerSamurai) {
                     [arr addObject:enemy];
-                    [projectile removeFromParent];
+                    [arr addObject:projectile];
                 }
             }
             
@@ -277,7 +272,7 @@
     [self removeObjects:arr];
 
     [self updateBullets:dt];
-    // [self attackOnEnemy];
+   
     [self samuraiTouchObj];
     [self enemyTouchingObj];
     [self katanaTouchingObj];
