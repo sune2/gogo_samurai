@@ -288,5 +288,13 @@
     }
 }
 
+- (void)rakka {
+    
+}
+
+- (void)modoru {
+    
+}
+
 
 @end
