@@ -121,7 +121,7 @@
     particle.speedVar = 0;
     particle.startSize = particle.endSize = 10;
     particle.startSizeVar = particle.endSizeVar = 0;
-    particle.life = 2.5;
+    particle.life = 1.5;
     particle.lifeVar = 0;
     particle.duration = 0;
     particle.autoRemoveOnFinish = YES;

@@ -31,7 +31,7 @@
         
         [self addNewSamuraiSprite];
         
-        [self addNewNinjaSprite];//[self addNewNinjaSprite];[self addNewNinjaSprite];
+        //[self addNewNinjaSprite];//[self addNewNinjaSprite];[self addNewNinjaSprite];
 
         [self addNewRikishi];
         
@@ -163,6 +163,7 @@
     CCParticleSystemQuad* particle = [MyParticle particleBlood];
         particle.position = position;
     [self addChild:particle z:3];
+    CCLOG(@"particle");
 }
 
 -(void)attackOnEnemy
@@ -239,9 +240,9 @@
         }
 
 //        [zako update:dt];
-//        if (rand() % 60 == 0) {
-//            [self addNewBulletSprite:(Ninja*)zako];
-//        }
+        if (rand() % 60 == 0) {
+            [self addNewBulletSprite:(Ninja*)zako];
+        }
     }
     [self removeEnemies:arr];
 
@@ -316,8 +317,8 @@
 	world->SetDebugDraw(m_debugDraw);
 	
 	uint32 flags = 0;
-	flags += b2Draw::e_shapeBit;
-    flags += b2Draw::e_jointBit;
+//	flags += b2Draw::e_shapeBit;
+//    flags += b2Draw::e_jointBit;
 //    flags += b2Draw::e_aabbBit;
 //    flags += b2Draw::e_pairBit;
 //    flags += b2Draw::e_centerOfMassBit;

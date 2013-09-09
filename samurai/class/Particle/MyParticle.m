@@ -16,7 +16,7 @@
     res.endSpin = res.endSpinVar = 0;
     res.duration = 0.3;
     res.totalParticles = 150;
-    res.life = 0; res.lifeVar = 0.329;
+    res.life = 0.3; res.lifeVar = 0.329;
     res.startSize = 32; res.startSizeVar = 32;
     res.endSize = 0; res.endSizeVar = 0;
     res.angle = 0; res.angleVar = 141;

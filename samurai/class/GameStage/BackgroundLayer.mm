@@ -22,7 +22,7 @@
             _bgSprite[i].scale = 640.0 / _bgSprite[i].contentSize.width;
             [self addChild:_bgSprite[i]];
 
-            CCAction* move = [CCMoveTo actionWithDuration:3*(i+1) position:ccp(-_bgSprite[i].contentSize.width, 0)];
+            CCAction* move = [CCMoveTo actionWithDuration:3*(i+1) position:ccp(-640, 0)];
             [_bgSprite[i] runAction:move];
         }
 
@@ -44,10 +44,10 @@
 
 - (void)update:(ccTime)delta {
     for (int i=0; i<3; i++) {
-        if (_bgSprite[i].position.x + _bgSprite[i].contentSize.width <= 0) {
-            _bgSprite[i].position = ccp(_bgSprite[(i+2)%3].position.x + _bgSprite[(i+2)%3].contentSize.width,
+        if (_bgSprite[i].position.x + 640 <= 0) {
+            _bgSprite[i].position = ccp(_bgSprite[(i+2)%3].position.x + 640,
                                         _bgSprite[i].position.y);
-            CCAction* move = [CCMoveTo actionWithDuration:9 position:ccp(-_bgSprite[i].contentSize.width, 0)];
+            CCAction* move = [CCMoveTo actionWithDuration:9 position:ccp(-640, 0)];
             [_bgSprite[i] runAction:move];
         }
     }
