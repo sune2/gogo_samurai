@@ -10,7 +10,7 @@
 	</dict>
 	<dict>
 		<key>time</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>name</key>
 		<string>ninja</string>
 	</dict>
@@ -23,6 +23,18 @@
 	<dict>
 		<key>time</key>
 		<integer>5</integer>
+		<key>name</key>
+		<string>ninja</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>7</integer>
+		<key>name</key>
+		<string>ninja</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>8</integer>
 		<key>name</key>
 		<string>ninja</string>
 	</dict>

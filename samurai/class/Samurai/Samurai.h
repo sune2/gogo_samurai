@@ -17,8 +17,10 @@
     int _counterCounter;
     int _counterState;
     int _dashCounter;
+    int _dashState;
     b2World* _world;
-    ccTime _waiting;
+    ccTime _counterWaiting;
+    ccTime _dashWaiting;
 }
 
 @property (nonatomic, strong) CCSprite* katana;

@@ -94,8 +94,8 @@
     return NO;
 }
 
-- (BOOL) isDashing {
-    return _dashCounter > 0;
+- (BOOL)isDashing {
+    return _dashState == 1;
 }
 
 - (BOOL)isCountering {
@@ -103,9 +103,8 @@
 }
 
 - (BOOL)canJump {
-    if (self.position.x > _initPos.x) return NO;
-    if (_counterCounter) return NO;
-    if (_counterCounter) return NO;
+    if (_dashState) return NO;
+    if (_counterState) return NO;
     return [self onGround];
 }
 
@@ -122,8 +121,10 @@
 
 - (void)dashSlice {
     if ([self canDash]) {
-        self.b2Body->SetLinearVelocity(b2Vec2(50,self.b2Body->GetLinearVelocity().y));
-        _dashCounter = 30;
+        _dashState = 1;
+        _dashWaiting = 0.1;
+//        self.b2Body->SetLinearVelocity(b2Vec2(50,self.b2Body->GetLinearVelocity().y));
+//        _dashCounter = 30;
 //        self.position = ccp(self.position.x + 200, self.position.y);
     }
 }
@@ -131,7 +132,60 @@
 - (void)counter {
     if ([self canCounter]) {
         _counterState = 1;
-        _waiting = 0.5;
+        _counterWaiting = 0.5;
+    }
+}
+
+- (void)updateDashSlice:(ccTime)delta {
+    CCLOG(@"%d", _dashState);
+    switch (_dashState) {
+        case 1:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(60,self.b2Body->GetLinearVelocity().y));
+            
+            CCParticleSystemQuad* particle = [MyParticle particleDash];
+            particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
+                                    _katanaBody->GetPosition().y*PTM_RATIO);
+            [[self parent] addChild:particle z:3];
+            
+            _dashWaiting -= delta;
+            if (_dashWaiting < 0) {
+                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                _dashState = 2;
+            }
+        }
+            break;
+        case 2:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            if ([self onGround]) {
+                _dashState = 3;
+            }
+        }
+            break;
+        case 3:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(-10,self.b2Body->GetLinearVelocity().y));
+            CCLOG(@"%f %f",self.position.x, _initPos.x);
+            if (self.position.x <= _initPos.x) {
+                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                self.position = ccp(_initPos.x, self.position.y);
+                _dashState = 4;
+                _dashWaiting = 0.2;
+            }
+        }
+            break;
+        case 4:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            _dashWaiting -= delta;
+            if (_dashWaiting < 0) {
+                _dashState = 0;
+            }
+        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -140,19 +194,19 @@
         case 1:
         {
             _katanaBody->SetAngularVelocity(40);
-            _waiting -= delta;
-            if (_waiting < 0) {
+            _counterWaiting -= delta;
+            if (_counterWaiting < 0) {
                 _katanaBody->SetAngularVelocity(0);
                 _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
-                _waiting = 0.2;
+                _counterWaiting = 0.2;
                 _counterState = 2;
             }
         }
             break;
         case 2:
         {
-            _waiting -= delta;
-            if (_waiting < 0) {
+            _counterWaiting -= delta;
+            if (_counterWaiting < 0) {
                 _counterState = 0;
             }
         }
@@ -164,33 +218,34 @@
 
 - (void)update:(ccTime)delta {
     [self updateCounter:delta];
-    if (_dashCounter >= 1) {
-        CCParticleSystemQuad* particle = [MyParticle particleDash];
-        particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
-                                _katanaBody->GetPosition().y*PTM_RATIO);
-        [[self parent] addChild:particle z:3];
-
-
-        if (self.position.x > _initPos.x + 200) {
-            self.position = ccp(_initPos.x + 200, self.position.y);
-            _dashCounter = 1;
-        }
-
-        _dashCounter--;
-        if (_dashCounter == 0) {
-            self.b2Body->SetLinearVelocity(b2Vec2(0,0));
-        }
-
-    }
-    
-    if (self.position.x < _initPos.x) {
-        // 戻り過ぎ
-    } else if ((self.position.x > _initPos.x) && (_dashCounter == 0)) {
-        self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-        if ([self onGround]) {
-            self.position = ccp(self.position.x-5, self.position.y);
-        }
-    }
+    [self updateDashSlice:delta];
+//    if (_dashCounter >= 1) {
+//        CCParticleSystemQuad* particle = [MyParticle particleDash];
+//        particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
+//                                _katanaBody->GetPosition().y*PTM_RATIO);
+//        [[self parent] addChild:particle z:3];
+//
+//
+//        if (self.position.x > _initPos.x + 200) {
+//            self.position = ccp(_initPos.x + 200, self.position.y);
+//            _dashCounter = 1;
+//        }
+//
+//        _dashCounter--;
+//        if (_dashCounter == 0) {
+//            self.b2Body->SetLinearVelocity(b2Vec2(0,0));
+//        }
+//
+//    }
+//    
+//    if (self.position.x < _initPos.x) {
+//        // 戻り過ぎ
+//    } else if ((self.position.x > _initPos.x) && (_dashCounter == 0)) {
+//        self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+//        if ([self onGround]) {
+//            self.position = ccp(self.position.x-5, self.position.y);
+//        }
+//    }
     
     // 刀の位置
     b2Body* b = _katanaBody;
