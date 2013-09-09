@@ -182,9 +182,15 @@
     switch (_counterState) {
         case 1:
         {
+            CCParticleSystemQuad* particle = [MyParticle particleDash];
+            particle.position = ccp(_katanaBody->GetPosition().x * PTM_RATIO,
+                                    _katanaBody->GetPosition().y * PTM_RATIO);
+            [[self parent] addChild:particle z:3];
+
             _katanaBody->SetAngularVelocity(80);
             _counterWaiting -= delta;
             if (_counterWaiting < 0) {
+                
                 _katanaBody->SetAngularVelocity(0);
                 _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
                 _counterWaiting = 0.2;

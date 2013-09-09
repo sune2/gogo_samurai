@@ -20,12 +20,13 @@
             _bgSprite[i].anchorPoint = ccp(0,0);
             _bgSprite[i].position = ccp(640*i, 0);
             _bgSprite[i].scale = 640.0 / _bgSprite[i].contentSize.width;
-            [self addChild:_bgSprite[i]];
+//            [self addChild:_bgSprite[i]];
 
             CCAction* move = [CCMoveTo actionWithDuration:3*(i+1) position:ccp(-640, 0)];
             [_bgSprite[i] runAction:move];
         }
-
+        CCLayerColor *background = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4FFromccc3B(ccGRAY))];
+        [self addChild:background];
         // 適切な画像が見つかったらコメント外す
         // 辺の長さ2^nの正方画像
         // ccTexParams params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};

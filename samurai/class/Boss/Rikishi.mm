@@ -8,6 +8,7 @@
 
 #import "Rikishi.h"
 #import "GB2ShapeCache.h"
+#import "MyParticle.h"
 
 #define kJointAnchorPosX 1.9
 #define kJointAnchorPosY 1.1
@@ -50,11 +51,15 @@
 }
 
 - (void)makeGanko {
+    return;
     if ([self canGanko]) {
         _gankoState = 1;
     }
 }
 
+- (BOOL)isEarthquaking {
+    return _shikoState == 4;
+}
 
 - (BOOL)canShiko {
     return _shikoState == 0 && _gankoState == 0;
@@ -88,16 +93,20 @@
             break;
         case 3:
         {
-            Projectile* shiko = [Projectile projectileWithName:@"shiko"];
-            [shiko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
-            shiko.scale = self.scale;
-            shiko.linearVelocity = b2Vec2(-10,0);
-            shiko.type = ProjectileTypeSpecial; 
-
-            [_delegate generatedProjectile:shiko];
+//            Projectile* shiko = [Projectile projectileWithName:@"shiko"];
+//            [shiko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
+//            shiko.scale = self.scale;
+//            shiko.linearVelocity = b2Vec2(-10,0);
+//            shiko.type = ProjectileTypeSpecial; 
+//            [_delegate generatedProjectile:shiko];
+            
+            CCParticleSystemQuad* part = [MyParticle particleEarthquake];
+            part.position = ccp([[CCDirector sharedDirector] winSize].width/2,10);
+            
+            [[self parent] addChild:part z:3];
             
             _shikoState = 4;
-            _waiting = 1;
+            _waiting = 0.4;
         }
             break;
         case 4:
@@ -112,31 +121,17 @@
     }
 }
 
-- (CCParticleSystemQuad*)generateParticleAt:(CGPoint)point {
-    CCParticleSystemQuad* particle = [CCParticleSun node];
-    particle.totalParticles = 5;
-    particle.endColor = particle.startColor;
-    particle.startColorVar = particle.endColorVar = ccc4f(0, 0, 0, 0);
-    particle.speed = 0;
-    particle.speedVar = 0;
-    particle.startSize = particle.endSize = 10;
-    particle.startSizeVar = particle.endSizeVar = 0;
-    particle.life = 1.5;
-    particle.lifeVar = 0;
-    particle.duration = 0;
-    particle.autoRemoveOnFinish = YES;
-    particle.position = point;
-    return particle;
-}
 
 - (void)updateGanko:(ccTime)delta {
     switch (_gankoState) {
         case 1:
         {
-            CCParticleSystemQuad* part = [self generateParticleAt:ccp(self.position.x+40, self.position.y+60)];
+            CCParticleSystemQuad* part = [MyParticle particleGanko];
+            part.position = ccp(self.position.x+40, self.position.y+60);
             [[self parent] addChild:part z:3];
 
-            CCParticleSystemQuad* part2 = [self generateParticleAt:ccp(self.position.x+50, self.position.y+60)];
+            CCParticleSystemQuad* part2 = [MyParticle particleGanko];
+            part2.position = ccp(self.position.x+50, self.position.y+60);
             [[self parent] addChild:part2 z:3];
 
             _waiting = 1;

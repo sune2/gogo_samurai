@@ -96,10 +96,10 @@
     CGSize _windowSize = [CCDirector sharedDirector].winSize;
     CGPoint pos = ccpSub(sprite.position, sprite.anchorPoint);
     CGSize size = sprite.contentSize;
-    BOOL res = pos.x < (- size.width) / 2 ||
-               pos.y < (- size.height) / 2 ||
-               (_windowSize.width + size.width / 2) < pos.x ||
-               (_windowSize.height + size.height / 2) < pos.y;
+    BOOL res = pos.x < -size.width - 10 ||
+               pos.y < -size.height - 10 ||
+               _windowSize.width + 10 < pos.x ||
+               _windowSize.height + 10 < pos.y;
     return res;
 }
 
@@ -331,7 +331,7 @@
 	
 	// bottom
 	
-	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(-10,0), b2Vec2(s.width/PTM_RATIO+10,0));
 	b2Fixture* fixture = groundBody->CreateFixture(&groundBox,0);
     CCNode* groundNode = [[CCNode alloc] init];
     groundNode.tag = 10;

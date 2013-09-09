@@ -14,5 +14,6 @@
 + (CCParticleSystemQuad*) particleEnemyBlood;
 + (CCParticleSystemQuad*) particleGanko;
 + (CCParticleSystemQuad*) particleDash;
++ (CCParticleSystemQuad*) particleEarthquake;
 
 @end

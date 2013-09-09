@@ -33,7 +33,7 @@
 	[CCMenuItemFont setFontSize:22];
 	
 	// Reset Button
-     CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
          [_delegate resetButtonPushed];
      }];
     
@@ -44,6 +44,7 @@
     for (int i = 0; i < 3; i++) {
         [_lifeDangos addObject:[self createDangoAt:(i+1) * 30]];
     }
+    
 
     CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, nil];
     
