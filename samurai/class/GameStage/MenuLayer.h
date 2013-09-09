@@ -21,7 +21,8 @@
 @interface MenuLayer : CCLayer
 {
     CCMenuItemLabel* _scoreLabel;
-    CCMenuItemLabel* _lifeLabel;
+    NSMutableArray* _lifeDangos;
+    CGSize _winSize;
 }
 @property (assign) int score;
 @property (assign) int life;

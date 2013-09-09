@@ -16,6 +16,9 @@
     if (self) {
         self.touchEnabled = NO;
         _score = 0;
+        _life = 3;
+        _winSize = [[CCDirector sharedDirector] winSize];
+        _lifeDangos = [[NSMutableArray alloc] init];
         [self createMenu];
         
         [self scheduleUpdate];
@@ -25,6 +28,7 @@
 
 -(void)createMenu
 {
+    
     // Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
 	
@@ -37,18 +41,31 @@
     _scoreLabel = [self labelWithInteger:_score];
     
     // Samurai Life
-    _lifeLabel = [self labelWithInteger:_life];
+    for (int i = 0; i < 3; i++) {
+        [_lifeDangos addObject:[self createDangoAt:(i+1) * 30]];
+    }
+
+    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, nil];
     
-    
-    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, _lifeLabel, reset, nil];
-	
 	[menu alignItemsVertically];
     
 	CGSize size = [[CCDirector sharedDirector] winSize];
 	[menu setPosition:ccp( size.width/2, size.height-30)];
 	
-	
 	[self addChild: menu z:1];
+    
+    for (CCSprite* dango in _lifeDangos) {
+        [self addChild: dango];
+    }
+}
+
+- (CCSprite *) createDangoAt: (float)X
+{
+    CCSprite* ret = [CCSprite spriteWithFile:@"dango.gif"];
+    ret.scaleX = 0.1;
+    ret.scaleY = 0.1;
+    ret.position = ccp(X, _winSize.height - 30);
+    return ret;
 }
 
 - (CCMenuItemLabel*) labelWithInteger:(int)i
@@ -68,8 +85,15 @@
 {
     NSString* tmp = [NSString stringWithFormat:@"%d", _score];
     [_scoreLabel setString:tmp];
-    tmp = [NSString stringWithFormat:@"%d", _life];
-    [_lifeLabel setString:tmp];
+    
+    // 残機表示
+    for (int i=0; i<3; i++) {
+        if (_life >= i+1) {
+            ((CCSprite*)_lifeDangos[i]).visible = YES;
+        } else {
+            ((CCSprite*)_lifeDangos[i]).visible = NO;
+        }
+    }
 }
 
 
