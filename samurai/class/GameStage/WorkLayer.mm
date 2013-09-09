@@ -136,7 +136,7 @@
         CCSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagSamurai && bullet.owner == ProjectileOwnerEnemy) {
             // 手裏剣とサムライが当たったときの処理
-            _samurai.hp--;
+            [_samurai damaged];
             [self generateParticleAt:bullet.position];
             return YES;
         } else if (sprite.tag == SpriteTagEnemy && bullet.owner == ProjectileOwnerSamurai) {
@@ -149,13 +149,6 @@
         }
     }
     return NO;
-}
-
-- (void) samuraiDamaged
-{
-    // サムライがダメージを受けたときの処理
-    _samurai.hp--;
-    
 }
 
 -(void)generateParticleAt:(CGPoint)position
@@ -178,13 +171,13 @@
         b2Body* other = contactEdge->other;
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         if (sprite.tag == SpriteTagEnemy) {
-            if ([_samurai isDashing]) {
+            if ([_samurai isDashing] || [_samurai isCountering]) {
                 [self generateParticleAt:ccp(_samurai.katanaBody->GetWorldCenter().x*PTM_RATIO,
                                              _samurai.katanaBody->GetWorldCenter().y*PTM_RATIO)];
                 [arr addObject:sprite];
                 _score += 100;
             } else {
-                _samurai.hp--;
+                [_samurai damaged];
             }
         } else if (sprite.tag == SpriteTagProjectile && [_samurai isCountering]) {
             Projectile* projectile = (Projectile*)sprite;

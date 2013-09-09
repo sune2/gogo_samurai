@@ -38,10 +38,10 @@
 
 - (void)update: (ccTime)dt
 {
-    [self manageScore];
+    [self manageMenu];
 }
 
-- (void)manageScore
+- (void)manageMenu
 {
     self.menuLayer.score = self.workLayer.score;
     self.menuLayer.life = self.workLayer.life;
