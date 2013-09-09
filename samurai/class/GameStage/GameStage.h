@@ -13,6 +13,7 @@
 #import "MenuLayer.h"
 #import "BackgroundLayer.h"
 #import "GameoverLayer.h"
+#import "IntroLayer.h"
 
 @interface GameStage : CCScene<MenuLayerDelegate>
 {

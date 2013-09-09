@@ -44,14 +44,18 @@
     for (int i = 0; i < 3; i++) {
         [_lifeDangos addObject:[self createDangoAt:(i+1) * 30]];
     }
+
+    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"Top" block:^(id sender) {
+        [_delegate backToIntroLayer];
+    }];
     
 
-    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, nil];
+    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
     
 	[menu alignItemsVertically];
     
 	CGSize size = [[CCDirector sharedDirector] winSize];
-	[menu setPosition:ccp( size.width/2, size.height-30)];
+	[menu setPosition:ccp( size.width/2, size.height-50)];
 	
 	[self addChild: menu z:1];
     

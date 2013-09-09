@@ -64,5 +64,8 @@
 - (void)resetButtonPushed {
     [[CCDirector sharedDirector] replaceScene:[GameStage scene]];
 }
+- (void)backToIntroLayer {
+    [[CCDirector sharedDirector] replaceScene:[IntroLayer scene]];
+}
 
 @end

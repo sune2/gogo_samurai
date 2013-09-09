@@ -98,6 +98,7 @@
 }
 
 - (BOOL)canJump {
+    if (_jumpState) return NO;
     if (_dashState) return NO;
     if (_counterState) return NO;
     return [self onGround];
@@ -110,6 +111,8 @@
 
 - (void)jump {
     if ([self canJump]) {
+        _jumpState = 1;
+        _jumpWaiting = 1;
         self.b2Body->ApplyLinearImpulse(b2Vec2(0,50), self.b2Body->GetWorldCenter());
     }
 }
@@ -154,8 +157,11 @@
             break;
         case 3:
         {
-            self.b2Body->SetLinearVelocity(b2Vec2(-10,self.b2Body->GetLinearVelocity().y));
+            float speed = 5;
+            if (_dashHurry) speed = 20;
+            self.b2Body->SetLinearVelocity(b2Vec2(-speed,self.b2Body->GetLinearVelocity().y));
             if (self.position.x <= _initPos.x) {
+                _dashHurry = NO;
                 self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
                 self.position = ccp(_initPos.x, self.position.y);
                 _dashState = 4;
@@ -264,10 +270,30 @@
     }
 }
 
+- (void)updateJump:(ccTime)delta {
+    if (_jumpState) {
+        _jumpWaiting -= delta;
+        if (_jumpWaiting < 0) {
+            _jumpState = 0;
+        }
+    }
+}
+
 - (void)update:(ccTime)delta {
     [self updateCounter:delta];
     [self updateDashSlice:delta];
     [self updateMuteki:delta];
+    [self updateJump:delta];
+
+    // 落下
+    if (_isRakka) {
+        if ([self onGround]) {
+            self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x,0));
+            _isRakka = NO;
+        } else {
+            self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x,-40));
+        }
+    }
     
     // 刀の位置
     b2Body* b = _katanaBody;
@@ -289,11 +315,16 @@
 }
 
 - (void)rakka {
-    
+    if (![self onGround]) {
+        _isRakka = YES;
+//        self.b2Body->SetLinearVelocity(b2Vec2(0,-40));
+    }
 }
 
 - (void)modoru {
-    
+    if (_dashState == 3) {
+        _dashHurry = YES;
+    }
 }
 
 
