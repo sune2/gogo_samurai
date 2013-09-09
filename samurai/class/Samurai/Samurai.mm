@@ -117,7 +117,6 @@
 - (void)dashSlice {
     if ([self canDash]) {
         _dashState = 1;
-        _dashWaiting = 0.1;
     }
 }
 
@@ -138,9 +137,9 @@
             particle.position = ccpAdd(self.position, ccp(48,72));
             [[self parent] addChild:particle z:3];
             
-            _dashWaiting -= delta;
-            if (_dashWaiting < 0) {
+            if (self.position.x > _initPos.x + 200) {
                 self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                self.position = ccp(_initPos.x + 200, self.position.y);
                 _dashState = 2;
             }
         }
