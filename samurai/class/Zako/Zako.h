@@ -21,7 +21,8 @@
 
 + (Zako*)zakoWithName:(NSString*)name;
 
-
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
+
+- (void)damaged;
 
 @end

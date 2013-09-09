@@ -9,6 +9,7 @@
 #import "Zako.h"
 #import "../Define.h"
 #import "GB2ShapeCache.h"
+#import "MyParticle.h"
 
 @implementation Zako
 
@@ -46,9 +47,18 @@
 }
 
 - (void)removeFromParent {
+    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
+    blood.position = ccp(self.b2Body->GetWorldCenter().x*PTM_RATIO,
+                         self.b2Body->GetWorldCenter().y*PTM_RATIO);
+    [[self parent] addChild:blood];
+
     [super removeFromParent];
     self.world->DestroyBody(self.b2Body);
 }
 
+- (void)damaged {
+    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
+    [[self parent] addChild:blood];
+}
 
 @end

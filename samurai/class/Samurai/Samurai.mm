@@ -70,9 +70,7 @@
 }
 
 - (BOOL)canDash {
-    if (_counterCounter) return NO;
-    if (self.position.x > _initPos.x) return NO;
-    return YES;
+    return _dashState == 0;
 }
 
 - (BOOL)onGround {
@@ -126,7 +124,7 @@
 - (void)counter {
     if ([self canCounter]) {
         _counterState = 1;
-        _counterWaiting = 0.5;
+        _counterWaiting = 0.8;
     }
 }
 
@@ -134,11 +132,10 @@
     switch (_dashState) {
         case 1:
         {
-            self.b2Body->SetLinearVelocity(b2Vec2(60,self.b2Body->GetLinearVelocity().y));
+            self.b2Body->SetLinearVelocity(b2Vec2(80,self.b2Body->GetLinearVelocity().y));
             
             CCParticleSystemQuad* particle = [MyParticle particleDash];
-            particle.position = ccp(_katanaBody->GetPosition().x*PTM_RATIO,
-                                    _katanaBody->GetPosition().y*PTM_RATIO);
+            particle.position = ccpAdd(self.position, ccp(48,72));
             [[self parent] addChild:particle z:3];
             
             _dashWaiting -= delta;
@@ -185,7 +182,7 @@
     switch (_counterState) {
         case 1:
         {
-            _katanaBody->SetAngularVelocity(40);
+            _katanaBody->SetAngularVelocity(80);
             _counterWaiting -= delta;
             if (_counterWaiting < 0) {
                 _katanaBody->SetAngularVelocity(0);
@@ -212,19 +209,51 @@
     switch (_mutekiState) {
         case 1:
         {
-            self.katanaBody->SetAngularVelocity(10);
+            CCParticleSystemQuad* blood = [MyParticle particleBlood];
+            blood.position = ccp(self.b2Body->GetWorldCenter().x * PTM_RATIO,
+                                 self.b2Body->GetWorldCenter().y * PTM_RATIO);
+            [[self parent] addChild:blood];
+
+            self.b2Body->SetLinearVelocity(b2Vec2(-6,self.b2Body->GetLinearVelocity().y));
             _mutekiWaiting -= delta;
             if (_mutekiWaiting < 0) {
-                _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
-                self.katanaBody->SetAngularVelocity(0);
-                _mutekiState = 0;
+                [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
+                _mutekiState = 2;
+                _mutekiWaiting = 0.3;
             }
         }
             break;
         case 2:
         {
+            self.b2Body->SetLinearVelocity(b2Vec2(2,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                self.position = ccp(_initPos.x, self.position.y);
+                _mutekiState = 3;
+                _mutekiWaiting = 0.1;
+            }
+        }
+            break;
+        case 3:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 4;
+                _mutekiWaiting = 2;
+            }
 
         }
+            break;
+        case 4:
+        {
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 0;
+            }
+        }
+            break;
         default:
             break;
     }
@@ -249,7 +278,8 @@
     if (_mutekiState == 0) {
         self.hp--;
         _mutekiState = 1;
-        _mutekiWaiting = 0.5;
+        _mutekiWaiting = 0.1;
+
     }
 }
 

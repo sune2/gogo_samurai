@@ -22,7 +22,6 @@
         _zakos = [[NSMutableArray alloc] init];
 
         NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
-
         _events = [[NSArray alloc] initWithContentsOfFile:path];
 
         _eventIndex = 0;
@@ -153,10 +152,10 @@
 
 -(void)generateParticleAt:(CGPoint)position
 {
-    CCParticleSystemQuad* particle = [MyParticle particleBlood];
-        particle.position = position;
-    [self addChild:particle z:3];
-    CCLOG(@"particle");
+//    CCParticleSystemQuad* particle = [MyParticle particleBlood];
+//        particle.position = position;
+//    [self addChild:particle z:3];
+//    CCLOG(@"particle");
 }
 
 -(void)attackOnEnemy

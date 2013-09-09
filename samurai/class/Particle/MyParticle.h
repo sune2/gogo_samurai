@@ -11,6 +11,7 @@
 @interface MyParticle : NSObject
 
 + (CCParticleSystemQuad*) particleBlood;
++ (CCParticleSystemQuad*) particleEnemyBlood;
 + (CCParticleSystemQuad*) particleGanko;
 + (CCParticleSystemQuad*) particleDash;
 
