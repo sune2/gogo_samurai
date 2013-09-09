@@ -12,6 +12,7 @@
 #import "HelloWorldLayer.h"
 #import "GameStage.h"
 #import "GB2ShapeCache.h"
+#import "ScoreBoard.h"
 #pragma mark - IntroLayer
 
 // HelloWorldLayer implementation
@@ -66,9 +67,8 @@
 	[CCMenuItemFont setFontSize:22];
 	
     // Title
-    CCMenuItemLabel *title = [CCMenuItemFont itemWithString:@"GoGo! Samurai boy!"];
-    
-    
+    CCMenuItemLabel *title = [CCMenuItemFont itemWithString:@"GOGO! Samurai BOY!"];
+
 	// Reset Button
 	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Shutsu-Jin]" block:^(id sender){
 		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
@@ -76,21 +76,26 @@
     
     // Score Button
 	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[Bu-koh]" block:^(id sender){
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+		[[CCDirector sharedDirector] replaceScene: [ScoreBoard scene]];
 	}];
     
     title.color = ccBLACK;
     enterButtle.color = ccBLACK;
     enterScore.color = ccBLACK;
     
-    CCMenu *menu = [CCMenu menuWithItems:title, enterButtle, enterScore, nil];
+    CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
+    CCMenu *menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
 	
 	[menu alignItemsVertically];
     
 	CGSize size = [[CCDirector sharedDirector] winSize];
-	[menu setPosition:ccp( size.width/2, size.height/2)];
+    
+    titleLabel.enabled = NO;
+	[titleLabel setPosition:ccp(size.width/2, size.height*3/4)];
+    [menu setPosition:ccp( size.width/2, size.height/4)];
 	
-	
+    
+	[self addChild:titleLabel z:1];
 	[self addChild: menu z:1];
 }
 

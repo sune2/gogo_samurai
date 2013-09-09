@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "Box2D.h"
 
-@interface ScoreLayer : NSObject
-
+@interface ScoreLayer : CCLayer
+{
+    NSArray* _scores;
+}
 @end

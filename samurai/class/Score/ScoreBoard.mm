@@ -10,12 +10,13 @@
 
 @implementation ScoreBoard
 
-+ (ScoreBoard *) sceneWithScore: (int)score
++ (ScoreBoard *) scene
 {
     ScoreBoard* scene = [ScoreBoard node];
-
-    
+    scene.sLayer = [ScoreLayer node];
+    [scene addChild:scene.sLayer];
     return scene;
 }
+
 
 @end

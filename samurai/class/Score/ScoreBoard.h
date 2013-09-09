@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "ScoreLayer.h"
 
 @interface ScoreBoard : CCScene
 {
     
 }
-+ (ScoreBoard *) sceneWithScore:(int)score;
+@property(nonatomic, strong) ScoreLayer* sLayer;
++ (ScoreBoard *) scene;
 @end
