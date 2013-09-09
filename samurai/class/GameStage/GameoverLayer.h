@@ -15,4 +15,6 @@
     
 }
 
+- (id)initWithScore: (int)score;
++ (id)nodeWithScore: (int)score;
 @end

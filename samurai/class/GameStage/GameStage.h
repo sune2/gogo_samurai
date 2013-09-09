@@ -12,6 +12,7 @@
 #import "WorkLayer.h"
 #import "MenuLayer.h"
 #import "BackgroundLayer.h"
+#import "GameoverLayer.h"
 
 @interface GameStage : CCScene<MenuLayerDelegate>
 {
@@ -22,5 +23,6 @@
 @property(nonatomic, strong) WorkLayer* workLayer;
 @property(nonatomic, strong) MenuLayer* menuLayer;
 @property(nonatomic, strong) BackgroundLayer* bgLayer;
+@property(nonatomic, strong) GameoverLayer* goLayer;
 
 @end

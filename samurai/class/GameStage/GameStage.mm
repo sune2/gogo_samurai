@@ -29,8 +29,8 @@
     scene.menuLayer.delegate = scene;
     
     // レイヤーを追加する
-    [scene addChild:scene.workLayer z:1];
-    [scene addChild:scene.menuLayer z:2];
+    [scene addChild:scene.workLayer z:0];
+    [scene addChild:scene.menuLayer z:1];
     [scene addChild:scene.bgLayer z:-1];
 
     return scene;
@@ -39,12 +39,26 @@
 - (void)update: (ccTime)dt
 {
     [self manageMenu];
+    if (_workLayer.life == 0 && _goLayer == nil) {
+        [self gameover];
+    }
+}
+
+- (void)gameover
+{
+    CCLayerColor* coloredLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 170)];
+    [self addChild:coloredLayer z:2];
+    
+    _goLayer = [GameoverLayer nodeWithScore:_workLayer.score];
+    [self addChild:_goLayer z:3];
+    
+    _workLayer.touchEnabled = NO;
 }
 
 - (void)manageMenu
 {
-    self.menuLayer.score = self.workLayer.score;
-    self.menuLayer.life = self.workLayer.life;
+    _menuLayer.score = _workLayer.score;
+    _menuLayer.life = _workLayer.life;
 }
 
 - (void)resetButtonPushed {

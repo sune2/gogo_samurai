@@ -20,6 +20,7 @@
         _score = 0;
         _bullets = [[NSMutableArray alloc] init];
         _zakos = [[NSMutableArray alloc] init];
+        _life = 3;
 
         NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
         _events = [[NSArray alloc] initWithContentsOfFile:path];
