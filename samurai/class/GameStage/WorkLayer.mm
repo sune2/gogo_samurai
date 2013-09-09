@@ -108,9 +108,8 @@
     NSMutableArray* tmpBullets = [[NSMutableArray alloc] init];
     for (Projectile* bullet in _bullets) {
         BOOL isOutOfScreen = [self checkOutOfScreen:bullet];
-        BOOL hitSomeone = [self hitWithProjectile:bullet];
         
-        if (isOutOfScreen || hitSomeone) {
+        if (isOutOfScreen) {
             [bullet removeFromParent];
         } else {
             [tmpBullets addObject:bullet];
@@ -124,78 +123,117 @@
 
 }
 
--(BOOL)hitWithProjectile:(Projectile*) bullet
-{
-    for (b2ContactEdge* contactEdge = bullet.b2Body->GetContactList();
-         contactEdge;
-         contactEdge = contactEdge->next)
-    {
-        if (!contactEdge->contact->IsTouching()) continue;
-        b2Body* other = contactEdge->other;
-        CCSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
-        if (sprite.tag == SpriteTagSamurai && bullet.owner == ProjectileOwnerEnemy) {
-            // 手裏剣とサムライが当たったときの処理
-            [_samurai damaged];
-            [self generateParticleAt:bullet.position];
-            return YES;
-        } else if (sprite.tag == SpriteTagEnemy && bullet.owner == ProjectileOwnerSamurai) {
-            // 手裏剣と敵が当たったときの処理
-            NSMutableArray* arr = [[NSMutableArray alloc] init];
-            [arr addObject:sprite];
-            [self generateParticleAt:bullet.position];
-            [self removeEnemies:arr];
-            return YES;
-        }
-    }
-    return NO;
-}
-
--(void)generateParticleAt:(CGPoint)position
-{
-//    CCParticleSystemQuad* particle = [MyParticle particleBlood];
-//        particle.position = position;
-//    [self addChild:particle z:3];
-//    CCLOG(@"particle");
-}
-
--(void)attackOnEnemy
+- (void) samuraiTouchObj
 {
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     
-    for (b2ContactEdge* contactEdge = _samurai.katanaBody->GetContactList();
+    for (b2ContactEdge* contactEdge = _samurai.b2Body->GetContactList();
          contactEdge;
-         contactEdge = contactEdge->next)
-    {
+         contactEdge = contactEdge->next) {
+        
         if (!contactEdge->contact->IsTouching()) continue;
         b2Body* other = contactEdge->other;
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+        
         if (sprite.tag == SpriteTagEnemy) {
-            if ([_samurai isDashing] || [_samurai isCountering]) {
-                [self generateParticleAt:ccp(_samurai.katanaBody->GetWorldCenter().x*PTM_RATIO,
-                                             _samurai.katanaBody->GetWorldCenter().y*PTM_RATIO)];
+            if ([_samurai isDashing]) {
                 [arr addObject:sprite];
-                _score += 100;
+                _score += 500;
             } else {
                 [_samurai damaged];
             }
-        } else if (sprite.tag == SpriteTagProjectile && [_samurai isCountering]) {
+        } else if (sprite.tag == SpriteTagProjectile) {
+            // サムライが飛び道具に当たったときの処理
             Projectile* projectile = (Projectile*)sprite;
             if (projectile.owner == ProjectileOwnerEnemy) {
-                [projectile reflect];
+                if ([_samurai isCountering]) {
+                    [projectile reflect];
+                } else {
+                    [_samurai damaged];
+                    [arr addObject:projectile];
+                }
             }
+        } else if (sprite.tag == SpriteTagBoss) {
+            // サムライがボスに当たったときの処理
+        } else if (sprite.tag == SpriteTagGround) {
+            // サムライが地面と当たったときの処理
         }
     }
     
-    [self removeEnemies:arr];
-
+    [self removeObjects:arr];
 }
 
--(void)removeEnemies: (NSMutableArray*) enemies
+- (void)enemyTouchingObj
 {
-    for (CCPhysicsSprite* sprite in enemies) {
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+    for (Zako* enemy in _zakos) {
+        
+        for (b2ContactEdge* contactEdge = _samurai.b2Body->GetContactList();
+             contactEdge;
+             contactEdge = contactEdge->next) {
+            
+            if (!contactEdge->contact->IsTouching()) continue;
+            b2Body* other = contactEdge->other;
+            CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+            
+            if (sprite.tag == SpriteTagProjectile) {
+                // 敵が飛び道具に当たったときの処理
+                Projectile* projectile = (Projectile *)sprite;
+                if (projectile.owner == ProjectileOwnerSamurai) {
+                    [arr addObject:enemy];
+                    [projectile removeFromParent];
+                }
+            }
+            
+        }
+    }
+    [self removeObjects:arr];
+}
+
+- (void)katanaTouchingObj
+{
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+        
+    for (b2ContactEdge* contactEdge = _samurai.katanaBody->GetContactList();
+         contactEdge;
+         contactEdge = contactEdge->next) {
+        
+        if (!contactEdge->contact->IsTouching()) continue;
+        b2Body* other = contactEdge->other;
+        CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+        
+        if (sprite.tag == SpriteTagProjectile) {
+            // 刀が飛び道具に当たったときの処理
+            Projectile* projectile = (Projectile *)sprite;
+            if (projectile.owner == ProjectileOwnerEnemy) {
+                if ([_samurai isCountering]) {
+                    [projectile reflect];
+                }
+            }
+        } else if (sprite.tag == SpriteTagEnemy) {
+            // 刀が敵に当たったときの処理
+            if ([_samurai isDashing] || [_samurai isCountering]) {
+                [arr addObject:sprite];
+                _score += 500;
+            }
+        }
+        
+    }
+    
+    [self removeObjects:arr];
+}
+
+-(void)removeObjects: (NSMutableArray*) object
+{
+    for (CCPhysicsSprite* sprite in object) {
         if ([_zakos containsObject:sprite]) {
             [sprite removeFromParent];
             [_zakos removeObject:sprite];
+        } else if ([_bullets containsObject:sprite]) {
+            [sprite removeFromParent];
+            [_bullets removeObject:sprite];
         }
     }
 }
@@ -236,10 +274,13 @@
             [self addNewBulletSprite:(Ninja*)zako];
         }
     }
-    [self removeEnemies:arr];
+    [self removeObjects:arr];
 
     [self updateBullets:dt];
-    [self attackOnEnemy];
+    // [self attackOnEnemy];
+    [self samuraiTouchObj];
+    [self enemyTouchingObj];
+    [self katanaTouchingObj];
     [_rikishi update:dt];
     if (rand() % 60 == 0) {
         [self addRikishiBullet];
