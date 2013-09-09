@@ -10,6 +10,9 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
-@interface GameoverLayer : NSObject
+@interface GameoverLayer : CCLayer
+{
+    
+}
 
 @end

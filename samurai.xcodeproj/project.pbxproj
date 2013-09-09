@@ -21,7 +21,7 @@
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
 		FAA67A3B17DD71A800AE872A /* ScoreLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3A17DD71A800AE872A /* ScoreLayer.mm */; };
-		FAA67A4117DDDEB100AE872A /* GameoverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A4017DDDEB000AE872A /* GameoverLayer.m */; };
+		FAA67A4117DDDEB100AE872A /* GameoverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A4017DDDEB000AE872A /* GameoverLayer.mm */; };
 		FAAE772217D8792E007D4770 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772117D8792E007D4770 /* BackgroundLayer.mm */; };
 		FAAE772417D884E6007D4770 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAE772317D884E6007D4770 /* bg.jpg */; };
 		FAAE772717D98D7A007D4770 /* MenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAAE772617D98D7A007D4770 /* MenuLayer.mm */; };
@@ -243,7 +243,7 @@
 		FAA67A3917DD71A800AE872A /* ScoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreLayer.h; path = class/Score/ScoreLayer.h; sourceTree = "<group>"; };
 		FAA67A3A17DD71A800AE872A /* ScoreLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreLayer.mm; path = class/Score/ScoreLayer.mm; sourceTree = "<group>"; };
 		FAA67A3F17DDDEB000AE872A /* GameoverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameoverLayer.h; path = class/GameStage/GameoverLayer.h; sourceTree = "<group>"; };
-		FAA67A4017DDDEB000AE872A /* GameoverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameoverLayer.m; path = class/GameStage/GameoverLayer.m; sourceTree = "<group>"; };
+		FAA67A4017DDDEB000AE872A /* GameoverLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameoverLayer.mm; path = class/GameStage/GameoverLayer.mm; sourceTree = "<group>"; };
 		FAAE772017D8792E007D4770 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = class/GameStage/BackgroundLayer.h; sourceTree = "<group>"; };
 		FAAE772117D8792E007D4770 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BackgroundLayer.mm; path = class/GameStage/BackgroundLayer.mm; sourceTree = "<group>"; };
 		FAAE772317D884E6007D4770 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = Resources/images/background/bg.jpg; sourceTree = "<group>"; };
@@ -799,7 +799,7 @@
 				FAAE772517D98D7A007D4770 /* MenuLayer.h */,
 				FAAE772617D98D7A007D4770 /* MenuLayer.mm */,
 				FAA67A3F17DDDEB000AE872A /* GameoverLayer.h */,
-				FAA67A4017DDDEB000AE872A /* GameoverLayer.m */,
+				FAA67A4017DDDEB000AE872A /* GameoverLayer.mm */,
 			);
 			name = GameStage;
 			sourceTree = "<group>";
@@ -1709,7 +1709,7 @@
 				29A5598017DC49330067A8DD /* MyParticle.m in Sources */,
 				FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */,
 				FAA67A3B17DD71A800AE872A /* ScoreLayer.mm in Sources */,
-				FAA67A4117DDDEB100AE872A /* GameoverLayer.m in Sources */,
+				FAA67A4117DDDEB100AE872A /* GameoverLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
