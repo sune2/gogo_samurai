@@ -11,13 +11,15 @@
 
 @implementation GameoverLayer
 
-- (id) initWithScore: (int)score
+- (id) initWithScore: (int)score result:(BOOL)win
 {
     self = [super init];
     if (self) {
         self.touchEnabled = YES;
         _winSize = [[CCDirector sharedDirector] winSize];
-
+        _viewController = [[UIViewController alloc] init];
+        _win = win;
+        _score = score;
 
 
 //        NSString* scoreStr = [NSString stringWithFormat:@"Score: %d", score];
@@ -26,35 +28,36 @@
 //        scoreMenu.position = ccp(_winSize.width * 3 / 4, _winSize.height / 2);
         
 //        [self addChild:scoreMenu];
+        [self createResultMenu];
         [self createBackMenu];
-        [self manageRanking:score];
+        [self manageRanking];
     }
     return self;
 }
 
-+ (id) nodeWithScore: (int)score
++ (id) nodeWithScore: (int)score result:(BOOL)win
 {
-    return [[[self alloc] initWithScore:score] autorelease];
+    return [[[self alloc] initWithScore:score result:win] autorelease];
 }
 
-- (void) manageRanking: (int)score
+- (void) manageRanking
 {
     _path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
-    _scores = [[NSMutableArray alloc] initWithContentsOfFile:_path];
+    _ranking = [[NSMutableArray alloc] initWithContentsOfFile:_path];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithInt:score], @"score",
+                          [NSNumber numberWithInt:_score], @"score",
                           @"CyberAgent", @"name",
                           [NSNumber numberWithBool:YES], @"new",
                           nil];
     
-    [_scores addObject:dict];
+    [_ranking addObject:dict];
     NSSortDescriptor* scoreSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score"
                                                                           ascending:NO];
-    _scores = (NSMutableArray*)[_scores sortedArrayUsingDescriptors:@[scoreSortDescriptor]];
+    _ranking = (NSMutableArray*)[_ranking sortedArrayUsingDescriptors:@[scoreSortDescriptor]];
     
     
     NSMutableArray* tmp = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [_scores count]; i++) {
+    for (int i = 0; i < [_ranking count]; i++) {
         CCMenuItemFont* label = [self rankersScore:i];
         [tmp addObject:label];
     }
@@ -64,7 +67,7 @@
     
     [self addChild:scoreMenu];
     
-    [self saveScore: _scores];
+    [self saveScore: _ranking];
     
 }
 
@@ -83,7 +86,7 @@
 - (CCMenuItemFont *)rankersScore: (int)rank
 {
     // rankは0-origin
-    NSDictionary* sDict = [_scores objectAtIndex:rank];
+    NSDictionary* sDict = [_ranking objectAtIndex:rank];
     NSString* name = [sDict objectForKey:@"name"];
     NSString* score = [sDict objectForKey:@"score"];
     NSString* str = [NSString stringWithFormat:@"%d. %@: %@", rank+1, name, score];
@@ -100,17 +103,22 @@
     return ret;
 }
 
-- (void) createBackMenu
+- (void)createResultMenu
 {
-    CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:@"LOSE"];
+    NSString* result = _win ? @"WIN" : @"LOSE";
+    CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:result];
     [goLabel setFontSize:30];
     [goLabel setColor:ccORANGE];
     // goLabel.isEnabled = NO;
     CCMenu* gameover = [CCMenu menuWithItems:goLabel, nil];
     gameover.position = ccp(_winSize.width/2, _winSize.height - 40);
-
+    
     [self addChild:gameover];
     
+}
+
+- (void) createBackMenu
+{
     
     // Reset Button
     CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[RESTART]" block:^(id sender){
@@ -134,16 +142,12 @@
 
 - (void) createShareMenu
 {
-    // Reset Button
-    CCMenuItemLabel *twitter = [CCMenuItemFont itemWithString:@"[Twitter]" block:^(id sender){
-        
-    }];
-    
-    CCMenuItemLabel *facebook = [CCMenuItemFont itemWithString:@"[facebook]" block:^(id sender) {
-        
-    }];
-    
-    
+
+    CCMenuItemLabel* twitter = [CCMenuItemFont itemWithString:@"[Twitter]" target:self selector:@selector(postToSNS:)];
+    twitter.tag = 100;
+    CCMenuItemLabel* facebook = [CCMenuItemFont itemWithString:@"[facebook]" target:self selector:@selector(postToSNS:)];
+    facebook.tag = 101;
+
     CCMenu *shareMenu = [CCMenu menuWithItems:twitter, facebook, nil];
     [shareMenu alignItemsVertically];
     [shareMenu setPosition:ccp(_winSize.width * 3/4, _winSize.height * 1/4)];
@@ -151,4 +155,39 @@
 
 }
 
+- (void) postToSNS:(id)sender
+{
+    NSString *iosDevice = [[UIDevice currentDevice] systemVersion];
+    if ([iosDevice intValue] >= 6.0 ){
+        
+        NSString* serviceType;
+        CCMenuItemImage *itemSelected = (CCMenuItemImage*)sender;
+        int typeIndex = itemSelected.tag;
+        
+        switch (typeIndex) {
+            case 100:
+                serviceType = SLServiceTypeTwitter;
+                CCLOG(@"twitter");
+                break;
+                
+            case 101:
+                serviceType = SLServiceTypeFacebook;
+                CCLOG(@"facebook");
+                break;
+                
+        }
+        
+        SLComposeViewController *composeViewController = [SLComposeViewController
+                                                          composeViewControllerForServiceType:serviceType];
+        
+        //デフォルトメッセージ　ハッシュタグ付き
+        NSString* rstr = _win ? @"Samuraiは戦に勝利しました！" : @"Samuraiは力尽きました。";
+        NSString* sstr = [NSString stringWithFormat:@"武功%d #gogo_samurai", _score];
+        rstr =[rstr stringByAppendingString:sstr];
+        [composeViewController setInitialText:rstr];
+
+        //cocos2d対応
+        [[[CCDirector sharedDirector]parentViewController]  presentViewController:composeViewController animated:NO completion:nil];
+    }
+}
 @end
