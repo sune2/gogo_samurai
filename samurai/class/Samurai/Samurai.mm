@@ -7,7 +7,7 @@
 //
 
 #import "Samurai.h"
-#import "../Define.h"
+#import "Define.h"
 #import "GB2ShapeCache.h"
 #import "MyParticle.h"
 
@@ -25,7 +25,7 @@
     [res addChild:res.katana];
     res.katana.position = CGPointMake(kKatanaAnchorPosX*PTM_RATIO/res.scale,
                                       kKatanaAnchorPosY*PTM_RATIO/res.scale);
-
+    res.katana.tag = SpriteTagKatana;
     res.hp = 3;
     res.tag = SpriteTagSamurai;
     return res;
@@ -54,6 +54,7 @@
     katanaDef.position.Set(point.x/self.PTMRatio+kKatanaAnchorPosX, point.y/self.PTMRatio+kKatanaAnchorPosY);
 
     _katanaBody = world->CreateBody(&katanaDef);
+    _katanaBody->SetUserData(self.katana);
     
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_katanaBody forShapeName:@"katana"];
     [_katana setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"katana"]];

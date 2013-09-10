@@ -15,7 +15,7 @@
 @implementation Ninja
 
 + (Ninja*)ninja {
-    Ninja* res = (Ninja*)[super zakoWithName:@"ninja1"];
+    Ninja* res = (Ninja*)[super enemyWithName:@"ninja1"];
     res.scale = 88.0 / res.textureRect.size.width;
     res.arm = [CCSprite spriteWithFile:@"ninja2.png"];
     [res addChild:res.arm z:-3];
@@ -79,7 +79,7 @@
         case 3:
         {
             Projectile* shuriken = [self makeBullet];
-            [_delegate generatedProjectile:shuriken];
+            [self.delegate generatedProjectile:shuriken];
 
             _shurikenState = 4;
             _waiting = 1;
@@ -107,6 +107,8 @@
 }
 
 - (void)update:(ccTime)delta {
+    _curTime += delta;
+    
     [self updateShuriken:delta];
 
     b2Vec2 pos = self.b2Body->GetPosition();
@@ -123,6 +125,15 @@
     _arm.position = ccp((b->GetPosition().x*self.PTMRatio - self.position.x)/self.scale,
                            (b->GetPosition().y*self.PTMRatio - self.position.y)/self.scale);
 
+    // イベント処理
+    while(_eventIndex < self.events.count &&
+          [self.events[_eventIndex][@"time"] floatValue] < _curTime) {
+        NSString *command = self.events[_eventIndex][@"name"];
+        if ([command isEqualToString:@"shuriken"]) {
+            [self makeShuriken];
+        }
+        _eventIndex++;
+    }
 }
 
 - (void)removeFromParent {

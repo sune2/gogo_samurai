@@ -12,26 +12,22 @@
 #import "Box2D.h"
 #import "Define.h"
 #import "Samurai.h"
-#import "Zako.h"
 #import "Ninja.h"
 #import "Projectile.h"
 #import "Rikishi.h"
 #import "Date.h"
 #import "MyParticle.h"
 
-@interface WorkLayer : CCLayer<ProjectileProtocol>
+@interface WorkLayer : CCLayer<ProjectileProtocol, EnemyProtocol>
 {
     b2World* world;
     GLESDebugDraw *m_debugDraw;
     Samurai* _samurai;
-    NSMutableArray* _zakos;
+    NSMutableArray* _enemies;
     NSMutableArray* _bullets;
     
     CGPoint _touchPos;
     BOOL _didCommand;
-    
-    Rikishi* _rikishi;
-    Date* _date;
 
     NSArray* _events;
     int _eventIndex;

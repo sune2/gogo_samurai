@@ -16,8 +16,7 @@
 @implementation Rikishi
 
 + (Rikishi*)rikishi {
-    Rikishi* res = (Rikishi*)[super bossWithName:@"rikisi_leg"];
-    
+    Rikishi* res = (Rikishi*)[super enemyWithName:@"rikisi_leg"];
     res.karada = [CCSprite spriteWithFile:@"rikisi.png"];
     [res addChild:res.karada z:-3];
     return res;
@@ -46,7 +45,7 @@
     joint->SetLimits(CC_DEGREES_TO_RADIANS(-80.0), 0.0);
 }
 
-- (BOOL) canGanko {
+- (BOOL)canGanko {
     return _shikoState == 0 && _gankoState == 0;
 }
 
@@ -93,13 +92,6 @@
             break;
         case 3:
         {
-//            Projectile* shiko = [Projectile projectileWithName:@"shiko"];
-//            [shiko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
-//            shiko.scale = self.scale;
-//            shiko.linearVelocity = b2Vec2(-10,0);
-//            shiko.type = ProjectileTypeSpecial; 
-//            [_delegate generatedProjectile:shiko];
-            
             CCParticleSystemQuad* part = [MyParticle particleEarthquake];
             part.position = ccp([[CCDirector sharedDirector] winSize].width/2,10);
             
@@ -153,7 +145,7 @@
             [ganko initBodyWithWorld:self.world at:ccp(self.position.x+20, self.position.y+65)];
             ganko.scale = self.scale;
             ganko.linearVelocity = b2Vec2(-10,0);
-            [_delegate generatedProjectile:ganko];
+            [self.delegate generatedProjectile:ganko];
 
             if (_repNum >= 2) {
                 _repNum--;
@@ -178,6 +170,8 @@
 }
 
 - (void)update:(ccTime)delta {
+    _curTime += delta;
+    
     [self updateShiko:delta];
     [self updateGanko:delta];
     
@@ -194,8 +188,17 @@
     _karada.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
     _karada.position = ccp((b->GetPosition().x*self.PTMRatio - self.position.x)/self.scale,
                            (b->GetPosition().y*self.PTMRatio - self.position.y)/self.scale);
-
     
+    
+    // イベント処理
+    while(_eventIndex < self.events.count &&
+          [self.events[_eventIndex][@"time"] floatValue] < _curTime) {
+        NSString *command = self.events[_eventIndex][@"name"];
+        if ([command isEqualToString:@"shiko"]) {
+            [self makeShiko];
+        }
+        _eventIndex++;
+    }
 }
 
 - (void)removeFromParent {

@@ -1,23 +1,25 @@
 //
-//  Boss.m
+//  Enemy.mm
 //  samurai
 //
 //  Created by CA2015 on 13/09/05.
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import "Boss.h"
-#import "../Define.h"
+#import "Enemy.h"
+#import "Define.h"
 #import "GB2ShapeCache.h"
+#import "MyParticle.h"
 
-@implementation Boss
+@implementation Enemy
 
-+ (Boss*)bossWithName:(NSString *)name {
-    Boss *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
++ (Enemy*)enemyWithName:(NSString *)name {
+    Enemy *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
 //    res.scale = 91.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
-    res.tag = SpriteTagBoss;
+    res.tag = SpriteTagZako;
+    res.hp = 1;
     return res;
 }
 
@@ -54,6 +56,17 @@
 - (void)removeFromParent {
     [super removeFromParent];
     self.world->DestroyBody(self.b2Body);
+}
+
+- (void)damaged {
+    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
+    blood.position = ccp(self.b2Body->GetWorldCenter().x*PTM_RATIO,
+                         self.b2Body->GetWorldCenter().y*PTM_RATIO);
+    [[self parent] addChild:blood];
+    self.hp--;
+    if (self.hp == 0) {
+        [self.delegate enemyDied:self];
+    }
 }
 
 @end

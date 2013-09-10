@@ -6,8 +6,7 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#ifndef samurai_Define_h
-#define samurai_Define_h
+#import "cocos2d.h"
 
 #define PTM_RATIO 32
 #define kGravityPower -30.0
@@ -15,10 +14,11 @@
 
 typedef enum {
     SpriteTagSamurai = 1,
-    SpriteTagEnemy,
+    SpriteTagKatana,
+    SpriteTagZako,
     SpriteTagProjectile,
     SpriteTagBoss,
     SpriteTagGround
 } SpriteTag;
 
-#endif
+BOOL isSpriteEnemy(CCSprite* sprite);

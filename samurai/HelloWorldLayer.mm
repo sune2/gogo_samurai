@@ -15,7 +15,7 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#import "Zako.h"
+#import "Enemy.h"
 
 #import "GB2ShapeCache.h"
 
@@ -245,7 +245,7 @@ enum {
 {
     CCPhysicsSprite* sprite;
     if (rand()%1 == 1) {
-        Zako* zako = [Zako zakoWithName:@"ninja"];
+        Enemy* zako = [Enemy enemyWithName:@"ninja"];
         [zako initBodyWithWorld:world at:p];
         sprite = (CCPhysicsSprite*)zako;
         sprite.tag = kZakoSprite;

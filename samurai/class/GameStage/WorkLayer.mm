@@ -19,7 +19,7 @@
 		// CGSize s = [CCDirector sharedDirector].winSize;
         _score = 0;
         _bullets = [[NSMutableArray alloc] init];
-        _zakos = [[NSMutableArray alloc] init];
+        _enemies = [[NSMutableArray alloc] init];
         _life = 3;
 
         NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
@@ -30,11 +30,6 @@
         [self initPhysics];
         
         [self addNewSamuraiSprite];
-        
-        //[self addNewNinjaSprite];//[self addNewNinjaSprite];[self addNewNinjaSprite];
-
-        [self addNewRikishi];
-        [self addNewDate];
         
         [self scheduleUpdate];
 
@@ -52,66 +47,24 @@
     [self addChild:_samurai z:1];
 }
 
--(void)addNewNinjaSprite
-{
-    if ([_zakos count] >= 10) return;
-    Ninja* ninja = [Ninja ninja];
-    [ninja initBodyWithWorld:world at:ccp(400, 200)];
-    ninja.delegate = self;
-    ninja.tag = SpriteTagEnemy;
-    
-    [self addChild:ninja z:1];
-    [_zakos addObject:ninja];
-}
-
--(void)addNewRikishi
-{
-    _rikishi = [Rikishi rikishi];
-    [_rikishi initBodyWithWorld:world at:ccp(400,200)];
-    _rikishi.tag = SpriteTagBoss;
-    _rikishi.delegate = self;
-    [self addChild:_rikishi z:1];
-}
-
-- (void)addNewDate
-{
-    _date = [Date date];
-    [_date initBodyWithWorld:world at:ccp(300,200)];
-    _date.tag = SpriteTagBoss;
-    _date.delegate = self;
-    [self addChild:_date z:1];
-}
-
--(void)addNewBulletSprite:(Ninja*)ninja
-{
-    if ([_bullets count] >= 10) return;
-    [ninja makeShuriken];
-}
-
-- (void)addRikishiBullet
-{
-    if ([_bullets count] >= 10) return;
-    if (rand()% 2 == 0) {
-        [_rikishi makeGanko];
-    } else {
-        [_rikishi makeShiko];
+- (void)addNewEnemyWithName:(NSString*)name events:(NSArray*)events {
+    Enemy* enemy;
+    if ([name isEqualToString:@"ninja"]) {
+        enemy = [Ninja ninja];
+    } else if ([name isEqualToString:@"rikishi"]) {
+        enemy = [Rikishi rikishi];
+    } else if ([name isEqualToString:@"date"]) {
+        enemy = [Date date];
     }
-}
-
-- (void)addDateBullet
-{
-    if ([_bullets count] >= 10) return;
-    if (rand() % 2 == 0) {
-        [_date makeEarthquake];
+    if (enemy.tag == SpriteTagZako) {
+        [enemy initBodyWithWorld:world at:ccp(400, 200)];
     } else {
-        [_date makeGanko];
+        [enemy initBodyWithWorld:world at:ccp(350, 200)];
     }
-    
-}
-
-- (void)generatedProjectile:(Projectile *)projectile {
-    [self addChild:projectile z:2];
-    [_bullets addObject:projectile];
+    enemy.events = events;
+    enemy.delegate = self;
+    [self addChild:enemy z:1];
+    [_enemies addObject:enemy];
 }
 
 -(BOOL)checkOutOfScreen:(CCSprite*)sprite {
@@ -130,7 +83,6 @@
     NSMutableArray* tmpBullets = [[NSMutableArray alloc] init];
     for (Projectile* bullet in _bullets) {
         BOOL isOutOfScreen = [self checkOutOfScreen:bullet];
-        
         if (isOutOfScreen) {
             [bullet removeFromParent];
         } else {
@@ -152,13 +104,9 @@
         b2Body* other = contactEdge->other;
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
         
-        if (sprite.tag == SpriteTagEnemy) {
-            if ([_samurai isDashing]) {
-                [arr addObject:sprite];
-                _score += 500;
-            } else if ([_samurai isCountering]) {
-                // 無敵
-            } else {
+        if (isSpriteEnemy(sprite)) {
+            // サムライ vs 敵
+            if (![_samurai isDashing] && ![_samurai isCountering]) {
                 [_samurai damaged];
             }
         } else if (sprite.tag == SpriteTagProjectile) {
@@ -172,24 +120,20 @@
                     [arr addObject:projectile];
                 }
             }
-        } else if (sprite.tag == SpriteTagBoss) {
-            // サムライがボスに当たったときの処理
         } else if (sprite.tag == SpriteTagGround) {
             // サムライが地面と当たったときの処理
         }
     }
-    
-    // 自身の処理
-    if ([_samurai onGround] && [_rikishi isEarthquaking]) [_samurai damaged];
-    
     [self removeObjects:arr];
 }
 
 - (void)enemyTouchingObj
 {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    NSMutableArray* damagedEnemies = [[NSMutableArray alloc] init];
     
-    for (Zako* enemy in _zakos) {
+    for (Enemy* enemy in _enemies) {
+        NSMutableArray* vanishedProjectiles = [[NSMutableArray alloc] init];
+        BOOL damaged = NO;
         
         for (b2ContactEdge* contactEdge = enemy.b2Body->GetContactList();
              contactEdge;
@@ -203,21 +147,37 @@
                 // 敵が飛び道具に当たったときの処理
                 Projectile* projectile = (Projectile *)sprite;
                 if (projectile.owner == ProjectileOwnerSamurai) {
-                    [arr addObject:enemy];
-                    [arr addObject:projectile];
+                    damaged = YES;
+                    [vanishedProjectiles addObject:projectile];
                 }
+            } else if (sprite.tag == SpriteTagKatana) {
+                if ([_samurai isDashing] || [_samurai isCountering]) {
+                    damaged = YES;
+                }
+            }
+        }
+
+        // 地震
+        if ([enemy.name isEqualToString:@"rikisi"]) {
+            Rikishi* rikishi = (Rikishi*)enemy;
+            if ([_samurai onGround] && [rikishi isEarthquaking]) {
+                [_samurai damaged];
             }
             
         }
+        
+        if (damaged) {
+            [damagedEnemies addObject:enemy];
+        }
+        [self removeObjects:vanishedProjectiles];
     }
-    [self removeObjects:arr];
+    for (Enemy* enemy in damagedEnemies) {
+        [enemy damaged];
+    }
 }
 
 - (void)katanaTouchingObj
 {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
-    
-        
     for (b2ContactEdge* contactEdge = _samurai.katanaBody->GetContactList();
          contactEdge;
          contactEdge = contactEdge->next) {
@@ -234,26 +194,14 @@
                     [projectile reflect];
                 }
             }
-        } else if (sprite.tag == SpriteTagEnemy) {
-            // 刀が敵に当たったときの処理
-            if ([_samurai isDashing] || [_samurai isCountering]) {
-                [arr addObject:sprite];
-                _score += 500;
-            }
         }
-        
     }
-    
-    [self removeObjects:arr];
 }
 
 -(void)removeObjects: (NSMutableArray*) object
 {
     for (CCPhysicsSprite* sprite in object) {
-        if ([_zakos containsObject:sprite]) {
-            [sprite removeFromParent];
-            [_zakos removeObject:sprite];
-        } else if ([_bullets containsObject:sprite]) {
+        if ([_bullets containsObject:sprite]) {
             [sprite removeFromParent];
             [_bullets removeObject:sprite];
         }
@@ -283,49 +231,29 @@
 	world->Step(dt, velocityIterations, positionIterations);
 
     NSMutableArray* arr = [[NSMutableArray alloc] init];;
-    for (Zako* zako in _zakos) {
-        if (zako.b2Body->GetPosition().y < 1) {
-            zako.b2Body->SetLinearVelocity(b2Vec2(-5,zako.b2Body->GetLinearVelocity().y));
-        }
-        if ([self checkOutOfScreen:zako]) {
-            [arr addObject:zako];
-        }
-
-//        [zako update:dt];
-        if (rand() % 60 == 0) {
-            [self addNewBulletSprite:(Ninja*)zako];
+    for (Enemy* enemy in _enemies) {
+        if ([self checkOutOfScreen:enemy]) {
+            [arr addObject:enemy];
         }
     }
     [self removeObjects:arr];
 
-    [self updateBullets:dt];
-   
     [self samuraiTouchObj];
     [self enemyTouchingObj];
     [self katanaTouchingObj];
-//    [_rikishi update:dt];
-    if (rand() % 60 == 0) {
-        [self addRikishiBullet];
-    }
-    if (rand() % 60 == 0) {
-        [self addDateBullet];
-    }
-
-//    if (rand() % 100 == 0) {
-//        [self addNewNinjaSprite];
-//    }
 
     _life = _samurai.hp;
     _score += 1;
 
-//    CCLOG(@"%f : %d %f", _curTime, _eventIndex, [[[_events objectAtIndex:_eventIndex] objectForKey:@"time"] floatValue]);
+
+    // イベント処理
     while(_eventIndex<[_events count] && [[[_events objectAtIndex:_eventIndex] objectForKey:@"time"] floatValue] < _curTime) {
-        [self addNewNinjaSprite];
+        NSArray* events = _events[_eventIndex][@"events"];
+        [self addNewEnemyWithName:_events[_eventIndex][@"name"] events:events];
         _eventIndex++;
     }
 
 }
-
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if ([touches count] >= 2) return;
@@ -349,9 +277,6 @@
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if ([touches count] >= 2) return;
-//    UITouch* touch = [touches anyObject];
-//    CGPoint point = [[CCDirector sharedDirector] convertTouchToGL:touch];
-    
     if (!_didCommand) {
         [_samurai counter];
     }
@@ -456,6 +381,21 @@
 	
 	kmGLPopMatrix();
 
+}
+
+
+// protocol
+
+- (void)generatedProjectile:(Projectile *)projectile {
+    [self addChild:projectile z:2];
+    [_bullets addObject:projectile];
+}
+
+
+- (void)enemyDied:(Enemy *)enemy {
+    assert([_enemies containsObject:enemy]);
+    [_enemies removeObject:enemy];
+    [enemy removeFromParent];
 }
 
 @end

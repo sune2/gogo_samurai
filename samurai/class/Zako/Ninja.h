@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import "Zako.h"
+#import "Enemy.h"
 
-@interface Ninja : Zako
+@interface Ninja : Enemy
 {
     int _shurikenState;
     ccTime _waiting;
@@ -16,7 +16,6 @@
 }
 @property (nonatomic, strong) CCSprite* arm;
 @property (nonatomic, assign) b2Body* armBody;
-@property (nonatomic, strong) id<ProjectileProtocol> delegate;
 
 + (Ninja*)ninja;
 

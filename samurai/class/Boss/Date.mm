@@ -15,12 +15,13 @@
 
 @implementation Date
 
-
 + (Date*)date {
-    Date* res = (Date*)[super bossWithName:@"date_leg"];
+    Date* res = (Date*)[super enemyWithName:@"date_leg"];
     res.karada = [CCSprite spriteWithFile:@"date_main.png"];
     res.scale = 219.0 / res.contentSize.width;
     [res addChild:res.karada z:-3];
+    res.tag = SpriteTagBoss;
+    res.hp = 10;
     return res;
 }
 
@@ -146,7 +147,7 @@
             [ganko initBodyWithWorld:self.world at:ccp(self.position.x+20, self.position.y+65)];
             ganko.scale = self.scale;
             ganko.linearVelocity = b2Vec2(-10,0);
-            [_delegate generatedProjectile:ganko];
+            [self.delegate generatedProjectile:ganko];
             
             if (_repNum >= 2) {
                 _repNum--;

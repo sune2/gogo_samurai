@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 gogo-samurai. All rights reserved.
 //
 
-#import "Boss.h"
+#import "Enemy.h"
 #import "Projectile.h"
 
-@interface Date : Boss
+@interface Date : Enemy
 {
     int _earthquakeState;
     int _gankoState;
@@ -19,8 +19,6 @@
 
 @property (nonatomic, strong) CCSprite* karada;
 @property (nonatomic, assign) b2Body* karadaBody;
-@property (nonatomic, strong) id<ProjectileProtocol> delegate;
-
 
 + (Date*)date;
 
