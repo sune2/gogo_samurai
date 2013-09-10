@@ -10,16 +10,20 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "MenuLayer.h"
+#import <Social/Social.h>
 
 @interface GameoverLayer : CCLayer
 {
     CGSize _winSize;
     NSString* _path;
-    NSMutableArray* _scores;
+    NSMutableArray* _ranking;
+    UIViewController* _viewController;
+    BOOL _win;
+    int _score;
 }
 
-- (id)initWithScore: (int)score;
-+ (id)nodeWithScore: (int)score;
+- (id)initWithScore:(int)score result:(BOOL)win;
++ (id)nodeWithScore:(int)score result:(BOOL)win;
 
 @property (strong) id<MenuLayerDelegate> delegate;
 @end

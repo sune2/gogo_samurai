@@ -55,7 +55,7 @@
     CCLayerColor* coloredLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 170)];
     [self addChild:coloredLayer z:2];
     
-    _goLayer = [GameoverLayer nodeWithScore:_workLayer.score];
+    _goLayer = [GameoverLayer nodeWithScore:_workLayer.score result:NO];
     _goLayer.delegate = self;
     [self addChild:_goLayer z:3];
         
