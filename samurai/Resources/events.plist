@@ -19,6 +19,40 @@
 	</dict>
 	<dict>
 		<key>time</key>
+		<integer>1</integer>
+		<key>name</key>
+		<string>rikishi</string>
+		<key>params</key>
+		<dict>
+			<key>stopPos</key>
+			<integer>200</integer>
+			<key>moveTime</key>
+			<integer>13</integer>
+		</dict>
+		<key>events</key>
+		<array>
+			<dict>
+				<key>time</key>
+				<integer>1</integer>
+				<key>name</key>
+				<string>shiko</string>
+			</dict>
+			<dict>
+				<key>time</key>
+				<integer>5</integer>
+				<key>name</key>
+				<string>shiko</string>
+			</dict>
+			<dict>
+				<key>time</key>
+				<integer>9</integer>
+				<key>name</key>
+				<string>shiko</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>time</key>
 		<integer>3</integer>
 		<key>name</key>
 		<string>ninja</string>

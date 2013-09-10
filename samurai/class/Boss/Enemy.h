@@ -10,7 +10,7 @@
 #import "CCPhysicsSprite.h"
 #import "Projectile.h"
 #import "Define.h"
-
+#include <vector.h>
 @class Enemy;
 
 @protocol EnemyProtocol
@@ -21,6 +21,7 @@
 {
     ccTime _curTime;
     int _eventIndex;
+    std::vector<b2Body*> _bodies;
 }
 
 @property(nonatomic, strong) NSString* name;
@@ -32,6 +33,8 @@
 + (Enemy*)enemyWithName:(NSString*)name;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
 - (void)damaged;
+- (int) bodiesCount;
+- (b2Body*)getBodyAt:(NSInteger)index;
 
 @end
 

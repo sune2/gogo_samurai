@@ -34,6 +34,8 @@
     karadaDef.position.Set(point.x/self.PTMRatio, point.y/self.PTMRatio);
     
     _karadaBody = world->CreateBody(&karadaDef);
+    _karadaBody->SetUserData(self);
+//    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
     
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"date_main"];
     [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"date_main"]];

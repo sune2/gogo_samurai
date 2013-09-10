@@ -109,9 +109,17 @@
 - (void)update:(ccTime)delta {
     _curTime += delta;
     
+    
+    
     [self updateShuriken:delta];
 
     b2Vec2 pos = self.b2Body->GetPosition();
+
+    if (pos.y < 1) {
+        // 左に移動する
+        self.b2Body->SetLinearVelocity(b2Vec2(-5, self.b2Body->GetLinearVelocity().y));
+    }
+    
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
         b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();

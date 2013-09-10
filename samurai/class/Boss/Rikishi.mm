@@ -19,6 +19,21 @@
     Rikishi* res = (Rikishi*)[super enemyWithName:@"rikisi_leg"];
     res.karada = [CCSprite spriteWithFile:@"rikisi.png"];
     [res addChild:res.karada z:-3];
+    res.stopPos = 300;
+    res.moveTime = 5;
+    return res;
+}
+
++ (Rikishi*)rikishiWithParams:(NSDictionary *)params {
+    Rikishi* res = [self rikishi];
+    NSArray* keys = [params allKeys];
+    CCLOG(@"%@", keys);
+    
+    
+    if ([keys containsObject:@"moveTime"])
+        res.moveTime = [[params objectForKey:@"moveTime"] floatValue];
+    if ([keys containsObject:@"stopPos"])
+        res.stopPos = [[params objectForKey:@"stopPos"] floatValue];
     return res;
 }
 
@@ -31,13 +46,18 @@
     karadaDef.position.Set(point.x/self.PTMRatio, point.y/self.PTMRatio);
 
     _karadaBody = world->CreateBody(&karadaDef);
-
+    _karadaBody->SetUserData(self);
+    
+    _bodies.push_back(_karadaBody);
+//    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
+    
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"rikisi"];
     [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"rikisi"]];
 
     b2RevoluteJointDef jointDef;
-    jointDef.Initialize(self.b2Body, _karadaBody, b2Vec2(self.position.x/self.PTMRatio+kJointAnchorPosX,
-                                                         self.position.y/self.PTMRatio+kJointAnchorPosY));
+    jointDef.Initialize(self.b2Body, _karadaBody,
+                        b2Vec2(self.position.x/self.PTMRatio+kJointAnchorPosX,
+                               self.position.y/self.PTMRatio+kJointAnchorPosY));
 
     b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
 
@@ -176,6 +196,16 @@
     [self updateGanko:delta];
     
     b2Vec2 pos = self.b2Body->GetPosition();
+    
+    if (pos.y < 1) {
+        if (pos.x > self.stopPos/PTM_RATIO || _curTime > self.moveTime) {
+            // 左に移動する
+            self.b2Body->SetLinearVelocity(b2Vec2(-5, self.b2Body->GetLinearVelocity().y));
+        } else {
+            self.b2Body->SetLinearVelocity(b2Vec2(0, self.b2Body->GetLinearVelocity().y));
+        }
+    }
+
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
         b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();

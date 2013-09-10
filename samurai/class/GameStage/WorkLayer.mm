@@ -47,12 +47,12 @@
     [self addChild:_samurai z:1];
 }
 
-- (void)addNewEnemyWithName:(NSString*)name events:(NSArray*)events {
+- (void)addNewEnemyWithName:(NSString*)name events:(NSArray*)events params:(NSDictionary*)params {
     Enemy* enemy;
     if ([name isEqualToString:@"ninja"]) {
         enemy = [Ninja ninja];
     } else if ([name isEqualToString:@"rikishi"]) {
-        enemy = [Rikishi rikishi];
+        enemy = [Rikishi rikishiWithParams:params];
     } else if ([name isEqualToString:@"date"]) {
         enemy = [Date date];
     }
@@ -130,33 +130,36 @@
 - (void)enemyTouchingObj
 {
     NSMutableArray* damagedEnemies = [[NSMutableArray alloc] init];
-    
+
+
     for (Enemy* enemy in _enemies) {
         NSMutableArray* vanishedProjectiles = [[NSMutableArray alloc] init];
         BOOL damaged = NO;
-        
-        for (b2ContactEdge* contactEdge = enemy.b2Body->GetContactList();
-             contactEdge;
-             contactEdge = contactEdge->next) {
-            
-            if (!contactEdge->contact->IsTouching()) continue;
-            b2Body* other = contactEdge->other;
-            CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
-            
-            if (sprite.tag == SpriteTagProjectile) {
-                // 敵が飛び道具に当たったときの処理
-                Projectile* projectile = (Projectile *)sprite;
-                if (projectile.owner == ProjectileOwnerSamurai) {
-                    damaged = YES;
-                    [vanishedProjectiles addObject:projectile];
-                }
-            } else if (sprite.tag == SpriteTagKatana) {
-                if ([_samurai isDashing] || [_samurai isCountering]) {
-                    damaged = YES;
+
+        for (int i=0; i<[enemy bodiesCount]; ++i) {
+            b2Body *body = [enemy getBodyAt:i];
+            for (b2ContactEdge* contactEdge = body->GetContactList();
+                 contactEdge;
+                 contactEdge = contactEdge->next) {
+                if (!contactEdge->contact->IsTouching()) continue;
+                b2Body* other = contactEdge->other;
+                CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
+                
+                if (sprite.tag == SpriteTagProjectile) {
+                    // 敵が飛び道具に当たったときの処理
+                    Projectile* projectile = (Projectile *)sprite;
+                    if (projectile.owner == ProjectileOwnerSamurai) {
+                        damaged = YES;
+                        [vanishedProjectiles addObject:projectile];
+                    }
+                } else if (sprite.tag == SpriteTagKatana) {
+                    if ([_samurai isDashing] || [_samurai isCountering]) {
+                        damaged = YES;
+                    }
                 }
             }
         }
-
+        
         // 地震
         if ([enemy.name isEqualToString:@"rikisi"]) {
             Rikishi* rikishi = (Rikishi*)enemy;
@@ -249,7 +252,8 @@
     // イベント処理
     while(_eventIndex<[_events count] && [[[_events objectAtIndex:_eventIndex] objectForKey:@"time"] floatValue] < _curTime) {
         NSArray* events = _events[_eventIndex][@"events"];
-        [self addNewEnemyWithName:_events[_eventIndex][@"name"] events:events];
+        NSDictionary* params = _events[_eventIndex][@"params"];
+        [self addNewEnemyWithName:_events[_eventIndex][@"name"] events:events params:params];
         _eventIndex++;
     }
 

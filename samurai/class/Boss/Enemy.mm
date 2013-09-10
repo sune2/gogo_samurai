@@ -37,6 +37,11 @@
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
 
     [self setB2Body:body];
+    
+    _bodies.push_back(self.b2Body);
+    //self.bodies = [[NSMutableArray alloc] init];
+    // [self.bodies addObject:[NSData dataWithBytes:self.b2Body length:sizeof(b2Body)]];
+
     [self scheduleUpdate];
 }
 
@@ -68,5 +73,10 @@
         [self.delegate enemyDied:self];
     }
 }
-
+- (int)bodiesCount {
+    return _bodies.size();
+}
+- (b2Body*)getBodyAt:(NSInteger)index{
+    return _bodies[index];
+}
 @end

@@ -13,13 +13,16 @@
     int _shikoState;
     int _gankoState;
     ccTime _waiting;
-    int _repNum;    
+    int _repNum;
 }
 
 @property (nonatomic, strong) CCSprite* karada;
 @property (nonatomic, assign) b2Body* karadaBody;
+@property(nonatomic, assign) float moveTime;
+@property(nonatomic, assign) float stopPos;
 
 + (Rikishi*)rikishi;
++ (Rikishi*)rikishiWithParams:(NSDictionary*)params;
 
 - (BOOL)canGanko;
 - (void)makeGanko;
