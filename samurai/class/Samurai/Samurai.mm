@@ -72,6 +72,17 @@
 - (BOOL)canDash {
     return _dashState == 0;
 }
+- (BOOL)canJump {
+    if (_jumpState) return NO;
+    if (_dashState) return NO;
+    if (_counterState) return NO;
+    return [self onGround];
+}
+
+- (BOOL)canCounter {
+    return _counterState == 0;
+}
+
 
 - (BOOL)onGround {
     for (b2ContactEdge* contactEdge = self.b2Body->GetContactList(); contactEdge;
@@ -97,16 +108,6 @@
     return _counterState == 1;
 }
 
-- (BOOL)canJump {
-    if (_jumpState) return NO;
-    if (_dashState) return NO;
-    if (_counterState) return NO;
-    return [self onGround];
-}
-
-- (BOOL)canCounter {
-    return _counterState == 0;
-}
 
 
 - (void)jump {
@@ -194,8 +195,7 @@
 
             _katanaBody->SetAngularVelocity(80);
             _counterWaiting -= delta;
-            if (_counterWaiting < 0) {
-                
+            if (_counterWaiting < 0) {                
                 _katanaBody->SetAngularVelocity(0);
                 _katanaBody->SetTransform(_katanaBody->GetPosition(), 0);
                 _counterWaiting = 0.2;
@@ -228,7 +228,11 @@
             self.b2Body->SetLinearVelocity(b2Vec2(-6,self.b2Body->GetLinearVelocity().y));
             _mutekiWaiting -= delta;
             if (_mutekiWaiting < 0) {
-                [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
+                if (_hp > 0) {
+                    [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
+                } else {
+                    self.visible = NO;
+                }
                 _mutekiState = 2;
                 _mutekiWaiting = 0.3;
             }
@@ -307,10 +311,13 @@
 
 - (void)damaged {
     if (_mutekiState == 0) {
-        self.hp--;
-        _mutekiState = 1;
-        _mutekiWaiting = 0.1;
-
+        self.hp-=3;
+//        if (self.hp == 0) {
+//            //
+//        } else {
+            _mutekiState = 1;
+            _mutekiWaiting = 0.1;
+//        }
     }
 }
 
