@@ -73,6 +73,7 @@
 // 角速度1で足をあげる
 // 80度まで上がったら足をおろして地震攻撃
 - (void)makeEarthquake {
+    return;
     if ([self canEarthquake]) {
         _earthquakeState = 1;
     }
@@ -124,13 +125,14 @@
     switch (_gankoState) {
         case 1:
         {
-            CCParticleSystemQuad* part = [MyParticle particleGanko];
-            part.position = ccp(self.position.x+40, self.position.y+60);
-            [[self parent] addChild:part z:3];
-            
-            CCParticleSystemQuad* part2 = [MyParticle particleGanko];
-            part2.position = ccp(self.position.x+50, self.position.y+60);
-            [[self parent] addChild:part2 z:3];
+
+//            CCParticleSystemQuad* part = [MyParticle particleGanko];
+//            part.position = ccp(self.position.x+40, self.position.y+60);
+//            [[self parent] addChild:part z:3];
+//            
+//            CCParticleSystemQuad* part2 = [MyParticle particleGanko];
+//            part2.position = ccp(self.position.x+50, self.position.y+60);
+//            [[self parent] addChild:part2 z:3];
             
             _waiting = 1;
             _gankoState = 2;
@@ -147,10 +149,15 @@
             break;
         case 3:
         {
-            Projectile* ganko = [Projectile projectileWithName:@"ganko"];
-            [ganko initBodyWithWorld:self.world at:ccp(self.position.x+20, self.position.y+65)];
-            ganko.scale = self.scale;
-            ganko.linearVelocity = b2Vec2(-10,0);
+            Projectile* ganko = [Projectile projectileWithName:@"date_moon"];
+            [ganko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
+            ganko.rotation = self.rotation;
+            
+            b2Vec2 toSamurai = _samurai.b2Body->GetWorldCenter() - ganko.b2Body->GetWorldCenter();
+            toSamurai = 10.0 / toSamurai.Length() * toSamurai;
+
+            ganko.linearVelocity = toSamurai;
+            ganko.angularVelocity = 10;
             [self.delegate generatedProjectile:ganko];
             
             if (_repNum >= 2) {

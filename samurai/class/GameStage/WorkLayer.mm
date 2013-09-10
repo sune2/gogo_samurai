@@ -54,7 +54,9 @@
     } else if ([name isEqualToString:@"rikishi"]) {
         enemy = [Rikishi rikishiWithParams:params];
     } else if ([name isEqualToString:@"date"]) {
-        enemy = [Date date];
+        Date* date = [Date date];
+        date.samurai = _samurai;
+        enemy = (Enemy*)date;
     }
     if (enemy.tag == SpriteTagZako) {
         [enemy initBodyWithWorld:world at:ccp(400, 200)];

@@ -575,6 +575,43 @@
                     </dict>
 				</array>
 			</dict>
+			<key>date_moon</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.0000,0.0000 }</string>
+				<key>fixtures</key>
+				<array>
+
+					<dict>
+                        <key>density</key> <real>2</real>
+                        <key>friction</key> <real>0</real>
+                        <key>restitution</key> <real>0</real>
+                        <key>filter_categoryBits</key> <integer>1</integer>
+                        <key>filter_groupIndex</key> <integer>0</integer>
+                        <key>filter_maskBits</key> <integer>65535</integer>
+                        <key>isSensor</key> <true/>
+                        <key>id</key> <string></string>
+                        <key>fixture_type</key> <string>POLYGON</string>
+
+						<key>polygons</key>
+						<array>
+							<array>	
+								<string>{ 74.500,164.000 }</string>	
+								<string>{ 88.000,162.000 }</string>	
+								<string>{ 97.588,163.158 }</string>	
+								<string>{ 105.000,169.000 }</string>	
+								<string>{ 96.000,168.000 }</string>
+							</array>
+							<array>	
+								<string>{ 96.000,168.000 }</string>	
+								<string>{ 105.000,169.000 }</string>	
+								<string>{ 115.500,183.000 }</string>	
+								<string>{ 115.500,184.000 }</string>
+							</array>
+						</array>
+                    </dict>
+				</array>
+			</dict>
 		</dict>
 	</dict>
 </plist>

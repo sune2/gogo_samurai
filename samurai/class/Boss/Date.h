@@ -8,6 +8,7 @@
 
 #import "Enemy.h"
 #import "Projectile.h"
+#import "Samurai.h"
 
 @interface Date : Enemy
 {
@@ -23,11 +24,12 @@
 
 @property (nonatomic, strong) CCSprite* karada;
 @property (nonatomic, assign) b2Body* karadaBody;
+@property (nonatomic, assign) Samurai* samurai;
 
 + (Date*)date;
 
 - (BOOL)canGanko;
-- (void)makeGanko;
+- (void)makeGankoWithSamuraiPos:(CGPoint*)pos;
 - (BOOL)canEarthquake;
 - (void)makeEarthquake;
 - (BOOL)isEarthquaking;
