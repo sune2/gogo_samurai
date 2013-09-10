@@ -47,7 +47,9 @@
     b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
     
     joint->EnableLimit(YES);
-    joint->SetLimits(CC_DEGREES_TO_RADIANS(-70.0), CC_DEGREES_TO_RADIANS(-1.0) );
+    joint->SetLimits(CC_DEGREES_TO_RADIANS(-60.0), CC_DEGREES_TO_RADIANS(-1.0) );
+    
+    _initPos = point;
 }
 
 - (BOOL)canGanko {
@@ -236,11 +238,26 @@
 }
 
 - (void)update:(ccTime)delta {
-    [self updateEarthquake:delta];
-    [self updateGanko:delta];
-    [self updateMuteki:delta];
-    
+    if (rand() % 60 == 0) {
+        if (rand() % 2) {
+            [self makeEarthquake];
+        } else {
+            [self makeGanko];
+        }
+    }
+
     b2Vec2 pos = self.b2Body->GetPosition();
+    
+    // 右側にいたら戻る
+    if (pos.y < 1) {
+        if (pos.x > _initPos.x/PTM_RATIO) {
+            self.b2Body->SetLinearVelocity(b2Vec2(-1, self.b2Body->GetLinearVelocity().y));
+        } else {
+            self.b2Body->SetLinearVelocity(b2Vec2(1, self.b2Body->GetLinearVelocity().y));
+        }
+    }
+    
+    // 地面
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
         b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();
@@ -248,6 +265,10 @@
         self.karadaBody->SetTransform(self.karadaBody->GetPosition()+tmp, self.karadaBody->GetAngle());
     }
     
+    [self updateEarthquake:delta];
+    [self updateGanko:delta];
+    [self updateMuteki:delta];
+
     // 体の位置
     b2Body* b = _karadaBody;
     _karada.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());

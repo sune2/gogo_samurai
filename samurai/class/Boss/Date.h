@@ -18,6 +18,7 @@
     int _mutekiState;
     ccTime _mutekiWaiting;
     CGFloat _mutekiPosX;
+    CGPoint _initPos;
 }
 
 @property (nonatomic, strong) CCSprite* karada;

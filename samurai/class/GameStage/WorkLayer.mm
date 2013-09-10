@@ -161,13 +161,10 @@
         }
         
         // 地震
-        if ([enemy.name isEqualToString:@"rikisi"]) {
-            Rikishi* rikishi = (Rikishi*)enemy;
-            if ([_samurai onGround] && [rikishi isEarthquaking]) {
-                [_samurai damaged];
-            }
-            
+        if ([_samurai onGround] && [enemy isEarthquaking]) {
+            [_samurai damaged];
         }
+
         
         if (damaged) {
             [damagedEnemies addObject:enemy];

@@ -35,6 +35,7 @@
 - (void)damaged;
 - (int) bodiesCount;
 - (b2Body*)getBodyAt:(NSInteger)index;
+- (BOOL)isEarthquaking;
 
 @end
 
