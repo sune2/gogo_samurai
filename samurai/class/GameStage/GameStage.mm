@@ -50,9 +50,12 @@
     [self addChild:coloredLayer z:2];
     
     _goLayer = [GameoverLayer nodeWithScore:_workLayer.score];
+    _goLayer.delegate = self;
     [self addChild:_goLayer z:3];
     
     _workLayer.touchEnabled = NO;
+    [_workLayer pauseSchedulerAndActions];
+    
 }
 
 - (void)manageMenu

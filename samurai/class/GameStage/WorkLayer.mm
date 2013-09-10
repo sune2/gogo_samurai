@@ -135,6 +135,8 @@
             if ([_samurai isDashing]) {
                 [arr addObject:sprite];
                 _score += 500;
+            } else if ([_samurai isCountering]) {
+                // 無敵
             } else {
                 [_samurai damaged];
             }
