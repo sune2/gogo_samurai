@@ -19,6 +19,7 @@
     Rikishi* res = (Rikishi*)[super enemyWithName:@"rikisi_leg"];
     res.karada = [CCSprite spriteWithFile:@"rikisi.png"];
     [res addChild:res.karada z:-3];
+    res.scale = 91/res.contentSize.width;
     res.stopPos = 300;
     res.moveTime = 5;
     return res;
@@ -27,8 +28,6 @@
 + (Rikishi*)rikishiWithParams:(NSDictionary *)params {
     Rikishi* res = [self rikishi];
     NSArray* keys = [params allKeys];
-    CCLOG(@"%@", keys);
-    
     
     if ([keys containsObject:@"moveTime"])
         res.moveTime = [[params objectForKey:@"moveTime"] floatValue];

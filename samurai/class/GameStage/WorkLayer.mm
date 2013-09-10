@@ -59,7 +59,7 @@
     if (enemy.tag == SpriteTagZako) {
         [enemy initBodyWithWorld:world at:ccp(400, 200)];
     } else {
-        [enemy initBodyWithWorld:world at:ccp(350, 200)];
+        [enemy initBodyWithWorld:world at:ccp(300, 200)];
     }
     enemy.events = events;
     enemy.delegate = self;
@@ -400,6 +400,7 @@
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
     [enemy removeFromParent];
+    self.score += 1000;
 }
 
 @end

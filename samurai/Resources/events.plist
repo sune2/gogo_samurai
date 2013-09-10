@@ -21,7 +21,7 @@
 		<key>time</key>
 		<integer>1</integer>
 		<key>name</key>
-		<string>rikishi</string>
+		<string>date</string>
 		<key>params</key>
 		<dict>
 			<key>stopPos</key>

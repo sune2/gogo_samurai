@@ -35,7 +35,7 @@
     
     _karadaBody = world->CreateBody(&karadaDef);
     _karadaBody->SetUserData(self);
-//    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
+    _bodies.push_back(_karadaBody);
     
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"date_main"];
     [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"date_main"]];
@@ -173,9 +173,72 @@
     }
 }
 
+- (void)updateMuteki:(ccTime)delta {
+    switch (_mutekiState) {
+        case 1:
+        {
+            CCParticleSystemQuad* blood = [MyParticle particleBlood];
+            blood.position = ccp(self.b2Body->GetWorldCenter().x * PTM_RATIO,
+                                 self.b2Body->GetWorldCenter().y * PTM_RATIO);
+            [[self parent] addChild:blood];
+            
+            self.b2Body->SetLinearVelocity(b2Vec2(6,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                if (self.hp > 0) {
+                    [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
+                } else {
+                    self.visible = NO;
+                }
+                _mutekiState = 2;
+                _mutekiWaiting = 0.3;
+            }
+        }
+            break;
+        case 2:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(-2,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                self.position = ccp(_mutekiPosX, self.position.y);
+                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                _mutekiState = 3;
+                _mutekiWaiting = 0.1;
+            }
+        }
+            break;
+        case 3:
+        {
+            self.position = ccp(_mutekiPosX, self.position.y);
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 4;
+                _mutekiWaiting = 2;
+            }
+            
+        }
+            break;
+        case 4:
+        {
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 0;
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)update:(ccTime)delta {
     [self updateEarthquake:delta];
     [self updateGanko:delta];
+    [self updateMuteki:delta];
     
     b2Vec2 pos = self.b2Body->GetPosition();
     if (pos.y < 0) {
@@ -197,6 +260,14 @@
     self.world->DestroyBody(self.karadaBody);
 }
 
+- (void)damaged {
+    if (_mutekiState == 0) {
+        self.hp--;
+        _mutekiState = 1;
+        _mutekiWaiting = 0.1;
+        _mutekiPosX = self.position.x;
+    }
+}
 
 
 

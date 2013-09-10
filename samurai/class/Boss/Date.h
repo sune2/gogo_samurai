@@ -15,6 +15,9 @@
     int _gankoState;
     ccTime _waiting;
     int _repNum;
+    int _mutekiState;
+    ccTime _mutekiWaiting;
+    CGFloat _mutekiPosX;
 }
 
 @property (nonatomic, strong) CCSprite* karada;
