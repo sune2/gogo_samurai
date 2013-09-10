@@ -14,6 +14,8 @@
 @interface GameoverLayer : CCLayer
 {
     CGSize _winSize;
+    NSString* _path;
+    NSMutableArray* _scores;
 }
 
 - (id)initWithScore: (int)score;

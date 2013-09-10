@@ -19,9 +19,10 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         
-        NSString* tStr = [NSString stringWithFormat:@"Bu-koh"];
+        NSString* tStr = [NSString stringWithFormat:@"SCORE"];
         CCMenuItemFont* tLabel = [CCMenuItemFont itemWithString:tStr];
         [tLabel setFontSize:30];
+        [tLabel setColor:ccc3(0,255,200)];
         // [tLabel setFontName:@"HiraMinProN-W3"];
         CCMenu* tMenu = [CCMenu menuWithItems:tLabel, nil];
         [tMenu setPosition:ccp(winSize.width / 2, winSize.height - 30)];
@@ -42,7 +43,7 @@
         
         [self addChild:menu];
         
-        NSString* backStr = [NSString stringWithFormat:@"[Modoru]"];
+        NSString* backStr = [NSString stringWithFormat:@"[BACK]"];
         CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
             [_delegate backToIntroLayer];
         }];
@@ -58,7 +59,7 @@
 {
     NSString* name = [[_scores objectAtIndex:i] objectForKey:@"name"];
     NSString* score = [[_scores objectAtIndex:i] objectForKey:@"score"];
-    NSString* str = [NSString stringWithFormat:@"%@: %@", name, score];
+    NSString* str = [NSString stringWithFormat:@"%d. %@: %@", i+1, name, score];
     CCMenuItemFont* ret = [CCMenuItemFont itemWithString:str];
     return ret;
 }

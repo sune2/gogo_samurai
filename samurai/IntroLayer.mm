@@ -64,15 +64,17 @@
 	[CCMenuItemFont setFontSize:22];
 	
     // Title
-    CCMenuItemLabel *title = [CCMenuItemFont itemWithString:@"GOGO! Samurai BOY!"];
+    CCMenuItemFont *title = [CCMenuItemFont itemWithString:@"GOGO! Samurai BOY!"];
+    [title setFontSize:30];
 
+    
 	// Reset Button
-	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Shutsu-Jin]" block:^(id sender){
+	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[START]" block:^(id sender){
 		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
 	}];
     
     // Score Button
-	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[Bu-koh]" block:^(id sender){
+	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[SCORE]" block:^(id sender){
 		[[CCDirector sharedDirector] replaceScene: [ScoreBoard scene]];
 	}];
     
