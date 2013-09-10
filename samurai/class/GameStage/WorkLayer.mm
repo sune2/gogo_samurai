@@ -34,6 +34,7 @@
         //[self addNewNinjaSprite];//[self addNewNinjaSprite];[self addNewNinjaSprite];
 
         [self addNewRikishi];
+        [self addNewDate];
         
         [self scheduleUpdate];
 
@@ -72,6 +73,15 @@
     [self addChild:_rikishi z:1];
 }
 
+- (void)addNewDate
+{
+    _date = [Date date];
+    [_date initBodyWithWorld:world at:ccp(300,200)];
+    _date.tag = SpriteTagBoss;
+    _date.delegate = self;
+    [self addChild:_date z:1];
+}
+
 -(void)addNewBulletSprite:(Ninja*)ninja
 {
     if ([_bullets count] >= 10) return;
@@ -86,6 +96,17 @@
     } else {
         [_rikishi makeShiko];
     }
+}
+
+- (void)addDateBullet
+{
+    if ([_bullets count] >= 10) return;
+    if (rand() % 2 == 0) {
+        [_date makeEarthquake];
+    } else {
+        [_date makeGanko];
+    }
+    
 }
 
 - (void)generatedProjectile:(Projectile *)projectile {
@@ -282,9 +303,12 @@
     [self samuraiTouchObj];
     [self enemyTouchingObj];
     [self katanaTouchingObj];
-    [_rikishi update:dt];
+//    [_rikishi update:dt];
     if (rand() % 60 == 0) {
         [self addRikishiBullet];
+    }
+    if (rand() % 60 == 0) {
+        [self addDateBullet];
     }
 
 //    if (rand() % 100 == 0) {

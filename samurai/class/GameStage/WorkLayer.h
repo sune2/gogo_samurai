@@ -16,6 +16,7 @@
 #import "Ninja.h"
 #import "Projectile.h"
 #import "Rikishi.h"
+#import "Date.h"
 #import "MyParticle.h"
 
 @interface WorkLayer : CCLayer<ProjectileProtocol>
@@ -30,6 +31,7 @@
     BOOL _didCommand;
     
     Rikishi* _rikishi;
+    Date* _date;
 
     NSArray* _events;
     int _eventIndex;

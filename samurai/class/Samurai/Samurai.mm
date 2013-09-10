@@ -74,8 +74,6 @@
 }
 - (BOOL)canJump {
     if (_jumpState) return NO;
-    if (_dashState) return NO;
-    if (_counterState) return NO;
     return [self onGround];
 }
 
@@ -311,13 +309,9 @@
 
 - (void)damaged {
     if (_mutekiState == 0) {
-        self.hp-=3;
-//        if (self.hp == 0) {
-//            //
-//        } else {
-            _mutekiState = 1;
-            _mutekiWaiting = 0.1;
-//        }
+        self.hp--;
+        _mutekiState = 1;
+        _mutekiWaiting = 0.1;
     }
 }
 

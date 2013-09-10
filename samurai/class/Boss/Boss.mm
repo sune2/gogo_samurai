@@ -14,7 +14,7 @@
 
 + (Boss*)bossWithName:(NSString *)name {
     Boss *res = [super spriteWithFile:[NSString stringWithFormat:@"%@.png", name]];
-    res.scale = 91.0 / res.textureRect.size.width;
+//    res.scale = 91.0 / res.textureRect.size.width;
     [res setPTMRatio:PTM_RATIO];
     res.name = name;
     res.tag = SpriteTagBoss;

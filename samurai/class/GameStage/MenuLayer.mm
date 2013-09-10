@@ -67,8 +67,7 @@
 - (CCSprite *) createDangoAt: (float)X
 {
     CCSprite* ret = [CCSprite spriteWithFile:@"dango.gif"];
-    ret.scaleX = 0.1;
-    ret.scaleY = 0.1;
+    ret.scale = 64 / ret.contentSize.width;
     ret.position = ccp(X, _winSize.height - 30);
     return ret;
 }

@@ -17,6 +17,10 @@
 		29A5598317DC54090067A8DD /* ninja1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598117DC54080067A8DD /* ninja1.png */; };
 		29A5598417DC54090067A8DD /* ninja2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598217DC54080067A8DD /* ninja2.png */; };
 		29A5598617DCB47F0067A8DD /* events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598517DCB47E0067A8DD /* events.plist */; };
+		FA78E04117DEB82E00F9C825 /* Date.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA78E04017DEB82E00F9C825 /* Date.mm */; };
+		FA78E04617DEC10F00F9C825 /* date_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04317DEC10F00F9C825 /* date_leg.png */; };
+		FA78E04717DEC10F00F9C825 /* date_main.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04417DEC10F00F9C825 /* date_main.png */; };
+		FA78E04817DEC10F00F9C825 /* date_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04517DEC10F00F9C825 /* date_moon.png */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -236,6 +240,11 @@
 		29A5598117DC54080067A8DD /* ninja1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja1.png; path = Resources/images/character/ninja1.png; sourceTree = "<group>"; };
 		29A5598217DC54080067A8DD /* ninja2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja2.png; path = Resources/images/character/ninja2.png; sourceTree = "<group>"; };
 		29A5598517DCB47E0067A8DD /* events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events.plist; path = Resources/events.plist; sourceTree = "<group>"; };
+		FA78E03F17DEB82E00F9C825 /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Date.h; path = class/Boss/Date.h; sourceTree = "<group>"; };
+		FA78E04017DEB82E00F9C825 /* Date.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Date.mm; path = class/Boss/Date.mm; sourceTree = "<group>"; };
+		FA78E04317DEC10F00F9C825 /* date_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_leg.png; path = Resources/images/character/date_leg.png; sourceTree = "<group>"; };
+		FA78E04417DEC10F00F9C825 /* date_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_main.png; path = Resources/images/character/date_main.png; sourceTree = "<group>"; };
+		FA78E04517DEC10F00F9C825 /* date_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon.png; path = Resources/images/character/date_moon.png; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -684,6 +693,13 @@
 			name = Particle;
 			sourceTree = "<group>";
 		};
+		FA78E04217DEC0FB00F9C825 /* date */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = date;
+			sourceTree = "<group>";
+		};
 		FAA67A3017DD533200AE872A /* samurai */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +766,8 @@
 		FAF29A9C17D82CD800F512EE /* Zako */ = {
 			isa = PBXGroup;
 			children = (
+				29A5597217DA4EEF0067A8DD /* Rikishi.h */,
+				29A5597317DA4EEF0067A8DD /* Rikishi.mm */,
 				FAF29AB117D82DAA00F512EE /* Zako.h */,
 				FAF29AB217D82DAA00F512EE /* Zako.mm */,
 				FAAE772817D98E07007D4770 /* Ninja.h */,
@@ -772,8 +790,8 @@
 			children = (
 				FAF29AAB17D82D8200F512EE /* Boss.h */,
 				FAF29AAC17D82D8200F512EE /* Boss.mm */,
-				29A5597217DA4EEF0067A8DD /* Rikishi.h */,
-				29A5597317DA4EEF0067A8DD /* Rikishi.mm */,
+				FA78E03F17DEB82E00F9C825 /* Date.h */,
+				FA78E04017DEB82E00F9C825 /* Date.mm */,
 			);
 			name = Boss;
 			sourceTree = "<group>";
@@ -843,6 +861,10 @@
 		FAF29AC317D95E6600F512EE /* character */ = {
 			isa = PBXGroup;
 			children = (
+				FA78E04217DEC0FB00F9C825 /* date */,
+				FA78E04317DEC10F00F9C825 /* date_leg.png */,
+				FA78E04417DEC10F00F9C825 /* date_main.png */,
+				FA78E04517DEC10F00F9C825 /* date_moon.png */,
 				FAA67A3217DD535D00AE872A /* rekisi */,
 				FAA67A3117DD534500AE872A /* ninja */,
 				FAA67A3017DD533200AE872A /* samurai */,
@@ -1526,6 +1548,9 @@
 				29A5598617DCB47F0067A8DD /* events.plist in Resources */,
 				FAA67A2F17DD528700AE872A /* dango.gif in Resources */,
 				FAA67A3817DD6F7800AE872A /* score.plist in Resources */,
+				FA78E04617DEC10F00F9C825 /* date_leg.png in Resources */,
+				FA78E04717DEC10F00F9C825 /* date_main.png in Resources */,
+				FA78E04817DEC10F00F9C825 /* date_moon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1710,6 +1735,7 @@
 				FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */,
 				FAA67A3B17DD71A800AE872A /* ScoreLayer.mm in Sources */,
 				FAA67A4117DDDEB100AE872A /* GameoverLayer.mm in Sources */,
+				FA78E04117DEB82E00F9C825 /* Date.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
