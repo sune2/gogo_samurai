@@ -48,7 +48,7 @@
     
     
     CCMenu *menu = [CCMenu menuWithItems:reset, top, nil];
-    [menu alignItemsHorizontally s];
+    [menu alignItemsHorizontally];
     [menu setPosition:ccp(_winSize.width/2, _winSize.height/2 - 40)];
     [self addChild:menu];
     
