@@ -49,7 +49,7 @@
 
 - (void)gameover: (BOOL)clear
 {
-    if (!_gameovered) return;
+    if (_gameovered) return;
     _gameovered = YES;
     _workLayer.touchEnabled = NO;
     SEL sel = @selector(didGameOver:);
