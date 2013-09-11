@@ -46,6 +46,7 @@
 }
 
 - (void)update:(ccTime)delta {
+    [self updateMuteki:delta];
     b2Vec2 pos = self.b2Body->GetPosition();
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
@@ -54,8 +55,66 @@
     }
 }
 
-- (Projectile*)makeBullet {
-    return nil;
+- (void)updateMuteki:(ccTime)delta {
+    switch (_mutekiState) {
+        case 1:
+        {
+            CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
+            blood.position = ccp(self.b2Body->GetWorldCenter().x * PTM_RATIO,
+                                 self.b2Body->GetWorldCenter().y * PTM_RATIO);
+            [[self parent] addChild:blood];
+            
+            self.b2Body->SetLinearVelocity(b2Vec2(6,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                if (self.hp > 0) {
+                    [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
+                } else {
+                    [self.delegate enemyDied:self];
+                }
+                _mutekiState = 2;
+                _mutekiWaiting = 0.3;
+            }
+        }
+            break;
+        case 2:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(-2,self.b2Body->GetLinearVelocity().y));
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                self.position = ccp(_mutekiPosX, self.position.y);
+                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+//                self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+                _mutekiState = 3;
+                _mutekiWaiting = 0.1;
+            }
+        }
+            break;
+        case 3:
+        {
+            self.position = ccp(_mutekiPosX, self.position.y);
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+//            self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 4;
+                _mutekiWaiting = 2;
+            }
+            
+        }
+            break;
+        case 4:
+        {
+            _mutekiWaiting -= delta;
+            if (_mutekiWaiting < 0) {
+                _mutekiState = 0;
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)removeFromParent {
@@ -63,16 +122,26 @@
     self.world->DestroyBody(self.b2Body);
 }
 
+//- (void)damaged {
+//    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
+//    blood.position = ccp(self.b2Body->GetWorldCenter().x*PTM_RATIO,
+//                         self.b2Body->GetWorldCenter().y*PTM_RATIO);
+//    [[self parent] addChild:blood];
+//    self.hp--;
+//    if (self.hp == 0) {
+//        [self.delegate enemyDied:self];
+//    }
+//}
 - (void)damaged {
-    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
-    blood.position = ccp(self.b2Body->GetWorldCenter().x*PTM_RATIO,
-                         self.b2Body->GetWorldCenter().y*PTM_RATIO);
-    [[self parent] addChild:blood];
-    self.hp--;
-    if (self.hp == 0) {
-        [self.delegate enemyDied:self];
+    if (_mutekiState == 0) {
+        self.hp--;
+        _mutekiState = 1;
+        _mutekiWaiting = 0.1;
+        _mutekiPosX = self.position.x;
+        
     }
 }
+
 - (int)bodiesCount {
     return _bodies.size();
 }
@@ -82,6 +151,9 @@
 
 - (BOOL)isEarthquaking {
     return NO;
+}
+- (BOOL)isMuteki {
+    return _mutekiState;
 }
 
 @end

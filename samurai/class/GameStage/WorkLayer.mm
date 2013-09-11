@@ -108,7 +108,7 @@
         
         if (isSpriteEnemy(sprite)) {
             // サムライ vs 敵
-            if (![_samurai isDashing] && ![_samurai isCountering]) {
+            if (![_samurai isDashing] && ![_samurai isCountering] && ![(Enemy*)sprite isMuteki]) {
                 [_samurai damaged];
             }
         } else if (sprite.tag == SpriteTagProjectile) {

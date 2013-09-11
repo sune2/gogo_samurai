@@ -17,12 +17,12 @@
 - Zako.h
     - 忍者
     - Ninja.h
-
+    
 ## ボスクラス
 - Boss.h
     - 相撲レスラー
     - Sumou.h
-
+    
 ## 飛び道具クラス
 - Projectile.h
 
