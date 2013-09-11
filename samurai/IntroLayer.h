@@ -15,11 +15,15 @@
 #import "ScoreBoard.h"
 #import "SimpleAudioEngine.h"
 #import "MyParticle.h"
+#import "WorkLayer.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer
 {
+    CCMenu* _menu;
+    CCMenu* _difficulties;
 }
+
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

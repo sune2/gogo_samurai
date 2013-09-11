@@ -110,6 +110,12 @@ void b2ContactManager::Collide()
 	{
 		b2Fixture* fixtureA = c->GetFixtureA();
 		b2Fixture* fixtureB = c->GetFixtureB();
+        if (fixtureA == NULL || fixtureB == NULL) {
+            b2Contact* cNuke = c;
+            c = cNuke->GetNext();
+            Destroy(cNuke);
+            continue;
+        }
 		int32 indexA = c->GetChildIndexA();
 		int32 indexB = c->GetChildIndexB();
 		b2Body* bodyA = fixtureA->GetBody();

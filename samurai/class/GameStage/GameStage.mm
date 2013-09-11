@@ -28,7 +28,11 @@
     scene.bgLayer = [BackgroundLayer node];
     
     scene.menuLayer.delegate = scene;
-    
+
+    // イベントセット
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
+    scene.workLayer.events = [[NSArray alloc] initWithContentsOfFile:path];
+
     // レイヤーを追加する
     [scene addChild:scene.workLayer z:0];
     [scene addChild:scene.menuLayer z:1];

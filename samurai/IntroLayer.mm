@@ -40,18 +40,20 @@
         
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
-		
-		CCLayerColor* background = [CCLayerColor layerWithColor:kBackgroundColor];
-        
-		// add the label as a child to this Layer
-		[self addChild: background z:-3];
-        [self createMenu];
-        
+
         //BGM開始
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
-        
         [self scheduleUpdate];
-        
+
+
+        // メニュー
+        [self initTitle];
+        [self createMenu];
+
+        // 灰色
+		CCLayerColor* background = [CCLayerColor layerWithColor:kBackgroundColor];
+		[self addChild: background z:-3];
+
         // 桜
         CCParticleSystemQuad* petal = [MyParticle particleCherryPetal];
         petal.position = ccp(size.width/2, size.height);
@@ -63,52 +65,87 @@
         moon.scale = 0.3 * 800 / moon.contentSize.width;
         moon.opacity = 128;
         [self addChild:moon z:-2];
+
+        //
+        CCSprite* sprite = [WorkLayer node];
+        [self addChild:sprite];
 	}
 	
 	return self;
 }
 
--(void)createMenu
-{
+- (void)initTitle {
     // Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
-	
     // Title
     CCMenuItemFont *title = [CCMenuItemFont itemWithString:@"GOGO! Samurai BOY!"];
     [title setFontSize:30];
+    title.color = ccWHITE;
 
-    
+    CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
+    titleLabel.enabled = NO;
+	[titleLabel setPosition:ccp(self.contentSize.width/2, self.contentSize.height*3/4)];
+
+    [self addChild:titleLabel z:1];
+}
+
+-(void)createMenu
+{
 	// Enter Button
 	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[START]" block:^(id sender){
-        //BGM開始
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+        [_menu removeFromParent];
+        [self createDifficulties];
 	}];
     
     // Score Button
 	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[SCORE]" block:^(id sender){
 		[[CCDirector sharedDirector] pushScene: [ScoreBoard scene]];
 	}];
-    
-    title.color = ccWHITE;
+
     enterButtle.color = ccWHITE;
     enterScore.color = ccWHITE;
-    
-    CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
-    CCMenu *menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
+
+    _menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
 	
-	[menu alignItemsVertically];
+	[_menu alignItemsVertically];
     
-	CGSize size = [[CCDirector sharedDirector] winSize];
-    
-    titleLabel.enabled = NO;
-	[titleLabel setPosition:ccp(size.width/2, size.height*3/4)];
-    [menu setPosition:ccp( size.width/2, size.height/4)];
+    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height/4)];
 	
-    
-	[self addChild:titleLabel z:1];
-	[self addChild: menu z:1];
+	[self addChild: _menu z:1];
 }
+
+-(void)createDifficulties
+{
+    // 難易度選択
+    CCMenuItemLabel *easyLabel = [CCMenuItemFont itemWithString:@"[Easy]" block:^(id sender){
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
+		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	}];
+
+    // Score Button
+	CCMenuItemLabel *normalLabel = [CCMenuItemFont itemWithString:@"[Normal]" block:^(id sender){
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
+		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	}];
+
+    CCMenuItemLabel *hardLabel = [CCMenuItemFont itemWithString:@"[Hard]" block:^(id sender){
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
+		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+	}];
+
+    CCMenuItemLabel *backLabel = [CCMenuItemFont itemWithString:@"[Back]" block:^(id sender){
+        [_difficulties removeFromParent];
+        [self createMenu];
+	}];
+
+    _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, backLabel, nil];
+    [_difficulties alignItemsVertically];
+    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height/4);
+
+    [self addChild:_difficulties];
+}
+
+
 
 
 //- (void)update:(ccTime)delta {

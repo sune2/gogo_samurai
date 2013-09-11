@@ -10,20 +10,17 @@
 
 @implementation WorkLayer
 
--(id)init
-{
+-(id)init {
     self = [super init];
     if (self) {
-        
 		self.touchEnabled = YES;
-		// CGSize s = [CCDirector sharedDirector].winSize;
+
         _score = 0;
         _bullets = [[NSMutableArray alloc] init];
         _enemies = [[NSMutableArray alloc] init];
         _life = 3;
 
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
-        _events = [[NSArray alloc] initWithContentsOfFile:path];
+        _events = [[NSArray alloc] init];
 
         _eventIndex = 0;
         
@@ -37,6 +34,7 @@
     
     return self;
 }
+
 
 -(void)addNewSamuraiSprite
 {
@@ -210,13 +208,6 @@
 {
     _curTime += dt;
 
-	int32 velocityIterations = 8;
-	int32 positionIterations = 1;
-	
-	// Instruct the world to perform a single step of simulation. It is
-	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);
-
     _damagedEnemies = [[NSMutableSet alloc] init];
     _vanishedProjectiles = [[NSMutableSet alloc] init];
     
@@ -240,6 +231,13 @@
         [self addNewEnemyWithName:_events[_eventIndex][@"name"] events:events params:params];
         _eventIndex++;
     }
+
+    int32 velocityIterations = 8;
+	int32 positionIterations = 1;
+
+	// Instruct the world to perform a single step of simulation. It is
+	// generally best to keep the time step and iterations fixed.
+	world->Step(dt, velocityIterations, positionIterations);
 
 }
 
