@@ -23,6 +23,7 @@
 		FA78E04F17DEF47300F9C825 /* Define.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA78E04D17DEF40400F9C825 /* Define.mm */; };
 		FA78E05117DF23F300F9C825 /* date_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05017DF23F300F9C825 /* date_moon.png */; };
 		FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */; };
+		FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05617E03E2C00F9C825 /* bamboo.png */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC15F17E0344200177AE2 /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC15E17E02F8300177AE2 /* CCTextField.m */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
@@ -252,6 +253,7 @@
 		FA78E04D17DEF40400F9C825 /* Define.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Define.mm; sourceTree = "<group>"; };
 		FA78E05017DF23F300F9C825 /* date_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon.png; path = Resources/images/character/date_moon.png; sourceTree = "<group>"; };
 		FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon_yellow.png; path = Resources/images/character/date_moon_yellow.png; sourceTree = "<group>"; };
+		FA78E05617E03E2C00F9C825 /* bamboo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bamboo.png; path = Resources/images/background/bamboo.png; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC15D17E02F8200177AE2 /* CCTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		FA8CC15E17E02F8300177AE2 /* CCTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 		FAF29AC217D95E5400F512EE /* background */ = {
 			isa = PBXGroup;
 			children = (
+				FA78E05617E03E2C00F9C825 /* bamboo.png */,
 				FAAE772317D884E6007D4770 /* bg.jpg */,
 			);
 			name = background;
@@ -1563,6 +1566,7 @@
 				FA78E04717DEC10F00F9C825 /* date_main.png in Resources */,
 				FA78E05117DF23F300F9C825 /* date_moon.png in Resources */,
 				FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */,
+				FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
