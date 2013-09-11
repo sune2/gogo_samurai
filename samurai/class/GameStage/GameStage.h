@@ -14,6 +14,7 @@
 #import "BackgroundLayer.h"
 #import "GameoverLayer.h"
 #import "IntroLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameStage : CCScene<MenuLayerDelegate>
 {

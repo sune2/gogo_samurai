@@ -13,6 +13,7 @@
 #import "GameStage.h"
 #import "GB2ShapeCache.h"
 #import "ScoreBoard.h"
+#import "SimpleAudioEngine.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer
