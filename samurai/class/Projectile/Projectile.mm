@@ -32,6 +32,7 @@
     bodyDef.position.Set(point.x/self.PTMRatio,point.y/self.PTMRatio);
     
 	b2Body *body = world->CreateBody(&bodyDef);
+    body->SetGravityScale(0);
 	
     body->SetUserData(self);
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:body forShapeName:self.name];
@@ -46,8 +47,8 @@
 - (void)update:(ccTime)delta {
     _curTime += delta;
     self.b2Body->SetAngularVelocity(self.angularVelocity);
-    self.b2Body->SetTransform(_initPos + _curTime * self.linearVelocity, self.b2Body->GetAngle());
-//    self.b2Body->SetLinearVelocity(self.linearVelocity);
+//    self.b2Body->SetTransform(_initPos + _curTime * self.linearVelocity, self.b2Body->GetAngle());
+        self.b2Body->SetLinearVelocity(self.linearVelocity);
 //
 //    b2Vec2 pos = self.b2Body->GetPosition();
 //    if (pos.y < _initPos.y/PTM_RATIO) {
