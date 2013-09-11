@@ -20,6 +20,7 @@
         _viewController = [[UIViewController alloc] init];
         _win = win;
         _score = score;
+        _shareButtonPushed = NO;
 
 
 //        NSString* scoreStr = [NSString stringWithFormat:@"Score: %d", score];
@@ -42,13 +43,22 @@
 
 - (void) manageRanking
 {
-    _path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
-    _ranking = [[NSMutableArray alloc] initWithContentsOfFile:_path];
-    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithInt:_score], @"score",
-                          @"CyberAgent", @"name",
-                          [NSNumber numberWithBool:YES], @"new",
-                          nil];
+//    _path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
+//    _ranking = [[NSMutableArray alloc] initWithContentsOfFile:_path];
+    
+    _ud = [NSUserDefaults standardUserDefaults];
+    _ranking = [[_ud arrayForKey:@"Rank"] mutableCopy];
+    
+    NSMutableDictionary* dict = [@{
+                                 @"score": [NSNumber numberWithInt:_score],
+                                 @"name": @"CyberAgent",
+                                 @"new": [NSNumber numberWithBool:YES]
+                                 } mutableCopy];
+//    [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                          [NSNumber numberWithInt:_score], @"score",
+//                          @"CyberAgent", @"name",
+//                          [NSNumber numberWithBool:YES], @"new",
+//                          nil];
     
     [_ranking addObject:dict];
     NSSortDescriptor* scoreSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score"
@@ -74,13 +84,15 @@
 - (void)saveScore: (NSArray *)arr
 {
     NSMutableArray* tmp = [[NSMutableArray alloc] init];
-    NSMutableArray* slicedArr = (NSMutableArray*)[arr subarrayWithRange:NSMakeRange(0, 5)];
+    NSMutableArray* slicedArr = [[arr subarrayWithRange:NSMakeRange(0, 5)] mutableCopy];
     for (NSDictionary* d in slicedArr) {
-        NSMutableDictionary* md = (NSMutableDictionary*)d;
+        NSMutableDictionary* md = [d mutableCopy];
         [md setObject:[NSNumber numberWithBool:NO] forKey:@"new"];
         [tmp addObject:md];
     }
-    [tmp writeToFile:_path atomically:YES];
+    [_ud setObject:tmp forKey:@"Rank"];
+    [_ud synchronize];
+    // [tmp writeToFile:_path atomically:YES];
 }
 
 - (CCMenuItemFont *)rankersScore: (int)rank
@@ -130,7 +142,10 @@
     }];
     
     CCMenuItemLabel *share = [CCMenuItemFont itemWithString:@"[SHARE]" block:^(id sender) {
-        [self createShareMenu];
+        if (!_shareButtonPushed && [self iosVersionUpperThan6]) {
+            [self createShareMenu];
+            _shareButtonPushed = YES;
+        }
     }];
 
     
@@ -155,10 +170,14 @@
 
 }
 
+- (BOOL)iosVersionUpperThan6
+{
+    return [[[UIDevice currentDevice] systemVersion] intValue] >= 6.0;
+}
+
 - (void) postToSNS:(id)sender
 {
-    NSString *iosDevice = [[UIDevice currentDevice] systemVersion];
-    if ([iosDevice intValue] >= 6.0 ){
+    if ([self iosVersionUpperThan6]){
         
         NSString* serviceType;
         CCMenuItemImage *itemSelected = (CCMenuItemImage*)sender;
@@ -180,7 +199,6 @@
         SLComposeViewController *composeViewController = [SLComposeViewController
                                                           composeViewControllerForServiceType:serviceType];
         
-        //デフォルトメッセージ　ハッシュタグ付き
         NSString* rstr = _win ? @"Samuraiは戦に勝利しました！" : @"Samuraiは力尽きました。";
         NSString* sstr = [NSString stringWithFormat:@"武功%d #gogo_samurai", _score];
         rstr =[rstr stringByAppendingString:sstr];

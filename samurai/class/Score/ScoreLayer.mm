@@ -29,8 +29,11 @@
         
         [self addChild:tMenu];
         
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
-        _scores = [[NSArray alloc] initWithContentsOfFile:path];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        _scores = [ud arrayForKey:@"Rank"];
+        
+//        NSString* path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
+//        _scores = [[NSArray alloc] initWithContentsOfFile:path];
         NSMutableArray* arr = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < [_scores count]; i++) {
