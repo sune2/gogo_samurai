@@ -19,6 +19,7 @@
     CGSize _winSize;
     NSArray* _scores;
     UITextField* _tf;
+    CCUIViewWrapper* _tfWrapper;
     NSUserDefaults* _ud;
 }
 @property (strong) id<backProtocol> delegate;
