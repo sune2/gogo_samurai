@@ -24,6 +24,8 @@
 		FA78E05117DF23F300F9C825 /* date_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05017DF23F300F9C825 /* date_moon.png */; };
 		FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
+		FA8CC15F17E0344200177AE2 /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC15E17E02F8300177AE2 /* CCTextField.m */; };
+		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -251,6 +253,10 @@
 		FA78E05017DF23F300F9C825 /* date_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon.png; path = Resources/images/character/date_moon.png; sourceTree = "<group>"; };
 		FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon_yellow.png; path = Resources/images/character/date_moon_yellow.png; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FA8CC15D17E02F8200177AE2 /* CCTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
+		FA8CC15E17E02F8300177AE2 /* CCTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
+		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
+		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -756,6 +762,8 @@
 		FAF29A9B17D82C9600F512EE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				FA8CC15D17E02F8200177AE2 /* CCTextField.h */,
+				FA8CC15E17E02F8300177AE2 /* CCTextField.m */,
 				FAA67A3317DD6C8600AE872A /* Score */,
 				29A5597D17DC49010067A8DD /* Particle */,
 				FAF29ABC17D86A6000F512EE /* GB2ShapeCache.h */,
@@ -769,6 +777,8 @@
 				FAF3B4CA17D736FE00F29EDB /* HelloWorldLayer.mm */,
 				FAF3B4CC17D736FE00F29EDB /* IntroLayer.h */,
 				FAF3B4CD17D736FE00F29EDB /* IntroLayer.mm */,
+				FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */,
+				FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1738,6 +1748,8 @@
 				FA78E04117DEB82E00F9C825 /* Date.mm in Sources */,
 				FAF29AAD17D82D8200F512EE /* Enemy.mm in Sources */,
 				FA78E04F17DEF47300F9C825 /* Define.mm in Sources */,
+				FA8CC15F17E0344200177AE2 /* CCTextField.m in Sources */,
+				FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
