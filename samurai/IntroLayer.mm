@@ -69,8 +69,10 @@
     [title setFontSize:30];
 
     
-	// Reset Button
+	// Enter Button
 	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[START]" block:^(id sender){
+        //BGM開始
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
 		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
 	}];
     
@@ -106,6 +108,8 @@
 	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
     
     [self createMenu];
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
 }
 
 + (void)initialize
@@ -126,5 +130,9 @@
     [ud registerDefaults:defaultDict];
     [ud synchronize];
 }
+
+
+
+
 
 @end

@@ -24,6 +24,8 @@
 		FA78E05117DF23F300F9C825 /* date_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05017DF23F300F9C825 /* date_moon.png */; };
 		FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */; };
 		FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05617E03E2C00F9C825 /* bamboo.png */; };
+		FA78E05C17E0428F00F9C825 /* ohshu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05B17E0428F00F9C825 /* ohshu.mp3 */; };
+		FA78E05E17E047E900F9C825 /* title.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05D17E047E900F9C825 /* title.mp3 */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
@@ -253,6 +255,8 @@
 		FA78E05017DF23F300F9C825 /* date_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon.png; path = Resources/images/character/date_moon.png; sourceTree = "<group>"; };
 		FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon_yellow.png; path = Resources/images/character/date_moon_yellow.png; sourceTree = "<group>"; };
 		FA78E05617E03E2C00F9C825 /* bamboo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bamboo.png; path = Resources/images/background/bamboo.png; sourceTree = "<group>"; };
+		FA78E05B17E0428F00F9C825 /* ohshu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ohshu.mp3; path = Resources/musics/BGM/ohshu.mp3; sourceTree = "<group>"; };
+		FA78E05D17E047E900F9C825 /* title.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = title.mp3; path = Resources/musics/BGM/title.mp3; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
 		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
@@ -716,6 +720,31 @@
 			name = date;
 			sourceTree = "<group>";
 		};
+		FA78E05817E0418100F9C825 /* Musics */ = {
+			isa = PBXGroup;
+			children = (
+				FA78E05A17E0418F00F9C825 /* SE */,
+				FA78E05917E0418800F9C825 /* BGM */,
+			);
+			name = Musics;
+			sourceTree = "<group>";
+		};
+		FA78E05917E0418800F9C825 /* BGM */ = {
+			isa = PBXGroup;
+			children = (
+				FA78E05D17E047E900F9C825 /* title.mp3 */,
+				FA78E05B17E0428F00F9C825 /* ohshu.mp3 */,
+			);
+			name = BGM;
+			sourceTree = "<group>";
+		};
+		FA78E05A17E0418F00F9C825 /* SE */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SE;
+			sourceTree = "<group>";
+		};
 		FAA67A3017DD533200AE872A /* samurai */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +963,7 @@
 		FAF3B2A317D736FA00F29EDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA78E05817E0418100F9C825 /* Musics */,
 				FAF29AC117D95CA400F512EE /* Images */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
@@ -1562,6 +1592,8 @@
 				FA78E05117DF23F300F9C825 /* date_moon.png in Resources */,
 				FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */,
 				FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */,
+				FA78E05C17E0428F00F9C825 /* ohshu.mp3 in Resources */,
+				FA78E05E17E047E900F9C825 /* title.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
