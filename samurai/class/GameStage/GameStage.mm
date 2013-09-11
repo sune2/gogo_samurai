@@ -51,15 +51,14 @@
 {
     if (_gameovered) return;
     _gameovered = YES;
-    _workLayer.touchEnabled = NO;
     SEL sel = @selector(didGameOver:);
     [self performSelector:sel withObject:[NSNumber numberWithBool:clear] afterDelay:0.3];
     // [self scheduleOnce:@selector(sel) delay:0.3];
 }
 
 - (void)didGameOver: (NSNumber*)clear {
-    [_workLayer pauseSchedulerAndActions];
-    [_bgLayer pauseSchedulerAndActions];
+    [self pauseWorkLayer];
+
     CCLayerColor* coloredLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 170)];
     [self addChild:coloredLayer z:2];
     
@@ -78,8 +77,21 @@
 - (void)resetButtonPushed {
     [[CCDirector sharedDirector] replaceScene:[GameStage scene]];
 }
+
 - (void)backToIntroLayer {
     [[CCDirector sharedDirector] replaceScene:[IntroLayer scene]];
+}
+
+- (void)pauseWorkLayer {
+    [_workLayer pauseSchedulerAndActions];
+    [_bgLayer pauseSchedulerAndActions];
+    _workLayer.touchEnabled = NO;
+}
+
+- (void)resumeWorkLayer {
+    [_workLayer resumeSchedulerAndActions];
+    [_bgLayer resumeSchedulerAndActions];
+    _workLayer.touchEnabled = YES;
 }
 
 

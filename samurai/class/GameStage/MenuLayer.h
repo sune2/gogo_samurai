@@ -17,6 +17,8 @@
 @protocol MenuLayerDelegate
 -(void)resetButtonPushed;
 -(void)backToIntroLayer;
+-(void)pauseWorkLayer;
+-(void)resumeWorkLayer;
 @end
 
 @interface MenuLayer : CCLayer

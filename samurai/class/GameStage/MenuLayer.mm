@@ -20,6 +20,7 @@
         _winSize = [[CCDirector sharedDirector] winSize];
         _lifeDangos = [[NSMutableArray alloc] init];
         [self createMenu];
+        [self addDango];
         
         [self scheduleUpdate];
     }
@@ -32,39 +33,70 @@
     // Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
 	
-	// Reset Button
-    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-         [_delegate resetButtonPushed];
-     }];
     
     // Score
     _scoreLabel = [self labelWithInteger:_score];
     
-    // Samurai Life
-    for (int i = 0; i < 3; i++) {
-        [_lifeDangos addObject:[self createDangoAt:(i+1) * 30]];
-    }
+//	// Reset Button
+//    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+//         [_delegate resetButtonPushed];
+//     }];
 
-    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"Top" block:^(id sender) {
-        [_delegate backToIntroLayer];
+//    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"Top" block:^(id sender) {
+//        [_delegate backToIntroLayer];
+//    }];
+    
+    CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[PAUSE]" block:^(id sender) {
+        [self expandMenu];
     }];
-    
 
-    CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
-    
+    // CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
+    CCMenu* menu = [CCMenu menuWithItems:_scoreLabel, menuLabel, nil];
 	[menu alignItemsVertically];
     
-	CGSize size = [[CCDirector sharedDirector] winSize];
-	[menu setPosition:ccp( size.width/2, size.height-50)];
+	[menu setPosition:ccp(_winSize.width/2, _winSize.height-50)];
 	
 	[self addChild: menu z:1];
     
+}
+
+- (void)expandMenu
+{
+    [_delegate pauseWorkLayer];
+    CCLayerColor* bg = [CCLayerColor layerWithColor:ccc4(0, 0 , 0, 150)];
+    [self addChild:bg z:10];
+    
+    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[RESTART]" block:^(id sender){
+        [_delegate resetButtonPushed];
+    }];
+    
+    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"[TOP]" block:^(id sender) {
+        [_delegate backToIntroLayer];
+    }];
+    
+    CCMenuItemLabel *resume = [CCMenuItemFont itemWithString:@"[UNPAUSE]" block:^(id sender) {
+        [_delegate resumeWorkLayer];
+        [bg removeFromParent];
+    }];
+    
+    CCMenu* menu = [CCMenu menuWithItems:top, reset, resume, nil];
+    [menu alignItemsVerticallyWithPadding:10];
+    [bg addChild:menu z:11];
+
+}
+
+- (void)addDango{
+    // Samurai Life
+    for (int i = 0; i < 3; i++) {
+        [_lifeDangos addObject:[self createDangoSpriteAt:(i+1) * 30]];
+    }
+
     for (CCSprite* dango in _lifeDangos) {
         [self addChild: dango];
     }
 }
 
-- (CCSprite *) createDangoAt: (float)X
+- (CCSprite *) createDangoSpriteAt: (float)X
 {
     CCSprite* ret = [CCSprite spriteWithFile:@"dango.gif"];
     ret.scale = 64 / ret.contentSize.width;

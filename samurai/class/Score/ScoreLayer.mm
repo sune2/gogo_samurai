@@ -47,7 +47,7 @@
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < [_scores count]; i++) {
-        CCMenuItemFont* tmp = [CCMenuItemFont itemWithString:[self rankersScore:i]];
+        CCMenuItemLabel* tmp = [CCMenuItemFont itemWithString:[self rankersScore:i]];
         [arr addObject:tmp];
     }
     CCMenu* menu = [CCMenu menuWithArray:arr];
@@ -56,7 +56,7 @@
     [menu alignItemsVertically];
     
     [self addChild:menu];
-    CCLOG(@"%fx%f", menu.contentSize.height, menu.contentSize.width);
+    
 }
 
 - (void)addMenu
