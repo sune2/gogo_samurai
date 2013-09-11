@@ -44,6 +44,7 @@
         _gameovered = YES;
         [self gameover:NO];
     } else if (_workLayer.clear) {
+        _gameovered = YES;
         [self gameover:YES];
     }
 }
