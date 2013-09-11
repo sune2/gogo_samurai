@@ -112,6 +112,7 @@
     
     
     [self updateShuriken:delta];
+    [self updateMuteki:delta];
 
     b2Vec2 pos = self.b2Body->GetPosition();
 

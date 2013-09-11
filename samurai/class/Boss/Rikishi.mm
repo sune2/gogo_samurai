@@ -22,6 +22,7 @@
     res.scale = 91/res.contentSize.width;
     res.stopPos = 300;
     res.moveTime = 5;
+    res.hp = 3;
     return res;
 }
 
@@ -193,6 +194,7 @@
     
     [self updateShiko:delta];
     [self updateGanko:delta];
+    [self updateMuteki:delta];
     
     b2Vec2 pos = self.b2Body->GetPosition();
     

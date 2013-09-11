@@ -16,10 +16,6 @@
     int _gankoState;
     ccTime _waiting;
     int _repNum;
-    int _mutekiState;
-    ccTime _mutekiWaiting;
-    CGFloat _mutekiPosX;
-    CGPoint _initPos;
     
     CCSprite* _yellowMoon;
 }

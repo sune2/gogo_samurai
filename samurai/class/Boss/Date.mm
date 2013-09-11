@@ -59,7 +59,9 @@
 }
 
 - (BOOL)canGanko {
-    return _earthquakeState == 0 && _gankoState == 0;
+    if (_gankoState) return NO;
+    //if (_earthquakeState) return NO;
+    return YES;
 }
 
 - (void)makeGanko {
@@ -73,13 +75,14 @@
 }
 
 - (BOOL)canEarthquake {
-    return _earthquakeState == 0 && _gankoState == 0;
+//    if (_gankoState) return NO;
+    if (_earthquakeState) return NO;
+    return YES;
 }
 
 // 角速度1で足をあげる
 // 80度まで上がったら足をおろして地震攻撃
 - (void)makeEarthquake {
-    return;
     if ([self canEarthquake]) {
         _earthquakeState = 1;
     }
@@ -187,68 +190,6 @@
     }
 }
 
-- (void)updateMuteki:(ccTime)delta {
-    switch (_mutekiState) {
-        case 1:
-        {
-            CCParticleSystemQuad* blood = [MyParticle particleBlood];
-            blood.position = ccp(self.b2Body->GetWorldCenter().x * PTM_RATIO,
-                                 self.b2Body->GetWorldCenter().y * PTM_RATIO);
-            [[self parent] addChild:blood];
-            
-            self.b2Body->SetLinearVelocity(b2Vec2(6,self.b2Body->GetLinearVelocity().y));
-            _mutekiWaiting -= delta;
-            if (_mutekiWaiting < 0) {
-                if (self.hp > 0) {
-                    [self runAction:[CCBlink actionWithDuration:0.3+0.1+2 blinks:10]];
-                } else {
-                    self.visible = NO;
-                }
-                _mutekiState = 2;
-                _mutekiWaiting = 0.3;
-            }
-        }
-            break;
-        case 2:
-        {
-            self.b2Body->SetLinearVelocity(b2Vec2(-2,self.b2Body->GetLinearVelocity().y));
-            _mutekiWaiting -= delta;
-            if (_mutekiWaiting < 0) {
-                self.position = ccp(_mutekiPosX, self.position.y);
-                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-                self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-                _mutekiState = 3;
-                _mutekiWaiting = 0.1;
-            }
-        }
-            break;
-        case 3:
-        {
-            self.position = ccp(_mutekiPosX, self.position.y);
-            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-            self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-            
-            _mutekiWaiting -= delta;
-            if (_mutekiWaiting < 0) {
-                _mutekiState = 4;
-                _mutekiWaiting = 2;
-            }
-            
-        }
-            break;
-        case 4:
-        {
-            _mutekiWaiting -= delta;
-            if (_mutekiWaiting < 0) {
-                _mutekiState = 0;
-            }
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 - (void)update:(ccTime)delta {
     if (rand() % 60 == 0) {
         if (rand() % 2) {
@@ -299,6 +240,7 @@
         _mutekiState = 1;
         _mutekiWaiting = 0.1;
         _mutekiPosX = self.position.x;
+        
     }
 }
 

@@ -22,6 +22,11 @@
     ccTime _curTime;
     int _eventIndex;
     std::vector<b2Body*> _bodies;
+    
+    int _mutekiState;
+    ccTime _mutekiWaiting;
+    CGFloat _mutekiPosX;
+    CGPoint _initPos;
 }
 
 @property(nonatomic, strong) NSString* name;
@@ -36,6 +41,8 @@
 - (int) bodiesCount;
 - (b2Body*)getBodyAt:(NSInteger)index;
 - (BOOL)isEarthquaking;
+- (void)updateMuteki:(ccTime)delta;
+- (BOOL)isMuteki;
 
 @end
 
