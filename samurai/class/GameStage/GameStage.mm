@@ -40,17 +40,17 @@
 - (void)update: (ccTime)dt
 {
     [self manageMenu];
-    if (_workLayer.life == 0 && !_gameovered) {
-        _gameovered = YES;
+    if (_workLayer.life == 0) {
         [self gameover:NO];
     } else if (_workLayer.clear) {
-        _gameovered = YES;
         [self gameover:YES];
     }
 }
 
 - (void)gameover: (BOOL)clear
 {
+    if (!_gameovered) return;
+    _gameovered = YES;
     _workLayer.touchEnabled = NO;
     SEL sel = @selector(didGameOver:);
     [self performSelector:sel withObject:[NSNumber numberWithBool:clear] afterDelay:0.3];
