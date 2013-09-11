@@ -126,7 +126,7 @@
             // サムライが地面と当たったときの処理
         }
     }
-    [self removeObjects:arr];
+    [self removeProjectiles:arr];
 }
 
 - (void)enemyTouchingObj
@@ -171,7 +171,7 @@
         if (damaged) {
             [damagedEnemies addObject:enemy];
         }
-        [self removeObjects:vanishedProjectiles];
+        [self removeProjectiles:vanishedProjectiles];
     }
     for (Enemy* enemy in damagedEnemies) {
         [enemy damaged];
@@ -200,9 +200,9 @@
     }
 }
 
--(void)removeObjects: (NSMutableArray*) object
+-(void)removeProjectiles: (NSMutableArray*) projectiles
 {
-    for (CCPhysicsSprite* sprite in object) {
+    for (Projectile* sprite in projectiles) {
         if ([_bullets containsObject:sprite]) {
             [sprite removeFromParent];
             [_bullets removeObject:sprite];
@@ -231,14 +231,6 @@
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
-
-    NSMutableArray* arr = [[NSMutableArray alloc] init];;
-    for (Enemy* enemy in _enemies) {
-        if ([self checkOutOfScreen:enemy]) {
-            [arr addObject:enemy];
-        }
-    }
-    [self removeObjects:arr];
 
     [self samuraiTouchObj];
     [self enemyTouchingObj];
@@ -359,7 +351,7 @@
 	
 	// bottom
 	
-	groundBox.Set(b2Vec2(-10,0), b2Vec2(s.width/PTM_RATIO+10,0));
+	groundBox.Set(b2Vec2(-30,0), b2Vec2(s.width/PTM_RATIO+30,0));
 	b2Fixture* fixture = groundBody->CreateFixture(&groundBox,0);
     CCNode* groundNode = [[CCNode alloc] init];
     groundNode.tag = 10;
@@ -383,6 +375,27 @@
 	world->DrawDebugData();
 	
 	kmGLPopMatrix();
+    
+    b2Vec2 vertices[4];
+
+    for (Enemy* enemy in _enemies) {
+//        if ([enemy.name isEqualToString:@"rikisi_leg"]) {
+            Rikishi* rikishi = (Rikishi*)enemy;
+//            b2Vec2 origin((rikishi.position.x + rikishi.karada.position.x - rikishi.karada.anchorPoint.x)/PTM_RATIO,
+//                          (rikishi.position.y + rikishi.karada.position.y - rikishi.karada.anchorPoint.y)/PTM_RATIO);
+            b2Vec2 origin((rikishi.position.x - rikishi.anchorPoint.x)/PTM_RATIO,
+                          (rikishi.position.y - rikishi.anchorPoint.y)/PTM_RATIO);
+
+            b2Vec2 size(rikishi.contentSize.width * rikishi.scale / PTM_RATIO,
+                        rikishi.contentSize.height * rikishi.scale / PTM_RATIO);
+            vertices[0] = origin;
+            vertices[1] = origin + b2Vec2(size.x, 0);
+            vertices[2] = origin + size;
+            vertices[3] = origin + b2Vec2(0,size.y);
+//            CCLOG(@"(%f,%f) - (%f,%f)", origin.x, origin.y, size.x, size.y);
+            m_debugDraw->DrawPolygon(vertices, 4, b2Color(1, 0, 0));
+//        }
+    }
 
 }
 
@@ -402,5 +415,14 @@
     [enemy removeFromParent];
     self.score += 1000;
 }
+
+- (void)enemyVanished:(Enemy *)enemy {
+    CCLOG(@"enemy vanish!! %@", enemy.name);
+    assert([_enemies containsObject:enemy]);
+    [_enemies removeObject:enemy];
+    [enemy removeFromParent];    
+}
+
+
 
 @end

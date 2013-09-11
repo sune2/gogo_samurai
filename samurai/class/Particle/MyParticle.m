@@ -38,19 +38,19 @@
     res.startSpin = res.startSpinVar = 0;
     res.endSpin = res.endSpinVar = 0;
     res.emissionRate = 100;
-    res.duration = 0.2;
+    res.duration = 0.1;
     res.totalParticles = 150;
     res.life = 0.3; res.lifeVar = 0.329;
     res.startSize = 32; res.startSizeVar = 32;
     res.endSize = 0; res.endSizeVar = 0;
     res.angle = 0; res.angleVar = 141;
-    res.speed = 260; res.speedVar = 220;
-    res.gravity = ccp(0,-1000);
+    res.speed = 200; res.speedVar = 120;
+    res.gravity = ccp(0,-800);
     res.radialAccel = 0; res.radialAccelVar = 0;
     res.tangentialAccel = 309; res.tangentialAccelVar = 0;
     res.posVar = ccp(0,0);
     res.startColor = res.endColor = ccc4f(0.0, 0.0, 0., 1);
-    res.startColorVar = res.endColorVar = ccc4f(0, 0, 0, 1);
+    res.startColorVar = res.endColorVar = ccc4f(0, 0, 0, 0);
     res.autoRemoveOnFinish = YES;
     
     ccBlendFunc func;
