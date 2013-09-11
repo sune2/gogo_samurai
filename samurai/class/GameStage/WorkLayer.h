@@ -37,5 +37,5 @@
 
 @property(assign) int score;
 @property(assign) int life;
-
+@property(readonly) BOOL clear;
 @end

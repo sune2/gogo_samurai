@@ -40,22 +40,26 @@
 {
     [self manageMenu];
     if (_workLayer.life == 0 && _goLayer == nil) {
-        [self gameover];
+        [self gameover:NO];
+    } else if (_workLayer.clear) {
+        [self gameover:YES];
     }
 }
 
-- (void)gameover
+- (void)gameover: (BOOL)clear
 {
     _workLayer.touchEnabled = NO;
+    SEL sel = @selector(didGameOver:);
+    [self performSelector:sel withObject:[NSNumber numberWithBool:YES]];
     [self scheduleOnce:@selector(didGameOver) delay:0.3];
 }
 
-- (void)didGameOver {
+- (void)didGameOver: (NSNumber*)clear {
     [_workLayer pauseSchedulerAndActions];
     CCLayerColor* coloredLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 170)];
     [self addChild:coloredLayer z:2];
     
-    _goLayer = [GameoverLayer nodeWithScore:_workLayer.score result:NO];
+    _goLayer = [GameoverLayer nodeWithScore:_workLayer.score result:[clear boolValue]];
     _goLayer.delegate = self;
     [self addChild:_goLayer z:3];
         

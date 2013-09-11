@@ -396,6 +396,7 @@
 
 
 - (void)enemyDied:(Enemy *)enemy {
+    if (enemy.tag == SpriteTagBoss) _clear = YES;
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
     [enemy removeFromParent];
