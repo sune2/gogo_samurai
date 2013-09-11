@@ -28,6 +28,8 @@
     ccTime _mutekiWaiting;
     CGFloat _mutekiPosX;
     CGPoint _initPos;
+    
+    b2Body* _mainBody; // 真ん中になりそうなbody 血が出る
 }
 
 @property(nonatomic, strong) NSString* name;

@@ -37,6 +37,8 @@
     _karadaBody->SetUserData(self);
     _bodies.push_back(_karadaBody);
     
+    _mainBody = _karadaBody;
+    
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"date_main"];
     [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"date_main"]];
     
@@ -114,7 +116,7 @@
             [[self parent] addChild:part z:3];
             
             _earthquakeState = 4;
-            _waiting = 0.4;
+            _waiting = 0.2;
         }
             break;
         case 4:

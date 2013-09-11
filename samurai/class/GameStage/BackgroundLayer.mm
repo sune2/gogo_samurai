@@ -8,6 +8,8 @@
 
 #import "BackgroundLayer.h"
 
+#define kBackgroundWidth 250
+
 @implementation BackgroundLayer
 -(id)init
 {
@@ -15,18 +17,16 @@
     if (self) {
         self.touchEnabled = NO;
 //        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        for (int i=0; i<3; i++) {
-            _bgSprite[i] = [CCSprite spriteWithFile:@"bg.jpg"];
+        for (int i=0; i<4; i++) {
+            _bgSprite[i] = [CCSprite spriteWithFile:@"bamboo.png"];
             _bgSprite[i].anchorPoint = ccp(0,0);
-            _bgSprite[i].position = ccp(640*i, 0);
-            _bgSprite[i].scale = 640.0 / _bgSprite[i].contentSize.width;
-//            [self addChild:_bgSprite[i]];
-
-            CCAction* move = [CCMoveTo actionWithDuration:3*(i+1) position:ccp(-640, 0)];
-            [_bgSprite[i] runAction:move];
+            _bgSprite[i].position = ccp((kBackgroundWidth-30)*i, 0);
+            _bgSprite[i].scale = MIN(480.0 / _bgSprite[i].contentSize.height,
+                                     kBackgroundWidth / _bgSprite[i].contentSize.width);
+            [self addChild:_bgSprite[i]];
         }
         CCLayerColor *background = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4FFromccc3B(ccGRAY))];
-        [self addChild:background];
+        [self addChild:background z:-1];
         // 適切な画像が見つかったらコメント外す
         // 辺の長さ2^nの正方画像
         // ccTexParams params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
@@ -44,12 +44,10 @@
 }
 
 - (void)update:(ccTime)delta {
-    for (int i=0; i<3; i++) {
-        if (_bgSprite[i].position.x + 640 <= 0) {
-            _bgSprite[i].position = ccp(_bgSprite[(i+2)%3].position.x + 640,
-                                        _bgSprite[i].position.y);
-            CCAction* move = [CCMoveTo actionWithDuration:9 position:ccp(-640, 0)];
-            [_bgSprite[i] runAction:move];
+    for (int i=0; i<4; i++) {
+        _bgSprite[i].position = ccp(_bgSprite[i].position.x-delta*5*32, _bgSprite[i].position.y);
+        if (_bgSprite[i].position.x < -kBackgroundWidth) {
+            _bgSprite[i].position = ccp((kBackgroundWidth-30)*3-30, 0);
         }
     }
 }

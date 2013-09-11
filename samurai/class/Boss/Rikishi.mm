@@ -48,6 +48,7 @@
     _karadaBody = world->CreateBody(&karadaDef);
     _karadaBody->SetUserData(self);
     
+    _mainBody = _karadaBody;
     _bodies.push_back(_karadaBody);
 //    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
     
@@ -118,7 +119,7 @@
             [[self parent] addChild:part z:3];
             
             _shikoState = 4;
-            _waiting = 0.4;
+            _waiting = 0.2;
         }
             break;
         case 4:

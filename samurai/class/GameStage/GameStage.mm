@@ -59,6 +59,7 @@
 
 - (void)didGameOver: (NSNumber*)clear {
     [_workLayer pauseSchedulerAndActions];
+    [_bgLayer pauseSchedulerAndActions];
     CCLayerColor* coloredLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 170)];
     [self addChild:coloredLayer z:2];
     

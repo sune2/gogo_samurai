@@ -32,6 +32,7 @@
 
 	b2Body *body = world->CreateBody(&bodyDef);
 
+    _mainBody = body;
     body->SetUserData(self);
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:body forShapeName:self.name];
     [self setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:self.name]];
@@ -72,8 +73,8 @@
         case 1:
         {
             CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
-            blood.position = ccp(self.b2Body->GetWorldCenter().x * PTM_RATIO,
-                                 self.b2Body->GetWorldCenter().y * PTM_RATIO);
+            blood.position = ccp(_mainBody->GetWorldCenter().x * PTM_RATIO,
+                                 _mainBody->GetWorldCenter().y * PTM_RATIO);
             [[self parent] addChild:blood];
             
             _mutekiWaiting -= delta;

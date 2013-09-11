@@ -14,7 +14,7 @@
 
 @interface BackgroundLayer : CCLayer
 {
-    CCSprite* _bgSprite[3];
+    CCSprite* _bgSprite[5];
 }
 
 @end
