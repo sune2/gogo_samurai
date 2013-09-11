@@ -114,6 +114,8 @@
     [self updateShuriken:delta];
     [self updateMuteki:delta];
 
+    [self checkOutOfScreen];
+    
     b2Vec2 pos = self.b2Body->GetPosition();
 
     if (pos.y < 1) {

@@ -47,6 +47,7 @@
 
 - (void)update:(ccTime)delta {
     [self updateMuteki:delta];
+    [self checkOutOfScreen];
     b2Vec2 pos = self.b2Body->GetPosition();
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
@@ -54,6 +55,17 @@
         self.b2Body->SetTransform(b2Vec2(pos.x,0), self.b2Body->GetAngle());
     }
 }
+
+- (void)checkOutOfScreen {
+    if (isOutOfScreen(CGRectMake(self.position.x-self.anchorPoint.x,
+                                 self.position.y-self.anchorPoint.y,
+                                 self.contentSize.width*self.scale,
+                                 self.contentSize.height*self.scale))) {
+        
+        [self.delegate enemyVanished:self];
+    }
+}
+
 
 - (void)updateMuteki:(ccTime)delta {
     switch (_mutekiState) {
@@ -64,7 +76,6 @@
                                  self.b2Body->GetWorldCenter().y * PTM_RATIO);
             [[self parent] addChild:blood];
             
-            self.b2Body->SetLinearVelocity(b2Vec2(6,self.b2Body->GetLinearVelocity().y));
             _mutekiWaiting -= delta;
             if (_mutekiWaiting < 0) {
                 if (self.hp > 0) {
@@ -79,23 +90,15 @@
             break;
         case 2:
         {
-            self.b2Body->SetLinearVelocity(b2Vec2(-2,self.b2Body->GetLinearVelocity().y));
             _mutekiWaiting -= delta;
             if (_mutekiWaiting < 0) {
-                self.position = ccp(_mutekiPosX, self.position.y);
-                self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-//                self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
                 _mutekiState = 3;
                 _mutekiWaiting = 0.1;
             }
         }
             break;
         case 3:
-        {
-            self.position = ccp(_mutekiPosX, self.position.y);
-            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-//            self.karadaBody->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
-            
+        {            
             _mutekiWaiting -= delta;
             if (_mutekiWaiting < 0) {
                 _mutekiState = 4;
@@ -122,16 +125,6 @@
     self.world->DestroyBody(self.b2Body);
 }
 
-//- (void)damaged {
-//    CCParticleSystemQuad* blood = [MyParticle particleEnemyBlood];
-//    blood.position = ccp(self.b2Body->GetWorldCenter().x*PTM_RATIO,
-//                         self.b2Body->GetWorldCenter().y*PTM_RATIO);
-//    [[self parent] addChild:blood];
-//    self.hp--;
-//    if (self.hp == 0) {
-//        [self.delegate enemyDied:self];
-//    }
-//}
 - (void)damaged {
     if (_mutekiState == 0) {
         self.hp--;

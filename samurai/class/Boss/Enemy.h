@@ -15,6 +15,7 @@
 
 @protocol EnemyProtocol
 -(void) enemyDied:(Enemy*)enemy;
+-(void) enemyVanished:(Enemy*)enemy;
 @end
 
 @interface Enemy : CCPhysicsSprite
@@ -43,6 +44,7 @@
 - (BOOL)isEarthquaking;
 - (void)updateMuteki:(ccTime)delta;
 - (BOOL)isMuteki;
+- (void)checkOutOfScreen;
 
 @end
 

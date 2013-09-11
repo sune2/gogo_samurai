@@ -22,3 +22,6 @@ typedef enum {
 } SpriteTag;
 
 BOOL isSpriteEnemy(CCSprite* sprite);
+
+BOOL isOutOfScreen(CGRect rect);
+

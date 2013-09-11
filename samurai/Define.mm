@@ -11,3 +11,14 @@
 BOOL isSpriteEnemy(CCSprite* sprite) {
     return sprite.tag == SpriteTagZako || sprite.tag == SpriteTagBoss;
 }
+
+BOOL isOutOfScreen(CGRect rect) {
+    CGSize _windowSize = [CCDirector sharedDirector].winSize;
+    CGPoint pos = rect.origin;
+    CGSize size = rect.size;
+    BOOL res = pos.x < -size.width - 20 ||
+    pos.y < -size.height - 20 ||
+    _windowSize.width + 20 < pos.x ||
+    _windowSize.height + 20 < pos.y;
+    return res;
+}

@@ -54,7 +54,7 @@
     _yellowMoon = [CCSprite spriteWithFile:@"date_moon_yellow.png"];
     _yellowMoon.anchorPoint = ccp(0,0);
     _yellowMoon.scale = 0.7;
-    [self addChild:_yellowMoon z:-2];
+    [self.karada addChild:_yellowMoon z:-2];
     _yellowMoon.opacity = 0;
 }
 
@@ -131,10 +131,13 @@
 
 
 - (void)updateGanko:(ccTime)delta {
+    if (_gankoState) {
+        _yellowMoon.position = ccp(10/self.scale,120/self.scale);//self.position;
+    }
     switch (_gankoState) {
         case 1:
         {
-            _yellowMoon.position = ccp(10/self.scale,120/self.scale);//self.position;
+
             //            yellow_moon.scale = 2;// * 219 / yellow_moon.contentSize.width;
 
             [_yellowMoon runAction:[CCFadeIn actionWithDuration:0.5]];
@@ -221,6 +224,8 @@
     [self updateEarthquake:delta];
     [self updateGanko:delta];
     [self updateMuteki:delta];
+    
+    // [self checkOutOfScreen];
 
     // 体の位置
     b2Body* b = _karadaBody;

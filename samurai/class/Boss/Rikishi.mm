@@ -22,7 +22,7 @@
     res.scale = 91/res.contentSize.width;
     res.stopPos = 300;
     res.moveTime = 5;
-    res.hp = 3;
+    res.hp = 2;
     return res;
 }
 
@@ -189,6 +189,7 @@
     }
 }
 
+
 - (void)update:(ccTime)delta {
     _curTime += delta;
     
@@ -196,6 +197,8 @@
     [self updateGanko:delta];
     [self updateMuteki:delta];
     
+    [self checkOutOfScreen];
+        
     b2Vec2 pos = self.b2Body->GetPosition();
     
     if (pos.y < 1) {

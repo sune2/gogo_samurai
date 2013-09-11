@@ -309,6 +309,7 @@
 }
 
 - (void)damaged {
+//    return;
     if (_mutekiState == 0) {
         self.hp--;
         _mutekiState = 1;
