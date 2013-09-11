@@ -11,6 +11,7 @@
 #define PTM_RATIO 32
 #define kGravityPower -30.0
 #define kLeftSpeed 5
+#define kBackgroundColor ccc4BFromccc4F(ccc4f(0.45,0.45,0.45,1))
 
 typedef enum {
     SpriteTagSamurai = 1,

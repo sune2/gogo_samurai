@@ -26,6 +26,11 @@
 		FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05617E03E2C00F9C825 /* bamboo.png */; };
 		FA78E05C17E0428F00F9C825 /* ohshu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05B17E0428F00F9C825 /* ohshu.mp3 */; };
 		FA78E05E17E047E900F9C825 /* title.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05D17E047E900F9C825 /* title.mp3 */; };
+		FA78E06017E057E400F9C825 /* sakura.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05F17E057E400F9C825 /* sakura.png */; };
+		FA78E06217E066E400F9C825 /* petal.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06117E066E400F9C825 /* petal.png */; };
+		FA78E06417E071FB00F9C825 /* moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06317E071FB00F9C825 /* moon.png */; };
+		FA78E06617E073AE00F9C825 /* fullmoon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06517E073AE00F9C825 /* fullmoon.png */; };
+		FA78E06817E078D300F9C825 /* fullmoon2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06717E078D300F9C825 /* fullmoon2.png */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
@@ -257,6 +262,11 @@
 		FA78E05617E03E2C00F9C825 /* bamboo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bamboo.png; path = Resources/images/background/bamboo.png; sourceTree = "<group>"; };
 		FA78E05B17E0428F00F9C825 /* ohshu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ohshu.mp3; path = Resources/musics/BGM/ohshu.mp3; sourceTree = "<group>"; };
 		FA78E05D17E047E900F9C825 /* title.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = title.mp3; path = Resources/musics/BGM/title.mp3; sourceTree = "<group>"; };
+		FA78E05F17E057E400F9C825 /* sakura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sakura.png; path = Resources/images/sakura.png; sourceTree = "<group>"; };
+		FA78E06117E066E400F9C825 /* petal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = petal.png; path = Resources/images/petal.png; sourceTree = "<group>"; };
+		FA78E06317E071FB00F9C825 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moon.png; path = Resources/images/moon.png; sourceTree = "<group>"; };
+		FA78E06517E073AE00F9C825 /* fullmoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullmoon.png; path = Resources/images/fullmoon.png; sourceTree = "<group>"; };
+		FA78E06717E078D300F9C825 /* fullmoon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullmoon2.png; path = Resources/images/fullmoon2.png; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
 		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
@@ -881,7 +891,12 @@
 			isa = PBXGroup;
 			children = (
 				FAA67A2E17DD528700AE872A /* dango.gif */,
+				FA78E05F17E057E400F9C825 /* sakura.png */,
 				FAAE772B17D9BA6F007D4770 /* fire.png */,
+				FA78E06117E066E400F9C825 /* petal.png */,
+				FA78E06317E071FB00F9C825 /* moon.png */,
+				FA78E06717E078D300F9C825 /* fullmoon2.png */,
+				FA78E06517E073AE00F9C825 /* fullmoon.png */,
 				FAF29AC317D95E6600F512EE /* character */,
 				FAF29AC217D95E5400F512EE /* background */,
 			);
@@ -1594,6 +1609,11 @@
 				FA78E05717E03E2C00F9C825 /* bamboo.png in Resources */,
 				FA78E05C17E0428F00F9C825 /* ohshu.mp3 in Resources */,
 				FA78E05E17E047E900F9C825 /* title.mp3 in Resources */,
+				FA78E06017E057E400F9C825 /* sakura.png in Resources */,
+				FA78E06217E066E400F9C825 /* petal.png in Resources */,
+				FA78E06417E071FB00F9C825 /* moon.png in Resources */,
+				FA78E06617E073AE00F9C825 /* fullmoon.png in Resources */,
+				FA78E06817E078D300F9C825 /* fullmoon2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

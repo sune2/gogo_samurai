@@ -41,20 +41,28 @@
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
-		CCSprite *background;
-		
-		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-			background = [CCSprite spriteWithFile:@"bg.jpg"];
-			background.rotation = 0;
-            background.scale = 640/background.contentSize.width;
-		} else {
-			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
-		}
-		background.position = ccp(size.width/2, size.height/2);
-		
+		CCLayerColor* background = [CCLayerColor layerWithColor:kBackgroundColor];
+        
 		// add the label as a child to this Layer
-		[self addChild: background];
+		[self addChild: background z:-3];
         [self createMenu];
+        
+        //BGM開始
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
+        
+        [self scheduleUpdate];
+        
+        // 桜
+        CCParticleSystemQuad* petal = [MyParticle particleCherryPetal];
+        petal.position = ccp(size.width/2, size.height);
+        [self addChild:petal];
+        
+        // 月
+        CCSprite* moon = [CCSprite spriteWithFile:@"fullmoon.png"];
+        moon.position = ccp(440, 250);
+        moon.scale = 0.3 * 800 / moon.contentSize.width;
+        moon.opacity = 128;
+        [self addChild:moon z:-2];
 	}
 	
 	return self;
@@ -82,9 +90,9 @@
 		[[CCDirector sharedDirector] pushScene: [ScoreBoard scene]];
 	}];
     
-    title.color = ccBLACK;
-    enterButtle.color = ccBLACK;
-    enterScore.color = ccBLACK;
+    title.color = ccWHITE;
+    enterButtle.color = ccWHITE;
+    enterScore.color = ccWHITE;
     
     CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
     CCMenu *menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
@@ -102,16 +110,17 @@
 	[self addChild: menu z:1];
 }
 
--(void) onEnter
-{
-	[super onEnter];
-    
-	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
-    
 
-    
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
-}
+//- (void)update:(ccTime)delta {
+//    if (rand() % (60*3) == 0) {
+//        CCParticleSystemQuad* cherry = [MyParticle particleCherryBlossom];
+//        
+//        CGSize size = [[CCDirector sharedDirector] winSize];
+//        
+//        cherry.position = ccp(rand()%(int)size.width, rand()%(int)size.height);
+//        [self addChild:cherry];
+//    }
+//}
 
 + (void)initialize
 {

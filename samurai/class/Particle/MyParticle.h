@@ -15,5 +15,7 @@
 + (CCParticleSystemQuad*) particleGanko;
 + (CCParticleSystemQuad*) particleDash;
 + (CCParticleSystemQuad*) particleEarthquake;
++ (CCParticleSystemQuad*) particleCherryBlossom;
++ (CCParticleSystemQuad*) particleCherryPetal;
 
 @end
