@@ -26,6 +26,9 @@
     NSMutableArray* _enemies;
     NSMutableArray* _bullets;
     
+    NSMutableSet* _damagedEnemies;
+    NSMutableSet* _vanishedProjectiles;
+    
     CGPoint _touchPos;
     BOOL _didCommand;
 

@@ -96,8 +96,6 @@
 
 - (void) samuraiTouchObj
 {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
-    
     for (b2ContactEdge* contactEdge = _samurai.b2Body->GetContactList();
          contactEdge;
          contactEdge = contactEdge->next) {
@@ -119,23 +117,18 @@
                     [projectile reflect];
                 } else {
                     [_samurai damaged];
-                    [arr addObject:projectile];
+                    [_vanishedProjectiles addObject:projectile];
                 }
             }
         } else if (sprite.tag == SpriteTagGround) {
             // サムライが地面と当たったときの処理
         }
     }
-    [self removeProjectiles:arr];
 }
 
 - (void)enemyTouchingObj
 {
-    NSMutableArray* damagedEnemies = [[NSMutableArray alloc] init];
-
-
     for (Enemy* enemy in _enemies) {
-        NSMutableArray* vanishedProjectiles = [[NSMutableArray alloc] init];
         BOOL damaged = NO;
 
         for (int i=0; i<[enemy bodiesCount]; ++i) {
@@ -152,7 +145,7 @@
                     Projectile* projectile = (Projectile *)sprite;
                     if (projectile.owner == ProjectileOwnerSamurai) {
                         damaged = YES;
-                        [vanishedProjectiles addObject:projectile];
+                        [_vanishedProjectiles addObject:projectile];
                     }
                 } else if (sprite.tag == SpriteTagKatana) {
                     if ([_samurai isDashing] || [_samurai isCountering]) {
@@ -166,15 +159,9 @@
         if ([_samurai onGround] && [enemy isEarthquaking]) {
             [_samurai damaged];
         }
-
-        
         if (damaged) {
-            [damagedEnemies addObject:enemy];
+            [_damagedEnemies addObject:enemy];
         }
-        [self removeProjectiles:vanishedProjectiles];
-    }
-    for (Enemy* enemy in damagedEnemies) {
-        [enemy damaged];
     }
 }
 
@@ -200,13 +187,11 @@
     }
 }
 
--(void)removeProjectiles: (NSMutableArray*) projectiles
+-(void)removeProjectiles: (NSMutableSet*) projectiles
 {
     for (Projectile* sprite in projectiles) {
-        if ([_bullets containsObject:sprite]) {
-            [sprite removeFromParent];
-            [_bullets removeObject:sprite];
-        }
+        [sprite removeFromParent];
+        [_bullets removeObject:sprite];
     }
 }
 
@@ -232,9 +217,17 @@
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
 
+    _damagedEnemies = [[NSMutableSet alloc] init];
+    _vanishedProjectiles = [[NSMutableSet alloc] init];
+    
     [self samuraiTouchObj];
     [self enemyTouchingObj];
     [self katanaTouchingObj];
+    
+    [self removeProjectiles:_vanishedProjectiles];
+    for (Enemy* enemy in _damagedEnemies) {
+        [enemy damaged];
+    }
 
     _life = _samurai.hp;
     _score += 1;
