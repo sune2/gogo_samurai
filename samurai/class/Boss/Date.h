@@ -8,6 +8,7 @@
 
 #import "Enemy.h"
 #import "Projectile.h"
+#import "Samurai.h"
 
 @interface Date : Enemy
 {
@@ -18,10 +19,14 @@
     int _mutekiState;
     ccTime _mutekiWaiting;
     CGFloat _mutekiPosX;
+    CGPoint _initPos;
+    
+    CCSprite* _yellowMoon;
 }
 
 @property (nonatomic, strong) CCSprite* karada;
 @property (nonatomic, assign) b2Body* karadaBody;
+@property (nonatomic, assign) Samurai* samurai;
 
 + (Date*)date;
 

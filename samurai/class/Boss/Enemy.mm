@@ -79,4 +79,9 @@
 - (b2Body*)getBodyAt:(NSInteger)index{
     return _bodies[index];
 }
+
+- (BOOL)isEarthquaking {
+    return NO;
+}
+
 @end

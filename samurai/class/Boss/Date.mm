@@ -47,7 +47,15 @@
     b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
     
     joint->EnableLimit(YES);
-    joint->SetLimits(CC_DEGREES_TO_RADIANS(-70.0), CC_DEGREES_TO_RADIANS(-1.0) );
+    joint->SetLimits(CC_DEGREES_TO_RADIANS(-60.0), CC_DEGREES_TO_RADIANS(-1.0) );
+    
+    _initPos = point;
+    
+    _yellowMoon = [CCSprite spriteWithFile:@"date_moon_yellow.png"];
+    _yellowMoon.anchorPoint = ccp(0,0);
+    _yellowMoon.scale = 0.7;
+    [self addChild:_yellowMoon z:-2];
+    _yellowMoon.opacity = 0;
 }
 
 - (BOOL)canGanko {
@@ -71,6 +79,7 @@
 // 角速度1で足をあげる
 // 80度まで上がったら足をおろして地震攻撃
 - (void)makeEarthquake {
+    return;
     if ([self canEarthquake]) {
         _earthquakeState = 1;
     }
@@ -122,13 +131,11 @@
     switch (_gankoState) {
         case 1:
         {
-            CCParticleSystemQuad* part = [MyParticle particleGanko];
-            part.position = ccp(self.position.x+40, self.position.y+60);
-            [[self parent] addChild:part z:3];
-            
-            CCParticleSystemQuad* part2 = [MyParticle particleGanko];
-            part2.position = ccp(self.position.x+50, self.position.y+60);
-            [[self parent] addChild:part2 z:3];
+            _yellowMoon.position = ccp(10/self.scale,120/self.scale);//self.position;
+            //            yellow_moon.scale = 2;// * 219 / yellow_moon.contentSize.width;
+
+            [_yellowMoon runAction:[CCFadeIn actionWithDuration:0.5]];
+//            _yellowMoon.visible = YES;
             
             _waiting = 1;
             _gankoState = 2;
@@ -145,10 +152,16 @@
             break;
         case 3:
         {
-            Projectile* ganko = [Projectile projectileWithName:@"ganko"];
-            [ganko initBodyWithWorld:self.world at:ccp(self.position.x+20, self.position.y+65)];
-            ganko.scale = self.scale;
-            ganko.linearVelocity = b2Vec2(-10,0);
+            Projectile* ganko = [Projectile projectileWithName:@"date_moon"];
+            [ganko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
+            ganko.rotation = self.rotation;
+            ganko.scale = 219.0 / ganko.contentSize.width;
+            
+            b2Vec2 toSamurai = _samurai.b2Body->GetWorldCenter() - ganko.b2Body->GetWorldCenter();
+            toSamurai = 10.0 / toSamurai.Length() * toSamurai;
+
+            ganko.linearVelocity = toSamurai;
+            ganko.angularVelocity = 10;
             [self.delegate generatedProjectile:ganko];
             
             if (_repNum >= 2) {
@@ -158,6 +171,7 @@
             } else {
                 _waiting = 1;
                 _gankoState = 4;
+                [_yellowMoon runAction:[CCFadeOut actionWithDuration:0.5]];
             }
         }
             break;
@@ -236,11 +250,26 @@
 }
 
 - (void)update:(ccTime)delta {
-    [self updateEarthquake:delta];
-    [self updateGanko:delta];
-    [self updateMuteki:delta];
-    
+    if (rand() % 60 == 0) {
+        if (rand() % 2) {
+            [self makeEarthquake];
+        } else {
+            [self makeGanko];
+        }
+    }
+
     b2Vec2 pos = self.b2Body->GetPosition();
+    
+    // 右側にいたら戻る
+    if (pos.y < 1) {
+        if (pos.x > _initPos.x/PTM_RATIO) {
+            self.b2Body->SetLinearVelocity(b2Vec2(-1, self.b2Body->GetLinearVelocity().y));
+        } else {
+            self.b2Body->SetLinearVelocity(b2Vec2(1, self.b2Body->GetLinearVelocity().y));
+        }
+    }
+    
+    // 地面
     if (pos.y < 0) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
         b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();
@@ -248,6 +277,10 @@
         self.karadaBody->SetTransform(self.karadaBody->GetPosition()+tmp, self.karadaBody->GetAngle());
     }
     
+    [self updateEarthquake:delta];
+    [self updateGanko:delta];
+    [self updateMuteki:delta];
+
     // 体の位置
     b2Body* b = _karadaBody;
     _karada.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
