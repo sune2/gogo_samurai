@@ -20,6 +20,8 @@
     ccTime _mutekiWaiting;
     CGFloat _mutekiPosX;
     CGPoint _initPos;
+    
+    CCSprite* _yellowMoon;
 }
 
 @property (nonatomic, strong) CCSprite* karada;
@@ -29,7 +31,7 @@
 + (Date*)date;
 
 - (BOOL)canGanko;
-- (void)makeGankoWithSamuraiPos:(CGPoint*)pos;
+- (void)makeGanko;
 - (BOOL)canEarthquake;
 - (void)makeEarthquake;
 - (BOOL)isEarthquaking;

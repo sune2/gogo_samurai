@@ -22,6 +22,7 @@
 		FA78E04717DEC10F00F9C825 /* date_main.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04417DEC10F00F9C825 /* date_main.png */; };
 		FA78E04F17DEF47300F9C825 /* Define.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA78E04D17DEF40400F9C825 /* Define.mm */; };
 		FA78E05117DF23F300F9C825 /* date_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05017DF23F300F9C825 /* date_moon.png */; };
+		FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
@@ -248,6 +249,7 @@
 		FA78E04417DEC10F00F9C825 /* date_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_main.png; path = Resources/images/character/date_main.png; sourceTree = "<group>"; };
 		FA78E04D17DEF40400F9C825 /* Define.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Define.mm; sourceTree = "<group>"; };
 		FA78E05017DF23F300F9C825 /* date_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon.png; path = Resources/images/character/date_moon.png; sourceTree = "<group>"; };
+		FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_moon_yellow.png; path = Resources/images/character/date_moon_yellow.png; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 		FA78E04217DEC0FB00F9C825 /* date */ = {
 			isa = PBXGroup;
 			children = (
+				FA78E05217DFF5A900F9C825 /* date_moon_yellow.png */,
 				FA78E04317DEC10F00F9C825 /* date_leg.png */,
 				FA78E04417DEC10F00F9C825 /* date_main.png */,
 				FA78E05017DF23F300F9C825 /* date_moon.png */,
@@ -1549,6 +1552,7 @@
 				FA78E04617DEC10F00F9C825 /* date_leg.png in Resources */,
 				FA78E04717DEC10F00F9C825 /* date_main.png in Resources */,
 				FA78E05117DF23F300F9C825 /* date_moon.png in Resources */,
+				FA78E05317DFF5A900F9C825 /* date_moon_yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

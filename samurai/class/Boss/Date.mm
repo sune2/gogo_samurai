@@ -50,6 +50,12 @@
     joint->SetLimits(CC_DEGREES_TO_RADIANS(-60.0), CC_DEGREES_TO_RADIANS(-1.0) );
     
     _initPos = point;
+    
+    _yellowMoon = [CCSprite spriteWithFile:@"date_moon_yellow.png"];
+    _yellowMoon.anchorPoint = ccp(0,0);
+    _yellowMoon.scale = 0.7;
+    [self addChild:_yellowMoon z:-2];
+    _yellowMoon.opacity = 0;
 }
 
 - (BOOL)canGanko {
@@ -125,14 +131,11 @@
     switch (_gankoState) {
         case 1:
         {
+            _yellowMoon.position = ccp(10/self.scale,120/self.scale);//self.position;
+            //            yellow_moon.scale = 2;// * 219 / yellow_moon.contentSize.width;
 
-//            CCParticleSystemQuad* part = [MyParticle particleGanko];
-//            part.position = ccp(self.position.x+40, self.position.y+60);
-//            [[self parent] addChild:part z:3];
-//            
-//            CCParticleSystemQuad* part2 = [MyParticle particleGanko];
-//            part2.position = ccp(self.position.x+50, self.position.y+60);
-//            [[self parent] addChild:part2 z:3];
+            [_yellowMoon runAction:[CCFadeIn actionWithDuration:0.5]];
+//            _yellowMoon.visible = YES;
             
             _waiting = 1;
             _gankoState = 2;
@@ -152,6 +155,7 @@
             Projectile* ganko = [Projectile projectileWithName:@"date_moon"];
             [ganko initBodyWithWorld:self.world at:ccp(self.position.x, self.position.y)];
             ganko.rotation = self.rotation;
+            ganko.scale = 219.0 / ganko.contentSize.width;
             
             b2Vec2 toSamurai = _samurai.b2Body->GetWorldCenter() - ganko.b2Body->GetWorldCenter();
             toSamurai = 10.0 / toSamurai.Length() * toSamurai;
@@ -167,6 +171,7 @@
             } else {
                 _waiting = 1;
                 _gankoState = 4;
+                [_yellowMoon runAction:[CCFadeOut actionWithDuration:0.5]];
             }
         }
             break;
