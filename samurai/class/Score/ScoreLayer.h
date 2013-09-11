@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "CCUIViewWrapper.h"
+#import "Define.h"
 
 @protocol backProtocol
 - (void) backToIntroLayer;

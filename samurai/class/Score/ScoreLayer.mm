@@ -18,12 +18,27 @@
         
         _winSize = [[CCDirector sharedDirector] winSize];
         _ud = [NSUserDefaults standardUserDefaults];
+        
+        [self addBackground];
         [self addTitle];
         [self addRanking];
         [self addMenu];
         [self addTextField];
     }
     return self;
+}
+
+- (void)addBackground
+{
+    CCLayerColor* background = [CCLayerColor layerWithColor:kBackgroundColor];
+    [self addChild: background z:-3];
+    
+    // 月
+    CCSprite* moon = [CCSprite spriteWithFile:@"fullmoon.png"];
+    moon.position = ccp(440, 250);
+    moon.scale = 0.3 * 800 / moon.contentSize.width;
+    moon.opacity = 128;
+    [self addChild:moon z:-2];
 }
 
 - (void)addTitle
