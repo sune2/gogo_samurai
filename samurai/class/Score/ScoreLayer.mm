@@ -78,13 +78,13 @@
     
     CCUIViewWrapper* tfWrapper = [CCUIViewWrapper wrapperForUIView:tf];
     tfWrapper.contentSize = CGSizeMake(100,20);
-    tfWrapper.position = ccp(100,100);
     tfWrapper.rotation = 270;
-//    [self addChild:tfWrapper z:5];
+    tfWrapper.position = ccp(20, _winSize.width/2);
+    [self addChild:tfWrapper z:5];
     
-    CCLayerColor* hoge = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4f(0, 0, 0, 0))];
-    [hoge addChild:tfWrapper];
-    [self addChild:hoge];
+//    CCLayerColor* hoge = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4f(0, 0, 0, 0))];
+//    [hoge addChild:tfWrapper];
+//    [self addChild:hoge];
     
     NSString* newName = tf.text;
     
@@ -107,4 +107,8 @@
     return str;
 }
 
+- (void)onExit
+{
+    
+}
 @end
