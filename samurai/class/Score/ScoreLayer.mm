@@ -17,11 +17,11 @@
     if (self) {
         
         _winSize = [[CCDirector sharedDirector] winSize];
-
+        _ud = [NSUserDefaults standardUserDefaults];
         [self addTitle];
         [self addRanking];
         [self addMenu];
-        
+        [self addTextField];
     }
     return self;
 }
@@ -65,37 +65,42 @@
     CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
         [_delegate backToIntroLayer];
     }];
+    [self addTextField];
     
+    CCMenu* menu = [CCMenu menuWithItems:backLabel, nil];
+    menu.position = ccp(_winSize.width/2, 20);
+    [self addChild:menu];
+}
+
+- (void)addTextField
+{
     NSString* renameStr = @"Samurai Name:";
     CCMenuItemFont* renameLabel = [CCMenuItemFont itemWithString:renameStr];
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    NSString* currentName = [ud objectForKey:@"Name"];
+    NSString* currentName = [_ud objectForKey:@"Name"];
 
-    UITextField* tf = [[UITextField alloc] init];
-    tf.text = currentName;
-    tf.backgroundColor = [UIColor whiteColor];
-    tf.borderStyle = UITextBorderStyleRoundedRect;
+    _tf = [[UITextField alloc] init];
+    _tf.text = currentName;
+    _tf.backgroundColor = [UIColor whiteColor];
+    _tf.borderStyle = UITextBorderStyleBezel;
+    _tf.returnKeyType = UIReturnKeyDefault;
+    _tf.delegate = self;
     
-    CCUIViewWrapper* tfWrapper = [CCUIViewWrapper wrapperForUIView:tf];
-    tfWrapper.contentSize = CGSizeMake(100,20);
+    [_tf addTarget:self
+           action:@selector(saveSamuraiName)
+ forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    CCUIViewWrapper* tfWrapper = [CCUIViewWrapper wrapperForUIView:_tf];
+    tfWrapper.contentSize = CGSizeMake(100,30);
     tfWrapper.rotation = 270;
-    tfWrapper.position = ccp(20, _winSize.width/2);
+    tfWrapper.position = ccp(30, _winSize.width/2);
     [self addChild:tfWrapper z:5];
-    
-//    CCLayerColor* hoge = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4f(0, 0, 0, 0))];
-//    [hoge addChild:tfWrapper];
-//    [self addChild:hoge];
-    
-    NSString* newName = tf.text;
-    
-    [ud setObject:newName forKey:@"Name"];
-    [ud synchronize];
+}
 
-    
-    CCMenu* menu = [CCMenu menuWithItems:renameLabel, backLabel, nil];
-    [menu alignItemsVerticallyWithPadding:10];
-    menu.position = ccp(_winSize.width/2, 40);
-    [self addChild:menu];
+- (void) saveSamuraiName:(UITextField*)tf
+{
+    NSString* newName = tf.text;
+    [_ud setObject:newName forKey:@"Name"];
+    [_ud synchronize];
 }
 
 - (NSString*) rankersScore: (int) i
@@ -107,8 +112,14 @@
     return str;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField*)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)onExit
 {
-    
+    [super onExit];
+    [_tf removeFromSuperview];
 }
 @end

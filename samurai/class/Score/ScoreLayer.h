@@ -8,17 +8,18 @@
 
 #import "cocos2d.h"
 #import "Box2D.h"
-#import "../CCTextField.h"
 #import "CCUIViewWrapper.h"
 
 @protocol backProtocol
 - (void) backToIntroLayer;
 @end
 
-@interface ScoreLayer : CCLayer
+@interface ScoreLayer : CCLayer<UITextFieldDelegate>
 {
     CGSize _winSize;
     NSArray* _scores;
+    UITextField* _tf;
+    NSUserDefaults* _ud;
 }
 @property (strong) id<backProtocol> delegate;
 

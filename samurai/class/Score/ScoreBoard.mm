@@ -21,7 +21,7 @@
 
 - (void)backToIntroLayer
 {
-    [[CCDirector sharedDirector] replaceScene:[IntroLayer scene]];
+    [[CCDirector sharedDirector] popScene];
 }
 
 @end

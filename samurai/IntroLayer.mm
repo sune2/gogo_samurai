@@ -54,6 +54,7 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: background];
+        [self createMenu];
 	}
 	
 	return self;
@@ -78,7 +79,7 @@
     
     // Score Button
 	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[SCORE]" block:^(id sender){
-		[[CCDirector sharedDirector] replaceScene: [ScoreBoard scene]];
+		[[CCDirector sharedDirector] pushScene: [ScoreBoard scene]];
 	}];
     
     title.color = ccBLACK;
@@ -107,7 +108,7 @@
     
 	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
     
-    [self createMenu];
+
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
 }
