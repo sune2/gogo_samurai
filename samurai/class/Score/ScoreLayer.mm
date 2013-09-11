@@ -22,7 +22,6 @@
         [self addRanking];
         [self addMenu];
         
-        
     }
     return self;
 }
@@ -71,7 +70,23 @@
     CCMenuItemFont* renameLabel = [CCMenuItemFont itemWithString:renameStr];
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString* currentName = [ud objectForKey:@"Name"];
-    NSString* newName = @"Samurai";
+
+    UITextField* tf = [[UITextField alloc] init];
+    tf.text = currentName;
+    tf.backgroundColor = [UIColor whiteColor];
+    tf.borderStyle = UITextBorderStyleRoundedRect;
+    
+    CCUIViewWrapper* tfWrapper = [CCUIViewWrapper wrapperForUIView:tf];
+    tfWrapper.contentSize = CGSizeMake(100,20);
+    tfWrapper.position = ccp(100,100);
+    tfWrapper.rotation = 270;
+//    [self addChild:tfWrapper z:5];
+    
+    CCLayerColor* hoge = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4f(0, 0, 0, 0))];
+    [hoge addChild:tfWrapper];
+    [self addChild:hoge];
+    
+    NSString* newName = tf.text;
     
     [ud setObject:newName forKey:@"Name"];
     [ud synchronize];

@@ -8,6 +8,8 @@
 
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "../CCTextField.h"
+#import "CCUIViewWrapper.h"
 
 @protocol backProtocol
 - (void) backToIntroLayer;
