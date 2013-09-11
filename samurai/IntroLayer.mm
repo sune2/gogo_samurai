@@ -46,6 +46,7 @@
 		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
 			background = [CCSprite spriteWithFile:@"bg.jpg"];
 			background.rotation = 0;
+            background.scale = 640/background.contentSize.width;
 		} else {
 			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
 		}
@@ -105,6 +106,23 @@
 	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameStage scene] ]];
     
     [self createMenu];
+}
+
++ (void)initialize
+{
+    NSMutableArray* defaultArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 5; i++) {
+        NSMutableDictionary* scoreData = [@{
+                                          @"score": [NSNumber numberWithInt:0],
+                                          @"name": @"Samurai",
+                                          @"new": [NSNumber numberWithBool:NO]
+                                          } mutableCopy];
+        [defaultArr addObject:scoreData];
+    }
+    NSMutableDictionary* defaultDict = [@{@"Rank": defaultArr} mutableCopy];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud registerDefaults:defaultDict];
+    [ud synchronize];
 }
 
 @end

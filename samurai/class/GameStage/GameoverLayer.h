@@ -20,6 +20,8 @@
     UIViewController* _viewController;
     BOOL _win;
     int _score;
+    BOOL _shareButtonPushed;
+    NSUserDefaults* _ud;
 }
 
 - (id)initWithScore:(int)score result:(BOOL)win;
