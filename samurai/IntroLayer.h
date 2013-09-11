@@ -14,6 +14,7 @@
 #import "GB2ShapeCache.h"
 #import "ScoreBoard.h"
 #import "SimpleAudioEngine.h"
+#import "MyParticle.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer

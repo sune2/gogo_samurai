@@ -16,6 +16,15 @@
     self = [super init];
     if (self) {
         self.touchEnabled = NO;
+        
+        // 月
+        CCSprite* moon = [CCSprite spriteWithFile:@"fullmoon.png"];
+        moon.position = ccp(440, 250);
+        moon.scale = 0.3 * 800 / moon.contentSize.width;
+        moon.opacity = 128;
+        [self addChild:moon z:-2];
+        
+        
 //        CGSize winSize = [[CCDirector sharedDirector] winSize];
         for (int i=0; i<4; i++) {
             _bgSprite[i] = [CCSprite spriteWithFile:@"bamboo.png"];
@@ -25,8 +34,8 @@
                                      kBackgroundWidth / _bgSprite[i].contentSize.width);
             [self addChild:_bgSprite[i]];
         }
-        CCLayerColor *background = [CCLayerColor layerWithColor:ccc4BFromccc4F(ccc4FFromccc3B(ccGRAY))];
-        [self addChild:background z:-1];
+        CCLayerColor *background = [CCLayerColor layerWithColor:kBackgroundColor];
+        [self addChild:background z:-3];
         // 適切な画像が見つかったらコメント外す
         // 辺の長さ2^nの正方画像
         // ccTexParams params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};

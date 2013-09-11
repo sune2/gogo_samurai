@@ -121,4 +121,80 @@
     return res;
 }
 
+
++ (CCParticleSystemQuad*) particleCherryBlossom {
+    CCParticleSystemQuad* res = [CCParticleFire node];
+    res.texture = [[CCTextureCache sharedTextureCache] addImage:@"sakura.png"];
+    res.startSpin = res.startSpinVar = 0;
+    res.endSpin = res.endSpinVar = 0;
+    res.duration = 0.5;
+    res.totalParticles = 50;
+    res.emissionRate = 50;
+    res.angle = 0; res.angleVar = 0;
+    res.speed = 0; res.speedVar = 0;
+    res.gravity = ccp(0,0);
+    res.radialAccel = 0; res.radialAccelVar = 0;
+    res.tangentialAccel = 0; res.tangentialAccelVar = 0;
+    res.posVar = ccp(70,70);
+    //    res.posVar = ccp(50,0);
+    
+    res.life = 1; res.lifeVar = 1;
+    res.startSize = 32; res.startSizeVar = 2;
+    res.endSize = 0; res.endSizeVar = 5;
+    
+    res.startColor = ccc4f(234./255, 150./255, 202./255, 1);
+    res.endColor = ccc4f(0, 0, 0, 0);
+    res.startColorVar = ccc4f(0.14, 0.08, 0, 0.0);
+    res.endColorVar = ccc4f(0, 0, 0, 0);
+    
+    res.autoRemoveOnFinish = YES;
+    
+    ccBlendFunc func;
+    func.src = GL_SRC_ALPHA;
+    func.dst = GL_ONE_MINUS_SRC_ALPHA;
+    res.blendFunc = func;
+
+    return res;
+}
+
++ (CCParticleSystemQuad*) particleCherryPetal {
+    CCParticleSystemQuad* res = [CCParticleFire node];
+    res.texture = [[CCTextureCache sharedTextureCache] addImage:@"petal.png"];
+    res.startSpin = 0;
+    res.startSpinVar = 180;
+    res.endSpin = 360;
+    res.endSpinVar = 0;
+    res.duration = -1;
+    res.totalParticles = 2500;
+    res.emissionRate = 10;
+    res.angle = 239; res.angleVar = 27;
+    res.speed = 32; res.speedVar = 0;
+    res.gravity = ccp(7,-20);
+    res.radialAccel = 0; res.radialAccelVar = 0;
+    res.tangentialAccel = 0; res.tangentialAccelVar = 0;
+    res.posVar = ccp([[CCDirector sharedDirector] winSize].width/2,2);
+    //    res.posVar = ccp(50,0);
+    
+    res.life = 6; res.lifeVar = 0;
+    res.startSize = 18; res.startSizeVar = 5;
+    res.endSize = 40; res.endSizeVar = 3;
+    
+    res.startColor = ccc4f(1, 1, 1, 1);
+    res.endColor = ccc4f(0.9, 0.9, 0.9, 0.2);
+    res.startColorVar = ccc4f(0, 0, 0, 0);
+    res.endColorVar = ccc4f(0, 0, 0, 0);
+    
+    res.autoRemoveOnFinish = YES;
+    
+    ccBlendFunc func;
+    func.src = GL_SRC_ALPHA;
+    func.dst = GL_ONE_MINUS_SRC_ALPHA;
+    res.blendFunc = func;
+    
+    return res;
+}
+
+
+
+
 @end
