@@ -17,7 +17,7 @@
 
 @interface GameStage : CCScene<MenuLayerDelegate>
 {
-    
+    BOOL _gameovered;
 }
 
 +(CCScene *)scene;

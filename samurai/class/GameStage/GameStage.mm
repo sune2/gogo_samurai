@@ -14,6 +14,7 @@
 {
     [super init];
     if (self) {
+        _gameovered = NO;
         [self scheduleUpdate];
     }
     return self;
@@ -39,7 +40,8 @@
 - (void)update: (ccTime)dt
 {
     [self manageMenu];
-    if (_workLayer.life == 0 && _goLayer == nil) {
+    if (_workLayer.life == 0 && !_gameovered) {
+        _gameovered = YES;
         [self gameover:NO];
     } else if (_workLayer.clear) {
         [self gameover:YES];
@@ -50,8 +52,8 @@
 {
     _workLayer.touchEnabled = NO;
     SEL sel = @selector(didGameOver:);
-    [self performSelector:sel withObject:[NSNumber numberWithBool:YES]];
-    [self scheduleOnce:@selector(didGameOver) delay:0.3];
+    [self performSelector:sel withObject:[NSNumber numberWithBool:clear] afterDelay:0.3];
+    // [self scheduleOnce:@selector(sel) delay:0.3];
 }
 
 - (void)didGameOver: (NSNumber*)clear {

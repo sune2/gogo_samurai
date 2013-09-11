@@ -48,10 +48,11 @@
     
     _ud = [NSUserDefaults standardUserDefaults];
     _ranking = [[_ud arrayForKey:@"Rank"] mutableCopy];
+    NSString* name = [_ud stringForKey:@"Name"];
     
     NSMutableDictionary* dict = [@{
                                  @"score": [NSNumber numberWithInt:_score],
-                                 @"name": @"CyberAgent",
+                                 @"name": name,
                                  @"new": [NSNumber numberWithBool:YES]
                                  } mutableCopy];
 //    [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -120,7 +121,8 @@
     NSString* result = _win ? @"WIN" : @"LOSE";
     CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:result];
     [goLabel setFontSize:30];
-    [goLabel setColor:ccORANGE];
+    ccColor3B fontColor = _win ? ccc3(120,255,120) : ccORANGE;
+    [goLabel setColor:fontColor];
     // goLabel.isEnabled = NO;
     CCMenu* gameover = [CCMenu menuWithItems:goLabel, nil];
     gameover.position = ccp(_winSize.width/2, _winSize.height - 40);
@@ -198,8 +200,12 @@
         
         SLComposeViewController *composeViewController = [SLComposeViewController
                                                           composeViewControllerForServiceType:serviceType];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        NSString* name = [ud objectForKey:@"Name"];
         
-        NSString* rstr = _win ? @"Samuraiは戦に勝利しました！" : @"Samuraiは力尽きました。";
+        NSString* winMassage = [NSString stringWithFormat:@"%@は戦に勝利しました！", name];
+        NSString* loseMassage = [NSString stringWithFormat:@"%@は力尽きました。", name];
+        NSString* rstr = _win ? winMassage : loseMassage;
         NSString* sstr = [NSString stringWithFormat:@"武功%d #gogo_samurai", _score];
         rstr =[rstr stringByAppendingString:sstr];
         [composeViewController setInitialText:rstr];

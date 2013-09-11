@@ -15,6 +15,7 @@
 
 @interface ScoreLayer : CCLayer
 {
+    CGSize _winSize;
     NSArray* _scores;
 }
 @property (strong) id<backProtocol> delegate;

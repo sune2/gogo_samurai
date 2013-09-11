@@ -110,6 +110,8 @@
 
 + (void)initialize
 {
+    NSString* defaultName = @"Samurai";
+    
     NSMutableArray* defaultArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < 5; i++) {
         NSMutableDictionary* scoreData = [@{
@@ -119,7 +121,7 @@
                                           } mutableCopy];
         [defaultArr addObject:scoreData];
     }
-    NSMutableDictionary* defaultDict = [@{@"Rank": defaultArr} mutableCopy];
+    NSMutableDictionary* defaultDict = [@{@"Name":defaultName, @"Rank": defaultArr} mutableCopy];
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     [ud registerDefaults:defaultDict];
     [ud synchronize];

@@ -16,55 +16,80 @@
     self = [super init];
     if (self) {
         
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        _winSize = [[CCDirector sharedDirector] winSize];
 
+        [self addTitle];
+        [self addRanking];
+        [self addMenu];
         
-        NSString* tStr = [NSString stringWithFormat:@"SCORE"];
-        CCMenuItemFont* tLabel = [CCMenuItemFont itemWithString:tStr];
-        [tLabel setFontSize:30];
-        [tLabel setColor:ccc3(0,255,200)];
-        // [tLabel setFontName:@"HiraMinProN-W3"];
-        CCMenu* tMenu = [CCMenu menuWithItems:tLabel, nil];
-        [tMenu setPosition:ccp(winSize.width / 2, winSize.height - 30)];
-        
-        [self addChild:tMenu];
-        
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        _scores = [ud arrayForKey:@"Rank"];
-        
-//        NSString* path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
-//        _scores = [[NSArray alloc] initWithContentsOfFile:path];
-        NSMutableArray* arr = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < [_scores count]; i++) {
-            CCMenuItemFont* tmp = [self rankersScore:i];
-            [arr addObject:tmp];
-        }
-        CCMenu* menu = [CCMenu menuWithArray:arr];
-        menu.enabled = NO;
-        [menu alignItemsVertically];
-        
-        [self addChild:menu];
-        
-        NSString* backStr = [NSString stringWithFormat:@"[BACK]"];
-        CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
-            [_delegate backToIntroLayer];
-        }];
-        CCMenu* backMenu = [CCMenu menuWithItems:backLabel, nil];
-        backMenu.position = ccp(400, 20);
-        [self addChild:backMenu];
         
     }
     return self;
 }
 
-- (CCMenuItemFont *) rankersScore: (int) i
+- (void)addTitle
+{
+    NSString* tStr = [NSString stringWithFormat:@"SCORE"];
+    CCMenuItemFont* tLabel = [CCMenuItemFont itemWithString:tStr];
+    [tLabel setFontSize:30];
+    [tLabel setColor:ccc3(0,255,200)];
+    // [tLabel setFontName:@"HiraMinProN-W3"];
+    CCMenu* tMenu = [CCMenu menuWithItems:tLabel, nil];
+    [tMenu setPosition:ccp(_winSize.width / 2, _winSize.height - 30)];
+    
+    [self addChild:tMenu];
+}
+
+- (void)addRanking
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    _scores = [ud arrayForKey:@"Rank"];
+    
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [_scores count]; i++) {
+        CCMenuItemFont* tmp = [CCMenuItemFont itemWithString:[self rankersScore:i]];
+        [arr addObject:tmp];
+    }
+    CCMenu* menu = [CCMenu menuWithArray:arr];
+    menu.enabled = NO;
+    menu.position = ccp(_winSize.width/2, _winSize.height/2 + 15);
+    [menu alignItemsVertically];
+    
+    [self addChild:menu];
+
+}
+
+- (void)addMenu
+{
+    NSString* backStr = @"[BACK]";
+    CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
+        [_delegate backToIntroLayer];
+    }];
+    
+    NSString* renameStr = @"Samurai Name:";
+    CCMenuItemFont* renameLabel = [CCMenuItemFont itemWithString:renameStr];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString* currentName = [ud objectForKey:@"Name"];
+    NSString* newName = @"Samurai";
+    
+    [ud setObject:newName forKey:@"Name"];
+    [ud synchronize];
+
+    
+    CCMenu* menu = [CCMenu menuWithItems:renameLabel, backLabel, nil];
+    [menu alignItemsVerticallyWithPadding:10];
+    menu.position = ccp(_winSize.width/2, 40);
+    [self addChild:menu];
+}
+
+- (NSString*) rankersScore: (int) i
 {
     NSString* name = [[_scores objectAtIndex:i] objectForKey:@"name"];
     NSString* score = [[_scores objectAtIndex:i] objectForKey:@"score"];
     NSString* str = [NSString stringWithFormat:@"%d. %@: %@", i+1, name, score];
-    CCMenuItemFont* ret = [CCMenuItemFont itemWithString:str];
-    return ret;
+    // CCMenuItemFont* ret = [CCMenuItemFont itemWithString:str];
+    return str;
 }
 
 @end
