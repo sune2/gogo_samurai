@@ -121,7 +121,7 @@
 
 - (void)addMenu
 {
-    NSString* backStr = @"[BACK]";
+    NSString* backStr = @"[Back]";
     CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
         [self saveSamuraiName:_tf];
         [_delegate backToIntroLayer];
