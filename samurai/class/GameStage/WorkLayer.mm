@@ -61,7 +61,7 @@
     if (enemy.tag == SpriteTagZako) {
         [enemy initBodyWithWorld:world at:ccp(400, 200)];
     } else {
-        [enemy initBodyWithWorld:world at:ccp(300, 200)];
+        [enemy initBodyWithWorld:world at:ccp(260, 200)];
     }
     [_enemies addObject:enemy];
     enemy.events = events;

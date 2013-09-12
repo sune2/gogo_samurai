@@ -100,7 +100,7 @@
 }
 
 - (BOOL)isDashing {
-    return _dashState == 1;
+    return _dashState == 1 || _dashState == 5;
 }
 
 - (BOOL)isCountering {
@@ -145,6 +145,16 @@
             if (self.position.x > _initPos.x + 200) {
                 self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
                 self.position = ccp(_initPos.x + 200, self.position.y);
+                _dashState = 5;
+                _dashWaiting = 0.2;
+            }
+        }
+            break;
+        case 5:
+        {
+            self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+            _dashWaiting -= delta;
+            if (_dashWaiting < 0) {
                 _dashState = 2;
             }
         }
