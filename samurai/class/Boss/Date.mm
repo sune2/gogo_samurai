@@ -22,6 +22,7 @@
     [res addChild:res.karada z:-3];
     res.tag = SpriteTagBoss;
     res.hp = 10;
+    res.difficulty = DifficultyEasy;
     return res;
 }
 
@@ -31,6 +32,19 @@
     
     if ([keys containsObject:@"hp"])
         res.hp = [[params objectForKey:@"hp"] intValue];
+    if ([keys containsObject:@"difficulty"]) {
+        NSString* str = [params objectForKey:@"difficulty"];
+        if ([str isEqualToString:@"easy"]) {
+            res.difficulty = DifficultyEasy;
+            res.hp = 6;
+        } else if ([str isEqualToString:@"normal"]) {
+            res.difficulty = DifficultyNormal;
+            res.hp = 8;
+        } else if ([str isEqualToString:@"hard"]) {
+            res.difficulty = DifficultyHard;
+            res.hp = 10;
+        }
+    }
     
     return res;
 }
@@ -74,7 +88,7 @@
 
 - (BOOL)canGanko {
     if (_gankoState) return NO;
-    //if (_earthquakeState) return NO;
+    if (self.difficulty == DifficultyEasy && _earthquakeState) return NO;
     return YES;
 }
 
@@ -89,7 +103,9 @@
 }
 
 - (BOOL)canEarthquake {
-//    if (_gankoState) return NO;
+    if (self.difficulty == DifficultyEasy && _gankoState) {
+        return NO;
+    }
     if (_earthquakeState) return NO;
     return YES;
 }
@@ -111,12 +127,19 @@
             if (self.karadaBody->GetAngle() <= CC_DEGREES_TO_RADIANS(-50)) {
                 _earthquakeState = 2;
             } else {
-                self.karadaBody->SetAngularVelocity(-1);
+                if (self.difficulty == DifficultyHard) {
+                    self.karadaBody->SetAngularVelocity(-2);
+                } else {
+                    self.karadaBody->SetAngularVelocity(-1);
+                }
             }
         }
             break;
         case 2:
         {
+            if (self.difficulty == DifficultyHard) {
+                self.karadaBody->ApplyAngularImpulse(1);
+            }
             if (self.karadaBody->GetAngle() >= CC_DEGREES_TO_RADIANS(-10)) {
                 _earthquakeState = 3;
             }
@@ -154,15 +177,14 @@
     switch (_gankoState) {
         case 1:
         {
-
-            //            yellow_moon.scale = 2;// * 219 / yellow_moon.contentSize.width;
-
             [_yellowMoon runAction:[CCFadeIn actionWithDuration:0.5]];
-//            _yellowMoon.visible = YES;
             
             _waiting = 1;
             _gankoState = 2;
             _repNum = 3;
+            if (self.difficulty == DifficultyHard) {
+                _repNum = 5;
+            }
         }
             break;
         case 2:
@@ -218,7 +240,55 @@
             [self makeGanko];
         }
     }
-
+    
+    _shokanWaiting -= delta;
+    if (_shokanWaiting < 0) {
+        if (self.difficulty == DifficultyEasy) {
+            
+        } else if (self.difficulty == DifficultyNormal && self.hp <= 4) {
+            if (rand() % 120 == 0) {
+                _shokanWaiting = 10;
+                Enemy* enemy = [Kakashi kakashi];
+                [enemy initBodyWithWorld:self.world at:ccp(400, 200)];
+                [self.delegate dateAddEnemey:enemy];
+            }
+        } else if (self.difficulty == DifficultyHard && self.hp <= 5) {
+            if (rand() % 120 == 0) {
+                _shokanWaiting = 10;
+                Enemy* enemy;
+                if (rand() % 2 == 0) {
+                    enemy = [Ninja ninja];
+                    NSArray* array = [[NSArray alloc] initWithObjects:
+                                      [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithDouble:1.0],@"time",
+                                       @"shuriken",@"name",                                       
+                                       nil],
+                                      nil];
+                    enemy.events = array;
+                } else {
+                    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                            [NSNumber numberWithDouble:200+rand()%100], @"stopPos",
+                                            [NSNumber numberWithDouble:9], @"moveTime",
+                                            nil];
+                    enemy = [Rikishi rikishiWithParams:params];
+                    NSArray* array = [[NSArray alloc] initWithObjects:
+                                      [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithDouble:1.0],@"time",
+                                       @"shiko",@"name",
+                                       nil],
+                                      [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithDouble:5.0],@"time",
+                                       @"shiko",@"name",
+                                       nil],
+                                      nil];
+                    enemy.events = array;                    
+                }
+                [enemy initBodyWithWorld:self.world at:ccp(400, 200)];
+                [self.delegate dateAddEnemey:enemy];
+            }
+        }
+    }
+                    
     b2Vec2 pos = self.b2Body->GetPosition();
     
     // 右側にいたら戻る

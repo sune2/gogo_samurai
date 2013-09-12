@@ -52,7 +52,7 @@
     } else if ([name isEqualToString:@"rikishi"]) {
         enemy = [Rikishi rikishiWithParams:params];
     } else if ([name isEqualToString:@"date"]) {
-        Date* date = [Date date];
+        Date* date = [Date dateWithParams:params];
         date.samurai = _samurai;
         enemy = (Enemy*)date;
     } else if ([name isEqualToString:@"kakashi"]) {
@@ -416,6 +416,12 @@
     [enemy removeFromParent];    
 }
 
+
+- (void)dateAddEnemey:(Enemy *)enemy {
+    [_enemies addObject:enemy];
+    enemy.delegate = self;
+    [self addChild:enemy z:1];
+}
 
 
 @end

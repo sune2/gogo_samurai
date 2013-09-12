@@ -9,6 +9,16 @@
 #import "Enemy.h"
 #import "Projectile.h"
 #import "Samurai.h"
+#import "Define.h"
+#import "Rikishi.h"
+#import "Kakashi.h"
+#import "Ninja.h"
+
+@protocol DateDelegate
+
+- (void)dateAddEnemey:(Enemy*)enemy;
+
+@end
 
 @interface Date : Enemy
 {
@@ -17,12 +27,17 @@
     ccTime _waiting;
     int _repNum;
     
+    ccTime _shokanWaiting;
+    
     CCSprite* _yellowMoon;
+    
 }
 
 @property (nonatomic, strong) CCSprite* karada;
 @property (nonatomic, assign) b2Body* karadaBody;
 @property (nonatomic, assign) Samurai* samurai;
+@property (nonatomic, assign) Difficulty difficulty;
+@property(nonatomic, strong) id<ProjectileProtocol,EnemyProtocol,DateDelegate> delegate;
 
 + (Date*)date;
 + (Date*)dateWithParams:(NSDictionary*)params;

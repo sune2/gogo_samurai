@@ -21,7 +21,7 @@
     [res addChild:res.karada z:-3];
     res.scale = 91/res.contentSize.width;
     res.stopPos = 300;
-    res.moveTime = 5;
+    res.moveTime = 13;
     res.hp = 2;
     return res;
 }

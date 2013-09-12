@@ -19,7 +19,7 @@
 #import "Date.h"
 #import "MyParticle.h"
 
-@interface WorkLayer : CCLayer<ProjectileProtocol, EnemyProtocol>
+@interface WorkLayer : CCLayer<ProjectileProtocol, EnemyProtocol, DateDelegate>
 {
     b2World* world;
     GLESDebugDraw *m_debugDraw;
