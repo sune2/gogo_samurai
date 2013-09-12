@@ -15,6 +15,7 @@
 #import "Ninja.h"
 #import "Projectile.h"
 #import "Rikishi.h"
+#import "Kakashi.h"
 #import "Date.h"
 #import "MyParticle.h"
 

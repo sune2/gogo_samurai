@@ -55,6 +55,8 @@
         Date* date = [Date date];
         date.samurai = _samurai;
         enemy = (Enemy*)date;
+    } else if ([name isEqualToString:@"kakashi"]) {
+        enemy = [Kakashi kakashi];
     }
     if (enemy.tag == SpriteTagZako) {
         [enemy initBodyWithWorld:world at:ccp(400, 200)];

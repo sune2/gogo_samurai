@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Enemy.h"
 
-@interface Kakashi : NSObject
+@interface Kakashi : Enemy
+{
+    
+}
+
++ (Kakashi *)kakashi;
++ (Kakashi *)kakashiWithParams: (NSDictionary *)params;
 
 @end

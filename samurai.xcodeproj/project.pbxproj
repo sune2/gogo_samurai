@@ -46,7 +46,7 @@
 		FA8CC17817E1648400177AE2 /* reflect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17017E1648400177AE2 /* reflect.mp3 */; };
 		FA8CC17917E1648400177AE2 /* uma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17117E1648400177AE2 /* uma.mp3 */; };
 		FA8CC17B17E1829F00177AE2 /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17A17E1829E00177AE2 /* button.mp3 */; };
-		FA8CC17E17E1898600177AE2 /* Kakashi.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC17D17E1898500177AE2 /* Kakashi.m */; };
+		FA8CC17E17E1898600177AE2 /* Kakashi.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC17D17E1898500177AE2 /* Kakashi.mm */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -299,7 +299,7 @@
 		FA8CC17117E1648400177AE2 /* uma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = uma.mp3; sourceTree = "<group>"; };
 		FA8CC17A17E1829E00177AE2 /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
 		FA8CC17C17E1898400177AE2 /* Kakashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kakashi.h; path = class/Zako/Kakashi.h; sourceTree = "<group>"; };
-		FA8CC17D17E1898500177AE2 /* Kakashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Kakashi.m; path = class/Zako/Kakashi.m; sourceTree = "<group>"; };
+		FA8CC17D17E1898500177AE2 /* Kakashi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Kakashi.mm; path = class/Zako/Kakashi.mm; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -889,7 +889,7 @@
 				FAAE772817D98E07007D4770 /* Ninja.h */,
 				FAAE772917D98E07007D4770 /* Ninja.mm */,
 				FA8CC17C17E1898400177AE2 /* Kakashi.h */,
-				FA8CC17D17E1898500177AE2 /* Kakashi.m */,
+				FA8CC17D17E1898500177AE2 /* Kakashi.mm */,
 			);
 			name = Enemy;
 			sourceTree = "<group>";
@@ -1868,7 +1868,7 @@
 				FA78E04F17DEF47300F9C825 /* Define.mm in Sources */,
 				FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */,
 				FA78E06B17E1465E00F9C825 /* ScrollLayer.m in Sources */,
-				FA8CC17E17E1898600177AE2 /* Kakashi.m in Sources */,
+				FA8CC17E17E1898600177AE2 /* Kakashi.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

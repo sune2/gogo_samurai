@@ -19,6 +19,14 @@
 	</dict>
 	<dict>
 		<key>time</key>
+		<real>0.5</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
 		<integer>1</integer>
 		<key>name</key>
 		<string>rikishi</string>
