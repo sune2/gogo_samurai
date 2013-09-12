@@ -119,18 +119,18 @@
     // 難易度選択
     CCMenuItemLabel *easyLabel = [CCMenuItemFont itemWithString:@"[Easy]" block:^(id sender){
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyEasy]];
 	}];
 
     // Score Button
 	CCMenuItemLabel *normalLabel = [CCMenuItemFont itemWithString:@"[Normal]" block:^(id sender){
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyNormal]];
 	}];
 
     CCMenuItemLabel *hardLabel = [CCMenuItemFont itemWithString:@"[Hard]" block:^(id sender){
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
-		[[CCDirector sharedDirector] replaceScene: [GameStage scene]];
+		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyHard]];
 	}];
 
     CCMenuItemLabel *backLabel = [CCMenuItemFont itemWithString:@"[Back]" block:^(id sender){
@@ -163,6 +163,21 @@
 {
     NSString* defaultName = @"Samurai";
     
+    
+    
+    NSMutableDictionary* defaultDict = [@{
+                                        @"Name":defaultName,
+                                        @"Easy": [IntroLayer generateNewRanking],
+                                        @"Normal": [IntroLayer generateNewRanking],
+                                        @"Hard": [IntroLayer generateNewRanking]
+                                        } mutableCopy];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud registerDefaults:defaultDict];
+    [ud synchronize];
+}
+
++(NSMutableArray *)generateNewRanking
+{
     NSMutableArray* defaultArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < 5; i++) {
         NSMutableDictionary* scoreData = [@{
@@ -172,10 +187,7 @@
                                           } mutableCopy];
         [defaultArr addObject:scoreData];
     }
-    NSMutableDictionary* defaultDict = [@{@"Name":defaultName, @"Rank": defaultArr} mutableCopy];
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    [ud registerDefaults:defaultDict];
-    [ud synchronize];
+    return defaultArr;
 }
 
 

@@ -43,15 +43,15 @@
     CGFloat height = self.contentSize.height;
     
     //Label
-    CCMenu* ranking1 = [self makeRanking];
+    CCMenu* ranking1 = [self makeRankingWithDifficulty:DifficultyEasy];
     ranking1.position =  ccp( width/2 ,  height/2-30);
     [scroll addScrollChild:ranking1];
 
-    CCMenu* ranking2 = [self makeRanking];
+    CCMenu* ranking2 = [self makeRankingWithDifficulty:DifficultyNormal];
     ranking2.position =  ccp( width/2+width , height/2-30);
     [scroll addScrollChild:ranking2];
 
-    CCMenu* ranking3 = [self makeRanking];
+    CCMenu* ranking3 = [self makeRankingWithDifficulty:DifficultyHard];
     ranking3.position =  ccp( width/2+width*2 , height/2-30);
     [scroll addScrollChild:ranking3];
     
@@ -93,10 +93,17 @@
     [self addChild:_titleLabel];
 }
 
-- (CCMenu*)makeRanking
+- (CCMenu*)makeRankingWithDifficulty: (Difficulty)difficulty
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    _scores = [ud arrayForKey:@"Rank"];
+    
+    if (difficulty == DifficultyEasy) {
+        _scores = [ud arrayForKey:@"Easy"];
+    } else if (difficulty == DifficultyNormal) {
+        _scores = [ud arrayForKey:@"Normal"];
+    } else {
+        _scores = [ud arrayForKey:@"Hard"];
+    }
     
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     

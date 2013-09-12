@@ -22,6 +22,12 @@ typedef enum {
     SpriteTagGround
 } SpriteTag;
 
+typedef enum {
+    DifficultyEasy = 1,
+    DifficultyNormal,
+    DifficultyHard
+} Difficulty;
+
 BOOL isSpriteEnemy(CCSprite* sprite);
 
 BOOL isOutOfScreen(CGRect rect);

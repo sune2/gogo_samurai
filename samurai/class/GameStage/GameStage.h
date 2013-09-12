@@ -21,10 +21,12 @@
     BOOL _gameovered;
 }
 
-+(CCScene *)scene;
+// +(GameStage *)scene;
++(GameStage *)sceneWithDifficulty: (Difficulty)difficulty;
 @property(nonatomic, strong) WorkLayer* workLayer;
 @property(nonatomic, strong) MenuLayer* menuLayer;
 @property(nonatomic, strong) BackgroundLayer* bgLayer;
 @property(nonatomic, strong) GameoverLayer* goLayer;
+@property(assign) Difficulty difficulty;
 
 @end

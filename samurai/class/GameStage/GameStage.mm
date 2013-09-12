@@ -20,24 +20,63 @@
     return self;
 }
 
-+(GameStage *)scene
+//+(GameStage *)scene
+//{
+//    GameStage* scene = [GameStage node];
+//    scene.workLayer = [WorkLayer node];
+//    scene.menuLayer = [MenuLayer node];
+//    scene.bgLayer = [BackgroundLayer node];
+//    
+//    scene.menuLayer.delegate = scene;
+//
+//    // イベントセット
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
+//    scene.workLayer.events = [[NSArray alloc] initWithContentsOfFile:path];
+//
+//    // レイヤーを追加する
+//    [scene addChild:scene.workLayer z:0];
+//    [scene addChild:scene.menuLayer z:1];
+//    [scene addChild:scene.bgLayer z:-1];
+//
+//    return scene;
+//}
+
++(GameStage *)sceneWithDifficulty: (Difficulty)difficulty
 {
     GameStage* scene = [GameStage node];
+    
     scene.workLayer = [WorkLayer node];
     scene.menuLayer = [MenuLayer node];
     scene.bgLayer = [BackgroundLayer node];
+    scene.difficulty = difficulty;
     
     scene.menuLayer.delegate = scene;
-
+    
     // イベントセット
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"plist"];
+    NSString* path;
+    if (difficulty == DifficultyEasy) {
+        path = [[NSBundle mainBundle]
+                pathForResource:@"events_easy"
+                ofType:@"plist"];
+    } else if (difficulty == DifficultyNormal) {
+        path = [[NSBundle mainBundle]
+                pathForResource:@"events_normal"
+                ofType:@"plist"];
+    } else {
+        path = [[NSBundle mainBundle]
+                pathForResource:@"events_hard"
+                ofType:@"plist"];
+    }
+    
+    
     scene.workLayer.events = [[NSArray alloc] initWithContentsOfFile:path];
-
+    
     // レイヤーを追加する
     [scene addChild:scene.workLayer z:0];
     [scene addChild:scene.menuLayer z:1];
     [scene addChild:scene.bgLayer z:-1];
-
+   
+   
     return scene;
 }
 
@@ -57,7 +96,6 @@
     _gameovered = YES;
     SEL sel = @selector(didGameOver:);
     [self performSelector:sel withObject:[NSNumber numberWithBool:clear] afterDelay:0.3];
-    // [self scheduleOnce:@selector(sel) delay:0.3];
 }
 
 - (void)didGameOver: (NSNumber*)clear {
@@ -79,7 +117,7 @@
 }
 
 - (void)resetButtonPushed {
-    [[CCDirector sharedDirector] replaceScene:[GameStage scene]];
+    [[CCDirector sharedDirector] replaceScene:[GameStage sceneWithDifficulty:_difficulty]];
 }
 
 - (void)backToIntroLayer {

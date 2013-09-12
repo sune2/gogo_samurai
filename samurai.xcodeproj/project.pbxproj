@@ -34,6 +34,9 @@
 		FA78E06B17E1465E00F9C825 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA78E06A17E1465B00F9C825 /* ScrollLayer.m */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
+		FA8CC16617E15A5E00177AE2 /* events_easy.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16317E15A5D00177AE2 /* events_easy.plist */; };
+		FA8CC16717E15A5E00177AE2 /* events_hard.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16417E15A5E00177AE2 /* events_hard.plist */; };
+		FA8CC16817E15A5E00177AE2 /* events_normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16517E15A5E00177AE2 /* events_normal.plist */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -273,6 +276,9 @@
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
 		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
+		FA8CC16317E15A5D00177AE2 /* events_easy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_easy.plist; path = Resources/events_easy.plist; sourceTree = "<group>"; };
+		FA8CC16417E15A5E00177AE2 /* events_hard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_hard.plist; path = Resources/events_hard.plist; sourceTree = "<group>"; };
+		FA8CC16517E15A5E00177AE2 /* events_normal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_normal.plist; path = Resources/events_normal.plist; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -986,6 +992,9 @@
 				FA78E05817E0418100F9C825 /* Musics */,
 				FAF29AC117D95CA400F512EE /* Images */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
+				FA8CC16317E15A5D00177AE2 /* events_easy.plist */,
+				FA8CC16417E15A5E00177AE2 /* events_hard.plist */,
+				FA8CC16517E15A5E00177AE2 /* events_normal.plist */,
 				FAF3B2A417D736FA00F29EDB /* Default.png */,
 				29A5597517DA551C0067A8DD /* tmpDefs.plist */,
 				29A5598517DCB47E0067A8DD /* events.plist */,
@@ -1619,6 +1628,9 @@
 				FA78E06417E071FB00F9C825 /* moon.png in Resources */,
 				FA78E06617E073AE00F9C825 /* fullmoon.png in Resources */,
 				FA78E06817E078D300F9C825 /* fullmoon2.png in Resources */,
+				FA8CC16617E15A5E00177AE2 /* events_easy.plist in Resources */,
+				FA8CC16717E15A5E00177AE2 /* events_hard.plist in Resources */,
+				FA8CC16817E15A5E00177AE2 /* events_normal.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
