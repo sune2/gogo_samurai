@@ -11,7 +11,7 @@
 
 @implementation GameoverLayer
 
-- (id) initWithScore: (int)score result:(BOOL)win
+- (id) initWithScore: (int)score result:(BOOL)win difficulty:(Difficulty)difficulty
 {
     self = [super init];
     if (self) {
@@ -21,6 +21,7 @@
         _win = win;
         _score = score;
         _shareButtonPushed = NO;
+        _difficulty = difficulty;
 
 
 //        NSString* scoreStr = [NSString stringWithFormat:@"Score: %d", score];
@@ -38,9 +39,9 @@
     return self;
 }
 
-+ (id) nodeWithScore: (int)score result:(BOOL)win
++ (id) nodeWithScore: (int)score result:(BOOL)win difficulty:(Difficulty)difficulty
 {
-    return [[[self alloc] initWithScore:score result:win] autorelease];
+    return [[[self alloc] initWithScore:score result:win difficulty:difficulty] autorelease];
 }
 
 - (void)update:(ccTime)delta {
@@ -57,7 +58,15 @@
 //    _ranking = [[NSMutableArray alloc] initWithContentsOfFile:_path];
     
     _ud = [NSUserDefaults standardUserDefaults];
-    _ranking = [[_ud arrayForKey:@"Rank"] mutableCopy];
+    
+    if (_difficulty == DifficultyEasy) {
+        _ranking = [[_ud arrayForKey:@"Easy"] mutableCopy];
+    } else if (_difficulty == DifficultyNormal) {
+        _ranking = [[_ud arrayForKey:@"Normal"] mutableCopy];
+    } else {
+        _ranking = [[_ud arrayForKey:@"Hard"] mutableCopy];
+    }
+    
     NSString* name = [_ud stringForKey:@"Name"];
     
     NSMutableDictionary* dict = [@{
@@ -101,7 +110,14 @@
         [md setObject:[NSNumber numberWithBool:NO] forKey:@"new"];
         [tmp addObject:md];
     }
-    [_ud setObject:tmp forKey:@"Rank"];
+    if (_difficulty == DifficultyEasy) {
+        [_ud setObject:tmp forKey:@"Easy"];
+    } else if (_difficulty == DifficultyNormal) {
+        [_ud setObject:tmp forKey:@"Normal"];
+    } else {
+        [_ud setObject:tmp forKey:@"Hard"];
+    }
+ 
     [_ud synchronize];
     // [tmp writeToFile:_path atomically:YES];
 }
@@ -128,7 +144,7 @@
             ret.color = ccc3(150,150,150);
         }
     }
-    
+        
     return ret;
 }
 
