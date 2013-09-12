@@ -92,24 +92,30 @@
 -(void)createMenu
 {
 	// Enter Button
-	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[START]" block:^(id sender){
+	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Start]" block:^(id sender){
         [_menu removeFromParent];
         [self createDifficulties];
 	}];
     
     // Score Button
-	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[SCORE]" block:^(id sender){
+	CCMenuItemLabel *enterScore = [CCMenuItemFont itemWithString:@"[Ranking]" block:^(id sender){
 		[[CCDirector sharedDirector] pushScene: [ScoreBoard scene]];
 	}];
+    
+    CCMenuItemLabel *guideButton = [CCMenuItemFont itemWithString:@"[How To Play]" block:^(id sender){
+        [_menu removeFromParent];
+        [self createGuide];
+	}];
+
 
     enterButtle.color = ccWHITE;
     enterScore.color = ccWHITE;
 
-    _menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
+    _menu = [CCMenu menuWithItems:enterButtle, enterScore, guideButton, nil];
 	
 	[_menu alignItemsVerticallyWithPadding:kMenuVerticalPadding];
     
-    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height/4)];
+    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height*1/4)];
 	
 	[self addChild: _menu z:1];
 }
@@ -140,12 +146,40 @@
 
     _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, backLabel, nil];
     [_difficulties alignItemsVerticallyWithPadding:kMenuVerticalPadding];
-    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height/4);
+    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height*5/16);
 
     [self addChild:_difficulties];
 }
 
-
+- (void)createGuide {
+    CCMenuItemLabel* touch = [CCMenuItemFont itemWithString:@"Tap : counter slice"];
+    touch.isEnabled = NO;
+    CCMenuItemLabel* right = [CCMenuItemFont itemWithString:@"Swipe Right : dash"];
+    right.isEnabled = NO;
+    CCMenuItemLabel* up = [CCMenuItemFont itemWithString:@"Swipe Up : jump"];
+    up.isEnabled = NO;
+//    CCMenuItemLabel* touch = [CCMenuItemFont itemWithString:@"Touch : counter"];
+    CCMenuItemLabel *back = [CCMenuItemFont itemWithString:@"[Back]" block:^(id sender){
+        [_guide removeFromParent];
+//        [_guideBack removeFromParent];
+        [self createMenu];
+	}];
+    
+    CCMenuItemLabel* kara = [CCMenuItemFont itemWithString:@"_"];
+    kara.visible = NO;
+    kara.isEnabled = NO;
+    
+    _guide = [CCMenu menuWithItems:touch, right, up, kara, back, nil];
+    [_guide alignItemsVertically];
+    _guide.position = ccp(self.contentSize.width*2/4, self.contentSize.height*5/16);
+    [self addChild:_guide];
+    
+    
+//
+//    _guideBack = [CCMenu menuWithItems:backLabel, nil];
+//    _guideBack.position = ccp(self.contentSize.width/2, self.contentSize.height*3/16);
+//    [self addChild:_guideBack];
+}
 
 
 //- (void)update:(ccTime)delta {

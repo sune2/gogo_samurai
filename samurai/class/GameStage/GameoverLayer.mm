@@ -45,10 +45,12 @@
 }
 
 - (void)update:(ccTime)delta {
-    if (rand() % 30 == 0) {
-        CCParticleSystemQuad* part = [MyParticle particleCherryBlossom];
-        part.position = ccp(rand()%(int)self.contentSize.width, rand()%(int)self.contentSize.height);
-        [self addChild:part z:-3];
+    if (_win) {
+        if (rand() % 30 == 0) {
+            CCParticleSystemQuad* part = [MyParticle particleCherryBlossom];
+            part.position = ccp(rand()%(int)self.contentSize.width, rand()%(int)self.contentSize.height);
+            [self addChild:part z:-3];
+        }
     }
 }
 
@@ -84,7 +86,6 @@
     NSSortDescriptor* scoreSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score"
                                                                           ascending:NO];
     _ranking = (NSMutableArray*)[_ranking sortedArrayUsingDescriptors:@[scoreSortDescriptor]];
-    
     
     NSMutableArray* tmp = [[NSMutableArray alloc] init];
     for (int i = 0; i < [_ranking count]; i++) {
