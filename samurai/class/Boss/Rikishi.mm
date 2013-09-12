@@ -123,6 +123,7 @@
             
             _shikoState = 4;
             _waiting = 0.2;
+            [[SimpleAudioEngine sharedEngine] playEffect:@"eq.mp3"];
         }
             break;
         case 4:

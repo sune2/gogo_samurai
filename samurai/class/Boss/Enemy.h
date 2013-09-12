@@ -10,6 +10,7 @@
 #import "CCPhysicsSprite.h"
 #import "Projectile.h"
 #import "Define.h"
+#import "SimpleAudioEngine.h"
 #include <vector.h>
 @class Enemy;
 

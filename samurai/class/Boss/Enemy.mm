@@ -132,7 +132,7 @@
         _mutekiState = 1;
         _mutekiWaiting = 0.1;
         _mutekiPosX = self.position.x;
-        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"kill.mp3"];
     }
 }
 
