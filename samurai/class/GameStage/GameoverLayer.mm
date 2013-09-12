@@ -153,7 +153,7 @@
 {
     NSString* result = _win ? @"WIN" : @"LOSE";
     CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:result];
-    [goLabel setFontSize:30];
+    [goLabel setFontSize:35];
     ccColor3B fontColor = _win ? ccc3(120,255,120) : ccORANGE;
     [goLabel setColor:fontColor];
     // goLabel.isEnabled = NO;
