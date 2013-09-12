@@ -4,22 +4,7 @@
 <array>
 	<dict>
 		<key>time</key>
-		<integer>0</integer>
-		<key>name</key>
-		<string>ninja</string>
-		<key>events</key>
-		<array>
-			<dict>
-				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shuriken</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>time</key>
-		<real>0.5</real>
+		<integer>5</integer>
 		<key>name</key>
 		<string>kakashi</string>
 		<key>events</key>
@@ -27,7 +12,171 @@
 	</dict>
 	<dict>
 		<key>time</key>
-		<integer>1</integer>
+		<integer>8</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>8</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>8.300000000000001</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>12</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>12.3</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>12.6</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>15</integer>
+		<key>name</key>
+		<string>ninja</string>
+		<key>events</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>shuriken</string>
+				<key>time</key>
+				<real>0.7</real>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>17</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>18</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>21</integer>
+		<key>name</key>
+		<string>ninja</string>
+		<key>events</key>
+		<array>
+			<dict>
+				<key>time</key>
+				<real>0.5</real>
+				<key>name</key>
+				<string>shuriken</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>23</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>25</integer>
+		<key>name</key>
+		<string>ninja</string>
+		<key>events</key>
+		<array>
+			<dict>
+				<key>time</key>
+				<real>0.5</real>
+				<key>name</key>
+				<string>shuriken</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>25.3</real>
+		<key>name</key>
+		<string>ninja</string>
+		<key>events</key>
+		<array>
+			<dict>
+				<key>time</key>
+				<real>0.3</real>
+				<key>name</key>
+				<string>shuriken</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>27</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>27.3</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>27.6</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>30</integer>
 		<key>name</key>
 		<string>rikishi</string>
 		<key>params</key>
@@ -35,25 +184,13 @@
 			<key>stopPos</key>
 			<integer>200</integer>
 			<key>moveTime</key>
-			<integer>13</integer>
+			<integer>38</integer>
 		</dict>
 		<key>events</key>
 		<array>
 			<dict>
 				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shiko</string>
-			</dict>
-			<dict>
-				<key>time</key>
-				<integer>5</integer>
-				<key>name</key>
-				<string>shiko</string>
-			</dict>
-			<dict>
-				<key>time</key>
-				<integer>9</integer>
+				<integer>4</integer>
 				<key>name</key>
 				<string>shiko</string>
 			</dict>
@@ -61,110 +198,63 @@
 	</dict>
 	<dict>
 		<key>time</key>
-		<integer>3</integer>
+		<integer>40</integer>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>40.3</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<real>40.6</real>
+		<key>name</key>
+		<string>kakashi</string>
+		<key>events</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>time</key>
+		<integer>42</integer>
 		<key>name</key>
 		<string>ninja</string>
 		<key>events</key>
 		<array>
 			<dict>
-				<key>time</key>
-				<integer>1</integer>
 				<key>name</key>
 				<string>shuriken</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>time</key>
-		<integer>4</integer>
-		<key>name</key>
-		<string>ninja</string>
-		<key>events</key>
-		<array>
-			<dict>
 				<key>time</key>
-				<integer>1</integer>
+				<real>0.5</real>
+			</dict>
+			<dict>
 				<key>name</key>
 				<string>shuriken</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>time</key>
-		<integer>5</integer>
-		<key>name</key>
-		<string>ninja</string>
-		<key>events</key>
-		<array>
-			<dict>
 				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shuriken</string>
+				<real>0.6</real>
 			</dict>
 		</array>
 	</dict>
 	<dict>
-		<key>time</key>
-		<integer>7</integer>
-		<key>name</key>
-		<string>ninja</string>
-		<key>events</key>
-		<array>
-			<dict>
-				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shuriken</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>time</key>
-		<integer>8</integer>
-		<key>name</key>
-		<string>ninja</string>
-		<key>events</key>
-		<array>
-			<dict>
-				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shuriken</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>time</key>
-		<integer>12</integer>
-		<key>name</key>
-		<string>rikishi</string>
-		<key>events</key>
-		<array>
-			<dict>
-				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shiko</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
+		<key>New item</key>
+		<dict>
+			<key>difficulty</key>
+			<string>easy</string>
+		</dict>
 		<key>boss</key>
 		<true/>
 		<key>time</key>
-		<integer>16</integer>
+		<integer>45</integer>
 		<key>name</key>
 		<string>date</string>
 		<key>events</key>
-		<array>
-			<dict>
-				<key>time</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>shuriken</string>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 </array>
 </plist>
