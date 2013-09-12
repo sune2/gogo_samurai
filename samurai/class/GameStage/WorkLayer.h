@@ -26,6 +26,9 @@
     NSMutableArray* _enemies;
     NSMutableArray* _bullets;
     
+    NSMutableSet* _damagedEnemies;
+    NSMutableSet* _vanishedProjectiles;
+
     CGPoint _touchPos;
     BOOL _didCommand;
 
@@ -33,9 +36,14 @@
     int _eventIndex;
 
     ccTime _curTime;
+
 }
 
 @property(assign) int score;
 @property(assign) int life;
 @property(readonly) BOOL clear;
+@property(assign) NSArray* events;
+
+//- (id)initWithEvents:(NSArray*)events;
+
 @end
