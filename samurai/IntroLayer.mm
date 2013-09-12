@@ -107,7 +107,7 @@
 
     _menu = [CCMenu menuWithItems:enterButtle, enterScore, nil];
 	
-	[_menu alignItemsVertically];
+	[_menu alignItemsVerticallyWithPadding:kMenuVerticalPadding];
     
     [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height/4)];
 	
@@ -139,7 +139,7 @@
 	}];
 
     _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, backLabel, nil];
-    [_difficulties alignItemsVertically];
+    [_difficulties alignItemsVerticallyWithPadding:kMenuVerticalPadding];
     _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height/4);
 
     [self addChild:_difficulties];

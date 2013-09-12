@@ -93,7 +93,7 @@
     }
     CCMenu* scoreMenu = [CCMenu menuWithArray:tmp];
     [scoreMenu alignItemsVertically];
-    [scoreMenu setPosition:ccp(_winSize.width * 1 / 4, _winSize.height/2)];
+    [scoreMenu setPosition:ccp(_winSize.width * 1 / 4, _winSize.height*7/16)];
     
     [self addChild:scoreMenu];
     
@@ -175,17 +175,25 @@
         [_delegate backToIntroLayer];
     }];
     
-    CCMenuItemLabel *share = [CCMenuItemFont itemWithString:@"[SHARE]" block:^(id sender) {
-        if (!_shareButtonPushed && [self iosVersionUpperThan6]) {
-            [self createShareMenu];
-            _shareButtonPushed = YES;
-        }
-    }];
+    CCMenuItemLabel* twitter = [CCMenuItemFont itemWithString:@"[Twitter]" target:self selector:@selector(postToSNS:)];
+    twitter.tag = 100;
+    CCMenuItemLabel* facebook = [CCMenuItemFont itemWithString:@"[facebook]" target:self selector:@selector(postToSNS:)];
+    facebook.tag = 101;
+
+    CCMenuItemLabel* kara = [CCMenuItemFont itemWithString:@"_"];
+    kara.isEnabled = NO;
+    kara.visible = NO;
+//    CCMenuItemLabel *share = [CCMenuItemFont itemWithString:@"[SHARE]" block:^(id sender) {
+//        if (!_shareButtonPushed && [self iosVersionUpperThan6]) {
+//            [self createShareMenu];
+//            _shareButtonPushed = YES;
+//        }
+//    }];
 
     
-    CCMenu *menu = [CCMenu menuWithItems:reset, top, share, nil];
-    [menu alignItemsVertically];
-    [menu setPosition:ccp(_winSize.width * 3/4, _winSize.height * 2/4)];
+    CCMenu *menu = [CCMenu menuWithItems:reset, top, kara, twitter, facebook, nil];
+    [menu alignItemsVerticallyWithPadding:kMenuVerticalPadding];
+    [menu setPosition:ccp(_winSize.width * 3/4, _winSize.height * 7/16)];
     [self addChild:menu];
 }
 

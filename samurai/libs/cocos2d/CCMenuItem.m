@@ -204,7 +204,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	if( (self=[self initWithBlock:block]) ) {
 		_originalScale = 1;
 		_colorBackup = ccWHITE;
-		self.disabledColor = ccc3( 126,126,126);
+		self.disabledColor = ccWHITE;//ccc3( 126,126,126);
 		self.label = label;
 		
 		self.cascadeColorEnabled = YES;
@@ -282,6 +282,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	if( _isEnabled != enabled ) {
 		if(enabled == NO) {
 			_colorBackup = [_label color];
+            CCLOG(@"%d,%d,%d", _disabledColor.r, _disabledColor.g, _disabledColor.b);
 			[_label setColor: _disabledColor];
 		}
 		else

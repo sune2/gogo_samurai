@@ -37,7 +37,9 @@
     
     // Score
     _scoreLabel = [self labelWithInteger:_score];
-    
+    _scoreLabel.isEnabled = NO;
+    _scoreLabel.disabledColor = ccWHITE;
+
 //	// Reset Button
 //    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
 //         [_delegate resetButtonPushed];
@@ -77,12 +79,14 @@
     }];
     
     CCMenuItemLabel *resume = [CCMenuItemFont itemWithString:@"[UNPAUSE]" block:^(id sender) {
+        _menuExpanded = NO;
         [_delegate resumeWorkLayer];
         [bg removeFromParent];
     }];
     
-    CCMenu* menu = [CCMenu menuWithItems:top, reset, resume, nil];
-    [menu alignItemsVerticallyWithPadding:10];
+    CCMenu* menu = [CCMenu menuWithItems:resume, reset, top, nil];
+
+    [menu alignItemsVerticallyWithPadding:kPauseVerticalPadding];
     [bg addChild:menu z:11];
 
 }
