@@ -19,6 +19,7 @@
         _life = 3;
         _winSize = [[CCDirector sharedDirector] winSize];
         _lifeDangos = [[NSMutableArray alloc] init];
+        _menuExpanded = NO;
         [self createMenu];
         [self addDango];
         
@@ -47,7 +48,7 @@
 //    }];
     
     CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[PAUSE]" block:^(id sender) {
-        [self expandMenu];
+        if (!_menuExpanded) [self expandMenu];
     }];
 
     // CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
@@ -62,6 +63,7 @@
 
 - (void)expandMenu
 {
+    _menuExpanded = YES;
     [_delegate pauseWorkLayer];
     CCLayerColor* bg = [CCLayerColor layerWithColor:ccc4(0, 0 , 0, 150)];
     [self addChild:bg z:10];

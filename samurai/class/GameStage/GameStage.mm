@@ -92,6 +92,7 @@
     [_workLayer resumeSchedulerAndActions];
     [_bgLayer resumeSchedulerAndActions];
     _workLayer.touchEnabled = YES;
+    _menuLayer.touchEnabled = YES;
 }
 
 
