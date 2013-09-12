@@ -49,7 +49,7 @@
 //        [_delegate backToIntroLayer];
 //    }];
     
-    CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[PAUSE]" block:^(id sender) {
+    CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[Pause]" block:^(id sender) {
         _menu.enabled = NO;
         if (!_menuExpanded) [self expandMenu];
     }];
@@ -71,15 +71,15 @@
     CCLayerColor* bg = [CCLayerColor layerWithColor:ccc4(0, 0 , 0, 150)];
     [self addChild:bg z:10];
     
-    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[RESTART]" block:^(id sender){
+    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[Restart]" block:^(id sender){
         [_delegate resetButtonPushed];
     }];
     
-    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"[TOP]" block:^(id sender) {
+    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"[Top]" block:^(id sender) {
         [_delegate backToIntroLayer];
     }];
     
-    CCMenuItemLabel *resume = [CCMenuItemFont itemWithString:@"[UNPAUSE]" block:^(id sender) {
+    CCMenuItemLabel *resume = [CCMenuItemFont itemWithString:@"[Unpause]" block:^(id sender) {
         _menuExpanded = NO;
         [_delegate resumeWorkLayer];
         _menu.enabled = YES;

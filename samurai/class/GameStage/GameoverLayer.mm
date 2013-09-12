@@ -168,17 +168,17 @@
 {
     
     // Reset Button
-    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[RESTART]" block:^(id sender){
+    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"[Restart]" block:^(id sender){
         [_delegate resetButtonPushed];
     }];
     
-    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"[TOP]" block:^(id sender) {
+    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"[Top]" block:^(id sender) {
         [_delegate backToIntroLayer];
     }];
     
     CCMenuItemLabel* twitter = [CCMenuItemFont itemWithString:@"[Twitter]" target:self selector:@selector(postToSNS:)];
     twitter.tag = 100;
-    CCMenuItemLabel* facebook = [CCMenuItemFont itemWithString:@"[facebook]" target:self selector:@selector(postToSNS:)];
+    CCMenuItemLabel* facebook = [CCMenuItemFont itemWithString:@"[Facebook]" target:self selector:@selector(postToSNS:)];
     facebook.tag = 101;
 
     CCMenuItemLabel* kara = [CCMenuItemFont itemWithString:@"_"];
