@@ -58,6 +58,7 @@
 }
 
 - (BOOL)canShuriken {
+    return YES;
     return _shurikenState == 0;
 }
 - (void)makeShuriken {

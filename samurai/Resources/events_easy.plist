@@ -242,7 +242,7 @@
 		</array>
 	</dict>
 	<dict>
-		<key>New item</key>
+		<key>params</key>
 		<dict>
 			<key>difficulty</key>
 			<string>easy</string>
