@@ -8,7 +8,6 @@
 
 #import "ScoreLayer.h"
 
-
 @implementation ScoreLayer
 
 - (id)init
@@ -21,11 +20,55 @@
         
         [self addBackground];
         [self addTitle];
-        [self addRanking];
+//        [self addRanking];
         [self addMenu];
         [self addTextField];
+        [self initScrollLayer];
+        
     }
     return self;
+}
+
+- (void) initScrollLayer
+{
+    int pageMax = 3;//ページ数
+    CGSize s = [[CCDirector sharedDirector] winSize];
+    //ScrollLayer
+    ScrollLayer* scroll = [ScrollLayer node];
+    scroll.delegate = self;
+    [scroll changeContentWidth:s.width*pageMax];
+    [self addChild:scroll];
+    
+    CGFloat width = self.contentSize.width;
+    CGFloat height = self.contentSize.height;
+    
+    //Label
+    CCMenu* ranking1 = [self makeRanking];
+    ranking1.position =  ccp( width/2 ,  height/2-30);
+    [scroll addScrollChild:ranking1];
+
+    CCMenu* ranking2 = [self makeRanking];
+    ranking2.position =  ccp( width/2+width , height/2-30);
+    [scroll addScrollChild:ranking2];
+
+    CCMenu* ranking3 = [self makeRanking];
+    ranking3.position =  ccp( width/2+width*2 , height/2-30);
+    [scroll addScrollChild:ranking3];
+    
+    scroll.contentSize = CGSizeMake(100, 300);
+}
+
+- (void)scrollPageChanged:(int)page {
+    NSString * str;
+    if (page == 0) {
+        str = @"RANKING - EASY ▷";
+    } else if (page == 1) {
+        str = @"◁ RANKING - NORMAL ▷";
+    } else {
+        str = @"◁ RANKING - HARD";
+        
+    }
+    _titleLabel.string = str;
 }
 
 - (void)addBackground
@@ -43,18 +86,14 @@
 
 - (void)addTitle
 {
-    NSString* tStr = [NSString stringWithFormat:@"SCORE"];
-    CCMenuItemFont* tLabel = [CCMenuItemFont itemWithString:tStr];
-    [tLabel setFontSize:30];
-    [tLabel setColor:ccc3(0,255,200)];
-    // [tLabel setFontName:@"HiraMinProN-W3"];
-    CCMenu* tMenu = [CCMenu menuWithItems:tLabel, nil];
-    [tMenu setPosition:ccp(_winSize.width / 2, _winSize.height - 30)];
+    _titleLabel = [CCLabelTTF labelWithString:@"Ranking - EASY ▷" fontName:@"Marker Felt" fontSize:30];
+    _titleLabel.color = ccc3(0, 255, 200);
+    _titleLabel.position = ccp(_winSize.width / 2, _winSize.height - 30);
     
-    [self addChild:tMenu];
+    [self addChild:_titleLabel];
 }
 
-- (void)addRanking
+- (CCMenu*)makeRanking
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     _scores = [ud arrayForKey:@"Rank"];
@@ -67,11 +106,10 @@
     }
     CCMenu* menu = [CCMenu menuWithArray:arr];
     menu.enabled = NO;
-    menu.position = ccp(_winSize.width/2, _winSize.height/2 - 30);
+//    menu.position = ccp(_winSize.width/2, _winSize.height/2 - 30);
     [menu alignItemsVertically];
-    
-    [self addChild:menu];
-    
+
+    return menu;
 }
 
 - (void)addMenu
@@ -93,6 +131,7 @@
     CCMenu* menu = [CCMenu menuWithItems:renameLabel, nil];
     menu.anchorPoint = ccp(1.0f, 0.5f);
     menu.position = ccp(_winSize.width/2 - 80, _winSize.height - 80);
+    menu.enabled = NO;
     [self addChild:menu];
     
     NSString* currentName = [_ud objectForKey:@"Name"];
@@ -103,6 +142,8 @@
     _tf.borderStyle = UITextBorderStyleRoundedRect;
     _tf.returnKeyType = UIReturnKeyDefault;
     _tf.delegate = self;
+    _tf.keyboardType = UIKeyboardTypeASCIICapable;
+    _tf.clearButtonMode = UITextFieldViewModeWhileEditing;
     
 //    [_tf addTarget:self
 //           action:@selector(saveSamuraiName)

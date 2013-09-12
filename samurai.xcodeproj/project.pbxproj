@@ -31,6 +31,7 @@
 		FA78E06417E071FB00F9C825 /* moon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06317E071FB00F9C825 /* moon.png */; };
 		FA78E06617E073AE00F9C825 /* fullmoon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06517E073AE00F9C825 /* fullmoon.png */; };
 		FA78E06817E078D300F9C825 /* fullmoon2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06717E078D300F9C825 /* fullmoon2.png */; };
+		FA78E06B17E1465E00F9C825 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA78E06A17E1465B00F9C825 /* ScrollLayer.m */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
@@ -267,6 +268,8 @@
 		FA78E06317E071FB00F9C825 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moon.png; path = Resources/images/moon.png; sourceTree = "<group>"; };
 		FA78E06517E073AE00F9C825 /* fullmoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullmoon.png; path = Resources/images/fullmoon.png; sourceTree = "<group>"; };
 		FA78E06717E078D300F9C825 /* fullmoon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullmoon2.png; path = Resources/images/fullmoon2.png; sourceTree = "<group>"; };
+		FA78E06917E1465700F9C825 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollLayer.h; path = class/ScrollLayer.h; sourceTree = "<group>"; };
+		FA78E06A17E1465B00F9C825 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollLayer.m; path = class/ScrollLayer.m; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
 		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
@@ -815,6 +818,8 @@
 				FAF3B4CD17D736FE00F29EDB /* IntroLayer.mm */,
 				FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */,
 				FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */,
+				FA78E06917E1465700F9C825 /* ScrollLayer.h */,
+				FA78E06A17E1465B00F9C825 /* ScrollLayer.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 				FAF29AAD17D82D8200F512EE /* Enemy.mm in Sources */,
 				FA78E04F17DEF47300F9C825 /* Define.mm in Sources */,
 				FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */,
+				FA78E06B17E1465E00F9C825 /* ScrollLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
