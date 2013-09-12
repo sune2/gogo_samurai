@@ -115,6 +115,7 @@
             if (projectile.owner == ProjectileOwnerEnemy) {
                 if ([_samurai isCountering]) {
                     [projectile reflect];
+                    self.score += 50;
                 } else {
                     [_samurai damaged];
                     [_vanishedProjectiles addObject:projectile];
@@ -219,11 +220,11 @@
     
     [self removeProjectiles:_vanishedProjectiles];
     for (Enemy* enemy in _damagedEnemies) {
+        self.score += 100;
         [enemy damaged];
     }
 
     _life = _samurai.hp;
-    _score += 1;
 
 
     // イベント処理
@@ -404,10 +405,12 @@
 - (void)enemyDied:(Enemy *)enemy {
     // _clear = YES;
     if (enemy.tag == SpriteTagBoss) _clear = YES;
+    
+    self.score += enemy.score * 1.0 / MAX(1,enemy.curTime);
+    
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
     [enemy removeFromParent];
-    self.score += 1000;
 }
 
 - (void)enemyVanished:(Enemy *)enemy {

@@ -20,6 +20,7 @@
     res.name = name;
     res.tag = SpriteTagZako;
     res.hp = 1;
+    res.score = 10;
     return res;
 }
 

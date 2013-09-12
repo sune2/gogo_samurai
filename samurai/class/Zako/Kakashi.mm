@@ -14,6 +14,7 @@
 {
     Kakashi* res = (Kakashi *)[super enemyWithName:@"ninja"];
     res.scale = 57.0 / res.textureRect.size.width;
+    res.score = 200;
     return res;
 }
 
@@ -30,7 +31,7 @@
 
 - (void)update:(ccTime)delta
 {
-    
+    self.curTime += delta;
     b2Vec2 pos = self.b2Body->GetPosition();
     
     if (pos.y < 1) {

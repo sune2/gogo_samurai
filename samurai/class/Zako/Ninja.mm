@@ -19,6 +19,7 @@
     res.scale = 88.0 / res.textureRect.size.width;
     res.arm = [CCSprite spriteWithFile:@"ninja2.png"];
     [res addChild:res.arm z:-3];
+    res.score = 500;
     return res;
 }
 
@@ -118,7 +119,7 @@
 }
 
 - (void)update:(ccTime)delta {
-    _curTime += delta;
+    self.curTime += delta;
     
     
     
@@ -149,7 +150,7 @@
 
     // イベント処理
     while(_eventIndex < self.events.count &&
-          [self.events[_eventIndex][@"time"] floatValue] < _curTime) {
+          [self.events[_eventIndex][@"time"] floatValue] < self.curTime) {
         NSString *command = self.events[_eventIndex][@"name"];
         if ([command isEqualToString:@"shuriken"]) {
             [self makeShuriken];
