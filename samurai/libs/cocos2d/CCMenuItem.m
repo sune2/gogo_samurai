@@ -132,7 +132,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 -(void) activate
 {
 	if(_isEnabled && _block ) {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"dash.mp3"];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"button.mp3"];
 		_block(self);
     }
 }

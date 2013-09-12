@@ -123,6 +123,7 @@
 {
     NSString* backStr = @"[BACK]";
     CCMenuItemFont* backLabel = [CCMenuItemFont itemWithString:backStr block:^(id sender) {
+        [self saveSamuraiName:_tf];
         [_delegate backToIntroLayer];
     }];
     
@@ -144,7 +145,8 @@
     NSString* currentName = [_ud objectForKey:@"Name"];
     
     _tf = [[UITextField alloc] init];
-    _tf.text = currentName;
+//    _tf.text = currentName;
+    _tf.placeholder = currentName;
     _tf.backgroundColor = [UIColor whiteColor];
     _tf.borderStyle = UITextBorderStyleRoundedRect;
     _tf.returnKeyType = UIReturnKeyDefault;
@@ -169,7 +171,8 @@
     if (tf.text.length > 10) {
         tf.text = [tf.text substringToIndex:10];
     }
-    NSString* newName = tf.text;
+   
+    NSString* newName = (tf.text.length > 0) ? tf.text : _tf.placeholder;
     [_ud setObject:newName forKey:@"Name"];
     [_ud synchronize];
 }
@@ -184,7 +187,7 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)tf{
-    [self saveSamuraiName:tf];
+    // [self saveSamuraiName:tf];
     [tf resignFirstResponder];
     return YES;
 }

@@ -45,6 +45,7 @@
 		FA8CC17717E1648400177AE2 /* kill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16F17E1648400177AE2 /* kill.mp3 */; };
 		FA8CC17817E1648400177AE2 /* reflect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17017E1648400177AE2 /* reflect.mp3 */; };
 		FA8CC17917E1648400177AE2 /* uma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17117E1648400177AE2 /* uma.mp3 */; };
+		FA8CC17B17E1829F00177AE2 /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17A17E1829E00177AE2 /* button.mp3 */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -295,6 +296,7 @@
 		FA8CC16F17E1648400177AE2 /* kill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kill.mp3; sourceTree = "<group>"; };
 		FA8CC17017E1648400177AE2 /* reflect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reflect.mp3; sourceTree = "<group>"; };
 		FA8CC17117E1648400177AE2 /* uma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = uma.mp3; sourceTree = "<group>"; };
+		FA8CC17A17E1829E00177AE2 /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 				FA8CC16C17E1648400177AE2 /* dash.mp3 */,
 				FA8CC16D17E1648400177AE2 /* eq.mp3 */,
 				FA8CC16E17E1648400177AE2 /* horagai.mp3 */,
+				FA8CC17A17E1829E00177AE2 /* button.mp3 */,
 				FA8CC16F17E1648400177AE2 /* kill.mp3 */,
 				FA8CC17017E1648400177AE2 /* reflect.mp3 */,
 				FA8CC17117E1648400177AE2 /* uma.mp3 */,
@@ -1672,6 +1675,7 @@
 				FA8CC17717E1648400177AE2 /* kill.mp3 in Resources */,
 				FA8CC17817E1648400177AE2 /* reflect.mp3 in Resources */,
 				FA8CC17917E1648400177AE2 /* uma.mp3 in Resources */,
+				FA8CC17B17E1829F00177AE2 /* button.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
