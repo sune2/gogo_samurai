@@ -23,6 +23,7 @@
 
 @interface MenuLayer : CCLayer
 {
+    CCMenu* _menu;
     CCMenuItemLabel* _scoreLabel;
     CCMenuItemLabel* _menuLabel;
     NSMutableArray* _lifeDangos;

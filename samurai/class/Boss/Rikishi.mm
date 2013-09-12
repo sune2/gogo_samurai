@@ -23,6 +23,7 @@
     res.stopPos = 300;
     res.moveTime = 13;
     res.hp = 2;
+    res.score = 2000;
     return res;
 }
 
@@ -196,7 +197,7 @@
 
 
 - (void)update:(ccTime)delta {
-    _curTime += delta;
+    self.curTime += delta;
     
     [self updateShiko:delta];
     [self updateGanko:delta];
@@ -207,7 +208,7 @@
     b2Vec2 pos = self.b2Body->GetPosition();
     
     if (pos.y < 1) {
-        if (pos.x > self.stopPos/PTM_RATIO || _curTime > self.moveTime) {
+        if (pos.x > self.stopPos/PTM_RATIO || self.curTime > self.moveTime) {
             // 左に移動する
             self.b2Body->SetLinearVelocity(b2Vec2(-5, self.b2Body->GetLinearVelocity().y));
         } else {
@@ -231,7 +232,7 @@
     
     // イベント処理
     while(_eventIndex < self.events.count &&
-          [self.events[_eventIndex][@"time"] floatValue] < _curTime) {
+          [self.events[_eventIndex][@"time"] floatValue] < self.curTime) {
         NSString *command = self.events[_eventIndex][@"name"];
         if ([command isEqualToString:@"shiko"]) {
             [self makeShiko];

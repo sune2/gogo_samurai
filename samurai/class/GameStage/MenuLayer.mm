@@ -50,16 +50,17 @@
 //    }];
     
     CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[PAUSE]" block:^(id sender) {
+        _menu.enabled = NO;
         if (!_menuExpanded) [self expandMenu];
     }];
 
     // CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
-    CCMenu* menu = [CCMenu menuWithItems:_scoreLabel, menuLabel, nil];
-	[menu alignItemsVertically];
+    _menu = [CCMenu menuWithItems:_scoreLabel, menuLabel, nil];
+	[_menu alignItemsVertically];
     
-	[menu setPosition:ccp(_winSize.width/2, _winSize.height-50)];
+	[_menu setPosition:ccp(_winSize.width/2, _winSize.height-50)];
 	
-	[self addChild: menu z:1];
+	[self addChild: _menu z:1];
     
 }
 
@@ -81,6 +82,7 @@
     CCMenuItemLabel *resume = [CCMenuItemFont itemWithString:@"[UNPAUSE]" block:^(id sender) {
         _menuExpanded = NO;
         [_delegate resumeWorkLayer];
+        _menu.enabled = YES;
         [bg removeFromParent];
     }];
     

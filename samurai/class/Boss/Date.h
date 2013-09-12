@@ -31,6 +31,8 @@
     
     CCSprite* _yellowMoon;
     
+    int _shokanState;
+    
 }
 
 @property (nonatomic, strong) CCSprite* karada;

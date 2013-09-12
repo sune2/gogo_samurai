@@ -21,7 +21,6 @@
 
 @interface Enemy : CCPhysicsSprite
 {
-    ccTime _curTime;
     int _eventIndex;
     std::vector<b2Body*> _bodies;
     
@@ -33,11 +32,13 @@
     b2Body* _mainBody; // 真ん中になりそうなbody 血が出る
 }
 
+@property(nonatomic, assign) ccTime curTime;
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, assign) b2World* world;
 @property (nonatomic, strong) id<ProjectileProtocol,EnemyProtocol> delegate;
 @property (nonatomic, strong) NSArray* events;
 @property(nonatomic, assign) int hp;
+@property(nonatomic, assign)int score;
 
 + (Enemy*)enemyWithName:(NSString*)name;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;

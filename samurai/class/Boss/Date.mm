@@ -23,6 +23,7 @@
     res.tag = SpriteTagBoss;
     res.hp = 10;
     res.difficulty = DifficultyEasy;
+    res.score = 2000000;
     return res;
 }
 
@@ -36,13 +37,16 @@
         NSString* str = [params objectForKey:@"difficulty"];
         if ([str isEqualToString:@"easy"]) {
             res.difficulty = DifficultyEasy;
-            res.hp = 6;
+            res.hp = 8;
+            res.score = 2000000;
         } else if ([str isEqualToString:@"normal"]) {
             res.difficulty = DifficultyNormal;
-            res.hp = 8;
+            res.hp = 10;
+            res.score = 4000000;
         } else if ([str isEqualToString:@"hard"]) {
             res.difficulty = DifficultyHard;
-            res.hp = 10;
+            res.hp = 12;
+            res.score = 8000000;
         }
     }
     
@@ -233,11 +237,21 @@
 }
 
 - (void)update:(ccTime)delta {
+    self.curTime += delta;
+    
     if (rand() % 60 == 0) {
-        if (rand() % 2) {
-            [self makeEarthquake];
+        if (self.difficulty == DifficultyEasy) {
+            if (rand() % 3 == 0) {
+                [self makeEarthquake];
+            } else {
+                [self makeGanko];
+            }
         } else {
-            [self makeGanko];
+            if (rand() % 2) {
+                [self makeEarthquake];
+            } else {
+                [self makeGanko];
+            }
         }
     }
     
@@ -247,16 +261,17 @@
             
         } else if (self.difficulty == DifficultyNormal && self.hp <= 4) {
             if (rand() % 120 == 0) {
-                _shokanWaiting = 10;
+                _shokanWaiting = 5;
                 Enemy* enemy = [Kakashi kakashi];
                 [enemy initBodyWithWorld:self.world at:ccp(400, 200)];
+                enemy.score = 0;
                 [self.delegate dateAddEnemey:enemy];
             }
-        } else if (self.difficulty == DifficultyHard && self.hp <= 5) {
+        } else if (self.difficulty == DifficultyHard && self.hp <= 8) {
             if (rand() % 120 == 0) {
-                _shokanWaiting = 10;
+                _shokanWaiting = 5;
                 Enemy* enemy;
-                if (rand() % 2 == 0) {
+                if (_shokanState) {
                     enemy = [Ninja ninja];
                     NSArray* array = [[NSArray alloc] initWithObjects:
                                       [NSDictionary dictionaryWithObjectsAndKeys:
@@ -267,7 +282,7 @@
                     enemy.events = array;
                 } else {
                     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                            [NSNumber numberWithDouble:200+rand()%100], @"stopPos",
+                                            [NSNumber numberWithDouble:200], @"stopPos",
                                             [NSNumber numberWithDouble:9], @"moveTime",
                                             nil];
                     enemy = [Rikishi rikishiWithParams:params];
@@ -283,6 +298,7 @@
                                       nil];
                     enemy.events = array;                    
                 }
+                _shokanState = !_shokanState;
                 [enemy initBodyWithWorld:self.world at:ccp(400, 200)];
                 [self.delegate dateAddEnemey:enemy];
             }
