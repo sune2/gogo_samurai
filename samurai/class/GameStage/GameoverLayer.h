@@ -22,10 +22,11 @@
     int _score;
     BOOL _shareButtonPushed;
     NSUserDefaults* _ud;
+    Difficulty _difficulty;
 }
 
-- (id)initWithScore:(int)score result:(BOOL)win;
-+ (id)nodeWithScore:(int)score result:(BOOL)win;
+- (id)initWithScore:(int)score result:(BOOL)win difficulty:(Difficulty)difficulty;
++ (id)nodeWithScore:(int)score result:(BOOL)win difficulty:(Difficulty)difficulty;
 
 @property (strong) id<MenuLayerDelegate> delegate;
 @end
