@@ -35,6 +35,8 @@
 		FA78E06F17E1967000F9C825 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06C17E1967000F9C825 /* Default-568h@2x.png */; };
 		FA78E07017E1967000F9C825 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06D17E1967000F9C825 /* Default.png */; };
 		FA78E07117E1967000F9C825 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E06E17E1967000F9C825 /* Default@2x.png */; };
+		FA78E07417E1BF5600F9C825 /* newrikishi_karada.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E07217E1BF5600F9C825 /* newrikishi_karada.png */; };
+		FA78E07517E1BF5600F9C825 /* newrikishi_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E07317E1BF5600F9C825 /* newrikishi_leg.png */; };
 		FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8CC15B17DF138900177AE2 /* Social.framework */; };
 		FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */; };
 		FA8CC16617E15A5E00177AE2 /* events_easy.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16317E15A5D00177AE2 /* events_easy.plist */; };
@@ -286,6 +288,8 @@
 		FA78E06C17E1967000F9C825 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/images/default/Default-568h@2x.png"; sourceTree = "<group>"; };
 		FA78E06D17E1967000F9C825 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/images/default/Default.png; sourceTree = "<group>"; };
 		FA78E06E17E1967000F9C825 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/images/default/Default@2x.png"; sourceTree = "<group>"; };
+		FA78E07217E1BF5600F9C825 /* newrikishi_karada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newrikishi_karada.png; path = Resources/images/character/newrikishi_karada.png; sourceTree = "<group>"; };
+		FA78E07317E1BF5600F9C825 /* newrikishi_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newrikishi_leg.png; path = Resources/images/character/newrikishi_leg.png; sourceTree = "<group>"; };
 		FA8CC15B17DF138900177AE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA8CC16017E03A1900177AE2 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCUIViewWrapper.h; path = class/CCUIViewWrapper.h; sourceTree = "<group>"; };
 		FA8CC16117E03A1A00177AE2 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCUIViewWrapper.m; path = class/CCUIViewWrapper.m; sourceTree = "<group>"; };
@@ -825,6 +829,8 @@
 		FAA67A3217DD535D00AE872A /* rekisi */ = {
 			isa = PBXGroup;
 			children = (
+				FA78E07217E1BF5600F9C825 /* newrikishi_karada.png */,
+				FA78E07317E1BF5600F9C825 /* newrikishi_leg.png */,
 				29A5597B17DAFCBF0067A8DD /* rikisi_leg.png */,
 				29A5597017DA4D950067A8DD /* rikisi.png */,
 				29A5597817DA55350067A8DD /* shiko.png */,
@@ -1681,6 +1687,8 @@
 				FA78E06F17E1967000F9C825 /* Default-568h@2x.png in Resources */,
 				FA78E07017E1967000F9C825 /* Default.png in Resources */,
 				FA78E07117E1967000F9C825 /* Default@2x.png in Resources */,
+				FA78E07417E1BF5600F9C825 /* newrikishi_karada.png in Resources */,
+				FA78E07517E1BF5600F9C825 /* newrikishi_leg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

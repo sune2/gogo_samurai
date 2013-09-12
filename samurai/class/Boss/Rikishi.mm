@@ -10,16 +10,16 @@
 #import "GB2ShapeCache.h"
 #import "MyParticle.h"
 
-#define kJointAnchorPosX 1.9
-#define kJointAnchorPosY 1.1
+#define kJointAnchorPosX 89./32
+#define kJointAnchorPosY 42./32
 
 @implementation Rikishi
 
 + (Rikishi*)rikishi {
-    Rikishi* res = (Rikishi*)[super enemyWithName:@"rikisi_leg"];
-    res.karada = [CCSprite spriteWithFile:@"rikisi.png"];
+    Rikishi* res = (Rikishi*)[super enemyWithName:@"newrikishi_leg"];
+    res.karada = [CCSprite spriteWithFile:@"newrikishi_karada.png"];
     [res addChild:res.karada z:-3];
-    res.scale = 91/res.contentSize.width;
+    res.scale = 120/res.contentSize.width;
     res.stopPos = 300;
     res.moveTime = 13;
     res.hp = 2;
@@ -56,8 +56,8 @@
     _bodies.push_back(_karadaBody);
 //    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
     
-    [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"rikisi"];
-    [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"rikisi"]];
+    [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"newrikishi_karada"];
+    [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"newrikishi_karada"]];
 
     b2RevoluteJointDef jointDef;
     jointDef.Initialize(self.b2Body, _karadaBody,
@@ -207,7 +207,7 @@
         
     b2Vec2 pos = self.b2Body->GetPosition();
     
-    if (pos.y < 1) {
+    if (pos.y < 9.0/PTM_RATIO) {
         if (pos.x > self.stopPos/PTM_RATIO || self.curTime > self.moveTime) {
             // 左に移動する
             self.b2Body->SetLinearVelocity(b2Vec2(-5, self.b2Body->GetLinearVelocity().y));
@@ -216,10 +216,10 @@
         }
     }
 
-    if (pos.y < 0) {
+    if (pos.y < 8.0/PTM_RATIO) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
-        b2Vec2 tmp = b2Vec2(pos.x,0) - self.b2Body->GetPosition();
-        self.b2Body->SetTransform(b2Vec2(pos.x,0), self.b2Body->GetAngle());
+        b2Vec2 tmp = b2Vec2(pos.x,8.0/PTM_RATIO) - self.b2Body->GetPosition();
+        self.b2Body->SetTransform(b2Vec2(pos.x,8.0/PTM_RATIO), self.b2Body->GetAngle());
         self.karadaBody->SetTransform(self.karadaBody->GetPosition()+tmp, self.karadaBody->GetAngle());
     }
 
