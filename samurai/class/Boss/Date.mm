@@ -271,7 +271,7 @@
             if (rand() % 120 == 0) {
                 _shokanWaiting = 5;
                 Enemy* enemy;
-                if (rand() % 2 == 0) {
+                if (_shokanState) {
                     enemy = [Ninja ninja];
                     NSArray* array = [[NSArray alloc] initWithObjects:
                                       [NSDictionary dictionaryWithObjectsAndKeys:
@@ -282,7 +282,7 @@
                     enemy.events = array;
                 } else {
                     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                            [NSNumber numberWithDouble:200+rand()%100], @"stopPos",
+                                            [NSNumber numberWithDouble:200], @"stopPos",
                                             [NSNumber numberWithDouble:9], @"moveTime",
                                             nil];
                     enemy = [Rikishi rikishiWithParams:params];
@@ -298,6 +298,7 @@
                                       nil];
                     enemy.events = array;                    
                 }
+                _shokanState = !_shokanState;
                 [enemy initBodyWithWorld:self.world at:ccp(400, 200)];
                 [self.delegate dateAddEnemey:enemy];
             }

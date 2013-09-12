@@ -148,7 +148,7 @@
                         damaged = YES;
                         [_vanishedProjectiles addObject:projectile];
                     }
-                } else if (sprite.tag == SpriteTagKatana) {
+                } else if (sprite.tag == SpriteTagKatana || sprite.tag == SpriteTagSamurai) {
                     if ([_samurai isDashing] || [_samurai isCountering]) {
                         damaged = YES;
                     }
@@ -353,46 +353,54 @@
 	
 }
 
--(void) draw
-{
-	//
-	// IMPORTANT:
-	// This is only for debug purposes
-	// It is recommend to disable it
-	//
-	[super draw];
-	
-	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
-	kmGLPushMatrix();
-	
-	world->DrawDebugData();
-	
-	kmGLPopMatrix();
-    
-    b2Vec2 vertices[4];
+//-(void) draw
+//{
+//	//
+//	// IMPORTANT:
+//	// This is only for debug purposes
+//	// It is recommend to disable it
+//	//
+//	[super draw];
+//	
+//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+//	
+//	kmGLPushMatrix();
+//	
+//	world->DrawDebugData();
+//	
+//	kmGLPopMatrix();
+//    
+//    b2Vec2 vertices[4];
+//
+//    for (Enemy* enemy in _enemies) {
+//        Rikishi* rikishi = (Rikishi*)enemy;
+//        b2Vec2 origin((rikishi.position.x - rikishi.anchorPoint.x)/PTM_RATIO,
+//                      (rikishi.position.y - rikishi.anchorPoint.y)/PTM_RATIO);
+//
+//        b2Vec2 size(rikishi.contentSize.width * rikishi.scale / PTM_RATIO,
+//                    rikishi.contentSize.height * rikishi.scale / PTM_RATIO);
+//        vertices[0] = origin;
+//        vertices[1] = origin + b2Vec2(size.x, 0);
+//        vertices[2] = origin + size;
+//        vertices[3] = origin + b2Vec2(0,size.y);
+//        m_debugDraw->DrawPolygon(vertices, 4, b2Color(1, 0, 0));
+//    }
+//
+//}
 
-    for (Enemy* enemy in _enemies) {
-//        if ([enemy.name isEqualToString:@"rikisi_leg"]) {
-            Rikishi* rikishi = (Rikishi*)enemy;
-//            b2Vec2 origin((rikishi.position.x + rikishi.karada.position.x - rikishi.karada.anchorPoint.x)/PTM_RATIO,
-//                          (rikishi.position.y + rikishi.karada.position.y - rikishi.karada.anchorPoint.y)/PTM_RATIO);
-            b2Vec2 origin((rikishi.position.x - rikishi.anchorPoint.x)/PTM_RATIO,
-                          (rikishi.position.y - rikishi.anchorPoint.y)/PTM_RATIO);
 
-            b2Vec2 size(rikishi.contentSize.width * rikishi.scale / PTM_RATIO,
-                        rikishi.contentSize.height * rikishi.scale / PTM_RATIO);
-            vertices[0] = origin;
-            vertices[1] = origin + b2Vec2(size.x, 0);
-            vertices[2] = origin + size;
-            vertices[3] = origin + b2Vec2(0,size.y);
-//            CCLOG(@"(%f,%f) - (%f,%f)", origin.x, origin.y, size.x, size.y);
-            m_debugDraw->DrawPolygon(vertices, 4, b2Color(1, 0, 0));
-//        }
+- (void) pauseSchedulerAndActions {
+    [super pauseSchedulerAndActions];
+    for(CCSprite *sprite in [self children]) {
+        [[CCActionManager sharedManager] pauseTarget:sprite];
     }
-
 }
-
+- (void) resumeSchedulerAndActions {
+    [super resumeSchedulerAndActions];
+    for(CCSprite *sprite in [self children]) {
+        [[CCActionManager sharedManager] resumeTarget:sprite];
+    }
+}
 
 // protocol
 
@@ -404,7 +412,10 @@
 
 - (void)enemyDied:(Enemy *)enemy {
     // _clear = YES;
-    if (enemy.tag == SpriteTagBoss) _clear = YES;
+    if (enemy.tag == SpriteTagBoss) {
+        _clear = YES;
+        self.score += _samurai.hp*20000;
+    }
     
     self.score += enemy.score * 1.0 / MAX(1,enemy.curTime);
     
