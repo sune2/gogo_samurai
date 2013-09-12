@@ -68,6 +68,8 @@
     _yellowMoon.scale = 0.7;
     [self.karada addChild:_yellowMoon z:-2];
     _yellowMoon.opacity = 0;
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"horagai.mp3"];
 }
 
 - (BOOL)canGanko {
@@ -97,6 +99,8 @@
 - (void)makeEarthquake {
     if ([self canEarthquake]) {
         _earthquakeState = 1;
+        [[SimpleAudioEngine sharedEngine] playEffect:@"uma.mp3"];
+       
     }
 }
 
@@ -127,6 +131,7 @@
             
             _earthquakeState = 4;
             _waiting = 0.2;
+            [[SimpleAudioEngine sharedEngine] playEffect:@"eq.mp3"];
         }
             break;
         case 4:
@@ -250,17 +255,6 @@
     [super removeFromParent];
     self.world->DestroyBody(self.karadaBody);
 }
-
-- (void)damaged {
-    if (_mutekiState == 0) {
-        self.hp--;
-        _mutekiState = 1;
-        _mutekiWaiting = 0.1;
-        _mutekiPosX = self.position.x;
-        
-    }
-}
-
 
 
 @end

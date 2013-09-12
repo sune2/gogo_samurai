@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "CCPhysicsSprite.h"
+#import "SimpleAudioEngine.h"
 
 @interface Samurai : CCPhysicsSprite
 {

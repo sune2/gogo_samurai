@@ -119,12 +119,14 @@
 
 - (void)dashSlice {
     if ([self canDash]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"dash.mp3"];
         _dashState = 1;
     }
 }
 
 - (void)counter {
     if ([self canCounter]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"counter.mp3"];
         _counterState = 1;
         _counterWaiting = 0.8;
     }
@@ -314,6 +316,7 @@
         self.hp--;
         _mutekiState = 1;
         _mutekiWaiting = 0.1;
+        [[SimpleAudioEngine sharedEngine] playEffect:@"damaged.mp3"];
     }
 }
 

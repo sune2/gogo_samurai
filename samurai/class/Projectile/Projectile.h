@@ -9,6 +9,7 @@
 #import "CCPhysicsSprite.h"
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "SimpleAudioEngine.h"
 
 
 typedef enum {

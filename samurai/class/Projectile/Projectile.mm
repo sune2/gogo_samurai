@@ -60,6 +60,8 @@
     self.angularVelocity = - self.angularVelocity;
     self.linearVelocity = - self.linearVelocity;
     self.owner = ProjectileOwnerSamurai;
+    [[SimpleAudioEngine sharedEngine] playEffect:@"reflect.mp3"];
+    
 }
 
 - (void)removeFromParent {
