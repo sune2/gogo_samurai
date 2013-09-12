@@ -22,6 +22,17 @@
     return res;
 }
 
++ (Ninja*)ninjaWithParams:(NSDictionary *)params {
+    Ninja* res = [self ninja];
+    NSArray* keys = [params allKeys];
+    
+    if ([keys containsObject:@"hp"])
+        res.hp = [[params objectForKey:@"hp"] intValue];
+    
+    return res;
+}
+
+
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
     [super initBodyWithWorld:world at:point];
 

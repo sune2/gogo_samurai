@@ -34,6 +34,9 @@
         res.moveTime = [[params objectForKey:@"moveTime"] floatValue];
     if ([keys containsObject:@"stopPos"])
         res.stopPos = [[params objectForKey:@"stopPos"] floatValue];
+    if ([keys containsObject:@"hp"])
+        res.hp = [[params objectForKey:@"hp"] intValue];
+    
     return res;
 }
 

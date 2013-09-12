@@ -25,6 +25,7 @@
 @property (nonatomic, assign) Samurai* samurai;
 
 + (Date*)date;
++ (Date*)dateWithParams:(NSDictionary*)params;
 
 - (BOOL)canGanko;
 - (void)makeGanko;
