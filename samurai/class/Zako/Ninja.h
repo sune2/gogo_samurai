@@ -18,6 +18,7 @@
 @property (nonatomic, assign) b2Body* armBody;
 
 + (Ninja*)ninja;
++ (Ninja*)ninjaWithParams:(NSDictionary*)params;
 
 - (void)makeShuriken;
 

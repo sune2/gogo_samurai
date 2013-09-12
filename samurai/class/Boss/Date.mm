@@ -25,6 +25,16 @@
     return res;
 }
 
++ (Date*)dateWithParams:(NSDictionary *)params {
+    Date* res = [self date];
+    NSArray* keys = [params allKeys];
+    
+    if ([keys containsObject:@"hp"])
+        res.hp = [[params objectForKey:@"hp"] intValue];
+    
+    return res;
+}
+
 - (void)initBodyWithWorld:(b2World *)world at:(CGPoint)point {
     [super initBodyWithWorld:world at:point];
     

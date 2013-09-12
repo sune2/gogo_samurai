@@ -32,6 +32,8 @@
         [self createResultMenu];
         [self createBackMenu];
         [self manageRanking];
+        
+        [self scheduleUpdate];
     }
     return self;
 }
@@ -39,6 +41,14 @@
 + (id) nodeWithScore: (int)score result:(BOOL)win
 {
     return [[[self alloc] initWithScore:score result:win] autorelease];
+}
+
+- (void)update:(ccTime)delta {
+    if (rand() % 30 == 0) {
+        CCParticleSystemQuad* part = [MyParticle particleCherryBlossom];
+        part.position = ccp(rand()%(int)self.contentSize.width, rand()%(int)self.contentSize.height);
+        [self addChild:part z:-3];
+    }
 }
 
 - (void) manageRanking
@@ -106,11 +116,17 @@
     CCMenuItemFont* ret = [CCMenuItemFont itemWithString:str];
     
     if ([[sDict objectForKey:@"new"] boolValue]) {
-        ret.color = ccYELLOW;
-    }
-    
-    if (rank == 5) {
-        ret.color = ccc3(150,150,150);
+        // 今回
+        if (rank == 5) {
+            ret = [CCMenuItemFont itemWithString:[NSString stringWithFormat:@"-. %@: %@", name, score]];
+            ret.color = ccc3(150, 150, 50);
+        } else {
+            ret.color = ccYELLOW;
+        }
+    } else {
+        if (rank == 5) {
+            ret.color = ccc3(150,150,150);
+        }
     }
     
     return ret;

@@ -400,6 +400,7 @@
 
 
 - (void)enemyDied:(Enemy *)enemy {
+    _clear = YES;
     if (enemy.tag == SpriteTagBoss) _clear = YES;
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
@@ -408,7 +409,6 @@
 }
 
 - (void)enemyVanished:(Enemy *)enemy {
-    CCLOG(@"enemy vanish!! %@", enemy.name);
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
     [enemy removeFromParent];    
