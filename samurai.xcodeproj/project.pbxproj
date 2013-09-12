@@ -37,6 +37,14 @@
 		FA8CC16617E15A5E00177AE2 /* events_easy.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16317E15A5D00177AE2 /* events_easy.plist */; };
 		FA8CC16717E15A5E00177AE2 /* events_hard.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16417E15A5E00177AE2 /* events_hard.plist */; };
 		FA8CC16817E15A5E00177AE2 /* events_normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16517E15A5E00177AE2 /* events_normal.plist */; };
+		FA8CC17217E1648400177AE2 /* counter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16A17E1648400177AE2 /* counter.mp3 */; };
+		FA8CC17317E1648400177AE2 /* damaged.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16B17E1648400177AE2 /* damaged.mp3 */; };
+		FA8CC17417E1648400177AE2 /* dash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16C17E1648400177AE2 /* dash.mp3 */; };
+		FA8CC17517E1648400177AE2 /* eq.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16D17E1648400177AE2 /* eq.mp3 */; };
+		FA8CC17617E1648400177AE2 /* horagai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16E17E1648400177AE2 /* horagai.mp3 */; };
+		FA8CC17717E1648400177AE2 /* kill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC16F17E1648400177AE2 /* kill.mp3 */; };
+		FA8CC17817E1648400177AE2 /* reflect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17017E1648400177AE2 /* reflect.mp3 */; };
+		FA8CC17917E1648400177AE2 /* uma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8CC17117E1648400177AE2 /* uma.mp3 */; };
 		FAA67A2F17DD528700AE872A /* dango.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A2E17DD528700AE872A /* dango.gif */; };
 		FAA67A3617DD6CF500AE872A /* ScoreBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */; };
 		FAA67A3817DD6F7800AE872A /* score.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA67A3717DD6F7800AE872A /* score.plist */; };
@@ -279,6 +287,14 @@
 		FA8CC16317E15A5D00177AE2 /* events_easy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_easy.plist; path = Resources/events_easy.plist; sourceTree = "<group>"; };
 		FA8CC16417E15A5E00177AE2 /* events_hard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_hard.plist; path = Resources/events_hard.plist; sourceTree = "<group>"; };
 		FA8CC16517E15A5E00177AE2 /* events_normal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events_normal.plist; path = Resources/events_normal.plist; sourceTree = "<group>"; };
+		FA8CC16A17E1648400177AE2 /* counter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = counter.mp3; sourceTree = "<group>"; };
+		FA8CC16B17E1648400177AE2 /* damaged.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = damaged.mp3; sourceTree = "<group>"; };
+		FA8CC16C17E1648400177AE2 /* dash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dash.mp3; sourceTree = "<group>"; };
+		FA8CC16D17E1648400177AE2 /* eq.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eq.mp3; sourceTree = "<group>"; };
+		FA8CC16E17E1648400177AE2 /* horagai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horagai.mp3; sourceTree = "<group>"; };
+		FA8CC16F17E1648400177AE2 /* kill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kill.mp3; sourceTree = "<group>"; };
+		FA8CC17017E1648400177AE2 /* reflect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reflect.mp3; sourceTree = "<group>"; };
+		FA8CC17117E1648400177AE2 /* uma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = uma.mp3; sourceTree = "<group>"; };
 		FAA67A2E17DD528700AE872A /* dango.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = dango.gif; path = Resources/images/dango.gif; sourceTree = "<group>"; };
 		FAA67A3417DD6CF500AE872A /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreBoard.h; path = class/Score/ScoreBoard.h; sourceTree = "<group>"; };
 		FAA67A3517DD6CF500AE872A /* ScoreBoard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScoreBoard.mm; path = class/Score/ScoreBoard.mm; sourceTree = "<group>"; };
@@ -764,6 +780,22 @@
 			name = SE;
 			sourceTree = "<group>";
 		};
+		FA8CC16917E1648400177AE2 /* SE */ = {
+			isa = PBXGroup;
+			children = (
+				FA8CC16A17E1648400177AE2 /* counter.mp3 */,
+				FA8CC16B17E1648400177AE2 /* damaged.mp3 */,
+				FA8CC16C17E1648400177AE2 /* dash.mp3 */,
+				FA8CC16D17E1648400177AE2 /* eq.mp3 */,
+				FA8CC16E17E1648400177AE2 /* horagai.mp3 */,
+				FA8CC16F17E1648400177AE2 /* kill.mp3 */,
+				FA8CC17017E1648400177AE2 /* reflect.mp3 */,
+				FA8CC17117E1648400177AE2 /* uma.mp3 */,
+			);
+			name = SE;
+			path = Resources/SE;
+			sourceTree = "<group>";
+		};
 		FAA67A3017DD533200AE872A /* samurai */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1021,7 @@
 		FAF3B2A317D736FA00F29EDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA8CC16917E1648400177AE2 /* SE */,
 				FA78E05817E0418100F9C825 /* Musics */,
 				FAF29AC117D95CA400F512EE /* Images */,
 				FAF29ABE17D86C8500F512EE /* shapeDef.plist */,
@@ -1631,6 +1664,14 @@
 				FA8CC16617E15A5E00177AE2 /* events_easy.plist in Resources */,
 				FA8CC16717E15A5E00177AE2 /* events_hard.plist in Resources */,
 				FA8CC16817E15A5E00177AE2 /* events_normal.plist in Resources */,
+				FA8CC17217E1648400177AE2 /* counter.mp3 in Resources */,
+				FA8CC17317E1648400177AE2 /* damaged.mp3 in Resources */,
+				FA8CC17417E1648400177AE2 /* dash.mp3 in Resources */,
+				FA8CC17517E1648400177AE2 /* eq.mp3 in Resources */,
+				FA8CC17617E1648400177AE2 /* horagai.mp3 in Resources */,
+				FA8CC17717E1648400177AE2 /* kill.mp3 in Resources */,
+				FA8CC17817E1648400177AE2 /* reflect.mp3 in Resources */,
+				FA8CC17917E1648400177AE2 /* uma.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
