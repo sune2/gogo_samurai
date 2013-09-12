@@ -116,15 +116,7 @@
 	</dict>
 	<dict>
 		<key>time</key>
-		<integer>11</integer>
-		<key>name</key>
-		<string>kakashi</string>
-		<key>events</key>
-		<dict/>
-	</dict>
-	<dict>
-		<key>time</key>
-		<real>11.3</real>
+		<real>10.5</real>
 		<key>name</key>
 		<string>kakashi</string>
 		<key>events</key>

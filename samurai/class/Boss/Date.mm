@@ -41,11 +41,11 @@
             res.score = 2000000;
         } else if ([str isEqualToString:@"normal"]) {
             res.difficulty = DifficultyNormal;
-            res.hp = 10;
+            res.hp = 9;
             res.score = 4000000;
         } else if ([str isEqualToString:@"hard"]) {
             res.difficulty = DifficultyHard;
-            res.hp = 12;
+            res.hp = 10;
             res.score = 8000000;
         }
     }
@@ -267,7 +267,7 @@
                 enemy.score = 0;
                 [self.delegate dateAddEnemey:enemy];
             }
-        } else if (self.difficulty == DifficultyHard && self.hp <= 8) {
+        } else if (self.difficulty == DifficultyHard && self.hp <= 5) {
             if (rand() % 120 == 0) {
                 _shokanWaiting = 5;
                 Enemy* enemy;
