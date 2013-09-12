@@ -26,6 +26,7 @@
 
 #import "CCNode.h"
 #import "CCProtocols.h"
+#import "SimpleAudioEngine.h"
 
 @class CCSprite;
 @class CCSpriteFrame;

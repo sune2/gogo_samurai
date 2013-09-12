@@ -92,7 +92,7 @@
 -(void)createMenu
 {
 	// Enter Button
-	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Start]" block:^(id sender){
+	CCMenuItemLabel *enterButtle = [CCMenuItemFont itemWithString:@"[Start]" block:^(id sender){        
         [_menu removeFromParent];
         [self createDifficulties];
 	}];
