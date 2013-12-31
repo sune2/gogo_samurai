@@ -49,6 +49,7 @@
     scene.menuLayer = [MenuLayer node];
     scene.bgLayer = [BackgroundLayer node];
     scene.difficulty = difficulty;
+    scene.menuLayer.difficulty = difficulty;
     
     scene.menuLayer.delegate = scene;
     

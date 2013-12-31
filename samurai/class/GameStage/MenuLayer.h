@@ -33,6 +33,7 @@
 @property (assign) int score;
 @property (assign) int life;
 @property (strong) id<MenuLayerDelegate> delegate;
+@property (assign) Difficulty difficulty;
 
 @end
 

@@ -24,6 +24,7 @@
     CCMenu* _difficulties;
     CCMenu* _guide;
     CCMenu* _guideBack;
+    CCMenu* _backMenu;
 }
 
 

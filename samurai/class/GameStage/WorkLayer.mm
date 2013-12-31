@@ -99,7 +99,8 @@
     for (b2ContactEdge* contactEdge = _samurai.b2Body->GetContactList();
          contactEdge;
          contactEdge = contactEdge->next) {
-        
+
+        if (!contactEdge->contact) continue;    
         if (!contactEdge->contact->IsTouching()) continue;
         b2Body* other = contactEdge->other;
         CCPhysicsSprite* sprite = (CCPhysicsSprite*)other->GetUserData();
@@ -115,7 +116,7 @@
             if (projectile.owner == ProjectileOwnerEnemy) {
                 if ([_samurai isCountering]) {
                     [projectile reflect];
-                    self.score += 50;
+                    // [self addScore:50 body:projectile.b2Body color:ccc3(255, 0, 255)];
                 } else {
                     [_samurai damaged];
                     [_vanishedProjectiles addObject:projectile];
@@ -125,6 +126,15 @@
             // サムライが地面と当たったときの処理
         }
     }
+}
+
+- (void)addScore:(int)score body:(b2Body*)body color:(ccColor3B)color{
+    self.score += score;
+    TextParticle* scoreLabel = [[TextParticle alloc] initWithInt:score];
+    [scoreLabel setPositionWithBody:body];
+    scoreLabel.color = color;
+    [self addChild:scoreLabel z:3];
+    [scoreLabel run];
 }
 
 - (void)enemyTouchingObj
@@ -182,6 +192,7 @@
             if (projectile.owner == ProjectileOwnerEnemy) {
                 if ([_samurai isCountering]) {
                     [projectile reflect];
+                    // [self addScore:50 body:projectile.b2Body color:ccc3(255, 0, 255)];
                 }
             }
         }
@@ -220,7 +231,7 @@
     
     [self removeProjectiles:_vanishedProjectiles];
     for (Enemy* enemy in _damagedEnemies) {
-        self.score += 100;
+        // self.score += 100;
         [enemy damaged];
     }
 
@@ -392,13 +403,13 @@
 - (void) pauseSchedulerAndActions {
     [super pauseSchedulerAndActions];
     for(CCSprite *sprite in [self children]) {
-        [[CCActionManager sharedManager] pauseTarget:sprite];
+        [sprite pauseSchedulerAndActions];
     }
 }
 - (void) resumeSchedulerAndActions {
     [super resumeSchedulerAndActions];
     for(CCSprite *sprite in [self children]) {
-        [[CCActionManager sharedManager] resumeTarget:sprite];
+        [sprite resumeSchedulerAndActions];
     }
 }
 
@@ -410,18 +421,24 @@
 }
 
 
-- (void)enemyDied:(Enemy *)enemy {
+- (void)enemyDied:(Enemy *)enemy{
     // _clear = YES;
     if (enemy.tag == SpriteTagBoss) {
         _clear = YES;
         self.score += _samurai.hp*20000;
     }
-    
-    self.score += enemy.score * 1.0 / MAX(1,enemy.curTime);
-    
+    int sc = enemy.score * 1.0 / MAX(1,enemy.curTime);
+
+    [self addScore:sc body:enemy.mainBody  color:ccc3(0, 255, 0)];
+
     assert([_enemies containsObject:enemy]);
     [_enemies removeObject:enemy];
     [enemy removeFromParent];
+}
+
+- (void)removeText:(CCLabelTTF*)text {
+    [text removeFromParent];
+    return;
 }
 
 - (void)enemyVanished:(Enemy *)enemy {

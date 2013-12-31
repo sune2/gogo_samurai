@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2988AF8F187173BB00DB1859 /* TextParticle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2988AF8E187173BB00DB1859 /* TextParticle.mm */; };
 		29A5597117DA4D950067A8DD /* rikisi.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597017DA4D950067A8DD /* rikisi.png */; };
 		29A5597417DA4EF00067A8DD /* Rikishi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29A5597317DA4EEF0067A8DD /* Rikishi.mm */; };
 		29A5597617DA551D0067A8DD /* tmpDefs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29A5597517DA551C0067A8DD /* tmpDefs.plist */; };
@@ -256,6 +257,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2988AF8D187173BB00DB1859 /* TextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextParticle.h; path = class/Particle/TextParticle.h; sourceTree = "<group>"; };
+		2988AF8E187173BB00DB1859 /* TextParticle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TextParticle.mm; path = class/Particle/TextParticle.mm; sourceTree = "<group>"; };
 		29A5597017DA4D950067A8DD /* rikisi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rikisi.png; path = Resources/images/character/rikisi.png; sourceTree = "<group>"; };
 		29A5597217DA4EEF0067A8DD /* Rikishi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rikishi.h; path = class/Boss/Rikishi.h; sourceTree = "<group>"; };
 		29A5597317DA4EEF0067A8DD /* Rikishi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Rikishi.mm; path = class/Boss/Rikishi.mm; sourceTree = "<group>"; };
@@ -749,6 +752,8 @@
 			children = (
 				29A5597E17DC49330067A8DD /* MyParticle.h */,
 				29A5597F17DC49330067A8DD /* MyParticle.m */,
+				2988AF8D187173BB00DB1859 /* TextParticle.h */,
+				2988AF8E187173BB00DB1859 /* TextParticle.mm */,
 			);
 			name = Particle;
 			sourceTree = "<group>";
@@ -1877,6 +1882,7 @@
 				FA8CC16217E03A1B00177AE2 /* CCUIViewWrapper.m in Sources */,
 				FA78E06B17E1465E00F9C825 /* ScrollLayer.m in Sources */,
 				FA8CC17E17E1898600177AE2 /* Kakashi.mm in Sources */,
+				2988AF8F187173BB00DB1859 /* TextParticle.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

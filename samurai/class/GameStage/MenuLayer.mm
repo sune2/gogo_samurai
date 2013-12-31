@@ -22,7 +22,6 @@
         _menuExpanded = NO;
         [self createMenu];
         [self addDango];
-        
         [self scheduleUpdate];
     }
     return self;
@@ -40,28 +39,17 @@
     _scoreLabel.isEnabled = NO;
     _scoreLabel.disabledColor = ccWHITE;
 
-//	// Reset Button
-//    CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-//         [_delegate resetButtonPushed];
-//     }];
-
-//    CCMenuItemLabel *top = [CCMenuItemFont itemWithString:@"Top" block:^(id sender) {
-//        [_delegate backToIntroLayer];
-//    }];
-    
     CCMenuItemLabel *menuLabel = [CCMenuItemFont itemWithString:@"[Pause]" block:^(id sender) {
         _menu.enabled = NO;
         if (!_menuExpanded) [self expandMenu];
     }];
 
-    // CCMenu *menu = [CCMenu menuWithItems:_scoreLabel, reset, top, nil];
     _menu = [CCMenu menuWithItems:_scoreLabel, menuLabel, nil];
 	[_menu alignItemsVertically];
     
 	[_menu setPosition:ccp(_winSize.width/2, _winSize.height-50)];
 	
-	[self addChild: _menu z:1];
-    
+	[self addChild: _menu z:1];    
 }
 
 - (void)expandMenu
@@ -85,12 +73,14 @@
         _menu.enabled = YES;
         [bg removeFromParent];
     }];
-    
-    CCMenu* menu = [CCMenu menuWithItems:resume, reset, top, nil];
 
+    CCMenuItemLabel* dif = [self difficultyItem];
+
+    CCMenu* menu = [CCMenu menuWithItems:dif, resume, reset, top, nil];
+
+    menu.position = ccp(_winSize.width/2, _winSize.height/2 - 20);
     [menu alignItemsVerticallyWithPadding:kPauseVerticalPadding];
     [bg addChild:menu z:11];
-
 }
 
 - (void)addDango{
@@ -110,6 +100,37 @@
     ret.scale = 64 / ret.contentSize.width;
     ret.position = ccp(X, _winSize.height - 30);
     return ret;
+}
+
+- (CCMenuItemFont*)difficultyItem {
+    NSString* dstr;
+    ccColor3B color;
+    switch (_difficulty) {
+        case DifficultyEasy:
+        {
+            dstr = @"Easy";
+            color = kEasyColor;
+        }
+            break;
+        case DifficultyNormal:
+        {
+            dstr = @"Normal";
+            color = kNormalColor;
+        }
+            break;
+        case DifficultyHard:
+        {
+            dstr = @"Hard";
+            color = kHardColor;
+        }
+            break;
+        default:
+            break;
+    }
+    CCMenuItemFont* item = [CCMenuItemFont itemWithString:dstr];
+    item.disabledColor = color;
+    item.isEnabled = NO;
+    return item;
 }
 
 - (CCMenuItemLabel*) labelWithInteger:(int)i

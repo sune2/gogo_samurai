@@ -15,6 +15,11 @@
 #define kMenuVerticalPadding 13
 #define kPauseVerticalPadding 25
 
+// color
+#define kEasyColor ccc3(204,255,204)
+#define kNormalColor ccc3(153,153,255)
+#define kHardColor ccc3(255,51,153)
+
 typedef enum {
     SpriteTagSamurai = 1,
     SpriteTagKatana,

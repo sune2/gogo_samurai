@@ -52,7 +52,7 @@
     _karadaBody = world->CreateBody(&karadaDef);
     _karadaBody->SetUserData(self);
     
-    _mainBody = _karadaBody;
+    self.mainBody = _karadaBody;
     _bodies.push_back(_karadaBody);
 //    [self.bodies addObject:[NSData dataWithBytes:_karadaBody length:sizeof(b2Body)]];
     

@@ -65,7 +65,7 @@
     _karadaBody->SetUserData(self);
     _bodies.push_back(_karadaBody);
     
-    _mainBody = _karadaBody;
+    self.mainBody = _karadaBody;
     
     [[GB2ShapeCache sharedShapeCache] addFixturesToBody:_karadaBody forShapeName:@"date_main"];
     [_karada setAnchorPoint:[[GB2ShapeCache sharedShapeCache] anchorPointForShape:@"date_main"]];

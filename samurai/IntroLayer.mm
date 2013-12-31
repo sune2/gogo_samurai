@@ -81,7 +81,7 @@
     // Title
     CCMenuItemFont *title = [CCMenuItemFont itemWithString:@"GOGO! Samurai BOY!"];
     [title setFontSize:30];
-    title.color = ccWHITE;
+    title.color = ccc3(0, 255, 200);
 
     CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
     titleLabel.enabled = NO;
@@ -128,28 +128,35 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
 		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyEasy]];
 	}];
+    easyLabel.color = kEasyColor;
 
-    // Score Button
 	CCMenuItemLabel *normalLabel = [CCMenuItemFont itemWithString:@"[Normal]" block:^(id sender){
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
 		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyNormal]];
 	}];
+    normalLabel.color = kNormalColor;
 
     CCMenuItemLabel *hardLabel = [CCMenuItemFont itemWithString:@"[Hard]" block:^(id sender){
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ohshu.mp3" loop:YES];
 		[[CCDirector sharedDirector] replaceScene: [GameStage sceneWithDifficulty:DifficultyHard]];
 	}];
+    hardLabel.color = kHardColor;
 
     CCMenuItemLabel *backLabel = [CCMenuItemFont itemWithString:@"[Back]" block:^(id sender){
         [_difficulties removeFromParent];
+        [_backMenu removeFromParent];
         [self createMenu];
 	}];
 
-    _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, backLabel, nil];
+    _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, nil];
     [_difficulties alignItemsVerticallyWithPadding:kMenuVerticalPadding];
-    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height*5/16);
+    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height*6/16);
+
+    _backMenu = [CCMenu menuWithItems: backLabel, nil];
+    _backMenu.position = ccp(self.contentSize.width/2, self.contentSize.height*2/16);
 
     [self addChild:_difficulties];
+    [self addChild:_backMenu];
 }
 
 - (void)createGuide {

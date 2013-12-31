@@ -18,6 +18,7 @@
 #import "Kakashi.h"
 #import "Date.h"
 #import "MyParticle.h"
+#import "TextParticle.h"
 
 @interface WorkLayer : CCLayer<ProjectileProtocol, EnemyProtocol, DateDelegate>
 {

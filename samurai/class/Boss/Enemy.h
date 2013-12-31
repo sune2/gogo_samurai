@@ -28,8 +28,6 @@
     ccTime _mutekiWaiting;
     CGFloat _mutekiPosX;
     CGPoint _initPos;
-    
-    b2Body* _mainBody; // 真ん中になりそうなbody 血が出る
 }
 
 @property(nonatomic, assign) ccTime curTime;
@@ -39,6 +37,7 @@
 @property (nonatomic, strong) NSArray* events;
 @property(nonatomic, assign) int hp;
 @property(nonatomic, assign)int score;
+@property(nonatomic, assign) b2Body* mainBody;// 真ん中になりそうなbody 血が出る
 
 + (Enemy*)enemyWithName:(NSString*)name;
 - (void)initBodyWithWorld:(b2World*)world at:(CGPoint)point;
