@@ -284,7 +284,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	if( _isEnabled != enabled ) {
 		if(enabled == NO) {
 			_colorBackup = [_label color];
-            CCLOG(@"%d,%d,%d", _disabledColor.r, _disabledColor.g, _disabledColor.b);
+            // CCLOG(@"%d,%d,%d", _disabledColor.r, _disabledColor.g, _disabledColor.b);
 			[_label setColor: _disabledColor];
 		}
 		else
