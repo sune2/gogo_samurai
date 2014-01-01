@@ -84,7 +84,7 @@
 - (void)update: (ccTime)dt
 {
     [self manageMenu];
-    if (_workLayer.life == 0) {
+    if (_workLayer.life == 3) {
         [self gameover:NO];
     } else if (_workLayer.clear) {
         [self gameover:YES];

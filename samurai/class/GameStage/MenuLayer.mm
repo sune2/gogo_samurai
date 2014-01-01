@@ -103,32 +103,8 @@
 }
 
 - (CCMenuItemFont*)difficultyItem {
-    NSString* dstr;
-    ccColor3B color;
-    switch (_difficulty) {
-        case DifficultyEasy:
-        {
-            dstr = @"Easy";
-            color = kEasyColor;
-        }
-            break;
-        case DifficultyNormal:
-        {
-            dstr = @"Normal";
-            color = kNormalColor;
-        }
-            break;
-        case DifficultyHard:
-        {
-            dstr = @"Hard";
-            color = kHardColor;
-        }
-            break;
-        default:
-            break;
-    }
-    CCMenuItemFont* item = [CCMenuItemFont itemWithString:dstr];
-    item.disabledColor = color;
+    CCMenuItemFont* item = [CCMenuItemFont itemWithString:difficultyStr(_difficulty)];
+    item.disabledColor = difficultyColor(_difficulty);
     item.isEnabled = NO;
     return item;
 }

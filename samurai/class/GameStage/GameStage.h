@@ -16,6 +16,7 @@
 #import "IntroLayer.h"
 #import "SimpleAudioEngine.h"
 
+
 @interface GameStage : CCScene<MenuLayerDelegate>
 {
     BOOL _gameovered;

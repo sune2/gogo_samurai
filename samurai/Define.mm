@@ -22,3 +22,27 @@ BOOL isOutOfScreen(CGRect rect) {
     _windowSize.height + 20 < pos.y;
     return res;
 }
+
+NSString* difficultyStr(Difficulty diff) {
+    NSString* res;
+    if (diff == DifficultyEasy) {
+        res =  @"Easy";
+    } else if (diff == DifficultyNormal) {
+        res = @"Normal";
+    } else if (diff == DifficultyHard) {
+        res = @"Hard";
+    }
+    return res;
+}
+
+ccColor3B difficultyColor(Difficulty diff) {
+    ccColor3B res;
+    if (diff == DifficultyEasy) {
+        res = kEasyColor;
+    } else if (diff == DifficultyNormal) {
+        res = kNormalColor;
+    } else if (diff == DifficultyHard) {
+        res = kHardColor;
+    }
+    return res;
+}

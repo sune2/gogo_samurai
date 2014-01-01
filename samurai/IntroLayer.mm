@@ -9,6 +9,7 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
+#import "AppDelegate.h"
 
 #pragma mark - IntroLayer
 
@@ -37,7 +38,7 @@
 	if( (self=[super init])) {
         [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapeDef.plist"];
         [[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"tmpDefs.plist"];
-        [[CCDirector sharedDirector] setDisplayFPS:NO];
+        [[CCDirector sharedDirector] setDisplayStats:NO];
         
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
@@ -108,15 +109,30 @@
         [self createGuide];
 	}];
 
-
     enterButtle.color = ccWHITE;
     enterScore.color = ccWHITE;
 
-    _menu = [CCMenu menuWithItems:enterButtle, enterScore, guideButton, nil];
+    __block id copy_self = self;
+
+    // Achievement Menu Item using blocks
+    CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"[Leaderboard]" block:^(id sender) {
+        GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+        leaderboardViewController.leaderboardDelegate = copy_self;
+        leaderboardViewController.category = nil;
+        leaderboardViewController.timeScope = GKLeaderboardTimeScopeAllTime;
+        
+        AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+
+        [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+
+        [leaderboardViewController release];
+    }];
+
+    _menu = [CCMenu menuWithItems:enterButtle, enterScore, itemLeaderboard, guideButton, nil];
 	
 	[_menu alignItemsVerticallyWithPadding:kMenuVerticalPadding];
     
-    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height*1/4)];
+    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height*5/16)];
 	
 	[self addChild: _menu z:1];
 }
@@ -233,7 +249,11 @@
 }
 
 
-
+-(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
+}
 
 
 @end

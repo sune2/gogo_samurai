@@ -60,14 +60,18 @@
 
 - (void)scrollPageChanged:(int)page {
     NSString * str;
+    ccColor3B color;
     if (page == 0) {
         str = @"RANKING - EASY ▷";
+        color = kEasyColor;
     } else if (page == 1) {
         str = @"◁ RANKING - NORMAL ▷";
+        color = kNormalColor;
     } else {
         str = @"◁ RANKING - HARD";
-        
+        color = kHardColor;
     }
+    _titleLabel.color = color;
     _titleLabel.string = str;
 }
 
@@ -87,7 +91,7 @@
 - (void)addTitle
 {
     _titleLabel = [CCLabelTTF labelWithString:@"Ranking - EASY ▷" fontName:@"Marker Felt" fontSize:30];
-    _titleLabel.color = ccc3(0, 255, 200);
+    _titleLabel.color = kEasyColor;
     _titleLabel.position = ccp(_winSize.width / 2, _winSize.height - 30);
     
     [self addChild:_titleLabel];

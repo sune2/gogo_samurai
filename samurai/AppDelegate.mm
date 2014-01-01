@@ -47,9 +47,20 @@
 	if(director.runningScene == nil) {
 		// Add the first scene to the stack. The director will draw it immediately into the framebuffer. (Animation is started automatically when the view is displayed.)
 		// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+        [self authenticateLocalPlayer];
 		[director runWithScene: [IntroLayer scene]];
 	}
 }
+
+-(void)authenticateLocalPlayer {
+    [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+        if (error)
+        { /* エラー処理 */ }
+        else
+        { /* 認証済みユーザーを使ってハイスコアとか処理 */ }
+    }];
+}
+
 @end
 
 

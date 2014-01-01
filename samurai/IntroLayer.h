@@ -16,9 +16,10 @@
 #import "SimpleAudioEngine.h"
 #import "MyParticle.h"
 #import "WorkLayer.h"
+#import <GameKit/GameKit.h>
 
 // HelloWorldLayer
-@interface IntroLayer : CCLayer
+@interface IntroLayer : CCLayer<GKLeaderboardViewControllerDelegate>
 {
     CCMenu* _menu;
     CCMenu* _difficulties;

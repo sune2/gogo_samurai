@@ -32,7 +32,8 @@
 //        [self addChild:scoreMenu];
         [self createResultMenu];
         [self createBackMenu];
-        [self manageRanking];
+        [self manageRanking:difficulty];
+        [self submitScoreToLeaderBoard];
         
         [self scheduleUpdate];
     }
@@ -54,7 +55,7 @@
     }
 }
 
-- (void) manageRanking
+- (void) manageRanking:(Difficulty)difficulty
 {
 //    _path = [[NSBundle mainBundle] pathForResource:@"score" ofType:@"plist"];
 //    _ranking = [[NSMutableArray alloc] initWithContentsOfFile:_path];
@@ -70,7 +71,7 @@
     }
     
     NSString* name = [_ud stringForKey:@"Name"];
-    
+
     NSMutableDictionary* dict = [@{
                                  @"score": [NSNumber numberWithInt:_score],
                                  @"name": name,
@@ -88,6 +89,10 @@
     _ranking = (NSMutableArray*)[_ranking sortedArrayUsingDescriptors:@[scoreSortDescriptor]];
     
     NSMutableArray* tmp = [[NSMutableArray alloc] init];
+    CCMenuItemFont* diffItem = [CCMenuItemFont itemWithString:difficultyStr(difficulty)];
+    diffItem.disabledColor = difficultyColor(difficulty);
+    diffItem.isEnabled = NO;
+    [tmp addObject:diffItem];
     for (int i = 0; i < [_ranking count]; i++) {
         CCMenuItemFont* label = [self rankersScore:i];
         [tmp addObject:label];
@@ -136,32 +141,36 @@
         // 今回
         if (rank == 5) {
             ret = [CCMenuItemFont itemWithString:[NSString stringWithFormat:@"-. %@: %@", name, score]];
-            ret.color = ccc3(150, 150, 50);
+            ret.disabledColor = ccc3(150, 150, 50);
         } else {
-            ret.color = ccYELLOW;
+            ret.disabledColor = ccYELLOW;
         }
     } else {
         if (rank == 5) {
-            ret.color = ccc3(150,150,150);
+            ret.disabledColor = ccc3(150,150,150);
         }
     }
-        
+    ret.isEnabled = NO;
     return ret;
 }
 
 - (void)createResultMenu
 {
     NSString* result = _win ? @"WIN" : @"LOSE";
-    CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:result];
-    [goLabel setFontSize:35];
-    ccColor3B fontColor = _win ? ccc3(120,255,120) : ccORANGE;
-    [goLabel setColor:fontColor];
-    // goLabel.isEnabled = NO;
-    CCMenu* gameover = [CCMenu menuWithItems:goLabel, nil];
-    gameover.position = ccp(_winSize.width/2, _winSize.height - 40);
-    
-    [self addChild:gameover];
-    
+    CCLabelTTF* label = [CCLabelTTF labelWithString:result fontName:@"Marker Felt" fontSize:35];
+    label.position = ccp(_winSize.width/2, _winSize.height - 40);
+    label.color = _win ? ccc3(120,255,120) : ccORANGE;
+    [self addChild:label];
+//    
+//    CCMenuItemFont *goLabel = [CCMenuItemFont itemWithString:result];
+//    [goLabel setFontSize:35];
+//    ccColor3B fontColor = _win ? ccc3(120,255,120) : ccORANGE;
+//    [goLabel setColor:fontColor];
+//    // goLabel.isEnabled = NO;
+//    CCMenu* gameover = [CCMenu menuWithItems:goLabel, nil];
+//    gameover.position = ccp(_winSize.width/2, _winSize.height - 40);
+//    
+//    [self addChild:gameover];
 }
 
 - (void) createBackMenu
@@ -255,4 +264,29 @@
         [[[CCDirector sharedDirector]parentViewController]  presentViewController:composeViewController animated:NO completion:nil];
     }
 }
+
+- (void)submitScoreToLeaderBoard {
+    NSString* lstr;
+    if (_difficulty == DifficultyEasy) {
+        lstr = @"gogo_samurai.easy";
+    } else if (_difficulty == DifficultyNormal) {
+        lstr = @"gogo_samurai.normal";
+    } else {
+        lstr = @"gogo_samurai.hard";
+    }
+    [self submitScore:_score forCategory:lstr];
+}
+
+-(void)submitScore:(int64_t)score forCategory:(NSString*)category {
+    CCLOG(@"%lld %@", score, category);
+    GKScore *scoreReporter = [[[GKScore alloc] initWithCategory:category] autorelease];
+    scoreReporter.value = score;
+    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+        if (error) {
+            /* エラー処理 */
+            CCLOG(@"error");
+        }
+    }];
+}
+
 @end

@@ -18,7 +18,7 @@
 // color
 #define kEasyColor ccc3(204,255,204)
 #define kNormalColor ccc3(153,153,255)
-#define kHardColor ccc3(255,51,153)
+#define kHardColor ccc3(255,153,153)
 
 typedef enum {
     SpriteTagSamurai = 1,
@@ -39,3 +39,5 @@ BOOL isSpriteEnemy(CCSprite* sprite);
 
 BOOL isOutOfScreen(CGRect rect);
 
+NSString* difficultyStr(Difficulty diff);
+ccColor3B difficultyColor(Difficulty diff);

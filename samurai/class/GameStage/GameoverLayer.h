@@ -11,6 +11,7 @@
 #import "Box2D.h"
 #import "MenuLayer.h"
 #import <Social/Social.h>
+#import <GameKit/GameKit.h>
 
 @interface GameoverLayer : CCLayer
 {
