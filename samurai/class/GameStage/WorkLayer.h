@@ -38,7 +38,7 @@
     int _eventIndex;
 
     ccTime _curTime;
-
+    CGSize _winSize;
 }
 
 @property(assign) int score;

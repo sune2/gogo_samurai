@@ -48,8 +48,51 @@
 		// Add the first scene to the stack. The director will draw it immediately into the framebuffer. (Animation is started automatically when the view is displayed.)
 		// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
         [self authenticateLocalPlayer];
+        [self addAd];
 		[director runWithScene: [IntroLayer scene]];
 	}
+}
+
+-(void)addAd {
+    // iAd を生成
+    _adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    _adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+    [[[CCDirector sharedDirector] view] addSubview:_adView];
+    _adView.alpha = 0.0f;
+    __block id copy_self = self;
+    _adView.delegate = copy_self;
+}
+
+// iAdの受信に成功したとき
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    // バナーが表示されていない場合
+    if ( !_bannerIsVisible ) {
+        // 表示
+        banner.alpha = 1.0f;
+    }
+    // フラグをYESに
+    _bannerIsVisible = YES;
+}
+
+// iAdの受信に失敗したとき
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    // バナーが表示されている場合
+    if ( _bannerIsVisible ) {
+        // 非表示
+        banner.alpha = 0.0f;
+    }
+    // フラグをNOに
+    _bannerIsVisible = NO;
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    CCScene* scene = [[CCDirector sharedDirector] runningScene];
+    if ([scene isMemberOfClass:[GameStage class]]) {
+        GameStage* stage = (GameStage*)scene;
+        [stage pauseByiAd];
+
+    }
+    return YES;
 }
 
 -(void)authenticateLocalPlayer {
@@ -116,9 +159,9 @@
 	//	[director setProjection:kCCDirectorProjection3D];
 	
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director_ enableRetinaDisplay:YES] )
-		CCLOG(@"Retina Display Not supported");
-	
+//	if( ! [director_ enableRetinaDisplay:YES] )
+//		CCLOG(@"Retina Display Not supported");
+
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.

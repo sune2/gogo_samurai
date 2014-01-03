@@ -293,7 +293,7 @@ and when to execute the Scenes.
  While paused, the draw rate will be 4 FPS to reduce CPU consumption
  */
 -(void) pause;
-
+    
 /** Resumes the paused scene
  The scheduled timers will be activated again.
  The "delta time" will be 0 (as if the game wasn't paused)

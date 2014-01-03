@@ -12,13 +12,15 @@
 #define kGravityPower -30.0
 #define kLeftSpeed 5
 #define kBackgroundColor ccc4BFromccc4F(ccc4f(0.45,0.45,0.45,1))
-#define kMenuVerticalPadding 13
+#define kMenuVerticalPadding 15
 #define kPauseVerticalPadding 25
 
 // color
 #define kEasyColor ccc3(204,255,204)
 #define kNormalColor ccc3(153,153,255)
 #define kHardColor ccc3(255,153,153)
+
+#define kAdHeight 32
 
 typedef enum {
     SpriteTagSamurai = 1,
@@ -41,3 +43,4 @@ BOOL isOutOfScreen(CGRect rect);
 
 NSString* difficultyStr(Difficulty diff);
 ccColor3B difficultyColor(Difficulty diff);
+CGSize resizeForAd(CGSize size);

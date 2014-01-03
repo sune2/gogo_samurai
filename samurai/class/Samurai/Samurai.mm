@@ -113,7 +113,7 @@
     if ([self canJump]) {
         _jumpState = 1;
         _jumpWaiting = 1;
-        self.b2Body->ApplyLinearImpulse(b2Vec2(0,50), self.b2Body->GetWorldCenter());
+        self.b2Body->ApplyLinearImpulse(b2Vec2(0,32), self.b2Body->GetWorldCenter());
     }
 }
 
@@ -309,10 +309,16 @@
             self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x,-40));
         }
     }
-    
+//    // 初期位置より後ろにいたら戻る
+//    if (self.position.x < _initPos.x) {
+//        self.b2Body->SetLinearVelocity(b2Vec2(0,self.b2Body->GetLinearVelocity().y));
+//        self.position = ccp(_initPos.x, self.position.y);
+//    }
+
     // 刀の位置
     b2Body* b = _katanaBody;
-    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());    
+    _katana.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+    b->SetLinearVelocity(_b2Body->GetLinearVelocity());
 }
 
 - (void)removeFromParent {

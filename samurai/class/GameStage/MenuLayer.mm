@@ -17,7 +17,7 @@
         self.touchEnabled = NO;
         _score = 0;
         _life = 3;
-        _winSize = [[CCDirector sharedDirector] winSize];
+        _winSize = resizeForAd([[CCDirector sharedDirector] winSize]);
         _lifeDangos = [[NSMutableArray alloc] init];
         _menuExpanded = NO;
         [self createMenu];
@@ -54,6 +54,7 @@
 
 - (void)expandMenu
 {
+    if (_menuExpanded) return;
     _menuExpanded = YES;
     [_delegate pauseWorkLayer];
     CCLayerColor* bg = [CCLayerColor layerWithColor:ccc4(0, 0 , 0, 150)];
@@ -78,7 +79,7 @@
 
     CCMenu* menu = [CCMenu menuWithItems:dif, resume, reset, top, nil];
 
-    menu.position = ccp(_winSize.width/2, _winSize.height/2 - 20);
+    menu.position = ccp(_winSize.width/2, _winSize.height/2);
     [menu alignItemsVerticallyWithPadding:kPauseVerticalPadding];
     [bg addChild:menu z:11];
 }

@@ -145,6 +145,8 @@
                 self.karadaBody->ApplyAngularImpulse(1);
             }
             if (self.karadaBody->GetAngle() >= CC_DEGREES_TO_RADIANS(-10)) {
+                self.b2Body->SetLinearVelocity(b2Vec2(0,0));
+                self.karadaBody->SetLinearVelocity(b2Vec2(0,0));
                 _earthquakeState = 3;
             }
         }
@@ -155,7 +157,8 @@
             part.position = ccp([[CCDirector sharedDirector] winSize].width/2,10);
             
             [[self parent] addChild:part z:3];
-            
+
+
             _earthquakeState = 4;
             _waiting = 0.2;
             [[SimpleAudioEngine sharedEngine] playEffect:@"eq.mp3"];

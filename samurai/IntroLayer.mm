@@ -41,7 +41,7 @@
         [[CCDirector sharedDirector] setDisplayStats:NO];
         
 		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
+		_winSize = resizeForAd([[CCDirector sharedDirector] winSize]);
 
         //BGM開始
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.mp3" loop:YES];
@@ -58,12 +58,12 @@
 
         // 桜
         CCParticleSystemQuad* petal = [MyParticle particleCherryPetal];
-        petal.position = ccp(size.width/2, size.height);
+        petal.position = ccp(_winSize.width/2, _winSize.height+kAdHeight);
         [self addChild:petal];
         
         // 月
         CCSprite* moon = [CCSprite spriteWithFile:@"fullmoon.png"];
-        moon.position = ccp(440, 250);
+        moon.position = ccp(_winSize.width -  40, _winSize.height - 70);
         moon.scale = 0.3 * 800 / moon.contentSize.width;
         moon.opacity = 128;
         [self addChild:moon z:-2];
@@ -71,6 +71,8 @@
         //
         CCSprite* sprite = [WorkLayer node];
         [self addChild:sprite];
+
+
 	}
 	
 	return self;
@@ -86,7 +88,7 @@
 
     CCMenu* titleLabel = [CCMenu menuWithItems:title, nil];
     titleLabel.enabled = NO;
-	[titleLabel setPosition:ccp(self.contentSize.width/2, self.contentSize.height*3/4)];
+	[titleLabel setPosition:ccp(_winSize.width/2, _winSize.height*13/16)];
 
     [self addChild:titleLabel z:1];
 }
@@ -132,7 +134,7 @@
 	
 	[_menu alignItemsVerticallyWithPadding:kMenuVerticalPadding];
     
-    [_menu setPosition:ccp( self.contentSize.width/2, self.contentSize.height*5/16)];
+    [_menu setPosition:ccp( _winSize.width/2, _winSize.height*11/32)];
 	
 	[self addChild: _menu z:1];
 }
@@ -164,15 +166,14 @@
         [self createMenu];
 	}];
 
-    _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, nil];
+    _difficulties = [CCMenu menuWithItems:easyLabel, normalLabel, hardLabel, backLabel, nil];
     [_difficulties alignItemsVerticallyWithPadding:kMenuVerticalPadding];
-    _difficulties.position = ccp(self.contentSize.width/2, self.contentSize.height*6/16);
-
-    _backMenu = [CCMenu menuWithItems: backLabel, nil];
-    _backMenu.position = ccp(self.contentSize.width/2, self.contentSize.height*2/16);
-
+    _difficulties.position = ccp(_winSize.width/2, _winSize.height*11/32);
     [self addChild:_difficulties];
-    [self addChild:_backMenu];
+
+//    _backMenu = [CCMenu menuWithItems: backLabel, nil];
+//    _backMenu.position = ccp(_winSize.width/2, _winSize.height*2/16);
+//    [self addChild:_backMenu];
 }
 
 - (void)createGuide {
@@ -195,34 +196,13 @@
     
     _guide = [CCMenu menuWithItems:touch, right, up, kara, back, nil];
     [_guide alignItemsVertically];
-    _guide.position = ccp(self.contentSize.width*2/4, self.contentSize.height*5/16);
+    _guide.position = ccp(_winSize.width/2, _winSize.height*5/16);
     [self addChild:_guide];
-    
-    
-//
-//    _guideBack = [CCMenu menuWithItems:backLabel, nil];
-//    _guideBack.position = ccp(self.contentSize.width/2, self.contentSize.height*3/16);
-//    [self addChild:_guideBack];
 }
-
-
-//- (void)update:(ccTime)delta {
-//    if (rand() % (60*3) == 0) {
-//        CCParticleSystemQuad* cherry = [MyParticle particleCherryBlossom];
-//        
-//        CGSize size = [[CCDirector sharedDirector] winSize];
-//        
-//        cherry.position = ccp(rand()%(int)size.width, rand()%(int)size.height);
-//        [self addChild:cherry];
-//    }
-//}
 
 + (void)initialize
 {
     NSString* defaultName = @"Samurai";
-    
-    
-    
     NSMutableDictionary* defaultDict = [@{
                                         @"Name":defaultName,
                                         @"Easy": [IntroLayer generateNewRanking],

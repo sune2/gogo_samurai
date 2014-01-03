@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
 		self.touchEnabled = YES;
+        _winSize = resizeForAd([[CCDirector sharedDirector] winSize]);
 
         _score = 0;
         _bullets = [[NSMutableArray alloc] init];
@@ -21,9 +22,8 @@
         _life = 3;
 
         _events = [[NSArray alloc] init];
-
         _eventIndex = 0;
-        
+
         [self initPhysics];
         
         [self addNewSamuraiSprite];
@@ -39,7 +39,8 @@
 -(void)addNewSamuraiSprite
 {
     _samurai = [Samurai samurai];
-    [_samurai initBodyWithWorld:world at:ccp(32, 0)];
+    CGFloat x = _winSize.width / 2 - 208;
+    [_samurai initBodyWithWorld:world at:ccp(x, 0)];
     _samurai.tag = SpriteTagSamurai;
     
     [self addChild:_samurai z:1];
@@ -59,24 +60,23 @@
         enemy = [Kakashi kakashi];
     }
     if (enemy.tag == SpriteTagZako) {
-        [enemy initBodyWithWorld:world at:ccp(400, 200)];
+        [enemy initBodyWithWorld:world at:ccp(_winSize.width / 2 + 160, 200)];
     } else {
-        [enemy initBodyWithWorld:world at:ccp(260, 200)];
+        [enemy initBodyWithWorld:world at:ccp(_winSize.width / 2 + 20, 200)];
     }
     [_enemies addObject:enemy];
     enemy.events = events;
     enemy.delegate = self;
-    [self addChild:enemy z:1];
+    [self addChild:enemy z:-1];
 }
 
 -(BOOL)checkOutOfScreen:(CCSprite*)sprite {
-    CGSize _windowSize = [CCDirector sharedDirector].winSize;
     CGPoint pos = ccpSub(sprite.position, sprite.anchorPoint);
     CGSize size = sprite.contentSize;
     BOOL res = pos.x < -size.width - 10 ||
                pos.y < -size.height - 10 ||
-               _windowSize.width + 10 < pos.x ||
-               _windowSize.height + 10 < pos.y;
+               _winSize.width + 10 < pos.x ||
+               _winSize.height + 10 < pos.y;
     return res;
 }
 
@@ -318,8 +318,7 @@
 -(void) initPhysics
 {
     // コピペ
-	CGSize s = [[CCDirector sharedDirector] winSize];
-	
+
 	b2Vec2 gravity;
 	gravity.Set(0.0f, kGravityPower);
 	world = new b2World(gravity);
@@ -334,11 +333,11 @@
 	world->SetDebugDraw(m_debugDraw);
 	
 	uint32 flags = 0;
-//	flags += b2Draw::e_shapeBit;
-//    flags += b2Draw::e_jointBit;
-//    flags += b2Draw::e_aabbBit;
-//    flags += b2Draw::e_pairBit;
-//    flags += b2Draw::e_centerOfMassBit;
+	flags += b2Draw::e_shapeBit;
+    flags += b2Draw::e_jointBit;
+    //flags += b2Draw::e_aabbBit;
+    //flags += b2Draw::e_pairBit;
+    //flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);
 	
 	
@@ -356,7 +355,7 @@
 	
 	// bottom
 	
-	groundBox.Set(b2Vec2(-30,0), b2Vec2(s.width/PTM_RATIO+30,0));
+	groundBox.Set(b2Vec2(-30,0), b2Vec2(_winSize.width/PTM_RATIO+30,0));
 	b2Fixture* fixture = groundBody->CreateFixture(&groundBox,0);
     CCNode* groundNode = [[CCNode alloc] init];
     groundNode.tag = 10;
@@ -364,41 +363,40 @@
 	
 }
 
-//-(void) draw
-//{
-//	//
-//	// IMPORTANT:
-//	// This is only for debug purposes
-//	// It is recommend to disable it
-//	//
-//	[super draw];
-//	
-//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-//	
-//	kmGLPushMatrix();
-//	
-//	world->DrawDebugData();
-//	
-//	kmGLPopMatrix();
-//    
-//    b2Vec2 vertices[4];
-//
-//    for (Enemy* enemy in _enemies) {
-//        Rikishi* rikishi = (Rikishi*)enemy;
-//        b2Vec2 origin((rikishi.position.x - rikishi.anchorPoint.x)/PTM_RATIO,
-//                      (rikishi.position.y - rikishi.anchorPoint.y)/PTM_RATIO);
-//
-//        b2Vec2 size(rikishi.contentSize.width * rikishi.scale / PTM_RATIO,
-//                    rikishi.contentSize.height * rikishi.scale / PTM_RATIO);
-//        vertices[0] = origin;
-//        vertices[1] = origin + b2Vec2(size.x, 0);
-//        vertices[2] = origin + size;
-//        vertices[3] = origin + b2Vec2(0,size.y);
-//        m_debugDraw->DrawPolygon(vertices, 4, b2Color(1, 0, 0));
-//    }
-//
-//}
+-(void) draw
+{
+	//
+	// IMPORTANT:
+	// This is only for debug purposes
+	// It is recommend to disable it
+	//
+    return;
+	[super draw];
+	
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+	
+	kmGLPushMatrix();
+	
+	world->DrawDebugData();
+	
+	kmGLPopMatrix();
+    
+    b2Vec2 vertices[4];
 
+    for (Enemy* enemy in _enemies) {
+        Rikishi* rikishi = (Rikishi*)enemy;
+        b2Vec2 origin((rikishi.position.x - rikishi.anchorPoint.x)/PTM_RATIO,
+                      (rikishi.position.y - rikishi.anchorPoint.y)/PTM_RATIO);
+
+        b2Vec2 size(rikishi.contentSize.width * rikishi.scale / PTM_RATIO,
+                    rikishi.contentSize.height * rikishi.scale / PTM_RATIO);
+        vertices[0] = origin;
+        vertices[1] = origin + b2Vec2(size.x, 0);
+        vertices[2] = origin + size;
+        vertices[3] = origin + b2Vec2(0,size.y);
+        m_debugDraw->DrawPolygon(vertices, 4, b2Color(1, 0, 0));
+    }
+}
 
 - (void) pauseSchedulerAndActions {
     [super pauseSchedulerAndActions];

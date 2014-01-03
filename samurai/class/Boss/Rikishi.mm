@@ -105,11 +105,13 @@
                 _shikoState = 2;
             } else {
                 self.karadaBody->SetAngularVelocity(-1);
+                CCLOG(@"aa");
             }
         }
             break;
         case 2:
         {
+            self.karadaBody->ApplyAngularImpulse(3);
             if (self.karadaBody->GetAngle() >= CC_DEGREES_TO_RADIANS(-10)) {
                 _shikoState = 3;
             }
@@ -206,22 +208,26 @@
     [self checkOutOfScreen];
         
     b2Vec2 pos = self.b2Body->GetPosition();
-    
+
     if (pos.y < 9.0/PTM_RATIO) {
-        if (pos.x > self.stopPos/PTM_RATIO || self.curTime > self.moveTime) {
+        if (pos.x > ([CCDirector sharedDirector].winSize.width/2-(240-self.stopPos))/PTM_RATIO || self.curTime > self.moveTime) {
             // 左に移動する
             self.b2Body->SetLinearVelocity(b2Vec2(-5, self.b2Body->GetLinearVelocity().y));
+            self.karadaBody->SetAngularVelocity(0);
         } else {
             self.b2Body->SetLinearVelocity(b2Vec2(0, self.b2Body->GetLinearVelocity().y));
+            self.karadaBody->SetLinearVelocity(b2Vec2(0, self.karadaBody->GetLinearVelocity().y));
         }
     }
 
     if (pos.y < 8.0/PTM_RATIO) {
         self.b2Body->SetLinearVelocity(b2Vec2(self.b2Body->GetLinearVelocity().x, 0));
+        self.karadaBody->SetLinearVelocity(b2Vec2(self.karadaBody->GetLinearVelocity().x, 0));
         b2Vec2 tmp = b2Vec2(pos.x,8.0/PTM_RATIO) - self.b2Body->GetPosition();
         self.b2Body->SetTransform(b2Vec2(pos.x,8.0/PTM_RATIO), self.b2Body->GetAngle());
         self.karadaBody->SetTransform(self.karadaBody->GetPosition()+tmp, self.karadaBody->GetAngle());
     }
+    pos = self.b2Body->GetPosition();
 
     // 体の位置
     b2Body* b = _karadaBody;

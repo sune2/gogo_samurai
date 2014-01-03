@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         self.touchEnabled = YES;
-        _winSize = [[CCDirector sharedDirector] winSize];
+        _winSize = resizeForAd([[CCDirector sharedDirector] winSize]);
         _viewController = [[UIViewController alloc] init];
         _win = win;
         _score = score;
@@ -150,6 +150,7 @@
             ret.disabledColor = ccc3(150,150,150);
         }
     }
+    ret.fontSize = 20;
     ret.isEnabled = NO;
     return ret;
 }
@@ -190,9 +191,10 @@
     CCMenuItemLabel* facebook = [CCMenuItemFont itemWithString:@"[Facebook]" target:self selector:@selector(postToSNS:)];
     facebook.tag = 101;
 
-    CCMenuItemLabel* kara = [CCMenuItemFont itemWithString:@"_"];
+    CCMenuItemFont* kara = [CCMenuItemFont itemWithString:@"_"];
     kara.isEnabled = NO;
     kara.visible = NO;
+    kara.fontSize = 10;
 //    CCMenuItemLabel *share = [CCMenuItemFont itemWithString:@"[SHARE]" block:^(id sender) {
 //        if (!_shareButtonPushed && [self iosVersionUpperThan6]) {
 //            [self createShareMenu];

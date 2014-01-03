@@ -35,5 +35,7 @@
 @property (strong) id<MenuLayerDelegate> delegate;
 @property (assign) Difficulty difficulty;
 
+-(void)expandMenu;
+
 @end
 

@@ -30,4 +30,6 @@
 @property(nonatomic, strong) GameoverLayer* goLayer;
 @property(assign) Difficulty difficulty;
 
+- (void)pauseByiAd;
+
 @end

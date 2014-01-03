@@ -17,6 +17,7 @@
 #import "MyParticle.h"
 #import "WorkLayer.h"
 #import <GameKit/GameKit.h>
+#import <iAd/iAd.h>
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer<GKLeaderboardViewControllerDelegate>
@@ -26,6 +27,9 @@
     CCMenu* _guide;
     CCMenu* _guideBack;
     CCMenu* _backMenu;
+    ADBannerView* _adView;
+    BOOL bannerIsVisible; // 広告表示状態のフラグ
+    CGSize _winSize;
 }
 
 

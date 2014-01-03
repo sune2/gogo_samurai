@@ -11,6 +11,61 @@
 	</dict>
 	<key>bodies</key>
 	<dict>
+		<key>newrikishi_leg</key>
+		<dict>
+			<key>anchorpoint</key>
+			<string>{ 0.0000,0.0000 }</string>
+			<key>fixtures</key>
+			<array>
+				<dict>
+					<key>density</key>
+					<real>2</real>
+					<key>friction</key>
+					<real>0</real>
+					<key>restitution</key>
+					<real>0</real>
+					<key>filter_categoryBits</key>
+					<integer>1</integer>
+					<key>filter_groupIndex</key>
+					<integer>0</integer>
+					<key>filter_maskBits</key>
+					<integer>65535</integer>
+					<key>isSensor</key>
+					<true/>
+					<key>id</key>
+					<string></string>
+					<key>fixture_type</key>
+					<string>POLYGON</string>
+					<key>polygons</key>
+					<array>
+						<array>
+							<string>{ 120.000,2.000 }</string>
+							<string>{ 108.000,9.000 }</string>
+							<string>{ 101.000,3.000 }</string>
+						</array>
+						<array>
+							<string>{ 102.000,47.000 }</string>
+							<string>{ 85.000,51.000 }</string>
+							<string>{ 96.000,33.000 }</string>
+							<string>{ 110.000,17.000 }</string>
+							<string>{ 110.000,31.000 }</string>
+						</array>
+						<array>
+							<string>{ 80.000,47.000 }</string>
+							<string>{ 88.000,34.000 }</string>
+							<string>{ 96.000,33.000 }</string>
+							<string>{ 85.000,51.000 }</string>
+						</array>
+						<array>
+							<string>{ 96.000,33.000 }</string>
+							<string>{ 101.000,3.000 }</string>
+							<string>{ 108.000,9.000 }</string>
+							<string>{ 110.000,17.000 }</string>
+						</array>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>ninja</key>
 		<dict>
 			<key>anchorpoint</key>
@@ -665,7 +720,7 @@
 			<array>
 				<dict>
 					<key>density</key>
-					<real>2</real>
+					<integer>2</integer>
 					<key>friction</key>
 					<real>0</real>
 					<key>restitution</key>
@@ -774,7 +829,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>newrikishi_leg</key>
+		<key>newrikishi_leg2</key>
 		<dict>
 			<key>anchorpoint</key>
 			<string>{ 0.000,0.0000 }</string>

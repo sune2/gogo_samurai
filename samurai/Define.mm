@@ -46,3 +46,7 @@ ccColor3B difficultyColor(Difficulty diff) {
     }
     return res;
 }
+
+CGSize resizeForAd(CGSize size) {
+    return CGSizeMake(size.width, size.height - kAdHeight);
+}

@@ -84,7 +84,7 @@
 - (void)update: (ccTime)dt
 {
     [self manageMenu];
-    if (_workLayer.life == 3) {
+    if (_workLayer.life == 0) {
         [self gameover:NO];
     } else if (_workLayer.clear) {
         [self gameover:YES];
@@ -138,5 +138,9 @@
     _menuLayer.touchEnabled = YES;
 }
 
+- (void)pauseByiAd {
+    if (_gameovered) return;
+    [_menuLayer expandMenu];
+}
 
 @end

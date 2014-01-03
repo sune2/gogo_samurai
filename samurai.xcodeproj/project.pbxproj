@@ -18,6 +18,7 @@
 		29A5598317DC54090067A8DD /* ninja1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598117DC54080067A8DD /* ninja1.png */; };
 		29A5598417DC54090067A8DD /* ninja2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598217DC54080067A8DD /* ninja2.png */; };
 		29A5598617DCB47F0067A8DD /* events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29A5598517DCB47E0067A8DD /* events.plist */; };
+		29B7EAA91875930600F351BB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B7EAA81875930600F351BB /* iAd.framework */; };
 		FA78E04117DEB82E00F9C825 /* Date.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA78E04017DEB82E00F9C825 /* Date.mm */; };
 		FA78E04617DEC10F00F9C825 /* date_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04317DEC10F00F9C825 /* date_leg.png */; };
 		FA78E04717DEC10F00F9C825 /* date_main.png in Resources */ = {isa = PBXBuildFile; fileRef = FA78E04417DEC10F00F9C825 /* date_main.png */; };
@@ -271,6 +272,7 @@
 		29A5598117DC54080067A8DD /* ninja1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja1.png; path = Resources/images/character/ninja1.png; sourceTree = "<group>"; };
 		29A5598217DC54080067A8DD /* ninja2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ninja2.png; path = Resources/images/character/ninja2.png; sourceTree = "<group>"; };
 		29A5598517DCB47E0067A8DD /* events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = events.plist; path = Resources/events.plist; sourceTree = "<group>"; };
+		29B7EAA81875930600F351BB /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		FA78E03F17DEB82E00F9C825 /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Date.h; path = class/Boss/Date.h; sourceTree = "<group>"; };
 		FA78E04017DEB82E00F9C825 /* Date.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Date.mm; path = class/Boss/Date.mm; sourceTree = "<group>"; };
 		FA78E04317DEC10F00F9C825 /* date_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date_leg.png; path = Resources/images/character/date_leg.png; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B7EAA91875930600F351BB /* iAd.framework in Frameworks */,
 				FA8CC15C17DF138900177AE2 /* Social.framework in Frameworks */,
 				FAA67A4317DEFE0600AE872A /* Twitter.framework in Frameworks */,
 				FAF3B28F17D736F900F29EDB /* QuartzCore.framework in Frameworks */,
@@ -988,6 +991,7 @@
 		FAF3B28217D736F900F29EDB = {
 			isa = PBXGroup;
 			children = (
+				29B7EAA81875930600F351BB /* iAd.framework */,
 				FA8CC15B17DF138900177AE2 /* Social.framework */,
 				FAA67A4217DEFE0600AE872A /* Twitter.framework */,
 				FAF3B2A217D736F900F29EDB /* samurai */,

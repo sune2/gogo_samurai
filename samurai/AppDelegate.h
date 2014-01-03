@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import <GameKit/GameKit.h>
+#import <iAd/iAd.h>
+#import "GameStage.h"
 
 // Added only for iOS 6 support
-@interface MyNavigationController : UINavigationController <CCDirectorDelegate>
+@interface MyNavigationController : UINavigationController <CCDirectorDelegate,ADBannerViewDelegate> {
+    ADBannerView* _adView;
+    BOOL _bannerIsVisible; // 広告表示状態のフラグ
+
+}
 @end
 
 @interface AppController : NSObject <UIApplicationDelegate>
@@ -20,7 +26,8 @@
 	MyNavigationController *navController_;
 	
 	CCDirectorIOS	*director_;							// weak ref
-}
+
+ }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (readonly) MyNavigationController *navController;

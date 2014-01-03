@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         
-        _winSize = [[CCDirector sharedDirector] winSize];
+        _winSize = resizeForAd([[CCDirector sharedDirector] winSize]);
         _ud = [NSUserDefaults standardUserDefaults];
         
         [self addBackground];
@@ -32,15 +32,14 @@
 - (void) initScrollLayer
 {
     int pageMax = 3;//ページ数
-    CGSize s = [[CCDirector sharedDirector] winSize];
     //ScrollLayer
     ScrollLayer* scroll = [ScrollLayer node];
     scroll.delegate = self;
-    [scroll changeContentWidth:s.width*pageMax];
+    [scroll changeContentWidth:_winSize.width*pageMax];
     [self addChild:scroll];
     
-    CGFloat width = self.contentSize.width;
-    CGFloat height = self.contentSize.height;
+    CGFloat width = _winSize.width;
+    CGFloat height = _winSize.height;
     
     //Label
     CCMenu* ranking1 = [self makeRankingWithDifficulty:DifficultyEasy];
@@ -55,7 +54,7 @@
     ranking3.position =  ccp( width/2+width*2 , height/2-30);
     [scroll addScrollChild:ranking3];
     
-    scroll.contentSize = CGSizeMake(100, 300);
+//    scroll.contentSize = CGSizeMake(100, 300);
 }
 
 - (void)scrollPageChanged:(int)page {
@@ -82,7 +81,7 @@
     
     // 月
     CCSprite* moon = [CCSprite spriteWithFile:@"fullmoon.png"];
-    moon.position = ccp(440, 250);
+    moon.position = ccp(_winSize.width -  40, _winSize.height - 70);
     moon.scale = 0.3 * 800 / moon.contentSize.width;
     moon.opacity = 128;
     [self addChild:moon z:-2];
@@ -112,7 +111,8 @@
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < [_scores count]; i++) {
-        CCMenuItemLabel* tmp = [CCMenuItemFont itemWithString:[self rankersScore:i]];
+        CCMenuItemFont* tmp = [CCMenuItemFont itemWithString:[self rankersScore:i]];
+        tmp.fontSize = 20;
         [arr addObject:tmp];
     }
     CCMenu* menu = [CCMenu menuWithArray:arr];
@@ -157,16 +157,19 @@
     _tf.delegate = self;
     _tf.keyboardType = UIKeyboardTypeASCIICapable;
     _tf.clearButtonMode = UITextFieldViewModeWhileEditing;
-    
+
 //    [_tf addTarget:self
 //           action:@selector(saveSamuraiName)
 // forControlEvents:UIControlEventEditingDidEndOnExit];
     
     _tfWrapper = [CCUIViewWrapper wrapperForUIView:_tf];
     _tfWrapper.contentSize = CGSizeMake(150,30);
-    _tfWrapper.anchorPoint = CGPointMake(0.5f, 0.5f);
+//    _tfWrapper.anchorPoint = CGPointMake(0.5f * _tfWrapper.contentSize.width, 0.5f * _tfWrapper.contentSize.height);
+    _tfWrapper.anchorPoint = CGPointMake(0.5,0.5);
+    _tfWrapper.color = ccc3(255, 0, 0);
     _tfWrapper.rotation = 270;
-    _tfWrapper.position = ccp(20, _winSize.width / 2 + 170);
+//    _tfWrapper.position = ccp(20, _winSize.width / 2 + 170);
+    _tfWrapper.position = ccp(52, _winSize.width / 2 + 170);
     [self addChild:_tfWrapper z:5];
 }
 
